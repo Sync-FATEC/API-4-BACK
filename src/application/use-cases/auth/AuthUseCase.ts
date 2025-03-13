@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { User, IUserRepository } from '../../../domain/entities/User';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
@@ -22,8 +23,8 @@ export class AuthUseCase {
             { name: user.email,
             role: user.role
             },
-            process.env.JWT_SECRET || 'secret',
-            { expiresIn: '3h' }
+            process.env.JWT_SECRET,
+            { expiresIn: '1d' }
         );
         console.log(token);
         

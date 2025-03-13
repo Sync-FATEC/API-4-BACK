@@ -1,8 +1,19 @@
+import 'dotenv/config';
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
+declare module 'express-serve-static-core' {
+    interface Request {
+        user?: {
+            name: string;
+            role: string;
+        };
+    }
+}
+
 interface TokenPayload {
-    id: string;
+    name: string;
+    role: string;
     iat: number;
     exp: number;
 }
@@ -15,21 +26,16 @@ export function ensureAuthenticated(
     const authHeader = request.headers.authorization;
 
     if (!authHeader) {
-        return response.sendError('Token não fornecido', 401);
+        return response.sendError('JWT token is missing', 401);
     }
 
     const [, token] = authHeader.split(' ');
 
     try {
-        const decoded = verify(token, process.env.JWT_SECRET || 'secret');
-        const { id } = decoded as TokenPayload;
-
-        request.user = {
-            id
-        };
-
+        const decoded = verify(token, process.env.JWT_SECRET) as TokenPayload;
+        request.user = { name: decoded.name, role: decoded.role };
         return next();
     } catch (error) {
-        return response.sendError('Token inválido', 401);
+        return response.sendError('Invalid JWT token', 401);
     }
-} 
+}
