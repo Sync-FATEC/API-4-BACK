@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { User, IUserRepository } from '../../../domain/entities/User';
 import { hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
@@ -42,8 +43,8 @@ export class RegisterUseCase {
 
         const token = sign(
             { id: user.id },
-            process.env.JWT_SECRET || 'secret',
-            { expiresIn: process.env.JWT_EXPIRES_IN ? parseInt(process.env.JWT_EXPIRES_IN) : '1d' }
+            process.env.JWT_SECRET,
+            { expiresIn: '1d'}
         );
 
         const { password: _, ...userWithoutPassword } = user;

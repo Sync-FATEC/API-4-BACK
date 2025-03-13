@@ -7,7 +7,7 @@ import { ResponseModelDTO } from '../../domain/dtos/ResponseModelDTO';
 export const responseHandler = (req: Request, res: Response, next: NextFunction) => {
     // Método para enviar resposta de sucesso
     res.sendSuccess = function<T>(data: T, status: number = 200) {
-        const responseDTO = ResponseModelDTO.success(data, status);
+        const responseDTO = ResponseModelDTO.success(data);
         return this.status(status).json(responseDTO.toJSON());
     };
 
