@@ -1,9 +1,5 @@
-<<<<<<< Updated upstream
-import 'dotenv/config';
-import { User, IUserRepository } from '../../../domain/entities/User';
-=======
+
 import { User, IUserRepository } from '../../../domain/models/entities/User';
->>>>>>> Stashed changes
 import { hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { isValidCPF } from '../../operations/isValidCPF';
