@@ -1,13 +1,18 @@
-import { off } from "process";
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 import Parameter from "./Parameter";
+import { TypeJson } from "../../../enums/TypeJson";
+
 
 @Entity()
 export class TypeParameter {
     @PrimaryColumn("uuid")
     id: string;
 
-    @Column()
+    @Column({
+        type: "enum",
+        enum: TypeJson,
+        nullable: true,
+    })
     typeJson: TypeJson;
     
     @Column()
