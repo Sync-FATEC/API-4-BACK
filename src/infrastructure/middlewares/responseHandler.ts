@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { ResponseModelDTO } from '../../domain/dtos/ResponseModelDTO';
+import { ResponseModelDTO } from '../../web/dtos/ResponseModelDTO';
 
 /**
  * Estende o objeto Response do Express para incluir métodos de resposta padronizados

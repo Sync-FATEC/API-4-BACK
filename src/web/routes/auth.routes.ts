@@ -4,6 +4,12 @@ import { RegisterUseCase } from '../../application/use-cases/auth/RegisterUseCas
 import { UserRepository } from '../../infrastructure/repositories/UserRepository';
 import { AuthController } from '../controllers/auth/AuthController';
 import { RegisterController } from '../controllers/auth/RegisterController';
+import { UpdateUserUseCase } from '../../application/use-cases/auth/UpdateUserUseCase';
+import { UpdateUserController } from '../controllers/auth/UpdateUserController';
+import { DeleteUserUseCase } from '../../application/use-cases/auth/DeleteUserUseCase';
+import { DeleteUserController } from '../controllers/auth/DeleteUserController';
+import { ListUserUseCase } from '../../application/use-cases/auth/ListUserUseCase';
+import { ListUserController } from '../controllers/auth/ListUserController';
 
 const authRoutes = Router();
 const userRepository = new UserRepository();
@@ -16,8 +22,27 @@ const authController = new AuthController(authUseCase);
 const registerUseCase = new RegisterUseCase(userRepository);
 const registerController = new RegisterController(registerUseCase);
 
+// Update
+const updateUserUseCase = new UpdateUserUseCase(userRepository);
+const updateController = new UpdateUserController(updateUserUseCase);
+
+
+// Delete 
+const deleteUserUseCase = new DeleteUserUseCase(userRepository);
+const deleteController = new DeleteUserController(deleteUserUseCase);
+
+// List
+const listUserUseCase = new ListUserUseCase(userRepository);
+const listController = new ListUserController(listUserUseCase);
 
 authRoutes.post('/login', (req, res) => authController.login(req, res));
+
 authRoutes.post('/register', (req, res) => registerController.handle(req, res));
+
+authRoutes.put('/update', (req, res) => updateController.handle(req, res));
+
+authRoutes.delete('/delete/:id', (req, res) => deleteController.handle(req, res));
+
+authRoutes.get('/list', (req, res) => listController.handle(req, res));
 
 export { authRoutes }; 
