@@ -5,7 +5,7 @@ services:
     build: .
     container_name: api42025
     ports:
-      - "3000:3000"
+      - "5000:5000"
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
