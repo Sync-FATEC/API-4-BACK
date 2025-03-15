@@ -20,13 +20,13 @@ interface TokenPayload {
 
 export function ensureAuthenticated(
     request: Request,
-    response: Response,
+    response,
     next: NextFunction
 ): Response | void {
     const authHeader = request.headers.authorization;
 
     if (!authHeader) {
-        return response.sendError('JWT token is missing', 401);
+        return response.sendError('Token JWT não esta sendo enviado', 401);
     }
 
     const [, token] = authHeader.split(' ');
@@ -36,6 +36,6 @@ export function ensureAuthenticated(
         request.user = { name: decoded.name, role: decoded.role };
         return next();
     } catch (error) {
-        return response.sendError('Invalid JWT token', 401);
+        return response.sendError('Token JWT é invalido ou esta expirado!', 401);
     }
 }

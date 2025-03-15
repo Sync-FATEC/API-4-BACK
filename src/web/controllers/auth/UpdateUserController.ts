@@ -1,6 +1,7 @@
 import { UpdateUserUseCase } from "../../../application/use-cases/auth/UpdateUserUseCase";
 import { Request, Response } from 'express';
 import { UpdateUserDTO } from "../../dtos/auth/UpdateUserDTO";
+import { instanceToPlain } from "class-transformer";
 
 export class UpdateUserController {
     constructor(private updateUserUseCase: UpdateUserUseCase) {}
@@ -10,14 +11,14 @@ export class UpdateUserController {
             const { id, name, email, password, cpf } = request.body;
 
             if (!id) {
-                return response.sendError('ID é obrigatório', 400);
+                return response.sendError('Usuário não encontrado ou inexistente', 400);
             }
 
             const userData: UpdateUserDTO = new UpdateUserDTO(id, name, email, cpf, password);
 
-            const user = await this.updateUserUseCase.execute( userData);
+            const user = await this.updateUserUseCase.execute(userData);
 
-            return response.sendSuccess(user, 200);
+            return response.sendSuccess(instanceToPlain(user), 200);
         } catch (error) {
             return response.sendError(
                 error instanceof Error ? error.message : 'Erro inesperado',

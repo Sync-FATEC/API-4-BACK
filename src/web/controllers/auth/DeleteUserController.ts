@@ -9,7 +9,7 @@ export class DeleteUserController {
             const { id } = request.params;
 
             if (!id) {
-                return response.sendError('ID é obrigatório', 400);
+                return response.sendError('Usuário não encontrado ou inexistente', 400);
             }
 
             await this.deleteUserUseCase.execute(id);

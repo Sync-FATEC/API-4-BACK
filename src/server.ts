@@ -19,7 +19,7 @@ async function bootstrap() {
     await initializeDatabase();
 
     // Rotas
-    app.use('/api/auth', authRoutes);
+    app.use('/auth', authRoutes);
 
     const PORT = process.env.PORT;
     app.listen(PORT, () => {
