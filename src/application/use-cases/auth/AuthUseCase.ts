@@ -9,13 +9,13 @@ export class AuthUseCase {
         const user = await this.userRepository.findByEmail(email);
 
         if (!user) {
-            throw new Error('User not found');
+            throw new Error('Usuario não encontrado');
         }
 
         const passwordMatch = await compare(password, user.password);
 
         if (!passwordMatch) {
-            throw new Error('Invalid password');
+            throw new Error('Senha incorreta');
         }
 
         const token = sign(
