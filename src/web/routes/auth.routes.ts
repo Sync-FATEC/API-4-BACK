@@ -45,14 +45,14 @@ const readController = new ReadUserController(readUserUseCase);
 
 authRoutes.post('/login', limiter, (req, res) => authController.login(req, res));
 
-authRoutes.post('/register', ensureAuthenticated, limiter, (req, res) => registerController.handle(req, res));
+authRoutes.post('/register', limiter, ensureAuthenticated, (req, res) => registerController.handle(req, res));
 
-authRoutes.put('/update', ensureAuthenticated, limiter, (req, res) => updateController.handle(req, res));
+authRoutes.put('/update', limiter, ensureAuthenticated, (req, res) => updateController.handle(req, res));
 
-authRoutes.delete('/delete/:id', ensureAuthenticated, limiter, (req, res) => deleteController.handle(req, res));
+authRoutes.delete('/delete/:id', limiter, ensureAuthenticated, (req, res) => deleteController.handle(req, res));
 
-authRoutes.get('/list', ensureAuthenticated, limiter, (req, res) => listController.handle(req, res));
+authRoutes.get('/list', limiter, ensureAuthenticated, (req, res) => listController.handle(req, res));
 
-authRoutes.get('/read/:id', ensureAuthenticated, limiter, (req, res) => readController.handle(req, res));
+authRoutes.get('/read/:id', limiter, ensureAuthenticated, (req, res) => readController.handle(req, res));
 
 export { authRoutes }; 
