@@ -14,6 +14,7 @@ import { ensureAuthenticated } from '../../infrastructure/middlewares/ensureAuth
 import { ReadUserUseCase } from '../../application/use-cases/auth/ReadUserUseCase';
 import ReadUserController from '../controllers/auth/ReadUserController';
 import { limiter } from '../../infrastructure/middlewares/limiter';
+import { ensureAuthenticatedAdmin } from '../../infrastructure/middlewares/ensureAuthenticatedAdmin';
 
 const authRoutes = Router();
 const userRepository = new UserRepository();
@@ -45,7 +46,7 @@ const readController = new ReadUserController(readUserUseCase);
 
 authRoutes.post('/login', limiter, (req, res) => authController.login(req, res));
 
-authRoutes.post('/register', limiter, ensureAuthenticated, (req, res) => registerController.handle(req, res));
+authRoutes.post('/register', limiter, ensureAuthenticatedAdmin, (req, res) => registerController.handle(req, res));
 
 authRoutes.put('/update', limiter, ensureAuthenticated, (req, res) => updateController.handle(req, res));
 
