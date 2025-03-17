@@ -6,7 +6,7 @@ export class AuthService {
     private readonly jwtSecret: string;
 
     private constructor() {
-        this.jwtSecret = process.env.JWT_SECRET || 'default-secret';
+        this.jwtSecret = process.env.JWT_SECRET;
     }
 
     public static getInstance(): AuthService {
