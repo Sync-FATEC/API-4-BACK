@@ -1,5 +1,5 @@
-import 'dotenv/config';
-import { User, IUserRepository } from '../../../domain/entities/User';
+
+import { User, IUserRepository } from '../../../domain/models/entities/User';
 import { hash } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { isValidCPF } from '../../operations/isValidCPF';

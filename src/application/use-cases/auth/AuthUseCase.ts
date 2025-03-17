@@ -1,5 +1,4 @@
-import 'dotenv/config';
-import { User, IUserRepository } from '../../../domain/entities/User';
+import { User, IUserRepository } from '../../../domain/models/entities/User';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
