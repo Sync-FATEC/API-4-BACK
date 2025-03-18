@@ -1,4 +1,4 @@
-import { IUserRepository } from "../../../domain/entities/User";
+import { IUserRepository } from "../../../domain/models/entities/User";
 
 export class DeleteUserUseCase {
     constructor(private userRepository: IUserRepository) {}
