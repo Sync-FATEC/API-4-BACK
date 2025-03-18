@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm install
 
-COPY . .
+COPY ./src .
 
 EXPOSE 5000
 

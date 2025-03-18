@@ -1,7 +1,6 @@
 import { UpdateUserUseCase } from "../../../application/use-cases/auth/UpdateUserUseCase";
 import { Request, Response } from 'express';
 import { UpdateUserDTO } from "../../dtos/auth/UpdateUserDTO";
-import { instanceToPlain } from "class-transformer";
 
 export class UpdateUserController {
     constructor(private updateUserUseCase: UpdateUserUseCase) {}
@@ -18,7 +17,7 @@ export class UpdateUserController {
 
             const user = await this.updateUserUseCase.execute(userData);
 
-            return response.sendSuccess(instanceToPlain(user), 200);
+            return response.sendSuccess(user, 200);
         } catch (error) {
             return response.sendError(
                 error instanceof Error ? error.message : 'Erro inesperado',
