@@ -25,8 +25,6 @@ export class AuthUseCase {
             process.env.JWT_SECRET,
             { expiresIn: '1d' }
         );
-        console.log(token);
-        
 
         const { password: _, ...userWithoutPassword } = user;
 
