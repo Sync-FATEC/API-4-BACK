@@ -9,6 +9,7 @@ export class RegisterUseCase {
     constructor(private userRepository: IUserRepository) {}
 
     async execute(userData: RegisterUserDTO): Promise<{ user: Partial<User>; token: string }> {
+        
         const userExists = await this.userRepository.findByEmail(userData.getEmail());
         const cpfExists = await this.userRepository.findByCpf(userData.getCpf());
 
