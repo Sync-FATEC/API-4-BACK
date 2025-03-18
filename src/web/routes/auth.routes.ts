@@ -4,19 +4,9 @@ import { RegisterUseCase } from '../../application/use-cases/auth/RegisterUseCas
 import { UserRepository } from '../../infrastructure/repositories/UserRepository';
 import { AuthController } from '../controllers/auth/AuthController';
 import { RegisterController } from '../controllers/auth/RegisterController';
-import { UpdateUserUseCase } from '../../application/use-cases/user/UpdateUserUseCase';
-import { UpdateUserController } from '../controllers/user/UpdateUserController';
-import { DeleteUserController } from '../controllers/user/DeleteUserController';
-import { ListUserUseCase } from '../../application/use-cases/user/ListUserUseCase';
-import { ListUserController } from '../controllers/user/ListUserController';
-import { ensureAuthenticated } from '../../infrastructure/middlewares/ensureAuthenticated';
-import { ReadUserUseCase } from '../../application/use-cases/user/ReadUserUseCase';
-import ReadUserController from '../controllers/user/ReadUserController';
 import { limiter } from '../../infrastructure/middlewares/limiter';
 import { ensureAuthenticatedAdmin } from '../../infrastructure/middlewares/ensureAuthenticatedAdmin';
-import { EmailUseCase } from '../../application/use-cases/email/EmailUseCase';
-import { NodemailerEmailSender } from '../../infrastructure/email/nodeMailerEmailSender';
-import { DeleteUserUseCase } from '../../application/use-cases/user/DeleteUserUseCase';
+
 import CreatePasswordUseCase from '../../application/use-cases/auth/CreatePasswordUseCase';
 import CreatePasswordController from '../controllers/auth/CreatePasswordController';
 
@@ -27,12 +17,8 @@ const userRepository = new UserRepository();
 const authUseCase = new AuthUseCase(userRepository);
 const authController = new AuthController(authUseCase);
 
-// Email
-const emailSender = NodemailerEmailSender.getInstance();
-const emailUseCase = new EmailUseCase(emailSender);
-
 // Registro
-const registerUseCase = new RegisterUseCase(userRepository, emailUseCase);
+const registerUseCase = new RegisterUseCase(userRepository);
 const registerController = new RegisterController(registerUseCase);
 
 // CreatePassword

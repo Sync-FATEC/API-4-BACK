@@ -1,6 +1,7 @@
 import { User, IUserRepository } from '../../../domain/models/entities/User';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { sendEmailCreatePassword } from '../../operations/email/sendEmailCreatePassword';
 
 export class AuthUseCase {
     constructor(private userRepository: IUserRepository) {}
@@ -12,8 +13,8 @@ export class AuthUseCase {
             throw new Error('Usuario não encontrado');
         }
 
-        if (!password) {
-            await this.verifyUserHavePassword(email);
+        if (!user.password || !password) {
+            await this.verifyUserHavePassword(email, user.name);
         }
 
         const passwordMatch = await compare(password, user.password);
@@ -38,10 +39,11 @@ export class AuthUseCase {
         };
     }
 
-    private async verifyUserHavePassword(userEmail: string) {
+    private async verifyUserHavePassword(userEmail: string, userName: string) {
         const user = await this.userRepository.findByEmail(userEmail);
 
         if (!user.password) {
+            sendEmailCreatePassword(userEmail, userName)
             throw new Error('Usuário não possui senha ainda, verifique seu email');
         }
     }

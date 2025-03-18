@@ -5,12 +5,10 @@ import RegisterUserDTO from '../../../web/dtos/auth/RegisterUserDTO';
 import { ReadUserDTO } from '../../../web/dtos/user/ReadUserDTO';
 import { transformUserToDTO } from '../../operations/user/transformeUserToDTO';
 import { EmailUseCase } from '../email/EmailUseCase';
+import { sendEmailCreatePassword } from '../../operations/email/sendEmailCreatePassword';
 
 export class RegisterUseCase {
-    constructor(
-        private userRepository: IUserRepository,
-        private emailUseCase: EmailUseCase
-    ) {}
+    constructor(private userRepository: IUserRepository) {}
     
     async execute(userData: RegisterUserDTO): Promise<ReadUserDTO> {
         const userExists = await this.userRepository.findByEmail(userData.getEmail());
@@ -35,7 +33,7 @@ export class RegisterUseCase {
             role: 'user'
         });
 
-        this.emailUseCase.sendEmailToCreatePassword(user.email, user.name, user.email);
+        sendEmailCreatePassword(user.email, user.name)
         
         return transformUserToDTO(user);
     }
