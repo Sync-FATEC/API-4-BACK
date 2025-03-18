@@ -15,7 +15,7 @@ export class RegisterUseCase {
         const cpfExists = await this.userRepository.findByCpf(userData.getCpf());
 
         if (userExists) {
-            throw new Error('Usuário já existe');
+            throw new Error('Email já cadastrado');
         }
 
         if (isValidCPF(userData.getCpf()) === false) {
