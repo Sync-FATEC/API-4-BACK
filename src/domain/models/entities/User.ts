@@ -1,4 +1,4 @@
-import { Exclude } from 'class-transformer';
+
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
@@ -13,7 +13,6 @@ export class User {
     email!: string;
 
     @Column()
-    @Exclude()
     password!: string;
 
     @Column({ nullable: true, default: 'user' })
@@ -24,6 +23,26 @@ export class User {
 
     @CreateDateColumn()
     createdAt!: Date;
+
+    public getName(): string {
+        return this.name;
+    }
+
+    public getEmail(): string {
+        return this.email;
+    }
+
+    public getCpf(): string {
+        return this.cpf;
+    }
+
+    public getRole(): string {
+        return this.role;
+    }
+
+    public getId(): string {
+        return this.id;
+    }
 }
 
 export interface IUserRepository {

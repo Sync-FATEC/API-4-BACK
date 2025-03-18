@@ -1,12 +1,14 @@
 import { hash } from "bcryptjs";
-import { IUserRepository, User } from "../../../domain/entities/User";
 import { UpdateUserDTO } from "../../../web/dtos/auth/UpdateUserDTO";
 import { isValidCPF } from "../../operations/isValidCPF";
+import { transformUserToDTO } from "../../operations/user/transformeUserToDTO";
+import { IUserRepository, User } from "../../../domain/models/entities/User";
+import { ReadUserDTO } from "../../../web/dtos/user/ReadUserDTO";
 
 export class UpdateUserUseCase {
     constructor(private userRepository: IUserRepository) { }
 
-    async execute(userData: UpdateUserDTO): Promise<User | null> {
+    async execute(userData: UpdateUserDTO): Promise<ReadUserDTO | null> {
         const User = await this.userRepository.findById(userData.getId());
         if (!User) throw new Error('Usuário não encontrado');
 
@@ -40,6 +42,8 @@ export class UpdateUserUseCase {
             User.password = hashedPassword;
         }
 
-        return await this.userRepository.update(userData.getId(), User);
+        const newUser = await this.userRepository.update(userData.getId(), User);
+
+        return transformUserToDTO(newUser);
     }
 }
