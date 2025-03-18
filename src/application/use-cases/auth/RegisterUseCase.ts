@@ -1,14 +1,18 @@
 
 import { User, IUserRepository } from '../../../domain/models/entities/User';
-import { hash } from 'bcryptjs';
-import { sign } from 'jsonwebtoken';
 import { isValidCPF } from '../../operations/isValidCPF';
 import RegisterUserDTO from '../../../web/dtos/auth/RegisterUserDTO';
+import { ReadUserDTO } from '../../../web/dtos/user/ReadUserDTO';
+import { transformUserToDTO } from '../../operations/user/transformeUserToDTO';
+import { EmailUseCase } from '../email/EmailUseCase';
 
 export class RegisterUseCase {
-    constructor(private userRepository: IUserRepository) {}
-
-    async execute(userData: RegisterUserDTO): Promise<{ user: Partial<User>; token: string }> {
+    constructor(
+        private userRepository: IUserRepository,
+        private emailUseCase: EmailUseCase
+    ) {}
+    
+    async execute(userData: RegisterUserDTO): Promise<ReadUserDTO> {
         const userExists = await this.userRepository.findByEmail(userData.getEmail());
         const cpfExists = await this.userRepository.findByCpf(userData.getCpf());
 
@@ -24,27 +28,15 @@ export class RegisterUseCase {
             throw new Error('CPF já cadastrado');
         }
 
-        const hashedPassword = await hash(userData.getPassword(), 8);
-
         const user = await this.userRepository.create({
             name: userData.getName(),
             email: userData.getEmail(),
-            password: hashedPassword,
             cpf: userData.getCpf(),
             role: 'user'
         });
 
-        const token = sign(
-            { id: user.id },
-            process.env.JWT_SECRET,
-            { expiresIn: '1d'}
-        );
-
-        const { password: _, ...userWithoutPassword } = user;
-
-        return {
-            user: userWithoutPassword,
-            token
-        };
+        this.emailUseCase.sendEmailToCreatePassword(user.email, user.name, user.email);
+        
+        return transformUserToDTO(user);
     }
 } 

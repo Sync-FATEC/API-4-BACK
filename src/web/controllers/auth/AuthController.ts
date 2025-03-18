@@ -8,8 +8,8 @@ export class AuthController {
         try {
             const { email, password } = request.body;
 
-            if (!email || !password) {
-                return response.sendError('Email e senha são obrigatórios', 400);
+            if (!email) {
+                return response.sendError('Email é obrigatórios', 400);
             }
 
             const { user, token } = await this.authUseCase.execute(email, password);

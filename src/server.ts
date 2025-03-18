@@ -5,6 +5,7 @@ import cors from 'cors';
 import { initializeDatabase } from './infrastructure/database/initialize';
 import { authRoutes } from './web/routes/auth.routes';
 import { responseHandler } from './infrastructure/middlewares/responseHandler';
+import { userRoutes } from './web/routes/user.routes';
 
 async function bootstrap() {
     const app = express();
@@ -20,6 +21,7 @@ async function bootstrap() {
 
     // Rotas
     app.use('/auth', authRoutes);
+    app.use('/user', userRoutes)
 
     const PORT = process.env.PORT;
     app.listen(PORT, () => {

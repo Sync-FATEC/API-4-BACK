@@ -7,17 +7,17 @@ export class RegisterController {
 
     async handle(request: Request, response): Promise<Response> {
         try {
-            const { name, email, password, cpf } = request.body;
+            const { name, email, cpf } = request.body;
 
-            if (!name || !email || !password || !cpf) {
-                return response.sendError('Nome, email, senha e CPF são obrigatórios', 400);
+            if (!name || !email || !cpf) {
+                return response.sendError('Nome, email e CPF são obrigatórios', 400);
             }
 
-            const userData: RegisterUserDTO = new RegisterUserDTO(name, email, password, cpf);
+            const userData: RegisterUserDTO = new RegisterUserDTO(name, email, cpf);
 
-            const { user, token } = await this.registerUseCase.execute(userData);
+            const readUser = await this.registerUseCase.execute(userData);
 
-            return response.sendSuccess({ user, token }, 200);
+            return response.sendSuccess({ readUser }, 200);
         } catch (error) {
             return response.sendError(
                 error instanceof Error ? error.message : 'Erro inesperado',

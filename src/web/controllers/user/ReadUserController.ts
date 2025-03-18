@@ -1,4 +1,4 @@
-import { ReadUserUseCase } from "../../../application/use-cases/auth/ReadUserUseCase";
+import { ReadUserUseCase } from "../../../application/use-cases/user/ReadUserUseCase";
 import { Request, Response } from "express";
 
 export default class ReadUserController {
