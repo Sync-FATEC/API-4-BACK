@@ -10,6 +10,11 @@ import { DeleteUserUseCase } from '../../application/use-cases/auth/DeleteUserUs
 import { DeleteUserController } from '../controllers/auth/DeleteUserController';
 import { ListUserUseCase } from '../../application/use-cases/auth/ListUserUseCase';
 import { ListUserController } from '../controllers/auth/ListUserController';
+import { ensureAuthenticated } from '../../infrastructure/middlewares/ensureAuthenticated';
+import { ReadUserUseCase } from '../../application/use-cases/auth/ReadUserUseCase';
+import ReadUserController from '../controllers/auth/ReadUserController';
+import { limiter } from '../../infrastructure/middlewares/limiter';
+import { ensureAuthenticatedAdmin } from '../../infrastructure/middlewares/ensureAuthenticatedAdmin';
 
 const authRoutes = Router();
 const userRepository = new UserRepository();
@@ -35,14 +40,20 @@ const deleteController = new DeleteUserController(deleteUserUseCase);
 const listUserUseCase = new ListUserUseCase(userRepository);
 const listController = new ListUserController(listUserUseCase);
 
-authRoutes.post('/login', (req, res) => authController.login(req, res));
+// Read
+const readUserUseCase = new ReadUserUseCase(userRepository);
+const readController = new ReadUserController(readUserUseCase);
 
-authRoutes.post('/register', (req, res) => registerController.handle(req, res));
+authRoutes.post('/login', limiter, (req, res) => authController.login(req, res));
 
-authRoutes.put('/update', (req, res) => updateController.handle(req, res));
+authRoutes.post('/register', limiter, ensureAuthenticatedAdmin, (req, res) => registerController.handle(req, res));
 
-authRoutes.delete('/delete/:id', (req, res) => deleteController.handle(req, res));
+authRoutes.put('/update', limiter, ensureAuthenticated, (req, res) => updateController.handle(req, res));
 
-authRoutes.get('/list', (req, res) => listController.handle(req, res));
+authRoutes.delete('/delete/:id', limiter, ensureAuthenticated, (req, res) => deleteController.handle(req, res));
+
+authRoutes.get('/list', limiter, ensureAuthenticated, (req, res) => listController.handle(req, res));
+
+authRoutes.get('/read/:id', limiter, ensureAuthenticated, (req, res) => readController.handle(req, res));
 
 export { authRoutes }; 

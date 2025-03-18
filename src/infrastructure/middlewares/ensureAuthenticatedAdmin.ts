@@ -8,7 +8,7 @@ declare module 'express-serve-static-core' {
     }
 }
 
-export function ensureAuthenticated(
+export function ensureAuthenticatedAdmin(
     request: Request,
     response: Response,
     next: NextFunction
@@ -23,6 +23,7 @@ export function ensureAuthenticated(
             role: decoded.role
         };
 
+        authService.validateAdminRole(decoded.role);
         next();
     } catch (error) {
         response.sendError(
