@@ -36,7 +36,7 @@ userRoutes.put('/update', limiter, ensureAuthenticated, (req, res) => updateCont
 
 userRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, (req, res) => deleteController.handle(req, res));
 
-userRoutes.get('/list', limiter, (req, res) => listController.handle(req, res));
+userRoutes.get('/list', limiter, ensureAuthenticatedAdmin, (req, res) => listController.handle(req, res));
 
 userRoutes.get('/read/:id', limiter, ensureAuthenticated, (req, res) => readController.handle(req, res));
 

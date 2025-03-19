@@ -1,19 +1,27 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Station {
-  @PrimaryColumn("uuid")
-  private id: number;
+  @PrimaryGeneratedColumn("uuid")
+  private id: string;
 
   @Column({ unique: true, nullable: false })
   private name: string;
 
   @Column()
-  private latitude: number;
+  private latitude: string;
 
   @Column()
-  private longitude: number;
+  private longitude: string;
 
   @Column()
-  private altitude: number;
+  private altitude: string;
+}
+
+export interface IStationRepository {
+  create(station: Partial<Station>): Promise<Station>;
+  delete(id: string): Promise<boolean>;
+  update(id: string, station: Partial<Station>): Promise<Station | null>;
+  list(): Promise<Station[]>;
+  findById(id: string): Promise<Station | null>;
 }
