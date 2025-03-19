@@ -1,122 +1,122 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import { RegisterUseCase } from "@/application/use-cases/auth/RegisterUseCase";
 import { IUserRepository, User } from "@/domain/models/entities/User";
-import RegisterUserDTO from "@/web/dtos/auth/RegisterUserDTO";
+import { MockEmailSender } from "../../mocks/MockEmailSender";
+import RegisterUserDTO from '@/web/dtos/auth/RegisterUserDTO';
 
 describe("Testando registro de usuário quando os dados forem corretos", () => {
     let registerUseCase: RegisterUseCase;
     let mockUserRepository: jest.Mocked<IUserRepository>;
 
     beforeEach(() => {
-      // Mock do JWT_SECRET
-      process.env.JWT_SECRET = "test-secret-key";
-
-      // Cria um mock do UserRepository
-      mockUserRepository = {
-        create: jest.fn(),
-        delete: jest.fn(),
-        update: jest.fn(),
-        list: jest.fn(),
-        findByEmail: jest.fn(),
-        findById: jest.fn(),
-        findByCpf: jest.fn()
-      } as jest.Mocked<IUserRepository>;
-
-      // Instancia o RegisterUseCase com o repositório mockado
-      registerUseCase = new RegisterUseCase(mockUserRepository);
+        // Mock do JWT_SECRET
+        process.env.JWT_SECRET = "test-secret-key";
+  
+        // Cria um mock do UserRepository
+        mockUserRepository = {
+            create: jest.fn(),
+            delete: jest.fn(),
+            update: jest.fn(),
+            list: jest.fn(),
+            findByEmail: jest.fn(),
+            findById: jest.fn(),
+            findByCpf: jest.fn()
+        } as jest.Mocked<IUserRepository>;
+  
+        // Instancia o RegisterUseCase com o repositório mockado
+        registerUseCase = new RegisterUseCase(mockUserRepository);
     });
 
     afterEach(() => {
-      // Limpa o mock do JWT_SECRET após cada teste
-      delete process.env.JWT_SECRET;
+        // Limpa o mock do JWT_SECRET após cada teste
+        delete process.env.JWT_SECRET;
+        jest.clearAllMocks();
     });
 
     it("deve registrar um usuário com sucesso quando os dados são válidos", async () => {
-      // Arrange (Preparar) 
-      const validUserData = new RegisterUserDTO(
-        "Erik Camara",
-        "erik@mail.com",
-        "123456",
-        "794.979.510-78"
-      );
+        // Configura os mocks para retornar null (usuário não existe)
+        mockUserRepository.findByEmail.mockResolvedValue(null);
+        mockUserRepository.findByCpf.mockResolvedValue(null);
 
-      const expectedUser = {
-        id: "any-uuid",
-        name: "Erik Camara",
-        email: "erik@mail.com",
-        password: "hashed-password",
-        cpf: "794.979.510-78",
-        role: "user",
-        createdAt: new Date()
-      } as User;
+        // Configura o mock de create para retornar um usuário
+        const createdUser = new User();
+        createdUser.name = "Erik";
+        createdUser.email = "erik@mail.com";
+        createdUser.cpf = "794.979.510-78";
+        mockUserRepository.create.mockResolvedValue(createdUser);
 
-      // Configurando os mocks
-      mockUserRepository.findByEmail.mockResolvedValue(null); // usuário não existe
-      mockUserRepository.findByCpf.mockResolvedValue(null); // cpf não existe
-      mockUserRepository.create.mockResolvedValue(expectedUser);
-  
-      // Act (Agir)
-      const resultado = await registerUseCase.execute(validUserData);
-  
-      // Assert (Verificar)
-      expect(resultado).toHaveProperty('user');
-      expect(resultado).toHaveProperty('token');
-      expect(mockUserRepository.create).toHaveBeenCalledTimes(1);
-      expect(mockUserRepository.findByEmail).toHaveBeenCalledWith("erik@mail.com");
-      expect(mockUserRepository.findByCpf).toHaveBeenCalledWith("794.979.510-78");
+        const validUserData = new RegisterUserDTO(
+            "Erik",
+            "erik@mail.com",
+            "794.979.510-78"
+        );
+
+        const result = await registerUseCase.execute(validUserData);
+
+        expect(result).toBeDefined();
+        expect(result.getName()).toBe("Erik");
+        expect(result.getEmail()).toBe("erik@mail.com");
+        expect(result.getCpf()).toBe("794.979.510-78");
+        expect(mockUserRepository.create).toHaveBeenCalledTimes(1);
     });
-  
+
     it("deve lançar erro quando cpf já existe", async () => {
-      // Arrange (Preparar)
-      const validUserData = new RegisterUserDTO(
-        "Erik Camara",
-        "erik@mail.com",
-        "123456",
-        "794.979.510-78"
-      );
+        // Configura o mock para simular CPF já existente
+        const existingUser = new User();
+        existingUser.cpf = "794.979.510-78";
+        mockUserRepository.findByCpf.mockResolvedValue(existingUser);
+        mockUserRepository.findByEmail.mockResolvedValue(null);
 
-      mockUserRepository.findByEmail.mockResolvedValue(null); 
-      mockUserRepository.findByCpf.mockResolvedValue({} as User); // simula que o cpf já existe
-  
-      // Act e Assert (Agir e Verificar)
-      await expect(registerUseCase.execute(validUserData))
-        .rejects
-        .toThrow("CPF já cadastrado");
+        const validUserData = new RegisterUserDTO(
+            "Erik",
+            "erik@mail.com",
+            "794.979.510-78"
+        );
+
+        await expect(registerUseCase.execute(validUserData))
+            .rejects
+            .toThrow("CPF já cadastrado");
+        
+        expect(mockUserRepository.create).not.toHaveBeenCalled();
     });
 
-     
     it("deve lançar erro quando email já existe", async () => {
-      // Arrange (Preparar)
-      const validUserData = new RegisterUserDTO(
-        "Erik Camara",
-        "erik@mail.com",
-        "123456",
-        "794.979.510-78"
-      );
+        // Configura o mock para simular email já existente
+        const existingUser = new User();
+        existingUser.email = "erik@mail.com";
+        mockUserRepository.findByEmail.mockResolvedValue(existingUser);
+        mockUserRepository.findByCpf.mockResolvedValue(null);
 
-      mockUserRepository.findByEmail.mockResolvedValue({} as User); // simula que o email já existe
-  
-      // Act e Assert (Agir e Verificar)
-      await expect(registerUseCase.execute(validUserData))
-        .rejects
-        .toThrow("Usuário já existe");
+        const validUserData = new RegisterUserDTO(
+            "Erik",
+            "erik@mail.com",
+            "794.979.510-78"
+        );
+
+        await expect(registerUseCase.execute(validUserData))
+            .rejects
+            .toThrow("Email já cadastrado");
+        
+        expect(mockUserRepository.create).not.toHaveBeenCalled();
     });
 
+    it("deve lançar erro quando cpf é invalido", async () => {
+        // Configura os mocks para retornar null (usuário não existe)
+        mockUserRepository.findByEmail.mockResolvedValue(null);
+        mockUserRepository.findByCpf.mockResolvedValue(null);
 
-    it("deve lançar erro cpf é invalido", async () => {
-      // Arrange (Preparar)
-      const validUserData = new RegisterUserDTO(
-        "Erik Camara",
-        "erik@mail.com",
-        "123456",
-        "795.979.510-78"
-      );
+        const validUserData = new RegisterUserDTO(
+            "Erik",
+            "erik@mail.com",
+            "123.456.789-10"
+        );
 
-      mockUserRepository.findByEmail.mockResolvedValue(null); // simula que o email já existe
-      mockUserRepository.findByEmail.mockResolvedValue(null); // simula que o email já existe
-  
-      // Act e Assert (Agir e Verificar)
-      await expect(registerUseCase.execute(validUserData))
-        .rejects
-        .toThrow("CPF inválido");
+        await expect(registerUseCase.execute(validUserData))
+            .rejects
+            .toThrow("CPF inválido");
+        
+        expect(mockUserRepository.create).not.toHaveBeenCalled();
     });
-  });
+});

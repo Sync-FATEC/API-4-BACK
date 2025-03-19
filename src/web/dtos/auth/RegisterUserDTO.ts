@@ -2,12 +2,10 @@ export default class RegisterUserDTO {
     protected name: string;
     private email: string;
     private cpf: string;
-    private password: string;
 
-    constructor(name: string, email: string, password: string, cpf: string) {
+    constructor(name: string, email: string, cpf: string) {
         this.name = name;
         this.email = email;
-        this.password = password;
         this.cpf = cpf;
     }
 
@@ -21,9 +19,5 @@ export default class RegisterUserDTO {
 
     public getCpf(): string {
         return this.cpf;
-    }
-
-    public getPassword(): string {
-        return this.password;
     }
 }

@@ -1,15 +1,20 @@
 import { User, IUserRepository } from '../../../domain/models/entities/User';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { sendEmailCreatePassword } from '../../operations/email/sendEmailCreatePassword';
 
 export class AuthUseCase {
     constructor(private userRepository: IUserRepository) {}
 
-    async execute(email: string, password: string): Promise<{ user: Partial<User>; token: string }> {
+    async execute(email: string, password: string | null): Promise<{ user: Partial<User>; token: string }> {
         const user = await this.userRepository.findByEmail(email);
 
         if (!user) {
             throw new Error('Usuario não encontrado');
+        }
+
+        if (!user.password || !password) {
+            await this.verifyUserHavePassword(email, user.name);
         }
 
         const passwordMatch = await compare(password, user.password);
@@ -32,5 +37,14 @@ export class AuthUseCase {
             user: userWithoutPassword,
             token
         };
+    }
+
+    private async verifyUserHavePassword(userEmail: string, userName: string) {
+        const user = await this.userRepository.findByEmail(userEmail);
+
+        if (!user.password) {
+            sendEmailCreatePassword(userEmail, userName)
+            throw new Error('Usuário não possui senha ainda, verifique seu email');
+        }
     }
 } 

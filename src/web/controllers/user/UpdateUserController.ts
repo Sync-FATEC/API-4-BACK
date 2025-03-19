@@ -1,4 +1,4 @@
-import { UpdateUserUseCase } from "../../../application/use-cases/auth/UpdateUserUseCase";
+import { UpdateUserUseCase } from "../../../application/use-cases/user/UpdateUserUseCase";
 import { Request, Response } from 'express';
 import { UpdateUserDTO } from "../../dtos/auth/UpdateUserDTO";
 

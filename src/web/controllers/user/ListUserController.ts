@@ -1,4 +1,4 @@
-import { ListUserUseCase } from "../../../application/use-cases/auth/ListUserUseCase";
+import { ListUserUseCase } from "../../../application/use-cases/user/ListUserUseCase";
 import { Request, Response } from 'express';
 
 export class ListUserController {

@@ -38,7 +38,7 @@ export class AuthService {
     }
 
     public validateAdminRole(role: string): void {
-        if (role !== 'admin') {
+        if (role !== 'ADMIN') {
             throw new Error('Acesso não autorizado: usuário não é administrador');
         }
     }
