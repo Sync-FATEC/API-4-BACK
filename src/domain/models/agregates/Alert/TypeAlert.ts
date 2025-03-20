@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import Parameter from "../Parameter/Parameter";
 import { Alert } from "./Alert";
-import ComparisonOperator from "src/domain/enums/TypeAlert/ComparisonOperator";
+import { ComparisonOperator } from "../../../enums/TypeAlert/ComparisonOperator";
 
 @Entity()
 export class TypeAlert {

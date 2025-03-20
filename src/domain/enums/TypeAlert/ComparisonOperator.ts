@@ -1,8 +1,6 @@
-enum ComparisonOperator {
+export enum ComparisonOperator {
     GreaterThan,
     GreaterThanOrEqual,
     LessThan,
     LessThanOrEqual,
 }
-
-export default ComparisonOperator;

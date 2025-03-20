@@ -1,6 +1,5 @@
-import { IAlertRepository } from "src/domain/interfaces/repositories/IAlertRepository";
-import { ITypeAlertRepository } from "src/domain/interfaces/repositories/ITypeAlertRepository";
-
+import { IAlertRepository } from "../../../domain/interfaces/repositories/IAlertRepository";
+import { ITypeAlertRepository } from "../../../domain/interfaces/repositories/ITypeAlertRepository";
 
 export abstract class AlertUseCase {
     protected alertRepository: IAlertRepository;

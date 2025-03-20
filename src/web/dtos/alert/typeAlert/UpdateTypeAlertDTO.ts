@@ -1,4 +1,4 @@
-import ComparisonOperator from "@/domain/enums/TypeAlert/MathOperator";
+import { ComparisonOperator } from "../../../../domain/enums/TypeAlert/ComparisonOperator";
 
 export class UpdateTypeAlertDTO {
     id: string;
