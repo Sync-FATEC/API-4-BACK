@@ -1,18 +1,18 @@
 import { Router } from "express";
 import CreateStationController from "../controllers/station/CreateStationController";
-import { CreateStationUseCase } from "@/application/use-cases/station/CreateStationUseCase";
-import DeleteStationUseCase from "@/application/use-cases/station/DeleteStationUseCase";
-import { ListStationUseCase } from "@/application/use-cases/station/ListStationUseCase";
-import { ReadStationUseCase } from "@/application/use-cases/station/ReadStationUseCase";
 import { DeleteStationController } from "../controllers/station/DeleteStationController";
 import { ListStationController } from "../controllers/station/ListStationController";
 import { ReadStationController } from "../controllers/station/ReadStationController";
-import UpdateStationUseCase from "@/application/use-cases/station/UpdateStationUseCase";
 import { UpdateStationController } from "../controllers/station/UpdateStationController";
-import { limiter } from "@/infrastructure/middlewares/limiter";
-import { ensureAuthenticated } from "@/infrastructure/middlewares/ensureAuthenticated";
-import StationRepository from "@/infrastructure/repositories/StationRepository";
-import { ensureAuthenticatedAdmin } from "@/infrastructure/middlewares/ensureAuthenticatedAdmin";
+import { CreateStationUseCase } from "../../application/use-cases/station/CreateStationUseCase";
+import DeleteStationUseCase from "../../application/use-cases/station/DeleteStationUseCase";
+import { ListStationUseCase } from "../../application/use-cases/station/ListStationUseCase";
+import { ReadStationUseCase } from "../../application/use-cases/station/ReadStationUseCase";
+import UpdateStationUseCase from "../../application/use-cases/station/UpdateStationUseCase";
+import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
+import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
+import { limiter } from "../../infrastructure/middlewares/limiter";
+import StationRepository from "../../infrastructure/repositories/StationRepository";
 
 const stationRoutes = Router();
 const stationRepository = new StationRepository();

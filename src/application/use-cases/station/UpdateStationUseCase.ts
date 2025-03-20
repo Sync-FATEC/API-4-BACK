@@ -1,5 +1,5 @@
-import { IStationRepository } from "@/domain/models/entities/Station";
-import UpdateStationDTO from "@/web/dtos/station/UpdateStationDTO";
+import { IStationRepository } from "../../../domain/models/entities/Station";
+import UpdateStationDTO from "../../../web/dtos/station/UpdateStationDTO";
 
 export default class UpdateStationUseCase {
     constructor(private stationRepository: IStationRepository) {}

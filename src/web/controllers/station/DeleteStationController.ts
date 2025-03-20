@@ -1,5 +1,5 @@
-import DeleteStationUseCase from "@/application/use-cases/station/DeleteStationUseCase";
 import { Request } from "express";
+import DeleteStationUseCase from "../../../application/use-cases/station/DeleteStationUseCase";
 
 export class DeleteStationController {
     constructor(private deleteStationUseCase: DeleteStationUseCase) {}

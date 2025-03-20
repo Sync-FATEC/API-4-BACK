@@ -1,5 +1,5 @@
-import { ReadStationUseCase } from "@/application/use-cases/station/ReadStationUseCase";
 import { Request, Response } from "express";
+import { ReadStationUseCase } from "../../../application/use-cases/station/ReadStationUseCase";
 
 export class ReadStationController {
     constructor(private readStationUseCase: ReadStationUseCase) {}

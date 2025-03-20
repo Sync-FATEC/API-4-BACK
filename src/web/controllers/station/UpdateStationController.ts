@@ -1,6 +1,6 @@
-import UpdateStationUseCase from "@/application/use-cases/station/UpdateStationUseCase";
-import UpdateStationDTO from "@/web/dtos/station/UpdateStationDTO";
 import { Request, Response } from "express";
+import UpdateStationUseCase from "../../../application/use-cases/station/UpdateStationUseCase";
+import UpdateStationDTO from "../../dtos/station/UpdateStationDTO";
 
 export class UpdateStationController {
     constructor(private updateStationUseCase: UpdateStationUseCase) {}

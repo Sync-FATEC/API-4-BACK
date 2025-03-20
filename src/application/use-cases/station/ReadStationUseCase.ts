@@ -1,4 +1,4 @@
-import { IStationRepository, Station } from "@/domain/models/entities/Station";
+import { IStationRepository, Station } from "../../../domain/models/entities/Station";
 
 export class ReadStationUseCase {
     constructor(private stationRepository: IStationRepository) {}
