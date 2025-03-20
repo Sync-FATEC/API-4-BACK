@@ -1,9 +1,10 @@
-import { RegisterTypeAlertDTO } from "@/web/dtos/alert/typeAlert/RegisterTypeAlertDTO";
+import { SystemContextException } from "src/domain/exceptions/SystemContextException";
+import { IParameterRepository } from "src/domain/interfaces/repositories/IParameterRepository";
+import { ITypeAlertRepository } from "src/domain/interfaces/repositories/ITypeAlertRepository";
+import { TypeAlert } from "src/domain/models/agregates/Alert/TypeAlert";
+import { RegisterTypeAlertDTO } from "src/web/dtos/alert/typeAlert/RegisterTypeAlertDTO";
 import { TypeAlertUseCase } from "./TypeAlertUseCase";
-import { IParameterRepository } from "@/domain/interfaces/repositories/IParameterRepository";
-import { ITypeAlertRepository } from "@/domain/interfaces/repositories/ITypeAlertRepository";
-import { SystemContextException } from "@/domain/exceptions/SystemContextException";
-import { TypeAlert } from "@/domain/models/agregates/Alert/TypeAlert";
+
 
 export class RegisterTypeAlertUseCase extends TypeAlertUseCase {
 

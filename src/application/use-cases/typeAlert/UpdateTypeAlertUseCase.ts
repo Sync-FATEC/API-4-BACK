@@ -15,7 +15,6 @@ export class UpdateTypeAlertUseCase extends TypeAlertUseCase {
     
     public async execute(data: UpdateTypeAlertDTO): Promise<void> {
 
-
         let parameter = await this.parameterRepository.getParameterById(data.parameterId);
 
         if(parameter === null){
@@ -25,7 +24,6 @@ export class UpdateTypeAlertUseCase extends TypeAlertUseCase {
         let typeAlert = TypeAlert.create(data.name, data.comparisonOperator, parameter);
 
         this.typeAlertRepository.create(typeAlert);
-
     }
 }
 
