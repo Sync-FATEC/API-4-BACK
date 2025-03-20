@@ -1,6 +1,6 @@
-import { IStationRepository, Station } from "@/domain/models/entities/Station";
 import { Repository } from "typeorm";
 import { AppDataSource } from "../database/data-source";
+import { IStationRepository, Station } from "../../domain/models/entities/Station";
 
 export default class StationRepository implements IStationRepository {
     private repository: Repository<Station>;

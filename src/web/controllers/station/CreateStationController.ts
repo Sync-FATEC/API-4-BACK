@@ -1,6 +1,6 @@
-import { CreateStationUseCase } from "@/application/use-cases/station/CreateStationUseCase";
-import CreateStationDTO from "@/web/dtos/station/CreateStationDTO";
 import { Request } from "express";
+import CreateStationDTO from "../../../../src/web/dtos/station/CreateStationDTO";
+import { CreateStationUseCase } from "../../../application/use-cases/station/CreateStationUseCase";
 
 export default class CreateStationController {
   constructor(private createStationUseCase: CreateStationUseCase) {}

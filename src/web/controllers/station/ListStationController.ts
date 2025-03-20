@@ -1,4 +1,4 @@
-import { ListStationUseCase } from "@/application/use-cases/station/ListStationUseCase";
+import { ListStationUseCase } from "../../../application/use-cases/station/ListStationUseCase";
 
 export class ListStationController {
     constructor(private listStationUseCase: ListStationUseCase) { }
