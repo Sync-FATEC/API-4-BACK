@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import { User } from '../../../domain/models/entities/User';
 import bcrypt from 'bcryptjs';
+import hashPassword from '../../../application/operations/auth/hashPassword';
 
 export async function seedAdminUser(dataSource: DataSource) {
     const userRepository = dataSource.getRepository(User);
@@ -10,7 +11,7 @@ export async function seedAdminUser(dataSource: DataSource) {
     });
 
     if (!adminExists) {
-        const hashedPassword = await bcrypt.hash('123', 8);
+        const hashedPassword = await hashPassword('123');
         
         const adminUser = userRepository.create({
             name: 'Administrador',

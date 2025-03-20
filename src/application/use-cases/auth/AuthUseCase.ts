@@ -1,8 +1,7 @@
-import { User, IUserRepository } from '../../../domain/models/entities/User';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { IUserRepository, User } from '../../../domain/models/entities/User';
 import { sendEmailCreatePassword } from '../../operations/email/sendEmailCreatePassword';
-
 export class AuthUseCase {
     constructor(private userRepository: IUserRepository) {}
 
