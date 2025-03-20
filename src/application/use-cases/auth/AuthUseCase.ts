@@ -24,7 +24,7 @@ export class AuthUseCase {
         }
 
         const token = sign(
-            { name: user.email,
+            { id: user.id,
             role: user.role
             },
             process.env.JWT_SECRET,

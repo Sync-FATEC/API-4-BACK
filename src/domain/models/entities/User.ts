@@ -43,6 +43,10 @@ export class User {
     public getId(): string {
         return this.id;
     }
+
+    public getCreatedAt(): Date {
+        return this.createdAt;
+    }
 }
 
 export interface IUserRepository {
