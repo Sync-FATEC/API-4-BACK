@@ -34,4 +34,8 @@ export default class StationRepository implements IStationRepository {
     async findById(id: string): Promise<Station | null> {
         return await this.repository.findOne({ where: { id } });
     }
+
+    async findByUuid(uuid: string): Promise<Station | null> {
+        return await this.repository.findOne({ where: { uuid } });
+    }
 }

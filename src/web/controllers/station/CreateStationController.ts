@@ -6,9 +6,13 @@ export default class CreateStationController {
   constructor(private createStationUseCase: CreateStationUseCase) {}
 
   async handle(request: Request, response) {
-    const { name, latitude, longitude, altitude } = request.body;
+    const { uuid, name, latitude, longitude } = request.body;
 
-    const StationData: CreateStationDTO = new CreateStationDTO(name, latitude, longitude, altitude);
+    if (!uuid || !name || !latitude || !longitude) {
+      return response.sendError("Dados incompletos", 400);
+    }
+
+    const StationData: CreateStationDTO = new CreateStationDTO(name, uuid, latitude, longitude);
 
     try {
       const station = await this.createStationUseCase.execute(StationData);
