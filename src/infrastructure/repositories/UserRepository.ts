@@ -20,7 +20,7 @@ export class UserRepository implements IUserRepository {
 
     async update(id: string, userData: Partial<User>): Promise<User | null> {
         const user = await this.repository.findOne({ where: { id } });
-        if (!user) return null;
+        if (!user) throw new Error('Usuário não encontrado');
 
         await this.repository.update(id, userData);
         return await this.repository.findOne({ where: { id } });

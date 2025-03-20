@@ -6,6 +6,7 @@ import { initializeDatabase } from './infrastructure/database/initialize';
 import { authRoutes } from './web/routes/auth.routes';
 import { responseHandler } from './infrastructure/middlewares/responseHandler';
 import { userRoutes } from './web/routes/user.routes';
+import { stationRoutes } from './web/routes/station.routes';
 
 async function bootstrap() {
     const app = express();
@@ -22,6 +23,7 @@ async function bootstrap() {
     // Rotas
     app.use('/auth', authRoutes);
     app.use('/user', userRoutes)
+    app.use('/station', stationRoutes);
 
     const PORT = process.env.PORT;
     app.listen(PORT, () => {

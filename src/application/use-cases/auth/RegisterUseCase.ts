@@ -4,7 +4,6 @@ import { isValidCPF } from '../../operations/isValidCPF';
 import RegisterUserDTO from '../../../web/dtos/auth/RegisterUserDTO';
 import { ReadUserDTO } from '../../../web/dtos/user/ReadUserDTO';
 import { transformUserToDTO } from '../../operations/user/transformeUserToDTO';
-import { EmailUseCase } from '../email/EmailUseCase';
 import { sendEmailCreatePassword } from '../../operations/email/sendEmailCreatePassword';
 
 export class RegisterUseCase {

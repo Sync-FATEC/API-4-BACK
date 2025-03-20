@@ -1,5 +1,5 @@
-import { hash } from "bcryptjs";
 import { IUserRepository } from "../../../domain/models/entities/User";
+import hashPassword from "../../operations/auth/hashPassword";
 
 export default class CreatePasswordUseCase {
     constructor(private userRepository: IUserRepository) {}
@@ -11,8 +11,8 @@ export default class CreatePasswordUseCase {
             throw new Error('Usuário não encontrado ou senha já cadastrada');
         }
         
-        const hashedPassword = await hash(password, 8);
-
+        const hashedPassword: string = await hashPassword(password);
+        
         await this.userRepository.update(user.id, { password: hashedPassword });
     }
 }

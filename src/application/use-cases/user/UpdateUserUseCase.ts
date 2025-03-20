@@ -1,4 +1,3 @@
-import { hash } from "bcryptjs";
 import { UpdateUserDTO } from "../../../web/dtos/auth/UpdateUserDTO";
 import { isValidCPF } from "../../operations/isValidCPF";
 import { transformUserToDTO } from "../../operations/user/transformeUserToDTO";
@@ -6,44 +5,38 @@ import { IUserRepository, User } from "../../../domain/models/entities/User";
 import { ReadUserDTO } from "../../../web/dtos/user/ReadUserDTO";
 
 export class UpdateUserUseCase {
-    constructor(private userRepository: IUserRepository) { }
+    constructor(private userRepository: IUserRepository) {}
 
-    async execute(userData: UpdateUserDTO): Promise<ReadUserDTO | null> {
-        const User = await this.userRepository.findById(userData.getId());
-        if (!User) throw new Error('Usuário não encontrado');
+    async execute(userData: UpdateUserDTO): Promise<ReadUserDTO | null> {        
+        const user = await this.userRepository.findById(userData.getId());
+        if (!user) throw new Error('Usuário não encontrado');
 
-        if (userData.getName() != '') {
-            User.name = userData.getName();
+        const updateData: Partial<User> = {};
+
+        if (userData.getName()) {
+            updateData.name = userData.getName();
         }
 
-        if (userData.getEmail() != User.email && userData.getEmail() != '') {
+        if (userData.getEmail() && userData.getEmail() !== user.email) {
             const emailExists = await this.userRepository.findByEmail(userData.getEmail());
-            if (emailExists) throw new Error('Email já cadastrado');
+            if (emailExists) {
+                throw new Error('Email já cadastrado');
+            }
+            updateData.email = userData.getEmail();
         }
 
-        User.email = userData.getEmail();
-
-        if (userData.getCpf() != User.cpf && userData.getCpf() != '') {
+        if (userData.getCpf() && userData.getCpf() !== user.cpf) {
             const cpfExists = await this.userRepository.findByCpf(userData.getCpf());
-            if (cpfExists) throw new Error('CPF já cadastrado');
-        }
-
-        if (isValidCPF(userData.getCpf()) === false && userData.getCpf() != '') {
-            throw new Error('CPF inválido');
-        }
-
-        if (userData.getCpf() != '') {
-            User.cpf = userData.getCpf();
+            if (cpfExists) {
+                throw new Error('CPF já cadastrado');
+            }
+            if (!isValidCPF(userData.getCpf())) {
+                throw new Error('CPF inválido');
+            }
+            updateData.cpf = userData.getCpf();
         }
         
-
-        if (userData.getPassword() != '' && userData.getPassword() != null) {
-            const hashedPassword = await hash(userData.getPassword(), 8);
-            User.password = hashedPassword;
-        }
-
-        const newUser = await this.userRepository.update(userData.getId(), User);
-
-        return transformUserToDTO(newUser);
+        const updatedUser = await this.userRepository.update(userData.getId(), updateData);
+        return transformUserToDTO(updatedUser);
     }
 }
