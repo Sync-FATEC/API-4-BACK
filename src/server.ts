@@ -7,6 +7,7 @@ import { authRoutes } from './web/routes/auth.routes';
 import { responseHandler } from './infrastructure/middlewares/responseHandler';
 import { userRoutes } from './web/routes/user.routes';
 import { stationRoutes } from './web/routes/station.routes';
+import { typeAlertRoutes } from './web/routes/typeAlert.routes';
 
 async function bootstrap() {
     const app = express();
@@ -23,6 +24,7 @@ async function bootstrap() {
     // Rotas
     app.use('/auth', authRoutes);
     app.use('/user', userRoutes)
+    app.use('/typeAlert', typeAlertRoutes);
     app.use('/station', stationRoutes);
 
     const PORT = process.env.PORT;
