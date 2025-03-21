@@ -1,20 +1,24 @@
 export default class UpdateStationDTO {
     private id: string;
+    private uuid: string;
     private name: string;
     private latitude: string;
     private longitude: string;
-    private altitude: string;
 
-    constructor(id: string, name: string, latitude: string, longitude: string, altitude: string) {
+    constructor(id: string, uuid: string, name: string, latitude: string, longitude: string) {
         this.id = id;
+        this.uuid = uuid;
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.altitude = altitude;
     }
     
     public getId(): string {
         return this.id;
+    }
+
+    public getUuid(): string {
+        return this.uuid;
     }
 
     public getName(): string {
@@ -27,9 +31,5 @@ export default class UpdateStationDTO {
     
     public getLongitude(): string {
         return this.longitude;
-    }
-    
-    public getAltitude(): string {
-        return this.altitude;
     }
 }

@@ -1,4 +1,4 @@
-import { IStationRepository } from "../../../domain/models/entities/Station";
+import { IStationRepository, Station } from "../../../domain/models/entities/Station";
 import UpdateStationDTO from "../../../web/dtos/station/UpdateStationDTO";
 
 export default class UpdateStationUseCase {
@@ -10,11 +10,15 @@ export default class UpdateStationUseCase {
             throw new Error('Estação não encontrada');
         }
 
-        return await this.stationRepository.update(stationData.getId(), {
+        const updateData: Partial<Station> = {
             name: stationData.getName(),
             latitude: stationData.getLatitude(),
             longitude: stationData.getLongitude(),
-            altitude: stationData.getAltitude()
-        });
+        }
+        if (stationData.getUuid() != station.uuid) {
+            updateData.uuid = stationData.getUuid();
+        }
+        
+        await this.stationRepository.update(station.id, updateData);
     }
 }

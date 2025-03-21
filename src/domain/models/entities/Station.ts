@@ -3,19 +3,22 @@ import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Station {
   @PrimaryGeneratedColumn("uuid")
-  private id: string;
+  public id: string;
 
   @Column({ unique: true, nullable: false })
-  private name: string;
+  public uuid: string
+
+  @Column({ unique: true, nullable: false })
+  public name: string;
 
   @Column()
-  private latitude: string;
+  public latitude: string;
 
   @Column()
-  private longitude: string;
+  public longitude: string;
 
   @Column()
-  private altitude: string;
+  public createdAt: Date;
 }
 
 export interface IStationRepository {
@@ -24,4 +27,5 @@ export interface IStationRepository {
   update(id: string, station: Partial<Station>): Promise<Station | null>;
   list(): Promise<Station[]>;
   findById(id: string): Promise<Station | null>;
+  findByUuid(uuid: string): Promise<Station | null>;
 }
