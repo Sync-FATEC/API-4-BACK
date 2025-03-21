@@ -1,6 +1,7 @@
-import { TypeAlert } from "@/domain/models/agregates/Alert/TypeAlert";
+import { ITypeAlertRepository } from "../../../domain/interfaces/repositories/ITypeAlertRepository";
+import { TypeAlert } from "../../../domain/models/agregates/Alert/TypeAlert";
 import { TypeAlertUseCase } from "./TypeAlertUseCase";
-import { ITypeAlertRepository } from "@/domain/interfaces/repositories/ITypeAlertRepository";
+
 
 export class ReadTypeAlertUseCase extends TypeAlertUseCase {
 

@@ -1,4 +1,4 @@
-import { ITypeAlertRepository } from "src/domain/interfaces/repositories/ITypeAlertRepository";
+import { ITypeAlertRepository } from "../../../domain/interfaces/repositories/ITypeAlertRepository";
 import { TypeAlertUseCase } from "./TypeAlertUseCase";
 
 export class DeleteTypeAlertUseCase extends TypeAlertUseCase {

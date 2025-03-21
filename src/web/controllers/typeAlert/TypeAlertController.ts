@@ -1,10 +1,9 @@
-
 import { Request, Response } from "express";
-import { DeleteTypeAlertUseCase } from "src/application/use-cases/typeAlert/DeleteTypeAlertUseCase";
-import { ListTypeAlertUseCase } from "src/application/use-cases/typeAlert/ListTypeAlertUseCase";
-import { ReadTypeAlertUseCase } from "src/application/use-cases/typeAlert/ReadTypeAlertUseCase";
-import { RegisterTypeAlertUseCase } from "src/application/use-cases/typeAlert/RegisterTypeAlertUseCase";
-import { UpdateTypeAlertUseCase } from "src/application/use-cases/typeAlert/UpdateTypeAlertUseCase";
+import { DeleteTypeAlertUseCase } from "../../../application/use-cases/typeAlert/DeleteTypeAlertUseCase";
+import { ListTypeAlertUseCase } from "../../../application/use-cases/typeAlert/ListTypeAlertUseCase";
+import { ReadTypeAlertUseCase } from "../../../application/use-cases/typeAlert/ReadTypeAlertUseCase";
+import { RegisterTypeAlertUseCase } from "../../../application/use-cases/typeAlert/RegisterTypeAlertUseCase";
+import { UpdateTypeAlertUseCase } from "../../../application/use-cases/typeAlert/UpdateTypeAlertUseCase";
 
 export class TypeAlertController {
   private registerUseCase: RegisterTypeAlertUseCase;
@@ -38,11 +37,11 @@ export class TypeAlertController {
         parameterId,
       });
 
-      return response.status(201).json(typeAlert);
+      return response.sendSucess({ typeAlert }, 201);
     } catch (error) {}
   }
 
-  async update(req: Request, res: Response): Promise<Response> {
+  async update(req: Request, response): Promise<Response> {
     try {
       const { id, name, comparisonOperator, value, parameterId } = req.body;
 
@@ -54,35 +53,33 @@ export class TypeAlertController {
         parameterId,
       });
 
-      return res.status(200).json(typeAlerts);
+      return response.sendSucess({ typeAlerts }, 200);
     } catch (error) {}
   }
 
-  async getById(req: Request, res: Response): Promise<Response> {
+  async getById(req: Request, response): Promise<Response> {
     try {
       const { id } = req.params;
       const typeAlert = await this.readUseCase.execute(id);
 
-      return res.status(200).json({ success: true, data: typeAlert });
+      return response.sendSucess({ success: true, data: typeAlert }, 200);
     } catch (error) {}
   }
 
-  async getAll(req: Request, res: Response): Promise<Response> {
+  async getAll(req: Request, response): Promise<Response> {
     try {
-      const { id } = req.params;
-      const { name, description } = req.body;
       const list = await this.listUseCase.execute();
 
-      return res.status(200).json({ success: true, data: list });
+      return response.sendSucess({ success: true, data: list }, 200);
     } catch (error) {}
   }
 
-  async delete(req: Request, res: Response): Promise<Response> {
+  async delete(req: Request, response): Promise<Response> {
     try {
       const { id } = req.params;
       await this.deleteUseCase.execute(id);
 
-      return res.status(204).send();
+      return response.sendSucess({}, 200);
     } catch (error) {}
   }
 }

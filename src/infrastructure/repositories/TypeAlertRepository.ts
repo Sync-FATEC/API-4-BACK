@@ -1,9 +1,14 @@
-import { ITypeAlertRepository } from "src/domain/interfaces/repositories/ITypeAlertRepository";
-import { TypeAlert } from "src/domain/models/agregates/Alert/TypeAlert";
 import { Repository } from "typeorm";
+import { ITypeAlertRepository } from "../../domain/interfaces/repositories/ITypeAlertRepository";
+import { TypeAlert } from "../../domain/models/agregates/Alert/TypeAlert";
+import { AppDataSource } from "../database/data-source";
 
 export class TypeAlertRepository implements ITypeAlertRepository {
     private typeAlerts: Repository<TypeAlert>;
+
+    constructor() {
+        this.typeAlerts = AppDataSource.getRepository(TypeAlert);
+    }
 
     async findById(id: string): Promise<TypeAlert | null> {
         const typeAlert = await this.typeAlerts.findOne({ where: { id } });

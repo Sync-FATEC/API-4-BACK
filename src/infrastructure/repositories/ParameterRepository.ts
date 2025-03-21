@@ -1,12 +1,11 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../database/data-source";
-import { IParameterRepository } from "src/domain/interfaces/repositories/IParameterRepository";
-import Parameter from "src/domain/models/agregates/Parameter/Parameter";
+import { IParameterRepository } from "../../domain/interfaces/repositories/IParameterRepository";
+import Parameter from "../../domain/models/agregates/Parameter/Parameter";
 
 export class ParameterRepository implements IParameterRepository {
     private parameters: Repository<Parameter> = AppDataSource.getRepository(Parameter);
-
-
+    
     async getParameterById(id: string): Promise<Parameter | null> {
         const parameter = await this.parameters.findOne({ where: { id } });
         return parameter || null;

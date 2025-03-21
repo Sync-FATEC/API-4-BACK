@@ -1,4 +1,4 @@
-import { TypeAlert } from "@/domain/models/agregates/Alert/TypeAlert";
+import { TypeAlert } from "../../models/agregates/Alert/TypeAlert";
 
 export interface ITypeAlertRepository {
     findById(id: string): Promise<TypeAlert | null>;

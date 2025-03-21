@@ -3,16 +3,15 @@ import { TypeAlertController } from "../controllers/typeAlert/TypeAlertControlle
 import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
 import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
 import { limiter } from "../../infrastructure/middlewares/limiter";
-import { DeleteTypeAlertUseCase } from "src/application/use-cases/typeAlert/DeleteTypeAlertUseCase";
-import { ListTypeAlertUseCase } from "src/application/use-cases/typeAlert/ListTypeAlertUseCase";
-import { ReadTypeAlertUseCase } from "src/application/use-cases/typeAlert/ReadTypeAlertUseCase";
-import { RegisterTypeAlertUseCase } from "src/application/use-cases/typeAlert/RegisterTypeAlertUseCase";
-import { UpdateTypeAlertUseCase } from "src/application/use-cases/typeAlert/UpdateTypeAlertUseCase";
-import { IParameterRepository } from "src/domain/interfaces/repositories/IParameterRepository";
-import { ITypeAlertRepository } from "src/domain/interfaces/repositories/ITypeAlertRepository";
-import { ParameterRepository } from "src/infrastructure/repositories/ParameterRepository";
-import { TypeAlertRepository } from "src/infrastructure/repositories/TypeAlertRepository";
-
+import { DeleteTypeAlertUseCase } from "../../application/use-cases/typeAlert/DeleteTypeAlertUseCase";
+import { ListTypeAlertUseCase } from "../../application/use-cases/typeAlert/ListTypeAlertUseCase";
+import { ReadTypeAlertUseCase } from "../../application/use-cases/typeAlert/ReadTypeAlertUseCase";
+import { RegisterTypeAlertUseCase } from "../../application/use-cases/typeAlert/RegisterTypeAlertUseCase";
+import { UpdateTypeAlertUseCase } from "../../application/use-cases/typeAlert/UpdateTypeAlertUseCase";
+import { IParameterRepository } from "../../domain/interfaces/repositories/IParameterRepository";
+import { ITypeAlertRepository } from "../../domain/interfaces/repositories/ITypeAlertRepository";
+import { ParameterRepository } from "../../infrastructure/repositories/ParameterRepository";
+import { TypeAlertRepository } from "../../infrastructure/repositories/TypeAlertRepository";
 
 const typeAlertRoutes = Router();
 
@@ -51,7 +50,6 @@ typeAlertRoutes.put(
 typeAlertRoutes.get(
     "/",
     limiter,
-    ensureAuthenticated,
     (req, res) => typeAlertController.getAll(req, res)
 );
 
