@@ -15,7 +15,7 @@ export class User {
     @Column({ nullable: true })
     password!: string;
 
-    @Column({ nullable: true, default: 'user' })
+    @Column({ nullable: true, default: 'FUNCIONARIO' })
     role!: string;
 
     @Column({ unique: true, nullable: true, length: 11 })
@@ -23,6 +23,9 @@ export class User {
 
     @CreateDateColumn()
     createdAt!: Date;
+
+    @Column({ default: false })
+    active!: boolean;
 
     public getName(): string {
         return this.name;
@@ -46,6 +49,10 @@ export class User {
 
     public getCreatedAt(): Date {
         return this.createdAt;
+    }
+
+    public getActive(): boolean {
+        return this.active;
     }
 }
 

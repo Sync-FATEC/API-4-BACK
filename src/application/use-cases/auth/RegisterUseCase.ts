@@ -29,7 +29,8 @@ export class RegisterUseCase {
             name: userData.getName(),
             email: userData.getEmail(),
             cpf: userData.getCpf(),
-            role: 'user'
+            role: 'FUNCIONARIO',
+            active: false
         });
 
         sendEmailCreatePassword(user.email, user.name)

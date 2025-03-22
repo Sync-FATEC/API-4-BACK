@@ -5,14 +5,16 @@ export class ReadUserDTO {
     private cpf: string;
     private role: string;
     private createdAt: Date;
+    private active: boolean;
 
-    constructor(id: string,name: string, email: string, cpf: string, role: string, createdAt: Date) {
+    constructor(id: string,name: string, email: string, cpf: string, role: string, createdAt: Date, active: boolean) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.cpf = cpf;
         this.role = role;
         this.createdAt = createdAt;
+        this.active = active;
     }
 
     public getId(): string {
@@ -37,5 +39,9 @@ export class ReadUserDTO {
 
     public getCreatedAt(): Date {
         return this.createdAt;
+    }
+
+    public getActive(): boolean {
+        return this.active;
     }
 }
