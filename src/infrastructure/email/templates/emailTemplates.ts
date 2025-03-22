@@ -7,7 +7,7 @@ export const emailTemplates = {
             <p>Olá ${name},</p>
             <p>Bem-vindo ao nosso sistema! Estamos muito felizes em ter você conosco.</p>
             <p>Mas ainda falta você criar sua senha. Clique no link abaixo para criar sua senha:</p>
-            <a href="http://localhost:5174/usuario/criar-senha?email=${email}">Criar senha</a>
+            <a href="http://localhost:5173/usuario/criar-senha/${email}">Criar senha</a>
             <p>Atenciosamente,<br>Equipe Sync</p>
         `
     })
