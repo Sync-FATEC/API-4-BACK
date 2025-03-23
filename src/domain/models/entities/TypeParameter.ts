@@ -1,19 +1,13 @@
-import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
-import Parameter from "./Parameter";
-import { TypeJson } from "../../../enums/TypeJson";
-
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import Parameter from "../agregates/Parameter/Parameter";
 
 @Entity()
 export class TypeParameter {
-    @PrimaryColumn("uuid")
+    @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column({
-        type: "enum",
-        enum: TypeJson,
-        nullable: true,
-    })
-    typeJson: TypeJson;
+    @Column()
+    typeJson: string;
     
     @Column()
     name: string;

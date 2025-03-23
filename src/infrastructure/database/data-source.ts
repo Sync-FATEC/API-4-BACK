@@ -5,7 +5,7 @@ import { User } from '../../domain/models/entities/User';
 import { TypeAlert } from '../../domain/models/agregates/Alert/TypeAlert';
 import { Alert } from '../../domain/models/agregates/Alert/Alert';
 import Parameter from '../../domain/models/agregates/Parameter/Parameter';
-import { TypeParameter } from '../../domain/models/agregates/Parameter/TypeParameter';
+import { TypeParameter } from '../../domain/models/entities/TypeParameter';
 import { Measure } from '../../domain/models/entities/Measure';
 import { Station } from '../../domain/models/entities/Station';
 

@@ -1,5 +1,5 @@
 import { Entity, OneToMany, PrimaryColumn } from "typeorm";
-import { TypeParameter } from "./TypeParameter";
+import { TypeParameter } from "../../entities/TypeParameter";
 import { Station } from "../../entities/Station";
 
 @Entity()
