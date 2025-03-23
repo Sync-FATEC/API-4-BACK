@@ -6,6 +6,8 @@ import UpdateTypeParameterUseCase from "../../application/use-cases/typeParamete
 import { UpdateTypeParameterController } from "../controllers/typeParameters/UpdateTypeParameterController";
 import DeleteTypeParameterUseCase from "../../application/use-cases/typeParameter/DeleteTypeParameterUsecase";
 import { DeleteTypeParameterController } from "../controllers/typeParameters/DeleteTypeParameterController";
+import { ReadTypeParameterUseCase } from "../../application/use-cases/typeParameter/ReadTypeParameterUseCase";
+import { ReadTypeParameterController } from "../controllers/typeParameters/ReadTypeParameterController";
 
 const typeParameterRoutes = Router();
 const typeParametersRepository = new TypeParemeterRepository();
@@ -22,11 +24,17 @@ const updateController = new UpdateTypeParameterController(updateTypeParameterUs
 const deleteTypeParameterUseCase = new DeleteTypeParameterUseCase(typeParametersRepository);
 const deleteController = new DeleteTypeParameterController(deleteTypeParameterUseCase);
 
+// Read
+const readTypeParameterUseCase = new ReadTypeParameterUseCase(typeParametersRepository);
+const readController = new ReadTypeParameterController(readTypeParameterUseCase);
+
 // Routes
 typeParameterRoutes.post('/create', (req, res) => createController.handle(req, res));
 
 typeParameterRoutes.put('/update', (req, res) => updateController.handle(req, res));
 
 typeParameterRoutes.delete('/delete/:id', (req, res) => deleteController.handle(req, res));
+
+typeParameterRoutes.get('/read/:id', (req, res) => readController.handle(req, res));
 
 export { typeParameterRoutes }
