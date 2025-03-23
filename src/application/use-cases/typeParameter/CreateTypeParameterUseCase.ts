@@ -1,5 +1,5 @@
-import { ITypeParameterRepository } from "../../../domain/models/entities/TypeParameter";
-import CreateTypeParameterDTO from "../../../web/dtos/typeParameters/CreateTypeParameterDTO";
+import { ITypeParameterRepository } from "../../../domain/interfaces/repositories/ITypeParameterRepository";
+import CreateTypeParameterDTO from "../../../web/dtos/typeParameter/CreateTypeParameterDTO";
 
 export class CreateTypeParameterUseCase {
     constructor(private typeParametersRepository: ITypeParameterRepository) {}

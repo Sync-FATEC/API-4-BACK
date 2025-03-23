@@ -1,15 +1,15 @@
 import { Router } from "express";
-import CreateTypeParametersController from "../controllers/typeParameters/CreateTypeParameterController";
+import CreateTypeParametersController from "../controllers/typeParameter/CreateTypeParameterController";
 import TypeParemeterRepository from "../../infrastructure/repositories/TypeParameterRepository";
 import { CreateTypeParameterUseCase } from "../../application/use-cases/typeParameter/CreateTypeParameterUseCase";
 import UpdateTypeParameterUseCase from "../../application/use-cases/typeParameter/UpdateTypeParameterUseCase";
-import { UpdateTypeParameterController } from "../controllers/typeParameters/UpdateTypeParameterController";
+import { UpdateTypeParameterController } from "../controllers/typeParameter/UpdateTypeParameterController";
 import DeleteTypeParameterUseCase from "../../application/use-cases/typeParameter/DeleteTypeParameterUsecase";
-import { DeleteTypeParameterController } from "../controllers/typeParameters/DeleteTypeParameterController";
+import { DeleteTypeParameterController } from "../controllers/typeParameter/DeleteTypeParameterController";
 import { ReadTypeParameterUseCase } from "../../application/use-cases/typeParameter/ReadTypeParameterUseCase";
-import { ReadTypeParameterController } from "../controllers/typeParameters/ReadTypeParameterController";
+import { ReadTypeParameterController } from "../controllers/typeParameter/ReadTypeParameterController";
 import { ListTypeParameterUseCase } from "../../application/use-cases/typeParameter/ListTypeParameterUsecase";
-import { ListTypeParameterController } from "../controllers/typeParameters/ListTypeParameterController";
+import { ListTypeParameterController } from "../controllers/typeParameter/ListTypeParameterController";
 
 const typeParameterRoutes = Router();
 const typeParametersRepository = new TypeParemeterRepository();

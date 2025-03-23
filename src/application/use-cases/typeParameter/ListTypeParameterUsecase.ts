@@ -1,4 +1,4 @@
-import { ITypeParameterRepository } from "../../../domain/models/entities/TypeParameter";
+import { ITypeParameterRepository } from "../../../domain/interfaces/repositories/ITypeParameterRepository";
 
 export class ListTypeParameterUseCase {
     constructor(private typeParameterRepository: ITypeParameterRepository) {}

@@ -1,5 +1,5 @@
 import { Request } from "express";
-import CreateTypeParamatersDTO from "../../dtos/typeParameters/CreateTypeParameterDTO";
+import CreateTypeParamatersDTO from "../../dtos/typeParameter/CreateTypeParameterDTO";
 import { CreateTypeParameterUseCase } from "../../../application/use-cases/typeParameter/CreateTypeParameterUseCase";
 
 export default class CreateTypeParameterController {

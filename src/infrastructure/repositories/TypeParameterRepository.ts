@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../database/data-source";
-import { ITypeParameterRepository, TypeParameter } from "../../domain/models/entities/TypeParameter";
+import { TypeParameter } from "../../domain/models/entities/TypeParameter";
+import { ITypeParameterRepository } from "../../domain/interfaces/repositories/ITypeParameterRepository";
 
 export default class TypeParemeterRepository implements ITypeParameterRepository {
     private repository: Repository<TypeParameter>;
