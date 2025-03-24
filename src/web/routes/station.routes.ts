@@ -37,7 +37,7 @@ const listController = new ListStationController(listStationUseCase);
 const readStationUseCase = new ReadStationUseCase(stationRepository);
 const readController = new ReadStationController(readStationUseCase);
 
-stationRoutes.post('/create', limiter, ensureAuthenticated, (req, res) => createController.handle(req, res));
+stationRoutes.post('/create', limiter, (req, res) => createController.handle(req, res));
 
 stationRoutes.put('/update', limiter, ensureAuthenticated, (req, res) => updateController.handle(req, res));
 

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import Parameter from "../agregates/Parameter/Parameter";
 
 @Entity()
 export class Station {
@@ -6,7 +7,7 @@ export class Station {
   public id: string;
 
   @Column({ unique: true, nullable: false })
-  public uuid: string
+  public uuid: string;
 
   @Column({ unique: true, nullable: false })
   public name: string;
@@ -19,13 +20,7 @@ export class Station {
 
   @Column()
   public createdAt: Date;
-}
 
-export interface IStationRepository {
-  create(station: Partial<Station>): Promise<Station>;
-  delete(id: string): Promise<boolean>;
-  update(id: string, station: Partial<Station>): Promise<Station | null>;
-  list(): Promise<Station[]>;
-  findById(id: string): Promise<Station | null>;
-  findByUuid(uuid: string): Promise<Station | null>;
+  @OneToMany(() => Parameter, (parameter) => parameter.station)
+  parameters: Parameter[];
 }
