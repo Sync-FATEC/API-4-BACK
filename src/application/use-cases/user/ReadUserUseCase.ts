@@ -1,3 +1,4 @@
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 import { IUserRepository } from "../../../domain/models/entities/User";
 import { ReadUserDTO } from "../../../web/dtos/user/ReadUserDTO";
 import { transformUserToDTO } from "../../operations/user/transformeUserToDTO";
@@ -8,7 +9,7 @@ export class ReadUserUseCase {
     async execute(id: string): Promise<ReadUserDTO> {
         const user = await this.userRepository.findById(id);
             if (!user) {
-                throw new Error('Usuário não encontrado');
+                throw new SystemContextException('Usuário não encontrado');
             }
             return transformUserToDTO(user);
     }

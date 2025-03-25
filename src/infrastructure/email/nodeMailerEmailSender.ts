@@ -1,6 +1,7 @@
 import nodemailer from 'nodemailer';
 import { emailTemplates } from './templates/emailTemplates';
 import { IEmailSender } from '../../domain/interfaces/IEmailSender';
+import { SystemContextException } from '../../domain/exceptions/SystemContextException';
 
 export class NodemailerEmailSender implements IEmailSender {
     private static instance: NodemailerEmailSender;
@@ -36,7 +37,7 @@ export class NodemailerEmailSender implements IEmailSender {
             await this.transporter.sendMail(mailOptions);
         } catch (error) {
             console.error('Erro ao enviar email:', error);
-            throw new Error('Falha ao enviar email');
+            throw new SystemContextException('Falha ao enviar email');
         }
     }
 

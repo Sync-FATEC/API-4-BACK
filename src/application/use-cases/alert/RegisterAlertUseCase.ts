@@ -1,10 +1,10 @@
-import { RegisterAlertDTO } from "@/web/dtos/alert/RegisterAlertDTO";
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
+import { IAlertRepository } from "../../../domain/interfaces/repositories/IAlertRepository";
+import { IMeasureRepository } from "../../../domain/interfaces/repositories/IMeasureRepository";
+import { ITypeAlertRepository } from "../../../domain/interfaces/repositories/ITypeAlertRepository";
+import { Alert } from "../../../domain/models/agregates/Alert/Alert";
+import { RegisterAlertDTO } from "../../../web/dtos/alert/RegisterAlertDTO";
 import { AlertUseCase } from "./AlertUseCase";
-import { IAlertRepository } from "@/domain/interfaces/repositories/IAlertRepository";
-import { ITypeAlertRepository } from "@/domain/interfaces/repositories/ITypeAlertRepository";
-import { IMeasureRepository } from "@/domain/interfaces/repositories/IMeasureRepository";
-import { SystemContextException } from "@/domain/exceptions/SystemContextException";
-import { Alert } from "@/domain/models/agregates/Alert/Alert";
 
 export class RegisterAlertUseCase extends AlertUseCase {
 

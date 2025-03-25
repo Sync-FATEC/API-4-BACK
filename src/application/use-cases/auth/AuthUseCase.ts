@@ -2,6 +2,7 @@ import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { IUserRepository, User } from '../../../domain/models/entities/User';
 import { sendEmailCreatePassword } from '../../operations/email/sendEmailCreatePassword';
+import { SystemContextException } from '../../../domain/exceptions/SystemContextException';
 export class AuthUseCase {
     constructor(private userRepository: IUserRepository) {}
 
@@ -9,7 +10,7 @@ export class AuthUseCase {
         const user = await this.userRepository.findByEmail(email);
 
         if (!user) {
-            throw new Error('Usuario não encontrado');
+            throw new SystemContextException('Usuario não encontrado');
         }
 
         if (!user.password || !password) {
@@ -19,7 +20,7 @@ export class AuthUseCase {
         const passwordMatch = await compare(password, user.password);
 
         if (!passwordMatch) {
-            throw new Error('Senha incorreta');
+            throw new SystemContextException('Senha incorreta');
         }
 
         const token = sign(
@@ -45,7 +46,7 @@ export class AuthUseCase {
 
         if (!user.password) {
             sendEmailCreatePassword(userEmail, userName)
-            throw new Error('Usuário não possui senha ainda, verifique seu email');
+            throw new SystemContextException('Usuário não possui senha ainda, verifique seu email');
         }
     }
 } 

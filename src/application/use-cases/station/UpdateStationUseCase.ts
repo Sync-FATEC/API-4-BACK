@@ -1,3 +1,4 @@
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 import { IStationRepository, Station } from "../../../domain/models/entities/Station";
 import UpdateStationDTO from "../../../web/dtos/station/UpdateStationDTO";
 
@@ -7,7 +8,7 @@ export default class UpdateStationUseCase {
     async execute(stationData: UpdateStationDTO) {
         const station = await this.stationRepository.findById(stationData.getId());
         if (!station) {
-            throw new Error('Estação não encontrada');
+            throw new SystemContextException('Estação não encontrada');
         }
 
         const updateData: Partial<Station> = {
