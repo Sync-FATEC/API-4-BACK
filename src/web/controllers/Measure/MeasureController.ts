@@ -26,92 +26,52 @@ export class MeasureController {
     this.deleteUseCase = deleteUseCase;
   }
 
-  // Criar um novo Measure
   async create(req: Request, res: Response): Promise<Response> {
     try {
       const { unixTime, value } = req.body;
       const measure = await this.registerUseCase.execute({ unixTime, value });
-
-      return res.status(201).json({
-        success: true,
-        data: measure
-      });
+      return res.sendSuccess({ measure }, 201);
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        error: error.message || 'Internal Server Error'
-      });
+      return res.sendError({ error }, 400);
     }
   }
 
-  // Atualizar um Measure
   async update(req: Request, res: Response): Promise<Response> {
     try {
       const { id, unixTime, value } = req.body;
       const updatedMeasure = await this.updateUseCase.execute({ id, unixTime, value });
-
-      return res.status(200).json({
-        success: true,
-        data: updatedMeasure
-      });
+      return res.sendSuccess({ updatedMeasure }, 200);
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        error: error.message || 'Internal Server Error'
-      });
+      return res.sendError({ error }, 400);
     }
   }
 
-  // Obter um Measure por ID
   async getById(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
       const measure = await this.readUseCase.execute(id);
-
-      return res.status(200).json({
-        success: true,
-        data: measure
-      });
+      return res.sendSuccess({ measure }, 200);
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        error: error.message || 'Internal Server Error'
-      });
+      return res.sendError({ error }, 400);
     }
   }
 
-  // Listar todos os Measures
   async getAll(req: Request, res: Response): Promise<Response> {
     try {
       const measures = await this.listUseCase.execute();
-
-      return res.status(200).json({
-        success: true,
-        data: measures
-      });
+      return res.sendSuccess({ measures }, 200);
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        error: error.message || 'Internal Server Error'
-      });
+      return res.sendError({ error }, 400);
     }
   }
-
-  // Deletar um Measure
+  
   async delete(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
       await this.deleteUseCase.execute(id);
-
-      return res.status(200).json({
-        success: true,
-        message: 'Measure deleted successfully'
-      });
+      return res.sendSuccess({}, 200);
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        error: error.message || 'Internal Server Error'
-      });
+      return res.sendError({ error }, 400);
     }
   }
 }

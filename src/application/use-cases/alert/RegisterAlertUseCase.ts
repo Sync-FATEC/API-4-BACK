@@ -18,11 +18,11 @@ export class RegisterAlertUseCase extends AlertUseCase {
 
         let measure = await this.measureRepository.getMeasureById(data.measureId);
 
-        if(measure == null) throw new SystemContextException('Medida não encontrada');
+        if(measure == null) throw new Error('Measure not found');
 
         let typeAlert = await this.typeAlertRepository.findById(data.typeAlerdId);  
 
-        if(typeAlert == null) throw new SystemContextException('Tipo de alerta não encontrado');
+        if(typeAlert == null) throw new Error('Type not found');
 
         let alert = Alert.create(data.date, typeAlert, measure);
 

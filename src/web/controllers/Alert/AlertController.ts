@@ -30,16 +30,9 @@ export class AlertController {
     try {
       const { date, typeId, measureId } = req.body;
       const alert = await this.registerUseCase.execute({ date, typeId, measureId });
-
-      return res.status(201).json({
-        success: true,
-        data: alert
-      });
+      return res.sendSuccess({ alert }, 201);
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        error: error.message || 'Internal Server Error'
-      });
+      return res.sendError({ error }, 400);
     }
   }
 
@@ -48,15 +41,9 @@ export class AlertController {
       const { id, date, typeId, measureId } = req.body;
       const alert = await this.updateUseCase.execute({ id, date, typeId, measureId });
 
-      return res.status(200).json({
-        success: true,
-        data: alert
-      });
+      return res.sendSuccess({alert}, 200);
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        error: error.message || 'Internal Server Error'
-      });
+      return res.sendError({ error}, 400);
     }
   }
 
@@ -64,32 +51,18 @@ export class AlertController {
     try {
       const { id } = req.params;
       const alert = await this.readUseCase.execute(id);
-
-      return res.status(200).json({
-        success: true,
-        data: alert
-      });
+      return res.sendSuccess({ alert }, 200);
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        error: error.message || 'Internal Server Error'
-      });
+      return res.sendError({ error }, 400);
     }
   }
 
   async getAll(req: Request, res: Response): Promise<Response> {
     try {
       const list = await this.listUseCase.execute();
-
-      return res.status(200).json({
-        success: true,
-        data: list
-      });
+      return res.sendSuccess({ list }, 200);
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        error: error.message || 'Internal Server Error'
-      });
+      return res.sendError({ error }, 400);
     }
   }
 
@@ -98,15 +71,9 @@ export class AlertController {
       const { id } = req.params;
       await this.deleteUseCase.execute(id);
 
-      return res.status(200).json({
-        success: true,
-        message: 'Alert deleted successfully'
-      });
+      return res.sendSuccess({}, 200 );
     } catch (error) {
-      return res.status(500).json({
-        success: false,
-        error: error.message || 'Internal Server Error'
-      });
+      return res.sendError({ error }, 400);
     }
   }
 }

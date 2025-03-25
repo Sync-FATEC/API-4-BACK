@@ -13,7 +13,7 @@ export class DeleteMeasureUseCase extends MeasureUseCase {
     const measure = await this.measureRepository.getById(id);
 
     if (!measure) {
-      throw new SystemContextException("Measure not found");
+      throw new Error("Measure not found");
     }
 
     await this.measureRepository.deleteMeasure(id);
