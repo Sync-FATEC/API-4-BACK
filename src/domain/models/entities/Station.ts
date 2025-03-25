@@ -21,6 +21,6 @@ export class Station {
   @Column()
   public createdAt: Date;
 
-  @OneToMany(() => Parameter, (parameter) => parameter.station)
+  @OneToMany(() => Parameter, (parameter) => parameter.idStation)
   parameters: Parameter[];
 }
