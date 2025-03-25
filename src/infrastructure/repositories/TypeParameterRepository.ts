@@ -39,4 +39,8 @@ export default class TypeParemeterRepository implements ITypeParameterRepository
     async findByName(name: string): Promise<TypeParameter | null> {
         return await this.repository.findOne({ where: { name } });
     }
+
+    async findByTypeJson(typeJson: string): Promise<TypeParameter | null> {
+        return await this.repository.findOne({ where: { typeJson } });
+    }
 }

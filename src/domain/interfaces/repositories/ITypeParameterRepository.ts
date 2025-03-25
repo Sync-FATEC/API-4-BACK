@@ -7,4 +7,5 @@ export interface ITypeParameterRepository {
     list(): Promise<TypeParameter[]>;
     findById(id: string): Promise<TypeParameter | null>;
     findByName(name: string): Promise<TypeParameter | null>;
+    findByTypeJson(typeJson: string): Promise<TypeParameter | null>;
 }

@@ -6,10 +6,10 @@ export class TypeParameter {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column()
+    @Column({ unique: true })
     typeJson: string;
     
-    @Column()
+    @Column({ unique: true })
     name: string;
 
     @Column()
@@ -24,6 +24,6 @@ export class TypeParameter {
     @Column()
     offset: number;
 
-    @OneToMany(() => Parameter, (parameter) => parameter.typeParameter)
+    @OneToMany(() => Parameter, (parameter) => parameter.idTypeParameter)
     parameters: Parameter[];
 }
