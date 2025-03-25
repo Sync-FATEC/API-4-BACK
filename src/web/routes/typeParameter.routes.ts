@@ -10,6 +10,8 @@ import { ReadTypeParameterUseCase } from "../../application/use-cases/typeParame
 import { ReadTypeParameterController } from "../controllers/typeParameter/ReadTypeParameterController";
 import { ListTypeParameterUseCase } from "../../application/use-cases/typeParameter/ListTypeParameterUsecase";
 import { ListTypeParameterController } from "../controllers/typeParameter/ListTypeParameterController";
+import { limiter } from "../../infrastructure/middlewares/limiter";
+import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
 
 const typeParameterRoutes = Router();
 const typeParametersRepository = new TypeParemeterRepository();
@@ -35,14 +37,14 @@ const listTypeParameterUseCase = new ListTypeParameterUseCase(typeParametersRepo
 const listController = new ListTypeParameterController(listTypeParameterUseCase);
 
 // Routes
-typeParameterRoutes.post('/create', (req, res) => createController.handle(req, res));
+typeParameterRoutes.post('/create', limiter, ensureAuthenticated, (req, res) => createController.handle(req, res));
 
-typeParameterRoutes.put('/update', (req, res) => updateController.handle(req, res));
+typeParameterRoutes.put('/update', limiter, ensureAuthenticated, (req, res) => updateController.handle(req, res));
 
-typeParameterRoutes.delete('/delete/:id', (req, res) => deleteController.handle(req, res));
+typeParameterRoutes.delete('/delete/:id', limiter, ensureAuthenticated, (req, res) => deleteController.handle(req, res));
 
-typeParameterRoutes.get('/read/:id', (req, res) => readController.handle(req, res));
+typeParameterRoutes.get('/read/:id', limiter, ensureAuthenticated, (req, res) => readController.handle(req, res));
 
-typeParameterRoutes.get('/list', (req, res) => listController.handle(req, res));
+typeParameterRoutes.get('/list', limiter, ensureAuthenticated, (req, res) => listController.handle(req, res));
 
 export { typeParameterRoutes }

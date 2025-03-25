@@ -10,7 +10,7 @@ export class ParameterRepository implements IParameterRepository {
         this.repository = AppDataSource.getRepository(Parameter);
     }
 
-    async create(parameter: Parameter): Promise<Parameter> {
+    async create(parameter: Partial<Parameter>): Promise<Parameter> {
         const newParameter = this.repository.create(parameter);
         return await this.repository.save(newParameter);
     }
