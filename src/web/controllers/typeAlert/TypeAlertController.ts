@@ -4,6 +4,7 @@ import { ListTypeAlertUseCase } from "../../../application/use-cases/typeAlert/L
 import { ReadTypeAlertUseCase } from "../../../application/use-cases/typeAlert/ReadTypeAlertUseCase";
 import { RegisterTypeAlertUseCase } from "../../../application/use-cases/typeAlert/RegisterTypeAlertUseCase";
 import { UpdateTypeAlertUseCase } from "../../../application/use-cases/typeAlert/UpdateTypeAlertUseCase";
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 
 export class TypeAlertController {
   private registerUseCase: RegisterTypeAlertUseCase;
@@ -26,9 +27,13 @@ export class TypeAlertController {
     this.deleteUseCase = deleteUseCase;
   }
 
-  async create(req: Request, response): Promise<Response> {
+  async create(req: Request, response) {
     try {
       const { name, comparisonOperator, value, parameterId } = req.body;
+
+      if (!name || !comparisonOperator || !value || !parameterId) {
+        throw new SystemContextException("Dados incompletos");
+      }
 
       const typeAlert = await this.registerUseCase.execute({
         name,
@@ -37,13 +42,19 @@ export class TypeAlertController {
         parameterId,
       });
 
-      return response.sendSucess({ typeAlert }, 201);
+      console.log(typeAlert)
+
+      return response.sendSuccess({ typeAlert }, 201);
     } catch (error) {}
   }
 
-  async update(req: Request, response): Promise<Response> {
+  async update(req: Request, response) {
     try {
       const { id, name, comparisonOperator, value, parameterId } = req.body;
+
+      if (!id || !name || !comparisonOperator || !value || !parameterId) {
+        throw new SystemContextException("Dados incompletos");
+      }
 
       const typeAlerts = await this.updateUseCase.execute({
         id,
@@ -53,33 +64,35 @@ export class TypeAlertController {
         parameterId,
       });
 
-      return response.sendSucess({ typeAlerts }, 200);
+      return response.sendSuccess({ typeAlerts }, 200);
     } catch (error) {}
   }
 
-  async getById(req: Request, response): Promise<Response> {
+  async getById(req: Request, response) {
     try {
       const { id } = req.params;
       const typeAlert = await this.readUseCase.execute(id);
-
-      return response.sendSucess({ success: true, data: typeAlert }, 200);
+      
+      return response.sendSuccess({ success: true, data: typeAlert }, 200);
     } catch (error) {}
   }
 
-  async getAll(req: Request, response): Promise<Response> {
+  async getAll(req: Request, response) {
     try {
       const list = await this.listUseCase.execute();
-
-      return response.sendSucess({ success: true, data: list }, 200);
-    } catch (error) {}
+      console.log(list);
+      return response.sendSuccess(list, 200);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  async delete(req: Request, response): Promise<Response> {
+  async delete(req: Request, response) {
     try {
       const { id } = req.params;
       await this.deleteUseCase.execute(id);
 
-      return response.sendSucess({}, 200);
+      return response.sendSuccess({}, 200);
     } catch (error) {}
   }
 }

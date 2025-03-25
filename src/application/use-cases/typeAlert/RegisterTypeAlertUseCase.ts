@@ -13,14 +13,13 @@ export class RegisterTypeAlertUseCase extends TypeAlertUseCase {
     }
 
     public async execute(data: RegisterTypeAlertDTO): Promise<TypeAlert> {
-        
-        let parameter = await this.parameterRepository.getParameterById(data.parameterId);
+        let parameter = await this.parameterRepository.findById(data.parameterId);
 
         if(parameter === null){
             throw new SystemContextException('Parametro não encontrado');
         }
         
-        let typeAlert = TypeAlert.create(data.name, data.comparisonOperator, parameter);
+        let typeAlert = TypeAlert.create(data.name, data.comparisonOperator,data.value, parameter);
 
         this.typeAlertRepository.create(typeAlert);
 

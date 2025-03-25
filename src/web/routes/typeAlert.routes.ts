@@ -8,15 +8,13 @@ import { ListTypeAlertUseCase } from "../../application/use-cases/typeAlert/List
 import { ReadTypeAlertUseCase } from "../../application/use-cases/typeAlert/ReadTypeAlertUseCase";
 import { RegisterTypeAlertUseCase } from "../../application/use-cases/typeAlert/RegisterTypeAlertUseCase";
 import { UpdateTypeAlertUseCase } from "../../application/use-cases/typeAlert/UpdateTypeAlertUseCase";
-import { IParameterRepository } from "../../domain/interfaces/repositories/IParameterRepository";
-import { ITypeAlertRepository } from "../../domain/interfaces/repositories/ITypeAlertRepository";
 import { ParameterRepository } from "../../infrastructure/repositories/ParameterRepository";
-import { TypeAlertRepository } from "../../infrastructure/repositories/TypeAlertRepository";
+import TypeAlertRepository from "../../infrastructure/repositories/TypeAlertRepository";
 
 const typeAlertRoutes = Router();
 
-const parameterRepository: IParameterRepository = new ParameterRepository();
-const typeAlertRepository: ITypeAlertRepository = new TypeAlertRepository();
+const parameterRepository = new ParameterRepository();
+const typeAlertRepository = new TypeAlertRepository();
 
 const registerTypeAlertUseCase = new RegisterTypeAlertUseCase(parameterRepository, typeAlertRepository);
 const updateTypeAlertUseCase = new UpdateTypeAlertUseCase(parameterRepository, typeAlertRepository);
@@ -37,7 +35,7 @@ typeAlertRoutes.post(
     "/",
     limiter,
     ensureAuthenticatedAdmin,
-    (req, res) => typeAlertController.create(req, res)
+    async (req, res) => await typeAlertController.create(req, res)
 );
 
 typeAlertRoutes.put(
@@ -50,7 +48,7 @@ typeAlertRoutes.put(
 typeAlertRoutes.get(
     "/",
     limiter,
-    (req, res) => typeAlertController.getAll(req, res)
+    async (req, res) => await typeAlertController.getAll(req, res)
 );
 
 typeAlertRoutes.get(
