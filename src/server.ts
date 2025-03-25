@@ -9,6 +9,8 @@ import { userRoutes } from './web/routes/user.routes';
 import { stationRoutes } from './web/routes/station.routes';
 import { typeAlertRoutes } from './web/routes/typeAlert.routes';
 import { typeParameterRoutes } from './web/routes/typeParameter.routes';
+import { measureRoutes } from './web/routes/Measure.routes';
+import { alertRoutes } from './web/routes/Alert.routes';
 
 async function bootstrap() {
     const app = express();
@@ -28,6 +30,8 @@ async function bootstrap() {
     app.use('/typeAlert', typeAlertRoutes);
     app.use('/station', stationRoutes);
     app.use('/typeParameter', typeParameterRoutes);
+    app.use('/measure', measureRoutes);
+    app.use('/alert', alertRoutes);
 
     const PORT = process.env.PORT;
     app.listen(PORT, () => {

@@ -1,8 +1,9 @@
-import { Measure } from "@/domain/models/entities/Measure";
+import { Measure } from "../../models/agregates/Measure/Measure";
 
 export interface IMeasureRepository {
-    createMeasure(measure: Measure): Promise<Measure>;
-    getMeasureById(id: string): Promise<Measure | null>;
-    listMeasures(): Promise<Measure[]>;
+  createMeasure(measure: Measure): Promise<Measure>;
+  getById(id: string): Promise<Measure | null>;
+  listMeasures(): Promise<Measure[]>;
+  deleteMeasure(id: string): Promise<boolean>;
+  updateMeasure(measure: Measure): Promise<Measure>;
 }
-
