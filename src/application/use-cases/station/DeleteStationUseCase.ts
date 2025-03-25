@@ -1,4 +1,4 @@
-import { IStationRepository } from "../../../domain/models/entities/Station";
+import { IStationRepository } from "../../../domain/interfaces/repositories/IStationRepository";
 
 export default class DeleteStationUseCase {
     constructor(private stationRepository: IStationRepository) {}
