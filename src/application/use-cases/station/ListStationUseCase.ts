@@ -1,3 +1,4 @@
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 import { IStationRepository } from "../../../domain/models/entities/Station";
 
 export class ListStationUseCase {
@@ -6,7 +7,7 @@ export class ListStationUseCase {
     async execute() {
         const stations = await this.stationRepository.list();
         if (stations.length === 0) {
-            throw new Error('Nenhuma estação para listar');
+            throw new SystemContextException('Nenhuma estação para listar');
         }
 
         return stations;

@@ -1,5 +1,6 @@
 import { verify } from 'jsonwebtoken';
 import { TokenPayload } from '../../domain/interfaces/TokenPayload';
+import { SystemContextException } from '../../domain/exceptions/SystemContextException';
 
 export class AuthService {
     private static instance: AuthService;
@@ -20,18 +21,18 @@ export class AuthService {
         try {
             return verify(token, this.jwtSecret) as TokenPayload;
         } catch (error) {
-            throw new Error('Token inválido ou expirado');
+            throw new SystemContextException('Token inválido ou expirado');
         }
     }
 
     public extractTokenFromHeader(authHeader: string | undefined): string {
         if (!authHeader) {
-            throw new Error('Token não fornecido');
+            throw new SystemContextException('Token não fornecido');
         }
 
         const [, token] = authHeader.split(' ');
         if (!token) {
-            throw new Error('Formato de token inválido');
+            throw new SystemContextException('Formato de token inválido');
         }
 
         return token;
@@ -39,7 +40,7 @@ export class AuthService {
 
     public validateAdminRole(role: string): void {
         if (role !== 'ADMIN') {
-            throw new Error('Acesso não autorizado: usuário não é administrador');
+            throw new SystemContextException('Acesso não autorizado: usuário não é administrador');
         }
     }
 } 

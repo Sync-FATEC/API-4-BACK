@@ -3,13 +3,14 @@ import { isValidCPF } from "../../operations/isValidCPF";
 import { transformUserToDTO } from "../../operations/user/transformeUserToDTO";
 import { IUserRepository, User } from "../../../domain/models/entities/User";
 import { ReadUserDTO } from "../../../web/dtos/user/ReadUserDTO";
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 
 export class UpdateUserUseCase {
     constructor(private userRepository: IUserRepository) {}
 
     async execute(userData: UpdateUserDTO): Promise<ReadUserDTO | null> {        
         const user = await this.userRepository.findById(userData.getId());
-        if (!user) throw new Error('Usuário não encontrado');
+        if (!user) throw new SystemContextException('Usuário não encontrado');
 
         const updateData: Partial<User> = {};
 
@@ -20,7 +21,7 @@ export class UpdateUserUseCase {
         if (userData.getEmail() && userData.getEmail() !== user.email) {
             const emailExists = await this.userRepository.findByEmail(userData.getEmail());
             if (emailExists) {
-                throw new Error('Email já cadastrado');
+                throw new SystemContextException('Email já cadastrado');
             }
             updateData.email = userData.getEmail();
         }
@@ -28,10 +29,10 @@ export class UpdateUserUseCase {
         if (userData.getCpf() && userData.getCpf() !== user.cpf) {
             const cpfExists = await this.userRepository.findByCpf(userData.getCpf());
             if (cpfExists) {
-                throw new Error('CPF já cadastrado');
+                throw new SystemContextException('CPF já cadastrado');
             }
             if (!isValidCPF(userData.getCpf())) {
-                throw new Error('CPF inválido');
+                throw new SystemContextException('CPF inválido');
             }
             updateData.cpf = userData.getCpf();
         }

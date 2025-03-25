@@ -1,3 +1,4 @@
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 import { IUserRepository } from "../../../domain/models/entities/User";
 
 export class DeleteUserUseCase {
@@ -7,11 +8,11 @@ export class DeleteUserUseCase {
         const user = await this.userRepository.findById(id);
 
         if (user === null) {
-            throw new Error('Usuário não encontrado ou inexistente');
+            throw new SystemContextException('Usuário não encontrado ou inexistente');
         }
         
         if (user.email === 'admin@admin.com') {
-            throw new Error('Não é possível deletar o usuário admin');
+            throw new SystemContextException('Não é possível deletar o usuário admin');
         }
 
         return await this.userRepository.delete(id);
