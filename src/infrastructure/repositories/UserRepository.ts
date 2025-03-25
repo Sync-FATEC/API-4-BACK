@@ -1,6 +1,7 @@
 import { Repository } from 'typeorm';
 import { AppDataSource } from '../database/data-source';
 import { IUserRepository, User } from '../../domain/models/entities/User';
+import { SystemContextException } from '../../domain/exceptions/SystemContextException';
 export class UserRepository implements IUserRepository {
     private repository: Repository<User>;
 
@@ -20,7 +21,7 @@ export class UserRepository implements IUserRepository {
 
     async update(id: string, userData: Partial<User>): Promise<User | null> {
         const user = await this.repository.findOne({ where: { id } });
-        if (!user) throw new Error('Usuário não encontrado');
+        if (!user) throw new SystemContextException('Usuário não encontrado');
 
         await this.repository.update(id, userData);
         return await this.repository.findOne({ where: { id } });

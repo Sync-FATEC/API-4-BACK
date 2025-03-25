@@ -5,6 +5,7 @@ import RegisterUserDTO from '../../../web/dtos/auth/RegisterUserDTO';
 import { ReadUserDTO } from '../../../web/dtos/user/ReadUserDTO';
 import { transformUserToDTO } from '../../operations/user/transformeUserToDTO';
 import { sendEmailCreatePassword } from '../../operations/email/sendEmailCreatePassword';
+import { SystemContextException } from '../../../domain/exceptions/SystemContextException';
 
 export class RegisterUseCase {
     constructor(private userRepository: IUserRepository) {}
@@ -14,22 +15,23 @@ export class RegisterUseCase {
         const cpfExists = await this.userRepository.findByCpf(userData.getCpf());
 
         if (userExists) {
-            throw new Error('Email já cadastrado');
+            throw new SystemContextException('Email já cadastrado');
         }
 
         if (isValidCPF(userData.getCpf()) === false) {
-            throw new Error('CPF inválido');
+            throw new SystemContextException('CPF inválido');
         }
 
         if (cpfExists) {
-            throw new Error('CPF já cadastrado');
+            throw new SystemContextException('CPF já cadastrado');
         }
 
         const user = await this.userRepository.create({
             name: userData.getName(),
             email: userData.getEmail(),
             cpf: userData.getCpf(),
-            role: 'user'
+            role: 'FUNCIONARIO',
+            active: false
         });
 
         sendEmailCreatePassword(user.email, user.name)

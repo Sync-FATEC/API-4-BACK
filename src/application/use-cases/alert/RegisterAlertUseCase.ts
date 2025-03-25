@@ -1,10 +1,10 @@
-import { RegisterAlertDTO } from "@/web/dtos/alert/RegisterAlertDTO";
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
+import { IAlertRepository } from "../../../domain/interfaces/repositories/IAlertRepository";
+import { IMeasureRepository } from "../../../domain/interfaces/repositories/IMeasureRepository";
+import { ITypeAlertRepository } from "../../../domain/interfaces/repositories/ITypeAlertRepository";
+import { Alert } from "../../../domain/models/agregates/Alert/Alert";
+import { RegisterAlertDTO } from "../../../web/dtos/alert/RegisterAlertDTO";
 import { AlertUseCase } from "./AlertUseCase";
-import { IAlertRepository } from "@/domain/interfaces/repositories/IAlertRepository";
-import { ITypeAlertRepository } from "@/domain/interfaces/repositories/ITypeAlertRepository";
-import { IMeasureRepository } from "@/domain/interfaces/repositories/IMeasureRepository";
-import { SystemContextException } from "@/domain/exceptions/SystemContextException";
-import { Alert } from "@/domain/models/agregates/Alert/Alert";
 
 export class RegisterAlertUseCase extends AlertUseCase {
 
@@ -18,11 +18,11 @@ export class RegisterAlertUseCase extends AlertUseCase {
 
         let measure = await this.measureRepository.getMeasureById(data.measureId);
 
-        if(measure == null) throw new SystemContextException('Medida não encontrada');
+        if(measure == null) throw new Error('Measure not found');
 
         let typeAlert = await this.typeAlertRepository.findById(data.typeAlerdId);  
 
-        if(typeAlert == null) throw new SystemContextException('Tipo de alerta não encontrado');
+        if(typeAlert == null) throw new Error('Type not found');
 
         let alert = Alert.create(data.date, typeAlert, measure);
 

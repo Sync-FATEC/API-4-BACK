@@ -1,5 +1,5 @@
-import { SystemContextException } from '@/domain/exceptions/SystemContextException';
 import { Request, Response, NextFunction } from 'express';
+import { SystemContextException } from '../../domain/exceptions/SystemContextException';
 
 export function ExceptionMiddleware(
     err: Error,
@@ -8,8 +8,8 @@ export function ExceptionMiddleware(
     next: NextFunction
 ): void {
     if (err instanceof SystemContextException) {
-        res.status(400).json({ message: err.message });
+        res.sendError(err.message, 400);
     } else {
-        res.status(500).json({ message: 'Por favor contate o administrador' });
+        res.sendError('Erro interno do servidor', 500);
     }
 }

@@ -17,7 +17,8 @@ export async function seedAdminUser(dataSource: DataSource) {
             name: 'Administrador',
             email: 'admin@admin.com',
             password: hashedPassword,
-            role: 'ADMIN'
+            role: 'ADMIN',
+            active: true
         });
 
         await userRepository.save(adminUser);

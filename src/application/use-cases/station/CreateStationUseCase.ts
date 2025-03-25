@@ -1,5 +1,6 @@
 import { create } from "domain";
 import CreateStationDTO from "../../../web/dtos/station/CreateStationDTO";
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 import { IStationRepository } from "../../../domain/interfaces/repositories/IStationRepository";
 
 export class CreateStationUseCase {
@@ -8,7 +9,7 @@ export class CreateStationUseCase {
   async execute(stationData: CreateStationDTO) {
     const station = await this.stationRepository.findByUuid(stationData.getUuid());
     if (station) {
-      throw new Error("UUID de estação já cadastrada");
+      throw new SystemContextException("UUID de estação já cadastrada");
     }
 
     return await this.stationRepository.create({
