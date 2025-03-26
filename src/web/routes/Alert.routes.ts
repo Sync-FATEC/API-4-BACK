@@ -9,8 +9,8 @@ import { AlertController } from "../controllers/Alert/AlertController";
 import { limiter } from "../../infrastructure/middlewares/limiter";
 import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
 import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
-import { TypeAlertRepository } from "../../infrastructure/repositories/TypeAlertRepository";
 import { MeasureRepository } from "../../infrastructure/repositories/MeasureRepository";
+import TypeAlertRepository from "../../infrastructure/repositories/TypeAlertRepository";
 
 // Repositories
 const alertRepository = new AlertRepository();

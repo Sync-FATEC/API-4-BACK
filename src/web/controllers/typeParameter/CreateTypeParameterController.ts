@@ -17,7 +17,6 @@ export default class CreateTypeParameterController {
       
       return response.sendSuccess(typeParameters, 200);
     } catch (error) {
-      console.log(error)
       return response.sendError(
         error instanceof Error ? error.message : "Erro inesperado"
       );

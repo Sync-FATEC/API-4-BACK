@@ -42,8 +42,6 @@ export class TypeAlertController {
         parameterId,
       });
 
-      console.log(typeAlert)
-
       return response.sendSuccess({ typeAlert }, 201);
     } catch (error) {}
   }
@@ -80,10 +78,8 @@ export class TypeAlertController {
   async getAll(req: Request, response) {
     try {
       const list = await this.listUseCase.execute();
-      console.log(list);
       return response.sendSuccess(list, 200);
     } catch (error) {
-      console.log(error);
     }
   }
 

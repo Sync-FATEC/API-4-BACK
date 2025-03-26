@@ -18,7 +18,6 @@ export default class CreateParameterController {
             
             return response.sendSuccess(parameter, 200);
         } catch (error) {
-            console.log(error)
             return response.sendError(
                 error instanceof Error ? error.message : "Erro inesperado"
             );

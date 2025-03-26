@@ -12,6 +12,7 @@ import { typeParameterRoutes } from './web/routes/typeParameter.routes';
 import { measureRoutes } from './web/routes/Measure.routes';
 import { alertRoutes } from './web/routes/Alert.routes';
 import { parameterRoutes } from './web/routes/parameter.routes';
+import { ExceptionMiddleware } from './web/middlewares/ExceptionMiddlaware';
 
 async function bootstrap() {
     const app = express();
@@ -21,6 +22,7 @@ async function bootstrap() {
     
     // Middleware para padronizar respostas
     app.use(responseHandler);
+    app.use(ExceptionMiddleware)
 
     // Inicializar banco de dados
     await initializeDatabase();
