@@ -1,3 +1,4 @@
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 import { ITypeParameterRepository } from "../../../domain/interfaces/repositories/ITypeParameterRepository";
 
 export class ListTypeParameterUseCase {
@@ -6,7 +7,7 @@ export class ListTypeParameterUseCase {
     async execute() {
         const typeParameters = await this.typeParameterRepository.list();
         if (typeParameters.length === 0) {
-            throw new Error('Nenhum tipo de parâmetro para listar');
+            throw new SystemContextException('Nenhum tipo de parâmetro para listar');
         }
 
         return typeParameters;

@@ -9,7 +9,7 @@ export class Station {
   @Column({ unique: true, nullable: false })
   public uuid: string;
 
-  @Column({ unique: true, nullable: false })
+  @Column({ nullable: false })
   public name: string;
 
   @Column()
