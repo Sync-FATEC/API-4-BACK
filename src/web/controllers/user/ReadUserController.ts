@@ -1,10 +1,10 @@
 import { ReadUserUseCase } from "../../../application/use-cases/user/ReadUserUseCase";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
 export default class ReadUserController {
     constructor(private readUserUseCase: ReadUserUseCase) {}
 
-    async handle(request: Request, response): Promise<Response> {
+    async handle(request: Request, response, next: NextFunction): Promise<Response> {
         try {
             const { id } = request.params;
 
@@ -16,10 +16,7 @@ export default class ReadUserController {
 
             return response.sendSuccess(user, 200);
         } catch (error) {
-            return response.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error);
         }
     }
 }

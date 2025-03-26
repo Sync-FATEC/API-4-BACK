@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { DeleteTypeAlertUseCase } from "../../../application/use-cases/typeAlert/DeleteTypeAlertUseCase";
 import { ListTypeAlertUseCase } from "../../../application/use-cases/typeAlert/ListTypeAlertUseCase";
 import { ReadTypeAlertUseCase } from "../../../application/use-cases/typeAlert/ReadTypeAlertUseCase";
@@ -27,7 +27,7 @@ export class TypeAlertController {
     this.deleteUseCase = deleteUseCase;
   }
 
-  async create(req: Request, response) {
+  async create(req: Request, response, next: NextFunction) {
     try {
       const { name, comparisonOperator, value, parameterId } = req.body;
 
@@ -42,13 +42,13 @@ export class TypeAlertController {
         parameterId,
       });
 
-      console.log(typeAlert)
-
-      return response.sendSuccess({ typeAlert }, 201);
-    } catch (error) {}
+      return response.sendSuccess(typeAlert, 201);
+    } catch (error) {
+      next(error);
+    }
   }
 
-  async update(req: Request, response) {
+  async update(req: Request, response, next: NextFunction) {
     try {
       const { id, name, comparisonOperator, value, parameterId } = req.body;
 
@@ -64,35 +64,40 @@ export class TypeAlertController {
         parameterId,
       });
 
-      return response.sendSuccess({ typeAlerts }, 200);
-    } catch (error) {}
+      return response.sendSuccess(typeAlerts, 200);
+    } catch (error) {
+      next(error)
+    }
   }
 
-  async getById(req: Request, response) {
+  async getById(req: Request, response, next: NextFunction) {
     try {
       const { id } = req.params;
       const typeAlert = await this.readUseCase.execute(id);
       
-      return response.sendSuccess({ success: true, data: typeAlert }, 200);
-    } catch (error) {}
-  }
-
-  async getAll(req: Request, response) {
-    try {
-      const list = await this.listUseCase.execute();
-      console.log(list);
-      return response.sendSuccess(list, 200);
+      return response.sendSuccess(typeAlert, 200);
     } catch (error) {
-      console.log(error);
+      next(error)
     }
   }
 
-  async delete(req: Request, response) {
+  async getAll(req: Request, response, next: NextFunction) {
+    try {
+      const list = await this.listUseCase.execute();
+      return response.sendSuccess(list, 200);
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async delete(req: Request, response, next: NextFunction) {
     try {
       const { id } = req.params;
       await this.deleteUseCase.execute(id);
 
-      return response.sendSuccess({}, 200);
-    } catch (error) {}
+      return response.sendSuccess("Deletado com sucesso", 200);
+    } catch (error) {
+      next(error)
+    }
   }
 }

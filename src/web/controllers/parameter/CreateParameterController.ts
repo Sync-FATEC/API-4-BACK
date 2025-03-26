@@ -1,11 +1,11 @@
-import { Request } from "express";
+import { NextFunction, Request } from "express";
 import CreateParameterDTO from "../../dtos/parameter/CreateParameterDTO";
 import { CreateParameterUseCase } from "../../../application/use-cases/parameter/CreateParameterUseCase";
 
 export default class CreateParameterController {
     constructor(private createParameterUseCase: CreateParameterUseCase) {}
 
-    async handle(request: Request, response) {
+    async handle(request: Request, response, next: NextFunction) {
         const { idTypeParameter, idStation } = request.body;
 
         if (!idTypeParameter || !idStation) {
@@ -18,10 +18,7 @@ export default class CreateParameterController {
             
             return response.sendSuccess(parameter, 200);
         } catch (error) {
-            console.log(error)
-            return response.sendError(
-                error instanceof Error ? error.message : "Erro inesperado"
-            );
+            next(error);
         }
     }
 }

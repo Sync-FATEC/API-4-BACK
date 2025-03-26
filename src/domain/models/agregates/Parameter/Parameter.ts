@@ -2,7 +2,6 @@ import { Entity, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
 import { TypeParameter } from "../../entities/TypeParameter";
 import { Station } from "../../entities/Station";
 import { TypeAlert } from "../Alert/TypeAlert";
-import { Type } from "typescript";
 
 @Entity()
 export default class Parameter {

@@ -34,21 +34,21 @@ export default class StationRepository implements IStationRepository {
 
     async listWithParameters(): Promise<Station[]> {
         return await this.repository.find({
-            relations: ['parameters.idTypeParameter']
+            relations: ['parameters.idTypeParameter', 'parameters.typeAlerts']
         });
     }
 
     async findById(id: string): Promise<Station | null> {
         return await this.repository.findOne({ 
             where: { id },
-            relations: ['parameters.idTypeParameter']
+            relations: ['parameters.idTypeParameter', 'parameters.typeAlerts']
         });
     }
 
     async findByUuid(uuid: string): Promise<Station | null> {
         return await this.repository.findOne({ 
             where: { uuid },
-            relations: ['parameters.idTypeParameter']
+            relations: ['parameters.idTypeParameter', 'parameters.typeAlerts']
         });
     }
 }

@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 
 import UpdateTypeParameterUseCase from '../../../application/use-cases/typeParameter/UpdateTypeParameterUseCase';
@@ -7,7 +7,7 @@ import UpdateTypeParameterDTO from '../../dtos/typeParameter/UpdateTypeParameter
 export class UpdateTypeParameterController {
     constructor(private updateTypeParameterUseCase: UpdateTypeParameterUseCase) {}
 
-    async handle(request: Request, response): Promise<Response> {
+    async handle(request: Request, response, next: NextFunction): Promise<Response> {
         const { id, name, unit, numberOfDecimalsCases, factor, offset, typeJson } = request.body;
 
         if (!id || !name || !unit || !numberOfDecimalsCases || !factor || !offset || !typeJson) {
@@ -20,10 +20,7 @@ export class UpdateTypeParameterController {
 
             return response.sendSuccess({}, 200);
         } catch (error) {
-            return response.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error);
         }
     }
 }

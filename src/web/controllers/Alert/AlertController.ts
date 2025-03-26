@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { RegisterAlertUseCase } from "../../../application/use-cases/alert/RegisterAlertUseCase";
 import { UpdateAlertUseCase } from "../../../application/use-cases/alert/UpdateAlertUseCase";
 import { ListAlertUseCase } from "../../../application/use-cases/alert/ListAlertUseCase";
@@ -26,54 +26,53 @@ export class AlertController {
     this.deleteUseCase = deleteUseCase;
   }
 
-  async create(req: Request, res: Response): Promise<Response> {
+  async create(req: Request, res, next: NextFunction): Promise<Response> {
     try {
       const { date, typeId, measureId } = req.body;
       const alert = await this.registerUseCase.execute({ date, typeId, measureId });
-      return res.sendSuccess({ alert }, 201);
+      return res.sendSuccess(alert, 201);
     } catch (error) {
-      return res.sendError({ error }, 400);
+      next(error);
     }
   }
 
-  async update(req: Request, res: Response): Promise<Response> {
+  async update(req: Request, res, next: NextFunction): Promise<Response> {
     try {
       const { id, date, typeId, measureId } = req.body;
       const alert = await this.updateUseCase.execute({ id, date, typeId, measureId });
-
-      return res.sendSuccess({alert}, 200);
+      return res.sendSuccess(alert, 200);
     } catch (error) {
-      return res.sendError({ error}, 400);
+      next(error);
     }
   }
 
-  async getById(req: Request, res: Response): Promise<Response> {
+  async getById(req: Request, res, next: NextFunction): Promise<Response> {
     try {
       const { id } = req.params;
       const alert = await this.readUseCase.execute(id);
-      return res.sendSuccess({ alert }, 200);
+      return res.sendSuccess(alert, 200);
     } catch (error) {
-      return res.sendError({ error }, 400);
+      next(error)
     }
   }
 
-  async getAll(req: Request, res: Response): Promise<Response> {
+  async getAll(req: Request, res, next: NextFunction): Promise<Response> {
     try {
       const list = await this.listUseCase.execute();
-      return res.sendSuccess({ list }, 200);
+      return res.sendSuccess(list, 200);
     } catch (error) {
-      return res.sendError({ error }, 400);
+      next(error);
     }
   }
 
-  async delete(req: Request, res: Response): Promise<Response> {
+  async delete(req: Request, res, next: NextFunction): Promise<Response> {
     try {
       const { id } = req.params;
       await this.deleteUseCase.execute(id);
 
-      return res.sendSuccess({}, 200 );
+      return res.sendSuccess("Deletado com sucesso", 200 );
     } catch (error) {
-      return res.sendError({ error }, 400);
+      next(error);
     }
   }
 }

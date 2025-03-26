@@ -1,20 +1,17 @@
 export enum ComparisonOperator {
-    GreaterThan,
-    GreaterThanOrEqual,
-    LessThan,
-    LessThanOrEqual,
+    EQUAL = "=",
+    GREATER_THAN = ">",
+    LESS_THAN = "<",
 }
 
 export function comparisonOperatorToString(operator: ComparisonOperator): string {
     switch (operator) {
-        case ComparisonOperator.GreaterThan:
+        case ComparisonOperator.EQUAL:
+            return "=";
+        case ComparisonOperator.GREATER_THAN:
             return ">";
-        case ComparisonOperator.GreaterThanOrEqual:
-            return ">=";
-        case ComparisonOperator.LessThan:
+        case ComparisonOperator.LESS_THAN:
             return "<";
-        case ComparisonOperator.LessThanOrEqual:
-            return "<=";
         default:
             throw new Error("Invalid ComparisonOperator");
     }

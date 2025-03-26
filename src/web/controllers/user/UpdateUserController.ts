@@ -1,11 +1,11 @@
 import { UpdateUserUseCase } from "../../../application/use-cases/user/UpdateUserUseCase";
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { UpdateUserDTO } from "../../dtos/auth/UpdateUserDTO";
 
 export class UpdateUserController {
     constructor(private updateUserUseCase: UpdateUserUseCase) {}
 
-    async handle(request: Request, response): Promise<Response> {
+    async handle(request: Request, response, next: NextFunction): Promise<Response> {
         try {
             const { id, name, email, cpf } = request.body;
 
@@ -19,10 +19,7 @@ export class UpdateUserController {
 
             return response.sendSuccess(user, 200);
         } catch (error) {
-            return response.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error);
         }
     }
 }

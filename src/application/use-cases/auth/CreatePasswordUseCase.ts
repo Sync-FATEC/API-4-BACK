@@ -8,9 +8,6 @@ export default class CreatePasswordUseCase {
     async execute(email: string, password: string): Promise<void> {
         const user = await this.userRepository.findByEmail(email);
 
-        console.log(email);
-        
-
         if (!user || user.password !== null) {
             throw new SystemContextException('Usuário não encontrado ou senha já cadastrada');
         }

@@ -12,33 +12,44 @@ import { typeParameterRoutes } from './web/routes/typeParameter.routes';
 import { measureRoutes } from './web/routes/Measure.routes';
 import { alertRoutes } from './web/routes/Alert.routes';
 import { parameterRoutes } from './web/routes/parameter.routes';
+import { errorMiddleware } from './web/middlewares/errorMiddleware';
 
 async function bootstrap() {
-    const app = express();
+    try {
+        const app = express();
 
-    app.use(cors());
-    app.use(express.json());
-    
-    // Middleware para padronizar respostas
-    app.use(responseHandler);
+        // Middlewares básicos
+        app.use(cors());
+        app.use(express.json());
+        app.use(responseHandler);
 
-    // Inicializar banco de dados
-    await initializeDatabase();
+        // Inicializar banco de dados
+        await initializeDatabase();
 
-    // Rotas
-    app.use('/auth', authRoutes);
-    app.use('/user', userRoutes)
-    app.use('/typeAlert', typeAlertRoutes);
-    app.use('/station', stationRoutes);
-    app.use('/typeParameter', typeParameterRoutes);
-    app.use('/measure', measureRoutes);
-    app.use('/alert', alertRoutes);
-    app.use('/parameter', parameterRoutes);
+        // Rotas
+        app.use('/auth', authRoutes);
+        app.use('/user', userRoutes);
+        app.use('/typeAlert', typeAlertRoutes);
+        app.use('/station', stationRoutes);
+        app.use('/typeParameter', typeParameterRoutes);
+        app.use('/measure', measureRoutes);
+        app.use('/alert', alertRoutes);
+        app.use('/parameter', parameterRoutes);
 
-    const PORT = process.env.PORT;
-    app.listen(PORT, () => {
-        console.log(`🚀 Servidor rodando na porta ${PORT}`);
-    });
+        // Middleware de erro deve ser o último
+        app.use(errorMiddleware);
+
+        const PORT = process.env.PORT;
+        app.listen(PORT, () => {
+            console.log(`🚀 Servidor rodando na porta ${PORT}`);
+        });
+    } catch (error) {
+        console.error('Erro ao iniciar o servidor:', error);
+        process.exit(1);
+    }
 }
 
-bootstrap().catch(console.error); 
+bootstrap().catch(error => {
+    console.error('Erro fatal:', error);
+    process.exit(1);
+}); 
