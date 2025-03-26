@@ -3,12 +3,13 @@ import { MeasureUseCase } from "./MeasureUseCase";
 import { ListMeasureResponseDTO } from "../../../web/dtos/measure/ListMeasureDTO";
 
 export class ListMeasureUseCase extends MeasureUseCase {
-  
   constructor(measureRepository: IMeasureRepository) {
     super(measureRepository);
   }
 
-  public async execute(): Promise<ListMeasureResponseDTO[]> {
-    return await this.measureRepository.listMeasures();
+  public async execute(
+    stationId: string | null
+  ): Promise<ListMeasureResponseDTO[]> {
+    return await this.measureRepository.listMeasures(stationId);
   }
 }

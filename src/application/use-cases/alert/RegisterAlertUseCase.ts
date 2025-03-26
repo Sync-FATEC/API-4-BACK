@@ -18,11 +18,11 @@ export default class RegisterAlertUseCase extends AlertUseCase {
   public async execute(data: RegisterAlertDTO): Promise<Alert> {
     let measure = await this.measureRepository.getById(data.measureId);
 
-    if (measure == null) throw new Error("Measure not found");
+    if (measure == null) throw new SystemContextException("Medida não encontrada");
 
     let typeAlert = await this.typeAlertRepository.findById(data.typeAlerdId);
 
-    if (typeAlert == null) throw new Error("Type not found");
+    if (typeAlert == null) throw new SystemContextException("Tipo de alerta não encontrado");
 
     let alert = Alert.create(data.date, typeAlert, measure);
 

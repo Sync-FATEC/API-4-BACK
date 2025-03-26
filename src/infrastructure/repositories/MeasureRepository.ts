@@ -21,21 +21,35 @@ export class MeasureRepository implements IMeasureRepository {
   }
 
   // Método para listar todos os Measures
-  async listMeasures(): Promise<ListMeasureResponseDTO[]> {
-    const measures = await this.measures.find({
-      relations: [
-        "parameter",
-        "parameter.idStation",
-        "parameter.idTypeParameter",
-      ],
-    });
+  async listMeasures(
+    stationId: string | null
+  ): Promise<ListMeasureResponseDTO[]> {
+    let measures : Measure[];
+    if (stationId) {
+      measures = await this.measures.find({
+        where: { parameter: { idStation: { id: stationId } } },
+        relations: [
+          "parameter",
+          "parameter.idStation",
+          "parameter.idTypeParameter",
+        ],
+      });
+    } else {
+      measures = await this.measures.find({
+        relations: [
+          "parameter",
+          "parameter.idStation",
+          "parameter.idTypeParameter",
+        ],
+      });
+    }
     return measures.map(
       (measure) =>
         ({
           id: measure.id,
           unixTime: measure.unixTime,
           value: measure.value,
-          parameterText: measure.parameter.getParameterName(),  
+          parameterText: measure.parameter.getParameterName(),
         } as ListMeasureResponseDTO)
     );
   }

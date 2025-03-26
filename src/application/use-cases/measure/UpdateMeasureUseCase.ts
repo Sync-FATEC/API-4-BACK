@@ -16,7 +16,7 @@ export class UpdateMeasureUseCase extends MeasureUseCase {
 
 
     if (!measure) {
-      throw new Error("Measure not found");
+      throw new SystemContextException("Medida não encontrada");
     }
 
     measure.unixTime = data.unixTime;

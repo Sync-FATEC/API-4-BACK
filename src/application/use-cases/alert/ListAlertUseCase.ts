@@ -5,7 +5,7 @@ import { ListAlertDTO } from "../../../web/dtos/alert/ListAlertDTO";
 export class ListAlertUseCase {
     constructor(private alertRepository: IAlertRepository) {}
 
-    async execute(): Promise<ListAlertDTO[]> {
-        return await this.alertRepository.getAllAlerts();
+    async execute(stationId : string | null): Promise<ListAlertDTO[]> {
+        return await this.alertRepository.getAllAlerts(stationId);
     }
 }

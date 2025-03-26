@@ -58,7 +58,11 @@ export class AlertController {
 
   async getAll(req: Request, res, next: NextFunction): Promise<Response> {
     try {
-      const list = await this.listUseCase.execute();
+      const stationId: string | null = req.query.stationId
+      ? String(req.query.stationId)
+      : null;
+
+      const list = await this.listUseCase.execute(stationId);
       return res.sendSuccess(list, 200);
     } catch (error) {
       next(error);
