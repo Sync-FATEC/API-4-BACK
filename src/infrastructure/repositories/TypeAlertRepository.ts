@@ -1,36 +1,66 @@
 import { Repository } from "typeorm";
+import { AppDataSource } from "../database/data-source";
 import { ITypeAlertRepository } from "../../domain/interfaces/repositories/ITypeAlertRepository";
 import { TypeAlert } from "../../domain/models/agregates/Alert/TypeAlert";
-import { AppDataSource } from "../database/data-source";
+import { TypeAlertDTO } from "../../web/dtos/alert/typeAlert/TypeAlertDTO";
+import { comparisonOperatorToString } from "../../domain/enums/TypeAlert/ComparisonOperator";
 
-export class TypeAlertRepository implements ITypeAlertRepository {
-    private typeAlerts: Repository<TypeAlert>;
+export default class TypeAlertRepository implements ITypeAlertRepository {
+  private repository: Repository<TypeAlert>;
 
-    constructor() {
-        this.typeAlerts = AppDataSource.getRepository(TypeAlert);
+  constructor() {
+    this.repository = AppDataSource.getRepository(TypeAlert);
+  }
+
+  async findById(id: string): Promise<TypeAlert | null> {
+    return await this.repository.findOne({ where: { id }, relations: ["parameter"] });
+  }
+
+  async findAll(): Promise<TypeAlertDTO[]> {
+    const typeAlerts = await this.repository.find({
+      relations: [
+        "parameter",
+        "parameter.idStation",
+        "parameter.idTypeParameter",
+      ],
+    });
+    return typeAlerts.map((typeAlert) => {
+      const dto: TypeAlertDTO = {
+        id: typeAlert.id,
+        name: typeAlert.name,
+        parameterText: typeAlert.parameter
+          ? `${typeAlert.parameter.idStation.name} - ${typeAlert.parameter.idTypeParameter.name}`
+          : null,
+        comparisonOperator: comparisonOperatorToString(
+          typeAlert.comparisonOperator
+        ),
+        value: typeAlert.value,
+      };
+      return dto;
+    });
+  }
+
+  async create(typeAlert: TypeAlert): Promise<TypeAlert> {
+    const newTypeAlert = this.repository.create(typeAlert);
+    return this.repository.save(newTypeAlert);
+  }
+
+  async update(
+    id: string,
+    typeAlert: Partial<TypeAlert>
+  ): Promise<TypeAlert | null> {
+    const existingTypeAlert = await this.repository.findOneBy({ id });
+    if (!existingTypeAlert) {
+      return null;
     }
+    const updatedTypeAlert = this.repository.merge(
+      existingTypeAlert,
+      typeAlert
+    );
+    return await this.repository.save(updatedTypeAlert);
+  }
 
-    async findById(id: string): Promise<TypeAlert | null> {
-        const typeAlert = await this.typeAlerts.findOne({ where: { id } });
-        return typeAlert || null;
-    }
-
-    async findAll(): Promise<TypeAlert[]> {
-        return await this.typeAlerts.find();
-    }
-
-    async create(typeAlert: TypeAlert): Promise<TypeAlert> {
-        return await this.typeAlerts.save(typeAlert);
-    }
-
-    async update(id: string, typeAlert: Partial<TypeAlert>): Promise<TypeAlert | null> {
-        await this.typeAlerts.update(id, typeAlert);
-        const updatedTypeAlert = await this.typeAlerts.findOne({ where: { id } });
-        return updatedTypeAlert || null;
-    }
-
-    async delete(id: string): Promise<boolean> {
-        const result = await this.typeAlerts.delete(id);
-        return result.affected !== 0;
-    }
+  async delete(id: string): Promise<boolean> {
+    return this.repository.delete(id).then((result) => result.affected !== 0);
+  }
 }

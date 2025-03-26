@@ -6,24 +6,27 @@ import { UpdateTypeAlertDTO } from "../../../web/dtos/alert/typeAlert/UpdateType
 import { TypeAlertUseCase } from "./TypeAlertUseCase";
 
 export class UpdateTypeAlertUseCase extends TypeAlertUseCase {
+  constructor(
+    parameterRepository: IParameterRepository,
+    typeAlertRepository: ITypeAlertRepository
+  ) {
+    super(parameterRepository, typeAlertRepository);
+  }
 
+  public async execute(data: UpdateTypeAlertDTO): Promise<void> {
+    let parameter = await this.parameterRepository.findById(data.parameterId);
 
-    constructor(parameterRepository: IParameterRepository, typeAlertRepository: ITypeAlertRepository) {
-        super(parameterRepository, typeAlertRepository);
+    if (parameter === null) {
+      throw new SystemContextException("Parametro não encontrado");
     }
 
-    
-    public async execute(data: UpdateTypeAlertDTO): Promise<void> {
+    let typeAlert = TypeAlert.create(
+      data.name,
+      data.comparisonOperator,
+      data.value,
+      parameter
+    );
 
-        let parameter = await this.parameterRepository.getParameterById(data.parameterId);
-
-        if(parameter === null){
-            throw new SystemContextException('Parametro não encontrado');
-        }
-        
-        let typeAlert = TypeAlert.create(data.name, data.comparisonOperator, parameter);
-
-        this.typeAlertRepository.create(typeAlert);
-    }
+    this.typeAlertRepository.update(data.id,    typeAlert);
+  }
 }
-

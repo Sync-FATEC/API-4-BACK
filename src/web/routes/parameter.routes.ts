@@ -4,6 +4,8 @@ import { CreateParameterUseCase } from "../../application/use-cases/parameter/Cr
 import { ParameterRepository } from "../../infrastructure/repositories/ParameterRepository";
 import { limiter } from "../../infrastructure/middlewares/limiter";
 import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
+import { ListParameterUseCase } from "../../application/use-cases/parameter/ListParameterUseCase";
+import { ListParameterController } from "../controllers/parameter/ListParameterController";
 import UpdateParameterUseCase from "../../application/use-cases/parameter/UpdateParameterUseCase";
 import { UpdateParameterController } from "../controllers/parameter/UpdateParameterController";
 import DeleteParameterUseCase from "../../application/use-cases/parameter/DeleteParameterUseCase";
@@ -16,6 +18,11 @@ const parameterRepository = new ParameterRepository();
 const createParameterUseCase = new CreateParameterUseCase(parameterRepository);
 const createController = new CreateParameterController(createParameterUseCase);
 
+
+// List
+const listParameterUseCase = new ListParameterUseCase(parameterRepository);
+const listController = new ListParameterController(listParameterUseCase);
+
 // Update
 const updateParameterUseCase = new UpdateParameterUseCase(parameterRepository);
 const updateController = new UpdateParameterController(updateParameterUseCase);
@@ -24,8 +31,10 @@ const updateController = new UpdateParameterController(updateParameterUseCase);
 const deleteParameterUseCase = new DeleteParameterUseCase(parameterRepository);
 const deleteController = new DeleteParameterController(deleteParameterUseCase);
 
+
 // Routes
 parameterRoutes.post('/create', limiter, ensureAuthenticated, (req, res) => createController.handle(req, res));
+parameterRoutes.get('/list', limiter, ensureAuthenticated, (req, res) => listController.handle(req, res));
 
 parameterRoutes.put('/update', limiter, ensureAuthenticated, (req, res) => updateController.handle(req, res));
 
