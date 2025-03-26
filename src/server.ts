@@ -10,9 +10,9 @@ import { stationRoutes } from './web/routes/station.routes';
 import { typeAlertRoutes } from './web/routes/typeAlert.routes';
 import { typeParameterRoutes } from './web/routes/typeParameter.routes';
 import { parameterRoutes } from './web/routes/parameter.routes';
-import { alertRoutes } from './web/routes/alert.routes';
-import { measureRoutes } from './web/routes/measure.routes';
 import { errorMiddleware } from './web/middlewares/errorMiddleware';
+import { alertRoutes } from './web/routes/Alert.routes';
+import { measureRoutes } from './web/routes/Measure.routes';
 
 async function bootstrap() {
     try {
