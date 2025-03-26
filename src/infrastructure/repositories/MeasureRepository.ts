@@ -1,7 +1,10 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../database/data-source";
 import { IMeasureRepository } from "../../../src/domain/interfaces/repositories/IMeasureRepository";
-import { Measure } from "../../../src/domain/models/agregates/Measure/Measure";
+
+import { ListMeasureResponseDTO } from "../../web/dtos/measure/ListMeasureDTO";
+import { Measure } from "../../domain/models/entities/Measure";
+import { param } from "express-validator";
 
 export class MeasureRepository implements IMeasureRepository {
   private measures: Repository<Measure> = AppDataSource.getRepository(Measure);
@@ -18,8 +21,23 @@ export class MeasureRepository implements IMeasureRepository {
   }
 
   // Método para listar todos os Measures
-  async listMeasures(): Promise<Measure[]> {
-    return await this.measures.find();
+  async listMeasures(): Promise<ListMeasureResponseDTO[]> {
+    const measures = await this.measures.find({
+      relations: [
+        "parameter",
+        "parameter.idStation",
+        "parameter.idTypeParameter",
+      ],
+    });
+    return measures.map(
+      (measure) =>
+        ({
+          id: measure.id,
+          unixTime: measure.unixTime,
+          value: measure.value,
+          parameterText: measure.parameter.getParameterName(),  
+        } as ListMeasureResponseDTO)
+    );
   }
 
   // Método para excluir um Measure

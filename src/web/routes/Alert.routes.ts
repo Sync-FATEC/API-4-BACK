@@ -3,14 +3,14 @@ import { AlertRepository } from "../../infrastructure/repositories/AlertReposito
 import { DeleteAlertUseCase } from "../../application/use-cases/alert/DeleteAlertUseCase";
 import { ListAlertUseCase } from "../../application/use-cases/alert/ListAlertUseCase";
 import { ReadAlertUseCase } from "../../application/use-cases/alert/ReadAlertUseCase";
-import { RegisterAlertUseCase } from "../../application/use-cases/alert/RegisterAlertUseCase";
+import RegisterAlertUseCase from "../../application/use-cases/alert/RegisterAlertUseCase";
 import { UpdateAlertUseCase } from "../../application/use-cases/alert/UpdateAlertUseCase";
 import { AlertController } from "../controllers/Alert/AlertController";
 import { limiter } from "../../infrastructure/middlewares/limiter";
 import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
 import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
-import { TypeAlertRepository } from "../../infrastructure/repositories/TypeAlertRepository";
 import { MeasureRepository } from "../../infrastructure/repositories/MeasureRepository";
+import TypeAlertRepository from "../../infrastructure/repositories/TypeAlertRepository";
 
 // Repositories
 const alertRepository = new AlertRepository();
@@ -18,7 +18,7 @@ const typeAlertRepository = new TypeAlertRepository(); // Definido antes de ser 
 const measureRepository = new MeasureRepository();
 
 // Use Cases
-const registerAlertUseCase = new RegisterAlertUseCase(alertRepository, typeAlertRepository);
+const registerAlertUseCase = new RegisterAlertUseCase(alertRepository, typeAlertRepository,measureRepository);
 const updateAlertUseCase = new UpdateAlertUseCase(alertRepository, typeAlertRepository, measureRepository);
 const listAlertUseCase = new ListAlertUseCase(alertRepository);
 const readAlertUseCase = new ReadAlertUseCase(alertRepository);

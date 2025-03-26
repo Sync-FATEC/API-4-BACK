@@ -5,7 +5,8 @@ export interface IParameterRepository {
     create(parameter: Partial<Parameter>): Promise<Parameter>;
     delete(id: string): Promise<boolean>;
     update(id: string, parameter: Partial<Parameter>): Promise<Parameter>;
-    list(): Promise<Parameter[]>;
+    list(): Promise<Parameter[]>;  
+    getWithParameterThenInclude(id: string): Promise<Parameter | null>;
     listDTO(): Promise<ListParameterDTO[]>;
     findById(id: string): Promise<Parameter | null>;
 }

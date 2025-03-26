@@ -9,12 +9,14 @@ import { MeasureController } from "../controllers/Measure/MeasureController";
 import { limiter } from "../../infrastructure/middlewares/limiter";
 import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
 import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
+import { ParameterRepository } from "../../infrastructure/repositories/ParameterRepository";
 
 // Repositories
 const measureRepository = new MeasureRepository();
+const parameterRepository = new ParameterRepository(); // Definido antes de ser utilizado
 
 // Use Cases
-const registerMeasureUseCase = new RegisterMeasureUseCase(measureRepository);
+const registerMeasureUseCase = new RegisterMeasureUseCase(measureRepository, parameterRepository);
 const updateMeasureUseCase = new UpdateMeasureUseCase(measureRepository);
 const listMeasureUseCase = new ListMeasureUseCase(measureRepository);
 const readMeasureUseCase = new ReadMeasureUseCase(measureRepository);
@@ -32,10 +34,7 @@ const measureController = new MeasureController(
 const measureRoutes = Router();
 
 // Routes
-measureRoutes.post('/create', limiter, ensureAuthenticatedAdmin, (req, res) => measureController.create(req, res));
-measureRoutes.put('/update', limiter, ensureAuthenticatedAdmin, (req, res) => measureController.update(req, res));
 measureRoutes.get('/list', limiter, ensureAuthenticated, (req, res) => measureController.getAll(req, res));
 measureRoutes.get('/read/:id', limiter, ensureAuthenticated, (req, res) => measureController.getById(req, res));
-measureRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, (req, res) => measureController.delete(req, res));
 
 export { measureRoutes };

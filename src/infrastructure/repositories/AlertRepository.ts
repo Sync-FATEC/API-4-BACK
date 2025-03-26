@@ -2,6 +2,8 @@ import { Repository } from "typeorm";
 import { AppDataSource } from "../database/data-source";
 import { IAlertRepository } from "../../../src/domain/interfaces/repositories/IAlertRepository";
 import { Alert } from "../../../src/domain/models/agregates/Alert/Alert";
+import { ListAlertDTO } from "../../web/dtos/alert/ListAlertDTO";
+import { ListMeasureResponseDTO } from "../../web/dtos/measure/ListMeasureDTO";
 
 export class AlertRepository implements IAlertRepository {
   private alerts: Repository<Alert> = AppDataSource.getRepository(Alert);
@@ -15,8 +17,27 @@ export class AlertRepository implements IAlertRepository {
     return alert || null;
   }
 
-  async getAllAlerts(): Promise<Alert[]> {
-    return await this.alerts.find();
+  async getAllAlerts(): Promise<ListAlertDTO[]> {
+    const alert = await this.alerts.find({
+      relations: [
+        "type",
+        "measure.parameter.idTypeParameter",
+        "measure.parameter.idStation",
+      ],
+    });
+    return alert.map(
+      (alert) =>
+        ({
+          id: alert.id,
+          message: alert.type.name,
+          measure: {
+            id: alert.measure.id,
+            unixTime: alert.measure.unixTime,
+            value: alert.measure.value,
+            parameterText: alert.measure.parameter.getParameterName(),
+          } as ListMeasureResponseDTO,
+        } as ListAlertDTO)
+    );
   }
 
   async deleteAlert(id: string): Promise<boolean> {
