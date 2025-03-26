@@ -13,6 +13,7 @@ import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuth
 import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
 import { limiter } from "../../infrastructure/middlewares/limiter";
 import StationRepository from "../../infrastructure/repositories/StationRepository";
+import { asyncHandler } from "../middlewares/asyncHandler";
 
 const stationRoutes = Router();
 const stationRepository = new StationRepository();
@@ -37,14 +38,14 @@ const listController = new ListStationController(listStationUseCase);
 const readStationUseCase = new ReadStationUseCase(stationRepository);
 const readController = new ReadStationController(readStationUseCase);
 
-stationRoutes.post('/create', limiter, (req, res) => createController.handle(req, res));
+stationRoutes.post('/create', limiter, asyncHandler((req, res, next) => createController.handle(req, res, next)));
 
-stationRoutes.put('/update', limiter, ensureAuthenticated, (req, res) => updateController.handle(req, res));
+stationRoutes.put('/update', limiter, ensureAuthenticated, asyncHandler((req, res, next) => updateController.handle(req, res, next)));
 
-stationRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, (req, res) => deleteController.handle(req, res));
+stationRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => deleteController.handle(req, res, next)));
 
-stationRoutes.get('/list', limiter, ensureAuthenticated, (req, res) => listController.handle(req, res));
+stationRoutes.get('/list', limiter, ensureAuthenticated, asyncHandler((req, res, next) => listController.handle(req, res, next)));
 
-stationRoutes.get('/read/:id', limiter, ensureAuthenticated, (req, res) => readController.handle(req, res));
+stationRoutes.get('/read/:id', limiter, ensureAuthenticated, asyncHandler((req, res, next) => readController.handle(req, res, next)));
 
 export { stationRoutes }

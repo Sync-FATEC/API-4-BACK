@@ -9,6 +9,7 @@ import { ensureAuthenticatedAdmin } from '../../infrastructure/middlewares/ensur
 
 import CreatePasswordUseCase from '../../application/use-cases/auth/CreatePasswordUseCase';
 import CreatePasswordController from '../controllers/auth/CreatePasswordController';
+import { asyncHandler } from '../middlewares/asyncHandler';
 
 const authRoutes = Router();
 const userRepository = new UserRepository();
@@ -25,10 +26,10 @@ const registerController = new RegisterController(registerUseCase);
 const createPasswordUseCase = new CreatePasswordUseCase(userRepository);
 const createPasswordController = new CreatePasswordController(createPasswordUseCase)
 
-authRoutes.post('/login', limiter, (req, res) => authController.login(req, res));
+authRoutes.post('/login', limiter, asyncHandler((req, res, next) => authController.login(req, res, next)));
 
-authRoutes.post('/register', limiter, ensureAuthenticatedAdmin, (req, res) => registerController.handle(req, res));
+authRoutes.post('/register', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => registerController.handle(req, res, next)));
 
-authRoutes.post('/createpassword', limiter, (req, res) => createPasswordController.handle(req, res))
+authRoutes.post('/createpassword', limiter, asyncHandler((req, res, next) => createPasswordController.handle(req, res, next)));
 
 export { authRoutes }; 

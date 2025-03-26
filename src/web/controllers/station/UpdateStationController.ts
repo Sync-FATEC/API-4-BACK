@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import UpdateStationUseCase from "../../../application/use-cases/station/UpdateStationUseCase";
 import UpdateStationDTO from "../../dtos/station/UpdateStationDTO";
 
 export class UpdateStationController {
     constructor(private updateStationUseCase: UpdateStationUseCase) {}
 
-    async handle(request: Request, response): Promise<Response> {
+    async handle(request: Request, response, next: NextFunction): Promise<Response> {
         const { id, name, uuid, latitude, longitude } = request.body;
 
         if (!id || !name || !uuid || !latitude || !longitude) {
@@ -18,10 +18,7 @@ export class UpdateStationController {
 
             return response.sendSuccess(station, 200);
         } catch (error) {
-            return response.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error);
         }
     }
 }

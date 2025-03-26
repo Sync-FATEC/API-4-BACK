@@ -21,9 +21,7 @@ export class RegisterTypeAlertUseCase extends TypeAlertUseCase {
         
         let typeAlert = TypeAlert.create(data.name, data.comparisonOperator,data.value, parameter);
 
-        this.typeAlertRepository.create(typeAlert);
-
-        return typeAlert
+        return this.typeAlertRepository.create(typeAlert);
     }
 }
 

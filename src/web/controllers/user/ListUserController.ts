@@ -1,10 +1,10 @@
 import { ListUserUseCase } from "../../../application/use-cases/user/ListUserUseCase";
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 export class ListUserController {
     constructor(private listUserUseCase: ListUserUseCase) {}
 
-    async handle(request: Request, response): Promise<Response> {
+    async handle(request: Request, response, next: NextFunction): Promise<Response> {
         try {
             const users = await this.listUserUseCase.execute();
             
@@ -12,10 +12,7 @@ export class ListUserController {
 
             return response.sendSuccess(usersWithoutPassword, 200);
         } catch (error) {
-            return response.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error);
         }
     }
 }

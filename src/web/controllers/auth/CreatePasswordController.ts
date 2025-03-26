@@ -1,10 +1,10 @@
 import CreatePasswordUseCase from "../../../application/use-cases/auth/CreatePasswordUseCase";
-import { Request } from "express";
+import { NextFunction, Request } from "express";
 
 export default class CreatePasswordController {
     constructor(private createPasswordUseCase: CreatePasswordUseCase) {}
 
-    async handle(request: Request, response): Promise<Response> {
+    async handle(request: Request, response, next: NextFunction): Promise<Response> {
         try {
             const { email, password } = request.body;
 
@@ -16,10 +16,7 @@ export default class CreatePasswordController {
 
             return response.sendSuccess('Senha criada com sucesso', 200);
         } catch (error) {
-            return response.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error);
         }
     }
 }

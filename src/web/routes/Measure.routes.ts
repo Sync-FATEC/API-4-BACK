@@ -10,6 +10,7 @@ import { limiter } from "../../infrastructure/middlewares/limiter";
 import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
 import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
 import { ParameterRepository } from "../../infrastructure/repositories/ParameterRepository";
+import { asyncHandler } from "../middlewares/asyncHandler";
 
 // Repositories
 const measureRepository = new MeasureRepository();
@@ -34,7 +35,10 @@ const measureController = new MeasureController(
 const measureRoutes = Router();
 
 // Routes
-measureRoutes.get('/list', limiter, ensureAuthenticated, (req, res) => measureController.getAll(req, res));
-measureRoutes.get('/read/:id', limiter, ensureAuthenticated, (req, res) => measureController.getById(req, res));
+measureRoutes.post('/create', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => measureController.create(req, res, next)));
+measureRoutes.put('/update', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => measureController.update(req, res, next)));
+measureRoutes.get('/list', limiter, ensureAuthenticated, asyncHandler((req, res, next) => measureController.getAll(req, res, next)));
+measureRoutes.get('/read/:id', limiter, ensureAuthenticated, asyncHandler((req, res, next) => measureController.getById(req, res, next)));
+measureRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => measureController.delete(req, res, next)));
 
 export { measureRoutes };

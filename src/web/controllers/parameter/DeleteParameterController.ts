@@ -1,10 +1,10 @@
-import { Request } from "express";
+import { NextFunction, Request } from "express";
 import DeleteParameterUseCase from "../../../application/use-cases/parameter/DeleteParameterUseCase";
 
 export class DeleteParameterController {
     constructor(private deleteParameterUseCase: DeleteParameterUseCase) {}
 
-    async handle(request: Request, res): Promise<Response> {
+    async handle(request: Request, res, next: NextFunction): Promise<Response> {
         try {
             const { id } = request.params;
 
@@ -16,10 +16,7 @@ export class DeleteParameterController {
 
             return res.sendSuccess('Parâmetro deletado com sucesso', 200);
         } catch (error) {
-            return res.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error);
         }
     }
 }

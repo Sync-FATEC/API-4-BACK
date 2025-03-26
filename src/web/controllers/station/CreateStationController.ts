@@ -1,11 +1,11 @@
-import { Request } from "express";
+import { NextFunction, Request } from "express";
 import CreateStationDTO from "../../../../src/web/dtos/station/CreateStationDTO";
 import { CreateStationUseCase } from "../../../application/use-cases/station/CreateStationUseCase";
 
 export default class CreateStationController {
   constructor(private createStationUseCase: CreateStationUseCase) {}
 
-  async handle(request: Request, response) {
+  async handle(request: Request, response, next: NextFunction) {
     const { uuid, name, latitude, longitude } = request.body;
 
     if (!uuid || !name || !latitude || !longitude) {
@@ -19,9 +19,7 @@ export default class CreateStationController {
 
       return response.sendSuccess(station, 200);
     } catch (error) {
-      return response.sendError(
-        error instanceof Error ? error.message : "Erro inesperado"
-      );
+      next(error);
     }
   }
 }

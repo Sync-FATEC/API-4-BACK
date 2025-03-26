@@ -11,6 +11,8 @@ import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuth
 import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
 import { MeasureRepository } from "../../infrastructure/repositories/MeasureRepository";
 import TypeAlertRepository from "../../infrastructure/repositories/TypeAlertRepository";
+import { asyncHandler } from "../middlewares/asyncHandler";
+
 
 // Repositories
 const alertRepository = new AlertRepository();
@@ -36,10 +38,10 @@ const alertController = new AlertController(
 const alertRoutes = Router();
 
 // Routes
-alertRoutes.post('/create', limiter, ensureAuthenticatedAdmin, (req, res) => alertController.create(req, res));
-alertRoutes.put('/update', limiter, ensureAuthenticatedAdmin, (req, res) => alertController.update(req, res));
-alertRoutes.get('/list', limiter, ensureAuthenticated, (req, res) => alertController.getAll(req, res));
-alertRoutes.get('/read/:id', limiter, ensureAuthenticated, (req, res) => alertController.getById(req, res));
-alertRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, (req, res) => alertController.delete(req, res));
+alertRoutes.post('/create', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => alertController.create(req, res, next)));
+alertRoutes.put('/update', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => alertController.update(req, res, next)));
+alertRoutes.get('/list', limiter, ensureAuthenticated, asyncHandler((req, res, next) => alertController.getAll(req, res, next)));
+alertRoutes.get('/read/:id', limiter, ensureAuthenticated, asyncHandler((req, res, next) => alertController.getById(req, res, next)));
+alertRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => alertController.delete(req, res, next)));
 
 export { alertRoutes };

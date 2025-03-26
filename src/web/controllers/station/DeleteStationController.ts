@@ -1,10 +1,10 @@
-import { Request } from "express";
+import { NextFunction, Request } from "express";
 import DeleteStationUseCase from "../../../application/use-cases/station/DeleteStationUseCase";
 
 export class DeleteStationController {
     constructor(private deleteStationUseCase: DeleteStationUseCase) {}
 
-    async handle(request: Request, res): Promise<Response> {
+    async handle(request: Request, res, next: NextFunction): Promise<Response> {
         try {
             const { id } = request.params;
 
@@ -16,10 +16,7 @@ export class DeleteStationController {
 
             return res.sendSuccess('Estação deletada com sucesso', 200);
         } catch (error) {
-            return res.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error);
         }
     }
 }
