@@ -1,7 +1,7 @@
 import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
-import { ITypeParameterRepository } from "../../../domain/models/entities/TypeParameter";
+import { ITypeParameterRepository } from "../../../domain/interfaces/repositories/ITypeParameterRepository";
 import { TypeParameter } from "../../../domain/models/entities/TypeParameter";
-import UpdateTypeParameterDTO from "../../../web/dtos/typeParameters/UpdateTypeParameterDTO"; 
+import UpdateTypeParameterDTO from "../../../web/dtos/typeParameter/UpdateTypeParameterDTO";
 
 export default class UpdateTypeParameterUseCase {
     constructor(private typeParameterRepository: ITypeParameterRepository) {}

@@ -1,14 +1,19 @@
 import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
-import { ITypeParameterRepository } from "../../../domain/models/entities/TypeParameter";
-import CreateTypeParameterDTO from "../../../web/dtos/typeParameters/CreateTypeParameterDTO";
+import { ITypeParameterRepository } from "../../../domain/interfaces/repositories/ITypeParameterRepository";
+import CreateTypeParameterDTO from "../../../web/dtos/typeParameter/CreateTypeParameterDTO";
 
 export class CreateTypeParameterUseCase {
     constructor(private typeParametersRepository: ITypeParameterRepository) {}
 
     async execute(typeParameterData: CreateTypeParameterDTO) {
-        const typeParameter = await this.typeParametersRepository.findByName(typeParameterData.getName());
-        if (typeParameter) {
-            throw new SystemContextException("Nome de parâmetro de tipo já cadastrado");
+        const name = await this.typeParametersRepository.findByName(typeParameterData.getName());
+        if (name) {
+            throw new SystemContextException("Nome do parâmetro de tipo já cadastrado");
+        }
+
+        const jsonType = await this.typeParametersRepository.findByTypeJson(typeParameterData.getTypeJson());
+        if (jsonType) {
+            throw new SystemContextException("Tipo do Json já cadastrado");
         }
 
         return await this.typeParametersRepository.create({

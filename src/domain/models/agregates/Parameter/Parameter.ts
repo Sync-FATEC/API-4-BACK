@@ -1,16 +1,15 @@
-import { Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import { TypeParameter } from "../../entities/TypeParameter";
 import { Station } from "../../entities/Station";
 
 @Entity()
 export default class Parameter {
-
-  @PrimaryColumn("uuid")
+    @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @OneToMany(() => TypeParameter, typeParameter => typeParameter)
-    typeParameter: TypeParameter   
+    @ManyToOne(() => TypeParameter, (typeParameter) => typeParameter.parameters)
+    idTypeParameter: TypeParameter;
 
-    @OneToMany(() => Station, station => station)
-    station: Station
+    @ManyToOne(() => Station, (station) => station.parameters)
+    idStation: Station;
 }

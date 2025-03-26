@@ -1,5 +1,5 @@
 import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
-import { ITypeParameterRepository } from "../../../domain/models/entities/TypeParameter";
+import { ITypeParameterRepository } from "../../../domain/interfaces/repositories/ITypeParameterRepository";
 
 export default class DeleteTypeParameterUseCase {
     constructor(private typeParameterRepository: ITypeParameterRepository) {}

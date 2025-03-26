@@ -1,5 +1,5 @@
 import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
-import { ITypeParameterRepository } from "../../../domain/models/entities/TypeParameter";
+import { ITypeParameterRepository } from "../../../domain/interfaces/repositories/ITypeParameterRepository";
 import { TypeParameter } from "../../../domain/models/entities/TypeParameter";
 
 export class ReadTypeParameterUseCase {

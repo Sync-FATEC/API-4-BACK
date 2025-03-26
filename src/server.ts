@@ -11,6 +11,7 @@ import { typeAlertRoutes } from './web/routes/typeAlert.routes';
 import { typeParameterRoutes } from './web/routes/typeParameter.routes';
 import { measureRoutes } from './web/routes/Measure.routes';
 import { alertRoutes } from './web/routes/Alert.routes';
+import { parameterRoutes } from './web/routes/parameter.routes';
 
 async function bootstrap() {
     const app = express();
@@ -32,6 +33,7 @@ async function bootstrap() {
     app.use('/typeParameter', typeParameterRoutes);
     app.use('/measure', measureRoutes);
     app.use('/alert', alertRoutes);
+    app.use('/parameter', parameterRoutes);
 
     const PORT = process.env.PORT;
     app.listen(PORT, () => {

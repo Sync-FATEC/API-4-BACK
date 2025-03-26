@@ -1,5 +1,6 @@
 import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
-import { IStationRepository, Station } from "../../../domain/models/entities/Station";
+import { IStationRepository } from "../../../domain/interfaces/repositories/IStationRepository";
+import { Station } from "../../../domain/models/entities/Station";
 import UpdateStationDTO from "../../../web/dtos/station/UpdateStationDTO";
 
 export default class UpdateStationUseCase {

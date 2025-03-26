@@ -1,7 +1,7 @@
 import { create } from "domain";
-import { IStationRepository } from "../../../domain/models/entities/Station";
 import CreateStationDTO from "../../../web/dtos/station/CreateStationDTO";
 import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
+import { IStationRepository } from "../../../domain/interfaces/repositories/IStationRepository";
 
 export class CreateStationUseCase {
   constructor(private stationRepository: IStationRepository) {}

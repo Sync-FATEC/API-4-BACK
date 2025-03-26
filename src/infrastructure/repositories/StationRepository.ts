@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../database/data-source";
-import { IStationRepository, Station } from "../../domain/models/entities/Station";
+import { Station } from "../../domain/models/entities/Station";
+import { IStationRepository } from "../../domain/interfaces/repositories/IStationRepository";
 
 export default class StationRepository implements IStationRepository {
     private repository: Repository<Station>;
@@ -31,11 +32,23 @@ export default class StationRepository implements IStationRepository {
         return await this.repository.find();
     }
 
+    async listWithParameters(): Promise<Station[]> {
+        return await this.repository.find({
+            relations: ['parameters.idTypeParameter']
+        });
+    }
+
     async findById(id: string): Promise<Station | null> {
-        return await this.repository.findOne({ where: { id } });
+        return await this.repository.findOne({ 
+            where: { id },
+            relations: ['parameters.idTypeParameter']
+        });
     }
 
     async findByUuid(uuid: string): Promise<Station | null> {
-        return await this.repository.findOne({ where: { uuid } });
+        return await this.repository.findOne({ 
+            where: { uuid },
+            relations: ['parameters.idTypeParameter']
+        });
     }
 }

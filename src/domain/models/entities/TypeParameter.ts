@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import Parameter from "../agregates/Parameter/Parameter";
 
 @Entity()
@@ -6,10 +6,10 @@ export class TypeParameter {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    @Column()
+    @Column({ unique: true })
     typeJson: string;
     
-    @Column()
+    @Column({ unique: true })
     name: string;
 
     @Column()
@@ -24,6 +24,6 @@ export class TypeParameter {
     @Column()
     offset: number;
 
-    @ManyToOne(() => Parameter, (parameter) => parameter.typeParameter)
-    parameter: Parameter[];
+    @OneToMany(() => Parameter, (parameter) => parameter.idTypeParameter)
+    parameters: Parameter[];
 }

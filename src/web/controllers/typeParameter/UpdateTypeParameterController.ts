@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 
 import UpdateTypeParameterUseCase from '../../../application/use-cases/typeParameter/UpdateTypeParameterUseCase';
-import UpdateTypeParameterDTO from '../../dtos/typeParameters/UpdateTypeParameterDTO';
+import UpdateTypeParameterDTO from '../../dtos/typeParameter/UpdateTypeParameterDTO';
 
 export class UpdateTypeParameterController {
     constructor(private updateTypeParameterUseCase: UpdateTypeParameterUseCase) {}
