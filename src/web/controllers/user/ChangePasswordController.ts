@@ -1,11 +1,11 @@
 import ChangePasswordUseCase from "../../../application/use-cases/user/ChangePasswordUseCase";
-import { Request  } from "express";
+import { NextFunction, Request  } from "express";
 import { ChangePasswordDTO } from "../../dtos/user/ChangePasswordDTO";
 
 export class ChangePasswordController {
     constructor(private changePasswordUseCase: ChangePasswordUseCase) {}
 
-    async handle(request: Request, response): Promise<Response> {
+    async handle(request: Request, response, next: NextFunction): Promise<Response> {
         try {
             const { email, oldPassword, password, passwordConfirmation } = request.body;
 
@@ -19,10 +19,7 @@ export class ChangePasswordController {
 
             return response.sendSuccess("Senha atualizada", 200);
         } catch (error) {
-            return response.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error);
         }
     }
 }

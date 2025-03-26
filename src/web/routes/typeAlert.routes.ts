@@ -10,6 +10,7 @@ import { RegisterTypeAlertUseCase } from "../../application/use-cases/typeAlert/
 import { UpdateTypeAlertUseCase } from "../../application/use-cases/typeAlert/UpdateTypeAlertUseCase";
 import { ParameterRepository } from "../../infrastructure/repositories/ParameterRepository";
 import TypeAlertRepository from "../../infrastructure/repositories/TypeAlertRepository";
+import { asyncHandler } from "../middlewares/asyncHandler";
 
 const typeAlertRoutes = Router();
 
@@ -35,34 +36,34 @@ typeAlertRoutes.post(
     "/",
     limiter,
     ensureAuthenticatedAdmin,
-    async (req, res) => await typeAlertController.create(req, res)
+    asyncHandler((req, res, next) => typeAlertController.create(req, res, next))
 );
 
 typeAlertRoutes.put(
     "/",
     limiter,
     ensureAuthenticatedAdmin,
-    (req, res) => typeAlertController.update(req, res)
+    asyncHandler((req, res, next) => typeAlertController.update(req, res, next))
 );
 
 typeAlertRoutes.get(
     "/",
     limiter,
-    async (req, res) => await typeAlertController.getAll(req, res)
+    asyncHandler((req, res, next) => typeAlertController.getAll(req, res, next))
 );
 
 typeAlertRoutes.get(
     "/:id",
     limiter,
     ensureAuthenticated,
-    (req, res) => typeAlertController.getById(req, res)
+    asyncHandler((req, res, next) => typeAlertController.getById(req, res, next))
 );
 
 typeAlertRoutes.delete(
     "/:id",
     limiter,
     ensureAuthenticatedAdmin,
-    (req, res) => typeAlertController.delete(req, res)
+    asyncHandler((req, res, next) => typeAlertController.delete(req, res, next))
 );
 
 export { typeAlertRoutes };

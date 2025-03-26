@@ -13,6 +13,7 @@ import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuth
 import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
 import ChangePasswordUseCase from "../../application/use-cases/user/ChangePasswordUseCase";
 import { ChangePasswordController } from "../controllers/user/ChangePasswordController";
+import { asyncHandler } from "../middlewares/asyncHandler";
 
 const userRoutes = Router();
 const userRepository = new UserRepository()
@@ -38,14 +39,14 @@ const readController = new ReadUserController(readUserUseCase);
 const changePasswordUseCase = new ChangePasswordUseCase(userRepository);
 const changePasswordController = new ChangePasswordController(changePasswordUseCase);
 
-userRoutes.put('/update', limiter, ensureAuthenticated, (req, res) => updateController.handle(req, res));
+userRoutes.put('/update', limiter, ensureAuthenticated, asyncHandler((req, res, next) => updateController.handle(req, res, next)));
 
-userRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, (req, res) => deleteController.handle(req, res));
+userRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => deleteController.handle(req, res, next)));
 
-userRoutes.get('/list', limiter, ensureAuthenticatedAdmin, (req, res) => listController.handle(req, res));
+userRoutes.get('/list', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => listController.handle(req, res, next)));
 
-userRoutes.get('/read/:id', limiter, ensureAuthenticated, (req, res) => readController.handle(req, res));
+userRoutes.get('/read/:id', limiter, ensureAuthenticated, asyncHandler((req, res, next) => readController.handle(req, res, next)));
 
-userRoutes.put('/change-password', limiter, ensureAuthenticated, (req, res) => changePasswordController.handle(req, res));
+userRoutes.put('/change-password', limiter, ensureAuthenticated, asyncHandler((req, res, next) => changePasswordController.handle(req, res, next)));
 
 export { userRoutes }

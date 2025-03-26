@@ -10,6 +10,7 @@ import UpdateParameterUseCase from "../../application/use-cases/parameter/Update
 import { UpdateParameterController } from "../controllers/parameter/UpdateParameterController";
 import DeleteParameterUseCase from "../../application/use-cases/parameter/DeleteParameterUseCase";
 import { DeleteParameterController } from "../controllers/parameter/DeleteParameterController";
+import { asyncHandler } from "../middlewares/asyncHandler";
 
 const parameterRoutes = Router();
 const parameterRepository = new ParameterRepository();
@@ -33,11 +34,11 @@ const deleteController = new DeleteParameterController(deleteParameterUseCase);
 
 
 // Routes
-parameterRoutes.post('/create', limiter, ensureAuthenticated, (req, res) => createController.handle(req, res));
-parameterRoutes.get('/list', limiter, ensureAuthenticated, (req, res) => listController.handle(req, res));
+parameterRoutes.post('/create', limiter, ensureAuthenticated, asyncHandler((req, res, next) => createController.handle(req, res, next)));
+parameterRoutes.get('/list', limiter, ensureAuthenticated, asyncHandler((req, res, next) => listController.handle(req, res, next)));
 
-parameterRoutes.put('/update', limiter, ensureAuthenticated, (req, res) => updateController.handle(req, res));
+parameterRoutes.put('/update', limiter, ensureAuthenticated, asyncHandler((req, res, next) => updateController.handle(req, res, next)));
 
-parameterRoutes.delete('/delete/:id', limiter, ensureAuthenticated, (req, res) => deleteController.handle(req, res));
+parameterRoutes.delete('/delete/:id', limiter, ensureAuthenticated, asyncHandler((req, res, next) => deleteController.handle(req, res, next)));
 
 export { parameterRoutes }

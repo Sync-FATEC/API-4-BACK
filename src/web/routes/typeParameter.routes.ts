@@ -12,6 +12,7 @@ import { ListTypeParameterUseCase } from "../../application/use-cases/typeParame
 import { ListTypeParameterController } from "../controllers/typeParameter/ListTypeParameterController";
 import { limiter } from "../../infrastructure/middlewares/limiter";
 import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
+import { asyncHandler } from "../middlewares/asyncHandler";
 
 const typeParameterRoutes = Router();
 const typeParametersRepository = new TypeParemeterRepository();
@@ -37,14 +38,14 @@ const listTypeParameterUseCase = new ListTypeParameterUseCase(typeParametersRepo
 const listController = new ListTypeParameterController(listTypeParameterUseCase);
 
 // Routes
-typeParameterRoutes.post('/create', limiter, ensureAuthenticated, (req, res) => createController.handle(req, res));
+typeParameterRoutes.post('/create', limiter, ensureAuthenticated, asyncHandler((req, res, next) => createController.handle(req, res, next)));
 
-typeParameterRoutes.put('/update', limiter, ensureAuthenticated, (req, res) => updateController.handle(req, res));
+typeParameterRoutes.put('/update', limiter, ensureAuthenticated, asyncHandler((req, res, next) => updateController.handle(req, res, next)));
 
-typeParameterRoutes.delete('/delete/:id', limiter, ensureAuthenticated, (req, res) => deleteController.handle(req, res));
+typeParameterRoutes.delete('/delete/:id', limiter, ensureAuthenticated, asyncHandler((req, res, next) => deleteController.handle(req, res, next)));
 
-typeParameterRoutes.get('/read/:id', limiter, ensureAuthenticated, (req, res) => readController.handle(req, res));
+typeParameterRoutes.get('/read/:id', limiter, ensureAuthenticated, asyncHandler((req, res, next) => readController.handle(req, res, next)));
 
-typeParameterRoutes.get('/list', limiter, ensureAuthenticated, (req, res) => listController.handle(req, res));
+typeParameterRoutes.get('/list', limiter, ensureAuthenticated, asyncHandler((req, res, next) => listController.handle(req, res, next)));
 
 export { typeParameterRoutes }

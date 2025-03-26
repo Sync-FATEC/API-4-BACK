@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { ReadStationUseCase } from "../../../application/use-cases/station/ReadStationUseCase";
 
 export class ReadStationController {
     constructor(private readStationUseCase: ReadStationUseCase) {}
 
-    async handle(request: Request, response): Promise<Response> {
+    async handle(request: Request, response, next: NextFunction): Promise<Response> {
         const { id } = request.params;
 
         try {
@@ -12,10 +12,7 @@ export class ReadStationController {
 
             return response.sendSuccess(station, 200);
         } catch (error) {
-            return response.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error)
         }
     }
 }

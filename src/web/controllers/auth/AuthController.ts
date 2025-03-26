@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { AuthUseCase } from '../../../application/use-cases/auth/AuthUseCase';
 
 export class AuthController {
     constructor(private authUseCase: AuthUseCase) {}
 
-    async login(request: Request, response): Promise<Response> {
+    async login(request: Request, response, next: NextFunction): Promise<Response> {
         try {
             const { email, password } = request.body;
 
@@ -16,10 +16,7 @@ export class AuthController {
 
             return response.sendSuccess({ user, token }, 200);
         } catch (error) {
-            return response.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error);
         }
     }
 } 

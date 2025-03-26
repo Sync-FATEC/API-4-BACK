@@ -1,11 +1,11 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { RegisterUseCase } from '../../../application/use-cases/auth/RegisterUseCase';
 import RegisterUserDTO from '../../dtos/auth/RegisterUserDTO';
 
 export class RegisterController {
     constructor(private registerUseCase: RegisterUseCase) {}
 
-    async handle(request: Request, response): Promise<Response> {
+    async handle(request: Request, response, next: NextFunction): Promise<Response> {
         try {
             const { name, email, cpf } = request.body;
 
@@ -19,10 +19,7 @@ export class RegisterController {
 
             return response.sendSuccess({ readUser }, 200);
         } catch (error) {
-            return response.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error);
         }
     }
 } 

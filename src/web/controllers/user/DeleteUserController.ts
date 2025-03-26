@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { DeleteUserUseCase } from "../../../application/use-cases/user/DeleteUserUseCase";
 
 export class DeleteUserController {
     constructor(private deleteUserUseCase: DeleteUserUseCase) {}
 
-    async handle(request: Request, response): Promise<Response> {
+    async handle(request: Request, response, next: NextFunction): Promise<Response> {
         try {
             const { id } = request.params;
 
@@ -16,10 +16,7 @@ export class DeleteUserController {
 
             return response.sendSuccess('Usuário deletado com sucesso', 200);
         } catch (error) {
-            return response.sendError(
-                error instanceof Error ? error.message : 'Erro inesperado',
-                400
-            );
+            next(error);
         }
     }
 }
