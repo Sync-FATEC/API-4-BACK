@@ -1,3 +1,5 @@
+const link = process.env.FRONTEND_URL;
+
 export const emailTemplates = {
     createPassword: (name: string, email: string) => ({
         subject: 'Bem-vindo ao nosso sistema!',
@@ -7,7 +9,7 @@ export const emailTemplates = {
             <p>Olá ${name},</p>
             <p>Bem-vindo ao nosso sistema! Estamos muito felizes em ter você conosco.</p>
             <p>Mas ainda falta você criar sua senha. Clique no link abaixo para criar sua senha:</p>
-            <a href="http://localhost:5173/usuario/criar-senha/${email}">Criar senha</a>
+            <a href="${link}/usuario/criar-senha/${email}">Criar senha</a>
             <p>Atenciosamente,<br>Equipe Sync</p>
         `
     })

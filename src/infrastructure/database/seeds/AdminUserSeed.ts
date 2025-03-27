@@ -2,6 +2,7 @@ import { DataSource } from 'typeorm';
 import { User } from '../../../domain/models/entities/User';
 import bcrypt from 'bcryptjs';
 import hashPassword from '../../../application/operations/auth/hashPassword';
+import { runSeeds } from '.';
 
 export async function seedAdminUser(dataSource: DataSource) {
     const userRepository = dataSource.getRepository(User);
@@ -23,6 +24,8 @@ export async function seedAdminUser(dataSource: DataSource) {
 
         await userRepository.save(adminUser);
         console.log('Usuário administrador criado com sucesso!');
+
+        await runSeeds();
     } else {
         console.log('Usuário administrador já existe!');
     }
