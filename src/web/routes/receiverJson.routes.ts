@@ -7,6 +7,8 @@ import TypeAlertRepository from "../../infrastructure/repositories/TypeAlertRepo
 import { asyncHandler } from "../middlewares/asyncHandler";
 import { ParameterRepository } from "../../infrastructure/repositories/ParameterRepository";
 import { ReceiverJsonController } from "../controllers/receiverJson/receiverJsonController";
+import { limiter } from "../../infrastructure/middlewares/limiter";
+import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
 
 const measureRepository = new MeasureRepository();
 const stationRepository = new StationRepository();
@@ -26,6 +28,6 @@ const receiverJsonController = new ReceiverJsonController(receiverJsonUseCase);
 
 const receiverJsonRoutes = Router();
 
-receiverJsonRoutes.post('/', asyncHandler((req, res, next) => receiverJsonController.handle(req, res, next)));
+receiverJsonRoutes.post('/', limiter, ensureAuthenticated, asyncHandler((req, res, next) => receiverJsonController.handle(req, res, next)));
 
 export { receiverJsonRoutes };
