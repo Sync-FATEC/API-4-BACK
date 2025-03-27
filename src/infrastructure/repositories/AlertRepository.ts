@@ -28,7 +28,6 @@ export class AlertRepository implements IAlertRepository {
           "measure.parameter.idStation",
         ],
       });
-      console.log(alert);
       
     } else {
       alert = await this.alerts.find({

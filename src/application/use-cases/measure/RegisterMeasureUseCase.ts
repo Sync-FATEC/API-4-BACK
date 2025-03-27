@@ -12,6 +12,7 @@ export class RegisterMeasureUseCase extends MeasureUseCase {
 
   constructor(measureRepository: IMeasureRepository, parameterRepository: IParameterRepository) {
     super(measureRepository);
+    this.parameterRepository = parameterRepository;
   }
 
   public async execute(data: RegisterMeasureDTO): Promise<Measure> {
@@ -26,8 +27,7 @@ export class RegisterMeasureUseCase extends MeasureUseCase {
     let value = data.value * typeParameter.factor + typeParameter.offset;
 
     const measure = Measure.create(data.unixTime, value);
-
-    await this.measureRepository.createMeasure(measure);
-    return measure;
+    measure.parameter = parameter;
+    return await this.measureRepository.createMeasure(measure);
   }
 }

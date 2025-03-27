@@ -1,18 +1,18 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { Alert } from "../agregates/Alert/Alert";
 import Parameter from "../agregates/Parameter/Parameter";
 
 @Entity()
 export class Measure {
 
-    @PrimaryColumn("uuid")
+    @PrimaryGeneratedColumn("uuid")
     id: string;
     
-    @Column()
+    @Column({ type: "bigint" })
     unixTime: number;
 
-    @Column()
-    value: number;
+    @Column({ type: "float" }) 
+    value: number;    
 
     @OneToMany(() => Alert, alert => alert.measure)
     alerts: Alert[];    
