@@ -4,9 +4,9 @@ import { AlertRepository } from "../../infrastructure/repositories/AlertReposito
 import { MeasureRepository } from "../../infrastructure/repositories/MeasureRepository";
 import StationRepository from "../../infrastructure/repositories/StationRepository";
 import TypeAlertRepository from "../../infrastructure/repositories/TypeAlertRepository";
-import { ReceiverJsonController } from "../controllers/receiverJsonController";
 import { asyncHandler } from "../middlewares/asyncHandler";
 import { ParameterRepository } from "../../infrastructure/repositories/ParameterRepository";
+import { ReceiverJsonController } from "../controllers/receiverJson/receiverJsonController";
 
 const measureRepository = new MeasureRepository();
 const stationRepository = new StationRepository();
