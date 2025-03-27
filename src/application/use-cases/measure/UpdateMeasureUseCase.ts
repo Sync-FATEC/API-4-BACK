@@ -1,6 +1,6 @@
 import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 import { IMeasureRepository } from "../../../domain/interfaces/repositories/IMeasureRepository";
-import { Measure } from "../../../domain/models/agregates/Measure/Measure";
+import { Measure } from "../../../domain/models/entities/Measure";
 import { UpdateMeasureDTO } from "../../../web/dtos/measure/UpdateMeasureDTO";
 import { MeasureUseCase } from "./MeasureUseCase";
 
