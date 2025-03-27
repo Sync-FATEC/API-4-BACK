@@ -28,18 +28,26 @@ export class MeasureController {
 
   async create(req: Request, res, next: NextFunction): Promise<Response> {
     try {
-      const { unixTime, value } = req.body;
-      const measure = await this.registerUseCase.execute({ unixTime, value });
+      const { unixTime, value, parameterId } = req.body;
+      const measure = await this.registerUseCase.execute({
+        unixTime,
+        value,
+        parameterId,
+      });
       return res.sendSuccess(measure, 201);
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
 
   async update(req: Request, res, next: NextFunction): Promise<Response> {
     try {
       const { id, unixTime, value } = req.body;
-      const updatedMeasure = await this.updateUseCase.execute({ id, unixTime, value });
+      const updatedMeasure = await this.updateUseCase.execute({
+        id,
+        unixTime,
+        value,
+      });
       return res.sendSuccess(updatedMeasure, 200);
     } catch (error) {
       next(error);
@@ -58,13 +66,17 @@ export class MeasureController {
 
   async getAll(req: Request, res, next: NextFunction): Promise<Response> {
     try {
-      const measures = await this.listUseCase.execute();
+      const stationId: string | null = req.query.stationId
+      ? String(req.query.stationId)
+      : null;
+
+      const measures = await this.listUseCase.execute(stationId);
       return res.sendSuccess(measures, 200);
     } catch (error) {
       next(error);
     }
   }
-  
+
   async delete(req: Request, res, next: NextFunction): Promise<Response> {
     try {
       const { id } = req.params;

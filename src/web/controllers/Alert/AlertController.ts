@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express";
-import { RegisterAlertUseCase } from "../../../application/use-cases/alert/RegisterAlertUseCase";
+import { NextFunction, Request } from "express";
+import RegisterAlertUseCase from "../../../application/use-cases/alert/RegisterAlertUseCase";
 import { UpdateAlertUseCase } from "../../../application/use-cases/alert/UpdateAlertUseCase";
 import { ListAlertUseCase } from "../../../application/use-cases/alert/ListAlertUseCase";
 import { ReadAlertUseCase } from "../../../application/use-cases/alert/ReadAlertUseCase";
@@ -28,8 +28,8 @@ export class AlertController {
 
   async create(req: Request, res, next: NextFunction): Promise<Response> {
     try {
-      const { date, typeId, measureId } = req.body;
-      const alert = await this.registerUseCase.execute({ date, typeId, measureId });
+      const { date, typeAlerdId, measureId } = req.body;
+      const alert = await this.registerUseCase.execute({ date, typeAlerdId, measureId });
       return res.sendSuccess(alert, 201);
     } catch (error) {
       next(error);
@@ -58,7 +58,11 @@ export class AlertController {
 
   async getAll(req: Request, res, next: NextFunction): Promise<Response> {
     try {
-      const list = await this.listUseCase.execute();
+      const stationId: string | null = req.query.stationId
+      ? String(req.query.stationId)
+      : null;
+
+      const list = await this.listUseCase.execute(stationId);
       return res.sendSuccess(list, 200);
     } catch (error) {
       next(error);

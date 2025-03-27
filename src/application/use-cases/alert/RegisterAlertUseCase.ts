@@ -6,29 +6,28 @@ import { Alert } from "../../../domain/models/agregates/Alert/Alert";
 import { RegisterAlertDTO } from "../../../web/dtos/alert/RegisterAlertDTO";
 import { AlertUseCase } from "./AlertUseCase";
 
-export class RegisterAlertUseCase extends AlertUseCase {
+export default class RegisterAlertUseCase extends AlertUseCase {
+  constructor(
+    alertRepository: IAlertRepository,
+    typeAlertRepository: ITypeAlertRepository,
+    measureRepository: IMeasureRepository
+  ) {
+    super(alertRepository, typeAlertRepository, measureRepository);
+  }
 
-    private measureRepository : IMeasureRepository;
+  public async execute(data: RegisterAlertDTO): Promise<Alert> {
+    let measure = await this.measureRepository.getById(data.measureId);
 
-    constructor(alertRepository: IAlertRepository, typeAlertRepository: ITypeAlertRepository) {
-        super(alertRepository, typeAlertRepository);
-    }
+    if (measure == null) throw new SystemContextException("Medida não encontrada");
 
-    public async execute(data: RegisterAlertDTO): Promise<Alert> {
+    let typeAlert = await this.typeAlertRepository.findById(data.typeAlerdId);
 
-        let measure = await this.measureRepository.getMeasureById(data.measureId);
+    if (typeAlert == null) throw new SystemContextException("Tipo de alerta não encontrado");
 
-        if(measure == null) throw new Error('Measure not found');
+    let alert = Alert.create(data.date, typeAlert, measure);
 
-        let typeAlert = await this.typeAlertRepository.findById(data.typeAlerdId);  
+    alert = await this.alertRepository.createAlert(alert);
 
-        if(typeAlert == null) throw new Error('Type not found');
-
-        let alert = Alert.create(data.date, typeAlert, measure);
-
-        alert = await this.alertRepository.createAlert(alert);
-
-        return alert;
-    }
+    return alert;
+  }
 }
-

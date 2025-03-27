@@ -1,3 +1,4 @@
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 import { IParameterRepository } from "../../../domain/interfaces/repositories/IParameterRepository";
 import Parameter from "../../../domain/models/agregates/Parameter/Parameter";
 import UpdateParameterDTO from "../../../web/dtos/parameter/UpdateParameterDTO";
@@ -8,7 +9,7 @@ export default class UpdateParameterUseCase {
     async execute(parameterData: UpdateParameterDTO) {
         const parameter = await this.parameterRepository.findById(parameterData.getId());
         if (!parameter) {
-            throw new Error('Parâmetro não encontrado');
+            throw new SystemContextException('Parâmetro não encontrado');
         }
 
         return await this.parameterRepository.update(parameterData.getId(), {

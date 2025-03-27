@@ -16,11 +16,11 @@ export class UpdateAlertUseCase extends AlertUseCase {
         let measure = await this.measureRepository.getById(data.measureId);
 
         if (!typeAlert) {
-            throw new Error('Type not found');
+            throw new SystemContextException('Tipo de alerta não encontrado');
         }
 
         if (!measure) {
-            throw new Error('Measure not found');
+            throw new SystemContextException('Medida não encontrada');
         }
 
         let alert = Alert.create(data.date, typeAlert, measure);

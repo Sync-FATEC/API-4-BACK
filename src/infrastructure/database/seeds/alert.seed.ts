@@ -38,7 +38,6 @@ export async function seedAlerts() {
     for (const alert of alerts) {
         const existing = await alertRepository.findOne({
             where: {
-                date: alert.date,
                 type: { id: alert.type.id },
                 measure: { id: alert.measure.id }
             }

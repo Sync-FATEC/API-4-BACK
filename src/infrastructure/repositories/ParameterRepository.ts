@@ -38,12 +38,19 @@ export class ParameterRepository implements IParameterRepository {
       (parameter) =>
         new ListParameterDTO(
           parameter.id,
-          parameter.idStation.name + " - " + parameter.idTypeParameter.name
+          parameter.getParameterName(),
         )
     );
   }
 
   async findById(id: string): Promise<Parameter | null> {
     return await this.repository.findOneBy({ id });
+  }
+
+  async getWithParameterThenInclude(id: string): Promise<Parameter | null> {
+    return await this.repository.findOne({
+      where: { id },
+      relations: ["idTypeParameter", "idStation"],
+    });
   }
 }

@@ -9,13 +9,15 @@ import { MeasureController } from "../controllers/Measure/MeasureController";
 import { limiter } from "../../infrastructure/middlewares/limiter";
 import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
 import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
+import { ParameterRepository } from "../../infrastructure/repositories/ParameterRepository";
 import { asyncHandler } from "../middlewares/asyncHandler";
 
 // Repositories
 const measureRepository = new MeasureRepository();
+const parameterRepository = new ParameterRepository(); // Definido antes de ser utilizado
 
 // Use Cases
-const registerMeasureUseCase = new RegisterMeasureUseCase(measureRepository);
+const registerMeasureUseCase = new RegisterMeasureUseCase(measureRepository, parameterRepository);
 const updateMeasureUseCase = new UpdateMeasureUseCase(measureRepository);
 const listMeasureUseCase = new ListMeasureUseCase(measureRepository);
 const readMeasureUseCase = new ReadMeasureUseCase(measureRepository);

@@ -8,10 +8,6 @@ export class Alert {
     @PrimaryGeneratedColumn("uuid")
     id: string;
 
-    /** Data em que o alerta foi gerado na medida UnixTime */
-    @Column()
-    date: number;
-
     @ManyToOne(() => TypeAlert, (typeAlert) => typeAlert.alerts)
     @JoinColumn({ name: "typeId" })
     type: TypeAlert;
@@ -23,7 +19,6 @@ export class Alert {
 
     public static create(date: number, type: TypeAlert, measure: Measure): Alert {
         let alert = new Alert();
-        alert.date = date;
         alert.type = type;
         alert.measure = measure;
         return alert;

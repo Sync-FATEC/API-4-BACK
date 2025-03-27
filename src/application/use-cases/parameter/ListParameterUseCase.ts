@@ -1,3 +1,4 @@
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 import { IParameterRepository } from "../../../domain/interfaces/repositories/IParameterRepository";
 
 export class ListParameterUseCase {
@@ -6,7 +7,7 @@ export class ListParameterUseCase {
     async execute() {
         const parameters = await this.parameterRepository.listDTO();
         if (parameters.length === 0) {
-            throw new Error('Nenhum parâmetro para listar');
+            throw new SystemContextException('Nenhum parâmetro para listar');
         }
 
         return parameters;

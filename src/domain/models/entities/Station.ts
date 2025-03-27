@@ -23,4 +23,6 @@ export class Station {
 
   @OneToMany(() => Parameter, (parameter) => parameter.idStation)
   parameters: Parameter[];
+
+  
 }
