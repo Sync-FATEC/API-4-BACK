@@ -51,7 +51,7 @@ export default class ReceiverJsonUseCase {
                 if (this.shouldTriggerAlert(measure.value, typeAlert.comparisonOperator, typeAlert.value)) {
                     const alertData: RegisterAlertDTO = {
                         date: unixtime,
-                        typeAlertId: typeAlert.id,
+                        typeAlerdId: typeAlert.id,
                         measureId: measure.id
                     };
                     await registerAlertUseCase.execute(alertData);
