@@ -30,7 +30,7 @@ export class RegisterUseCase {
             name: userData.getName(),
             email: userData.getEmail(),
             cpf: userData.getCpf(),
-            role: 'FUNCIONARIO',
+            role: userData.getRole(),
             active: false
         });
 

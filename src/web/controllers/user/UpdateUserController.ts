@@ -7,13 +7,13 @@ export class UpdateUserController {
 
     async handle(request: Request, response, next: NextFunction): Promise<Response> {
         try {
-            const { id, name, email, cpf } = request.body;
+            const { id, name, email, cpf, role } = request.body;
 
             if (!id) {
                 return response.sendError('Usuário não encontrado ou inexistente', 400);
             }
 
-            const userData: UpdateUserDTO = new UpdateUserDTO(id, name, email, cpf);
+            const userData: UpdateUserDTO = new UpdateUserDTO(id, name, email, cpf, role);
 
             const user = await this.updateUserUseCase.execute(userData);
 

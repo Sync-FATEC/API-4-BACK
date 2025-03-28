@@ -1,9 +1,14 @@
+import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 import { NodemailerEmailSender } from "../../../infrastructure/email/nodeMailerEmailSender";
 import { EmailUseCase } from "../../use-cases/email/EmailUseCase";
 
 export function sendEmailCreatePassword(email: string, name: string) {
-    const emailSender = NodemailerEmailSender.getInstance();
-    const emailUseCase = new EmailUseCase(emailSender);
+    try {
+        const emailSender = NodemailerEmailSender.getInstance();
+        const emailUseCase = new EmailUseCase(emailSender);
 
-    emailUseCase.sendEmailToCreatePassword(email, name, email);
+        emailUseCase.sendEmailToCreatePassword(email, name, email);
+    } catch (error) {
+        throw new SystemContextException('Erro ao enviar email');
+    }
 }

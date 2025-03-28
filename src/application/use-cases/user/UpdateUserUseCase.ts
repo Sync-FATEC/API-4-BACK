@@ -36,6 +36,10 @@ export class UpdateUserUseCase {
             }
             updateData.cpf = userData.getCpf();
         }
+
+        if (userData.getRole()) {
+            updateData.role = userData.getRole();
+        }
         
         const updatedUser = await this.userRepository.update(userData.getId(), updateData);
         return transformUserToDTO(updatedUser);
