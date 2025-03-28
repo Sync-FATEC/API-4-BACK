@@ -13,6 +13,7 @@ import { ListTypeParameterController } from "../controllers/typeParameter/ListTy
 import { limiter } from "../../infrastructure/middlewares/limiter";
 import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
 import { asyncHandler } from "../middlewares/asyncHandler";
+import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
 
 const typeParameterRoutes = Router();
 const typeParametersRepository = new TypeParemeterRepository();
@@ -42,10 +43,10 @@ typeParameterRoutes.post('/create', limiter, ensureAuthenticated, asyncHandler((
 
 typeParameterRoutes.put('/update', limiter, ensureAuthenticated, asyncHandler((req, res, next) => updateController.handle(req, res, next)));
 
-typeParameterRoutes.delete('/delete/:id', limiter, ensureAuthenticated, asyncHandler((req, res, next) => deleteController.handle(req, res, next)));
+typeParameterRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => deleteController.handle(req, res, next)));
 
-typeParameterRoutes.get('/read/:id', limiter, ensureAuthenticated, asyncHandler((req, res, next) => readController.handle(req, res, next)));
+typeParameterRoutes.get('/read/:id', limiter, asyncHandler((req, res, next) => readController.handle(req, res, next)));
 
-typeParameterRoutes.get('/list', limiter, ensureAuthenticated, asyncHandler((req, res, next) => listController.handle(req, res, next)));
+typeParameterRoutes.get('/list', limiter, asyncHandler((req, res, next) => listController.handle(req, res, next)));
 
 export { typeParameterRoutes }

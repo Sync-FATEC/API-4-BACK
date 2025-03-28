@@ -38,14 +38,14 @@ const listController = new ListStationController(listStationUseCase);
 const readStationUseCase = new ReadStationUseCase(stationRepository);
 const readController = new ReadStationController(readStationUseCase);
 
-stationRoutes.post('/create', limiter, asyncHandler((req, res, next) => createController.handle(req, res, next)));
+stationRoutes.post('/create', limiter, ensureAuthenticated, asyncHandler((req, res, next) => createController.handle(req, res, next)));
 
 stationRoutes.put('/update', limiter, ensureAuthenticated, asyncHandler((req, res, next) => updateController.handle(req, res, next)));
 
 stationRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => deleteController.handle(req, res, next)));
 
-stationRoutes.get('/list', limiter, ensureAuthenticated, asyncHandler((req, res, next) => listController.handle(req, res, next)));
+stationRoutes.get('/list', limiter, asyncHandler((req, res, next) => listController.handle(req, res, next)));
 
-stationRoutes.get('/read/:id', limiter, ensureAuthenticated, asyncHandler((req, res, next) => readController.handle(req, res, next)));
+stationRoutes.get('/read/:id', limiter, asyncHandler((req, res, next) => readController.handle(req, res, next)));
 
 export { stationRoutes }
