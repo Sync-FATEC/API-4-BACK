@@ -35,14 +35,14 @@ const typeAlertController = new TypeAlertController(
 typeAlertRoutes.post(
     "/",
     limiter,
-    ensureAuthenticatedAdmin,
+    ensureAuthenticated,
     asyncHandler((req, res, next) => typeAlertController.create(req, res, next))
 );
 
 typeAlertRoutes.put(
     "/",
     limiter,
-    ensureAuthenticatedAdmin,
+    ensureAuthenticated,
     asyncHandler((req, res, next) => typeAlertController.update(req, res, next))
 );
 
@@ -55,7 +55,6 @@ typeAlertRoutes.get(
 typeAlertRoutes.get(
     "/:id",
     limiter,
-    ensureAuthenticated,
     asyncHandler((req, res, next) => typeAlertController.getById(req, res, next))
 );
 

@@ -39,7 +39,7 @@ const readController = new ReadUserController(readUserUseCase);
 const changePasswordUseCase = new ChangePasswordUseCase(userRepository);
 const changePasswordController = new ChangePasswordController(changePasswordUseCase);
 
-userRoutes.put('/update', limiter, ensureAuthenticated, asyncHandler((req, res, next) => updateController.handle(req, res, next)));
+userRoutes.put('/update', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => updateController.handle(req, res, next)));
 
 userRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => deleteController.handle(req, res, next)));
 

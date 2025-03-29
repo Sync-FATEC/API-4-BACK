@@ -16,7 +16,8 @@ export const errorMiddleware = (err: any, req: Request, res: Response, next: Nex
         return sendError("Não é possível excluir ou atualizar este item, pois ele está em uso.", 400);
       }
     }
-
+    
+    console.error(err);
     return sendError("Ocorreu um erro inesperado no servidor.", 500);
   }
 };

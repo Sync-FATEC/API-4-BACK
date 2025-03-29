@@ -10,7 +10,7 @@ export class MeasureRepository implements IMeasureRepository {
   private measures: Repository<Measure> = AppDataSource.getRepository(Measure);
 
   // Método para criar um Measure
-  async createMeasure(measure: Measure): Promise<Measure> {
+  async createMeasure(measure: Partial<Measure>): Promise<Measure> {
     return await this.measures.save(measure);
   }
 

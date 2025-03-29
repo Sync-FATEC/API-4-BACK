@@ -7,13 +7,13 @@ export class RegisterController {
 
     async handle(request: Request, response, next: NextFunction): Promise<Response> {
         try {
-            const { name, email, cpf } = request.body;
+            const { name, email, cpf, role } = request.body;
 
-            if (!name || !email || !cpf) {
-                return response.sendError('Nome, email e CPF são obrigatórios', 400);
+            if (!name || !email || !cpf || !role) {
+                return response.sendError('Nome, email, CPF e função são obrigatórios', 400);
             }
 
-            const userData: RegisterUserDTO = new RegisterUserDTO(name, email, cpf);
+            const userData: RegisterUserDTO = new RegisterUserDTO(name, email, cpf, role);
 
             const readUser = await this.registerUseCase.execute(userData);
 

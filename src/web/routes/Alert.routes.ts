@@ -38,10 +38,10 @@ const alertController = new AlertController(
 const alertRoutes = Router();
 
 // Routes
-alertRoutes.post('/create', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => alertController.create(req, res, next)));
-alertRoutes.put('/update', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => alertController.update(req, res, next)));
-alertRoutes.get('/list', limiter, ensureAuthenticated, asyncHandler((req, res, next) => alertController.getAll(req, res, next)));
-alertRoutes.get('/read/:id', limiter, ensureAuthenticated, asyncHandler((req, res, next) => alertController.getById(req, res, next)));
+alertRoutes.post('/create', limiter, ensureAuthenticated, asyncHandler((req, res, next) => alertController.create(req, res, next)));
+alertRoutes.put('/update', limiter, ensureAuthenticated, asyncHandler((req, res, next) => alertController.update(req, res, next)));
+alertRoutes.get('/list', limiter, asyncHandler((req, res, next) => alertController.getAll(req, res, next)));
+alertRoutes.get('/read/:id', limiter, asyncHandler((req, res, next) => alertController.getById(req, res, next)));
 alertRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => alertController.delete(req, res, next)));
 
 export { alertRoutes };

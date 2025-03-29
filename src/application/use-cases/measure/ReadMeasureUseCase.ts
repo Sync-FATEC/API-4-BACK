@@ -1,5 +1,4 @@
 import { IMeasureRepository } from "../../../domain/interfaces/repositories/IMeasureRepository";
-import { Measure } from "../../../domain/models/agregates/Measure/Measure";
 import { MeasureUseCase } from "./MeasureUseCase";
 import { ReadMeasureResponseDTO } from "../../../web/dtos/measure/ReadMeasureDTO";
 
