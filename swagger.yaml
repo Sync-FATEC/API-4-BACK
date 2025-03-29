@@ -1,0 +1,1238 @@
+openapi: 3.0.0
+info:
+  title: API de Monitoramento
+  description: API para gerenciamento de estações, parâmetros e alertas
+  version: 1.0.0
+  contact:
+    name: Suporte
+    email: suporte@exemplo.com
+
+servers:
+  - url: http://localhost:3000
+    description: Servidor de Desenvolvimento
+  - url: https://api.exemplo.com
+    description: Servidor de Produção
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        cpf:
+          type: string
+        role:
+          type: string
+          enum: [admin, user]
+
+    Station:
+      type: object
+      properties:
+        uuid:
+          type: string
+        name:
+          type: string
+        latitude:
+          type: number
+        longitude:
+          type: number
+
+    Parameter:
+      type: object
+      properties:
+        id:
+          type: string
+        idTypeParameter:
+          type: string
+        idStation:
+          type: string
+
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+        date:
+          type: string
+          format: date-time
+        typeAlerdId:
+          type: string
+        measureId:
+          type: string
+
+    TypeAlert:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        comparisonOperator:
+          type: string
+          enum: [">", "<", ">=", "<=", "=="]
+        value:
+          type: number
+        parameterId:
+          type: string
+
+    TypeParameter:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        unit:
+          type: string
+        numberOfDecimalsCases:
+          type: number
+        factor:
+          type: number
+        offset:
+          type: number
+        typeJson:
+          type: string
+
+    Measure:
+      type: object
+      properties:
+        id:
+          type: string
+        unixTime:
+          type: number
+        value:
+          type: number
+        parameterId:
+          type: string
+
+    ReceiverJson:
+      type: object
+      properties:
+        stationId:
+          type: string
+        typeParameter:
+              type: number
+        unixTime:
+          type: number
+
+paths:
+  /auth/login:
+    post:
+      summary: Autenticação de usuário
+      tags:
+        - Autenticação
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  example: "usuario@exemplo.com"
+                password:
+                  type: string
+                  example: "senha123"
+      responses:
+        '200':
+          description: Login realizado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                      user:
+                        $ref: '#/components/schemas/User'
+
+  /auth/register:
+    post:
+      summary: Registro de novo usuário
+      tags:
+        - Autenticação
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - password
+                - role
+              properties:
+                name:
+                  type: string
+                  example: "João Silva"
+                email:
+                  type: string
+                  example: "joao@exemplo.com"
+                password:
+                  type: string
+                  example: "senha123"
+                role:
+                  type: string
+                  enum: [admin, user]
+                  example: "user"
+      responses:
+        '201':
+          description: Usuário criado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/User'
+
+  /auth/createpassword:
+    post:
+      summary: Cria uma nova senha
+      tags:
+        - Autenticação
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  example: "usuario@exemplo.com"
+                password:
+                  type: string
+                  example: "novaSenha123"
+      responses:
+        '200':
+          description: Senha criada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Senha criada com sucesso"
+
+  /user/update:
+    put:
+      summary: Atualiza um usuário
+      tags:
+        - Usuários
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - name
+                - email
+                - cpf
+                - role
+              properties:
+                id:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+                name:
+                  type: string
+                  example: "João Silva"
+                email:
+                  type: string
+                  example: "joao@exemplo.com"
+                cpf:
+                  type: string
+                  example: "123.456.789-00"
+                role:
+                  type: string
+                  enum: [admin, user]
+                  example: "user"
+      responses:
+        '200':
+          description: Usuário atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/User'
+
+  /user/delete/{id}:
+    delete:
+      summary: Remove um usuário
+      tags:
+        - Usuários
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '204':
+          description: Usuário removido com sucesso
+
+  /user/list:
+    get:
+      summary: Lista todos os usuários
+      tags:
+        - Usuários
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de usuários
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+
+  /user/read/{id}:
+    get:
+      summary: Obtém um usuário específico
+      tags:
+        - Usuários
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Dados do usuário
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/User'
+
+  /user/change-password:
+    put:
+      summary: Altera a senha do usuário
+      tags:
+        - Usuários
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - currentPassword
+                - newPassword
+              properties:
+                currentPassword:
+                  type: string
+                  example: "senhaAtual123"
+                newPassword:
+                  type: string
+                  example: "novaSenha123"
+      responses:
+        '200':
+          description: Senha alterada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Senha alterada com sucesso"
+
+  /station/create:
+    post:
+      summary: Cria uma nova estação
+      tags:
+        - Estações
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - uuid
+                - name
+                - latitude
+                - longitude
+              properties:
+                uuid:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+                name:
+                  type: string
+                  example: "Estação Central"
+                latitude:
+                  type: number
+                  example: -23.550520
+                longitude:
+                  type: number
+                  example: -46.633308
+      responses:
+        '200':
+          description: Estação criada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/Station'
+
+  /station/update:
+    put:
+      summary: Atualiza uma estação
+      tags:
+        - Estações
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - uuid
+                - name
+                - latitude
+                - longitude
+              properties:
+                uuid:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+                name:
+                  type: string
+                  example: "Estação Central Atualizada"
+                latitude:
+                  type: number
+                  example: -23.550520
+                longitude:
+                  type: number
+                  example: -46.633308
+      responses:
+        '200':
+          description: Estação atualizada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/Station'
+
+  /station/delete/{id}:
+    delete:
+      summary: Remove uma estação
+      tags:
+        - Estações
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '204':
+          description: Estação removida com sucesso
+
+  /station/list:
+    get:
+      summary: Lista todas as estações
+      tags:
+        - Estações
+      responses:
+        '200':
+          description: Lista de estações
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Station'
+
+  /station/read/{id}:
+    get:
+      summary: Obtém uma estação específica
+      tags:
+        - Estações
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Dados da estação
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/Station'
+
+  /typeAlert:
+    get:
+      summary: Lista todos os tipos de alerta
+      tags:
+        - Tipos de Alerta
+      responses:
+        '200':
+          description: Lista de tipos de alerta
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TypeAlert'
+
+    post:
+      summary: Cria um novo tipo de alerta
+      tags:
+        - Tipos de Alerta
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - comparisonOperator
+                - value
+                - parameterId
+              properties:
+                name:
+                  type: string
+                  example: "Temperatura Alta"
+                comparisonOperator:
+                  type: string
+                  enum: [">", "<", ">=", "<=", "=="]
+                  example: ">"
+                value:
+                  type: number
+                  example: 30
+                parameterId:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '201':
+          description: Tipo de alerta criado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/TypeAlert'
+
+    put:
+      summary: Atualiza um tipo de alerta
+      tags:
+        - Tipos de Alerta
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - name
+                - comparisonOperator
+                - value
+                - parameterId
+              properties:
+                id:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+                name:
+                  type: string
+                  example: "Temperatura Muito Alta"
+                comparisonOperator:
+                  type: string
+                  enum: [">", "<", ">=", "<=", "=="]
+                  example: ">"
+                value:
+                  type: number
+                  example: 35
+                parameterId:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Tipo de alerta atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/TypeAlert'
+
+  /typeAlert/{id}:
+    get:
+      summary: Obtém um tipo de alerta específico
+      tags:
+        - Tipos de Alerta
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Dados do tipo de alerta
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/TypeAlert'
+
+    delete:
+      summary: Remove um tipo de alerta
+      tags:
+        - Tipos de Alerta
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '204':
+          description: Tipo de alerta removido com sucesso
+
+  /typeParameter/create:
+    post:
+      summary: Cria um novo tipo de parâmetro
+      tags:
+        - Tipos de Parâmetro
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - unit
+                - numberOfDecimalsCases
+                - factor
+                - offset
+                - typeJson
+              properties:
+                name:
+                  type: string
+                  example: "Temperatura"
+                unit:
+                  type: string
+                  example: "°C"
+                numberOfDecimalsCases:
+                  type: number
+                  example: 2
+                factor:
+                  type: number
+                  example: 1.0
+                offset:
+                  type: number
+                  example: 0.0
+                typeJson:
+                  type: string
+                  example: "temperature"
+      responses:
+        '200':
+          description: Tipo de parâmetro criado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/TypeParameter'
+
+  /typeParameter/update:
+    put:
+      summary: Atualiza um tipo de parâmetro
+      tags:
+        - Tipos de Parâmetro
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - name
+                - unit
+                - numberOfDecimalsCases
+                - factor
+                - offset
+                - typeJson
+              properties:
+                id:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+                name:
+                  type: string
+                  example: "Temperatura"
+                unit:
+                  type: string
+                  example: "°C"
+                numberOfDecimalsCases:
+                  type: number
+                  example: 2
+                factor:
+                  type: number
+                  example: 1.0
+                offset:
+                  type: number
+                  example: 0.0
+                typeJson:
+                  type: string
+                  example: "temperature"
+      responses:
+        '200':
+          description: Tipo de parâmetro atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/TypeParameter'
+
+  /typeParameter/delete/{id}:
+    delete:
+      summary: Remove um tipo de parâmetro
+      tags:
+        - Tipos de Parâmetro
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '204':
+          description: Tipo de parâmetro removido com sucesso
+
+  /typeParameter/read/{id}:
+    get:
+      summary: Obtém um tipo de parâmetro específico
+      tags:
+        - Tipos de Parâmetro
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Dados do tipo de parâmetro
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/TypeParameter'
+
+  /typeParameter/list:
+    get:
+      summary: Lista todos os tipos de parâmetro
+      tags:
+        - Tipos de Parâmetro
+      responses:
+        '200':
+          description: Lista de tipos de parâmetro
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TypeParameter'
+
+  /measure/create:
+    post:
+      summary: Cria uma nova medição
+      tags:
+        - Medições
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - unixTime
+                - value
+                - parameterId
+              properties:
+                unixTime:
+                  type: number
+                  example: 1679876543
+                value:
+                  type: number
+                  example: 25.5
+                parameterId:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '201':
+          description: Medição criada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/Measure'
+
+  /measure/update:
+    put:
+      summary: Atualiza uma medição
+      tags:
+        - Medições
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - unixTime
+                - value
+              properties:
+                id:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+                unixTime:
+                  type: number
+                  example: 1679876543
+                value:
+                  type: number
+                  example: 26.0
+      responses:
+        '200':
+          description: Medição atualizada com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/Measure'
+
+  /measure/delete/{id}:
+    delete:
+      summary: Remove uma medição
+      tags:
+        - Medições
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '204':
+          description: Medição removida com sucesso
+
+  /measure/list:
+    get:
+      summary: Lista todas as medições
+      tags:
+        - Medições
+      parameters:
+        - name: stationId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Lista de medições
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Measure'
+
+  /measure/read/{id}:
+    get:
+      summary: Obtém uma medição específica
+      tags:
+        - Medições
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Dados da medição
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/Measure'
+
+  /alert/create:
+    post:
+      summary: Cria um novo alerta
+      tags:
+        - Alertas
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - date
+                - typeAlerdId
+                - measureId
+              properties:
+                date:
+                  type: string
+                  format: date-time
+                  example: "2023-05-10T15:30:00Z"
+                typeAlerdId:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+                measureId:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '201':
+          description: Alerta criado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/Alert'
+
+  /alert/update:
+    put:
+      summary: Atualiza um alerta
+      tags:
+        - Alertas
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - date
+                - typeId
+                - measureId
+              properties:
+                id:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+                date:
+                  type: string
+                  format: date-time
+                  example: "2023-05-10T15:30:00Z"
+                typeId:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+                measureId:
+                  type: string
+                  example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Alerta atualizado com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/Alert'
+
+  /alert/delete/{id}:
+    delete:
+      summary: Remove um alerta
+      tags:
+        - Alertas
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '204':
+          description: Alerta removido com sucesso
+
+  /alert/list:
+    get:
+      summary: Lista todos os alertas
+      tags:
+        - Alertas
+      parameters:
+        - name: stationId
+          in: query
+          required: false
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Lista de alertas
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alert'
+
+  /alert/read/{id}:
+    get:
+      summary: Obtém um alerta específico
+      tags:
+        - Alertas
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '200':
+          description: Dados do alerta
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    $ref: '#/components/schemas/Alert'
+
+  /receiverJson:
+    post:
+      summary: Recebe dados JSON de medições
+      tags:
+        - Receiver JSON
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReceiverJson'
+      responses:
+        '200':
+          description: Dados recebidos com sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Dados cadastrados" 
