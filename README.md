@@ -82,10 +82,6 @@ Este é o backend do sistema de monitoramento ambiental desenvolvido para a Tecs
 
 ### Configuração
 1. Clone o repositório
-```bash
-git clone [URL_DO_REPOSITÓRIO]
-```
-
 2. Instale as dependências
 ```bash
 npm install
@@ -106,10 +102,6 @@ npm run typeorm migration:run
 ```bash
 # Desenvolvimento
 npm run dev
-
-# Produção
-npm run build
-npm run start
 ```
 
 ## Estrutura de Diretórios
