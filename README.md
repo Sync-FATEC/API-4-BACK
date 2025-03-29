@@ -155,7 +155,7 @@ DELETE /station/delete/:id # Remove estação (Admin)
 
 1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/Sync-FATEC/API-4-BACK.git
 cd seu-repositorio
 ```
 
@@ -170,27 +170,18 @@ cp .env.example .env
 # Configure as variáveis no arquivo .env
 ```
 
-4. Execute as migrações
-```bash
-npm run typeorm migration:run
-```
-
-5. Inicie o servidor
+4. Inicie o servidor
 ```bash
 # Desenvolvimento
 npm run dev
-
-# Produção
-npm run build
-npm start
 ```
 
 ### Scripts Disponíveis
-- \`npm run dev\`: Ambiente de desenvolvimento
-- \`npm run build\`: Compilação TypeScript
-- \`npm start\`: Ambiente de produção
-- \`npm run typeorm\`: Comandos do TypeORM
-- \`npm run test\`: Execução de testes
+- `npm run dev`: Ambiente de desenvolvimento
+- `npm run build`: Compilação TypeScript
+- `npm start`: Ambiente de produção
+- `npm run typeorm`: Comandos do TypeORM
+- `npm run test`: Execução de testes
 
 ## 📁 Estrutura de Diretórios
 ```
