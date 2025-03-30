@@ -7,7 +7,7 @@ export default class CreateTypeParameterController {
 
   async handle(request: Request, response, next: NextFunction) {
     const { name, unit, numberOfDecimalsCases, factor, offset, typeJson } = request.body;
-    if (!name || !unit || !numberOfDecimalsCases || !factor || !offset || !typeJson) {
+    if (!name || !unit || !numberOfDecimalsCases || factor === undefined || offset === undefined || !typeJson) {
       return response.sendError("Dados incompletos", 400);
     }
 
