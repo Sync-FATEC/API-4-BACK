@@ -46,47 +46,48 @@ const swaggerOptions = {
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
-async function bootstrap() {
-    try {
-        const app = express();
+// Criamos a instância do Express
+export const app = express();
 
-        // Middlewares básicos
-        app.use(cors());
-        app.use(express.json());
-        app.use(responseHandler);
+// Configuração de middlewares
+app.use(cors());
+app.use(express.json());
+app.use(responseHandler);
 
-        // Configuração do Swagger
-        app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// Configuração do Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-        // Inicializar banco de dados
-        await initializeDatabase();
+// Rotas da API
+app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
+app.use('/typeAlert', typeAlertRoutes);
+app.use('/station', stationRoutes);
+app.use('/typeParameter', typeParameterRoutes);
+app.use('/measure', measureRoutes);
+app.use('/alert', alertRoutes);
+app.use('/parameter', parameterRoutes);
+app.use('/receiverJson', receiverJsonRoutes);
 
-        // Rotas
-        app.use('/auth', authRoutes);
-        app.use('/user', userRoutes);
-        app.use('/typeAlert', typeAlertRoutes);
-        app.use('/station', stationRoutes);
-        app.use('/typeParameter', typeParameterRoutes);
-        app.use('/measure', measureRoutes);
-        app.use('/alert', alertRoutes);
-        app.use('/parameter', parameterRoutes);
-        app.use('/receiverJson', receiverJsonRoutes);
+// Middleware de erro (deve ser o último)
+app.use(errorMiddleware);
 
-        // Middleware de erro deve ser o último
-        app.use(errorMiddleware);
 
-        const PORT = process.env.PORT;
-        app.listen(PORT, () => {
-            console.log(`🚀 Servidor rodando na porta ${PORT}`);
-            console.log(`📚 Documentação Swagger disponível em http://localhost:${PORT}/api-docs`);
-        });
-    } catch (error) {
-        console.error('Erro ao iniciar o servidor:', error);
-        process.exit(1);
-    }
+export async function startServer(port = process.env.PORT) {
+  try {
+    await initializeDatabase();
+
+    const server = app.listen(port, () => {
+      console.log(`🚀 Servidor rodando na porta ${port}`);
+      console.log(`📚 Swagger disponível em http://localhost:${port}/api-docs`);
+    });
+
+    return server;
+  } catch (error) {
+    console.error('❌ Erro ao iniciar o servidor:', error);
+    throw error;
+  }
 }
 
-bootstrap().catch(error => {
-    console.error('Erro fatal:', error);
-    process.exit(1);
-}); 
+if (require.main === module) {
+  startServer().catch(() => process.exit(1));
+}
