@@ -8,6 +8,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     services:
       postgres:
@@ -41,11 +42,6 @@ jobs:
         run: npm install -D supertest @types/supertest
 
       - name: Run Jest tests
-        run: npm run test -- --ci --coverage
+        run: npm run test -- --ci --coverage --testTimeout=10000
         env:
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_USERNAME: test
-          DB_PASSWORD: test
-          DB_DATABASE: testdb
           NODE_ENV: test

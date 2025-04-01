@@ -4,6 +4,30 @@ import { ListStationUseCase } from '../../../src/application/use-cases/station/L
 import { Request, Response, NextFunction } from 'express';
 import { IStationRepository } from '../../../src/domain/interfaces/repositories/IStationRepository';
 
+// Mockando a inicialização do banco de dados para evitar erros nos testes
+jest.mock('../../../src/infrastructure/database/initialize', () => ({
+  initializeDatabase: jest.fn().mockResolvedValue(undefined),
+}));
+
+// Mockando o AppDataSource
+jest.mock('../../../src/infrastructure/database/data-source', () => {
+  const mockRepository = {
+    find: jest.fn().mockResolvedValue([]),
+    findOne: jest.fn().mockResolvedValue(null),
+    save: jest.fn().mockImplementation((entity) => Promise.resolve(entity)),
+    create: jest.fn().mockImplementation((entity) => entity),
+    delete: jest.fn().mockResolvedValue({ affected: 1 }),
+    update: jest.fn().mockResolvedValue({ affected: 1 }),
+  };
+
+  return {
+    AppDataSource: {
+      initialize: jest.fn().mockResolvedValue({}),
+      getRepository: jest.fn().mockReturnValue(mockRepository),
+    },
+  };
+});
+
 let currentMockRepository: IStationRepository;
 
 let serverInstance: any;
@@ -29,6 +53,7 @@ jest.mock('../../../src/web/controllers/station/ListStationController', () => ({
 }));
 
 beforeAll(async () => {
+  // Iniciamos o servidor com a porta de teste
   serverInstance = await startServer(String(5001));
 });
 
