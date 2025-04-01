@@ -23,4 +23,4 @@ jobs:
         run: npm ci
 
       - name: Run Jest tests
-        run: npx test -- --ci --coverage
+        run: npx test --ci --coverage
