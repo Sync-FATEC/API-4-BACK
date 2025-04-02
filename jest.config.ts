@@ -23,4 +23,6 @@ module.exports = {
 
   // Configurações adicionais para TypeScript
   preset: "ts-jest",
+
+  globalSetup: './tests/setup/globalSetup.ts',
 };

@@ -1,16 +1,16 @@
 import request from 'supertest';
-import { app, startServer } from '../../../src/server';
-import { ListStationUseCase } from '../../../src/application/use-cases/station/ListStationUseCase';
+import { app, startServer } from '../../../../src/server';
+import { ListStationUseCase } from '../../../../src/application/use-cases/station/ListStationUseCase';
 import { Request, Response, NextFunction } from 'express';
-import { IStationRepository } from '../../../src/domain/interfaces/repositories/IStationRepository';
+import { IStationRepository } from '../../../../src/domain/interfaces/repositories/IStationRepository';
 
 // Mockando a inicialização do banco de dados para evitar erros nos testes
-jest.mock('../../../src/infrastructure/database/initialize', () => ({
+jest.mock('../../../../src/infrastructure/database/initialize', () => ({
   initializeDatabase: jest.fn().mockResolvedValue(undefined),
 }));
 
 // Mockando o AppDataSource
-jest.mock('../../../src/infrastructure/database/data-source', () => {
+jest.mock('../../../../src/infrastructure/database/data-source', () => {
   const mockRepository = {
     find: jest.fn().mockResolvedValue([]),
     findOne: jest.fn().mockResolvedValue(null),
@@ -33,12 +33,12 @@ let currentMockRepository: IStationRepository;
 let serverInstance: any;
 
 // Mock do repositório
-jest.mock('../../../src/domain/interfaces/repositories/IStationRepository', () => ({
+jest.mock('../../../../src/domain/interfaces/repositories/IStationRepository', () => ({
   IStationRepository: jest.fn()
 }));
 
 // Mock do ListStationController
-jest.mock('../../../src/web/controllers/station/ListStationController', () => ({
+jest.mock('../../../../src/web/controllers/station/ListStationController', () => ({
   ListStationController: jest.fn().mockImplementation(() => ({
     handle: jest.fn().mockImplementation(async (req: Request, res: Response, next: NextFunction) => {
       try {
@@ -52,10 +52,6 @@ jest.mock('../../../src/web/controllers/station/ListStationController', () => ({
   })),
 }));
 
-beforeAll(async () => {
-  // Iniciamos o servidor com a porta de teste
-  serverInstance = await startServer(String(5001));
-});
 
 beforeEach(() => {
   // Mock do repositório
@@ -74,11 +70,8 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-afterAll(() => {
-  serverInstance.close();
-});
 
-describe('Testes de Integração - /station/list', () => {
+describe('Testes de Integração para listar estação - /station/list', () => {
   test('✅ Deve retornar status 200 e lista de estações', async () => {
     const mockStations = [
       {
