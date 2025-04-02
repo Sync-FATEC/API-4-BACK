@@ -45,23 +45,35 @@ app.use('/receiverJson', receiverJsonRoutes);
 // Middleware de erro (deve ser o último)
 app.use(errorMiddleware);
 
+let server: any;
 
 export async function startServer(port = process.env.PORT) {
-  try {
-    await initializeDatabase();
+    try {
+        await initializeDatabase();
 
-    const server = app.listen(port, () => {
-      console.log(`🚀 Servidor rodando na porta ${port}`);
-      console.log(`📚 Swagger disponível em http://localhost:${port}/api-docs`);
-    });
+        server = app.listen(port, () => {
+            console.log(`🚀 Servidor rodando na porta ${port}`);
+            console.log(`📚 Swagger disponível em http://localhost:${port}/api-docs`);
+        });
 
-    return server;
-  } catch (error) {
-    console.error('❌ Erro ao iniciar o servidor:', error);
-    throw error;
-  }
+        return server;
+    } catch (error) {
+        console.error('❌ Erro ao iniciar o servidor:', error);
+        throw error;
+    }
+}
+
+export async function stopServer() {
+    if (server) {
+        await new Promise<void>((resolve) => {
+            server.close(() => {
+                console.log('Servidor encerrado');
+                resolve();
+            });
+        });
+    }
 }
 
 if (require.main === module) {
-  startServer().catch(() => process.exit(1));
+    startServer().catch(() => process.exit(1));
 }

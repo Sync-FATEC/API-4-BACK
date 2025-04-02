@@ -3,25 +3,18 @@ import { Server } from 'http';
 
 let server: Server;
 
-async function startServer() {
-    server = app.listen(3000, () => {
-        console.log('Server started on port 3000');
-    });
-    return server;
-}
-
-async function stopServer() {
-    return new Promise<void>((resolve) => {
-        server.close(() => {
-            console.log('Server stopped');
-            resolve();
-        });
-    });
-}
-
 export default async function globalSetup() {
-    await startServer();
+    server = app.listen(5001, () => {
+        console.log('Server started on port 5001');
+    });
+
+    // Retorna uma função de limpeza que será chamada após todos os testes
     return async () => {
-        await stopServer();
+        await new Promise<void>((resolve) => {
+            server.close(() => {
+                console.log('Server stopped');
+                resolve();
+            });
+        });
     };
 }
