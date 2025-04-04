@@ -9,7 +9,7 @@ module.exports = {
   testPathIgnorePatterns: ["/node_modules/"],
 
   // Cobertura de código
-  collectCoverage: true,
+  collectCoverage: false,
   coverageDirectory: "coverage", // Pasta onde o relatório de cobertura será gerado
   coverageReporters: ["text", "lcov"], // Formatos de relatório
 
@@ -23,4 +23,6 @@ module.exports = {
 
   // Configurações adicionais para TypeScript
   preset: "ts-jest",
+
+  globalSetup: './tests/setup/globalSetup.ts',
 };
