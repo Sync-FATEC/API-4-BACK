@@ -4,6 +4,7 @@ import express from 'express';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
+import './application/operations/receiverMongo/runMongo'
 import { initializeDatabase } from './infrastructure/database/initialize';
 import { authRoutes } from './web/routes/auth.routes';
 import { responseHandler } from './infrastructure/middlewares/responseHandler';
