@@ -29,7 +29,7 @@ export default class ReceiverJsonUseCase {
             throw new SystemContextException("Estação não encontrada");
         }
 
-        const registerMeasureUseCase = new RegisterMeasureUseCase(this.measureRepository, this.parameterRepository);
+        const registerMeasureUseCase = new RegisterMeasureUseCase(this.measureRepository, this.parameterRepository, this.stationRepository);
         const registerAlertUseCase = new RegisterAlertUseCase(this.alertRepository, this.typeAlertRepository, this.measureRepository);
 
         for (const [key, value] of Object.entries(measurements)) {
