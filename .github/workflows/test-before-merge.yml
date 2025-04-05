@@ -39,7 +39,7 @@ jobs:
         run: npm ci
 
       - name: Verify testing dependencies
-        run: npm install -D supertest @types/supertest
+        run: npm install -D supertest @types/supertest @types/mongodb @types/node-cron
 
       - name: Run Jest tests
         run: npm run test -- --ci --coverage --testTimeout=10000
