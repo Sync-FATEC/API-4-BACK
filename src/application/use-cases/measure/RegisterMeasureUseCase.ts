@@ -33,7 +33,7 @@ export class RegisterMeasureUseCase extends MeasureUseCase {
     const measure = Measure.create(data.unixTime, value);
     measure.parameter = parameter;
     const measureCreate = await this.measureRepository.createMeasure(measure);
-    this.stationRepository.update(parameter.idStation.id, { DateLastMeasure: measureCreate.unixTime})
+    await this.stationRepository.update(parameter.idStation.id, { DateLastMeasure: measureCreate.unixTime})
     return measureCreate;
   }
 }
