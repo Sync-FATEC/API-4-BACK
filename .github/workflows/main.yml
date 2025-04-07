@@ -19,4 +19,4 @@ jobs:
   
   feature:
     if: startsWith(github.head_ref, 'feat/')
-    uses: ./.github/workflows/feature.yml@main
+    uses: ./.github/workflows/feature.yml
