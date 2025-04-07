@@ -11,4 +11,5 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Unit Tests
+        run: echo "Calling unit-test workflow"
         uses: ./.github/workflows/unit-test.yml

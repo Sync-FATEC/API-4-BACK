@@ -19,4 +19,10 @@ jobs:
   
   feature:
     if: startsWith(github.head_ref, 'feat/')
-    uses: ./.github/workflows/feature.yml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Feature Workflow
+        uses: ./.github/workflows/feature.yml
