@@ -24,5 +24,7 @@ module.exports = {
   // Configurações adicionais para TypeScript
   preset: "ts-jest",
 
+  // Configuração de setup e teardown global
   globalSetup: './tests/setup/globalSetup.ts',
+  globalTeardown: './tests/setup/globalTeardown.ts',
 };
