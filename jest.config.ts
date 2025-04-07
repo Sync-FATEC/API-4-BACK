@@ -10,7 +10,6 @@ module.exports = {
 
   // Cobertura de código
   collectCoverage: false,
-  collectCoverage: false,
   coverageDirectory: "coverage", // Pasta onde o relatório de cobertura será gerado
   coverageReporters: ["text", "lcov"], // Formatos de relatório
 
