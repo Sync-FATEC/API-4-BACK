@@ -6,9 +6,4 @@ on:
 jobs:
   unit-test:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Run Unit Tests
-        run: echo "Running unit tests"
+    uses: ./.github/workflows/unit-test.yml
