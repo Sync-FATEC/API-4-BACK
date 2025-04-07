@@ -10,12 +10,18 @@ on:
     - 'test/*'
     - 'refactor/*'
 
-  jobs:
-    check-branch:
-      steps:
-      - name: Get Branch Name
-        run: echo "Branch name is ${{ github.head_ref }}"
-    
-    feature:
-      if: startsWith(github.head_ref, 'feat/')
+jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get Branch Name
+      run: echo "Branch name is ${{ github.head_ref }}"
+  
+  feature:
+    if: startsWith(github.head_ref, 'feat/')
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run Feature Workflow
       uses: ./.github/workflows/feature.yml
+    - name: Run Unit Tests
+      uses: ./.github/workflows/unit-test.yml

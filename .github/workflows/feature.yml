@@ -3,6 +3,6 @@ name: Pipeline Funcionalidade
 on:
   workflow_call:
 
-  jobs:
-    unit-test:
-      uses: ./.github/workflows/unit-test.yml
+jobs:
+  unit-test:
+    uses: ./.github/workflows/unit-test.yml
