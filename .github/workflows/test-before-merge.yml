@@ -59,3 +59,8 @@ jobs:
           JWT_SECRET: test
           MONGO_URL: mongodb://localhost:27017/testdb
           MONGO_DATABASE: testdb
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_USERNAME: test
+          DB_PASSWORD: test
+          DB_DATABASE: testdb
