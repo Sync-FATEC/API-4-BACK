@@ -14,15 +14,9 @@ jobs:
   check-branch:
     runs-on: ubuntu-latest
     steps:
-    - name: Get Branch Name
-      run: echo "Branch name is ${{ github.head_ref }}"
+      - name: Get Branch Name
+        run: echo "Branch name is ${{ github.head_ref }}"
   
   feature:
     if: startsWith(github.head_ref, 'feat/')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Run Feature Workflow
-        uses: ./.github/workflows/feature.yml
+    uses: ./.github/workflows/feature.yml@main
