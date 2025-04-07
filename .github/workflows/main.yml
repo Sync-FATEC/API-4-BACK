@@ -16,7 +16,10 @@ jobs:
     steps:
       - name: Get Branch Name
         run: echo "Branch name is ${{ github.head_ref }}"
-  
+
   feature:
-    if: startsWith(github.head_ref, 'feat/')
-    uses: ./.github/workflows/feature.yml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Feature Workflow
+        if: startsWith(github.head_ref, 'feat/')
+        uses: ./.github/workflows/feature.yml
