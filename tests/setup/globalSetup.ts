@@ -1,4 +1,4 @@
-import { app, startServer as startAppServer } from '../../src/server';
+import { startServer as startAppServer } from '../../src/server';
 import { Server } from 'http';
 
 export let server: Server;

@@ -18,9 +18,12 @@ import { alertRoutes } from './web/routes/Alert.routes';
 import { measureRoutes } from './web/routes/Measure.routes';
 import { receiverJsonRoutes } from './web/routes/receiverJson.routes';
 import { swaggerOptions } from './swaggetOptions';
+import { swaggerOptions } from './swaggetOptions';
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
+// Criamos a instância do Express
+export const app = express();
 // Criamos a instância do Express
 export const app = express();
 
@@ -28,7 +31,13 @@ export const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(responseHandler);
+// Configuração de middlewares
+app.use(cors());
+app.use(express.json());
+app.use(responseHandler);
 
+// Configuração do Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // Configuração do Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
@@ -42,7 +51,19 @@ app.use('/measure', measureRoutes);
 app.use('/alert', alertRoutes);
 app.use('/parameter', parameterRoutes);
 app.use('/receiverJson', receiverJsonRoutes);
+// Rotas da API
+app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
+app.use('/typeAlert', typeAlertRoutes);
+app.use('/station', stationRoutes);
+app.use('/typeParameter', typeParameterRoutes);
+app.use('/measure', measureRoutes);
+app.use('/alert', alertRoutes);
+app.use('/parameter', parameterRoutes);
+app.use('/receiverJson', receiverJsonRoutes);
 
+// Middleware de erro (deve ser o último)
+app.use(errorMiddleware);
 // Middleware de erro (deve ser o último)
 app.use(errorMiddleware);
 
@@ -55,10 +76,23 @@ export async function startServer(port = process.env.PORT) {
         server = app.listen(port, () => {
             console.log(`🚀 Servidor rodando na porta ${port}`);
             console.log(`📚 Swagger disponível em http://localhost:${port}/api-docs`);
+let server: any;
+
+export async function startServer(port = process.env.PORT) {
+    try {
+        await initializeDatabase();
+
+        server = app.listen(port, () => {
+            console.log(`🚀 Servidor rodando na porta ${port}`);
+            console.log(`📚 Swagger disponível em http://localhost:${port}/api-docs`);
         });
 
         return server;
+
+        return server;
     } catch (error) {
+        console.error('❌ Erro ao iniciar o servidor:', error);
+        throw error;
         console.error('❌ Erro ao iniciar o servidor:', error);
         throw error;
     }
