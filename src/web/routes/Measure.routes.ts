@@ -11,13 +11,15 @@ import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuth
 import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
 import { ParameterRepository } from "../../infrastructure/repositories/ParameterRepository";
 import { asyncHandler } from "../middlewares/asyncHandler";
+import StationRepository from "../../infrastructure/repositories/StationRepository";
 
 // Repositories
 const measureRepository = new MeasureRepository();
-const parameterRepository = new ParameterRepository(); // Definido antes de ser utilizado
+const parameterRepository = new ParameterRepository();
+const stationRepository = new StationRepository();
 
 // Use Cases
-const registerMeasureUseCase = new RegisterMeasureUseCase(measureRepository, parameterRepository);
+const registerMeasureUseCase = new RegisterMeasureUseCase(measureRepository, parameterRepository, stationRepository);
 const updateMeasureUseCase = new UpdateMeasureUseCase(measureRepository);
 const listMeasureUseCase = new ListMeasureUseCase(measureRepository);
 const readMeasureUseCase = new ReadMeasureUseCase(measureRepository);
