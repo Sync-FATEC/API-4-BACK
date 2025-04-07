@@ -23,10 +23,7 @@ export async function seedAdminUser(dataSource: DataSource) {
         });
 
         await userRepository.save(adminUser);
-        console.log('Usuário administrador criado com sucesso!');
-
         await runSeeds();
     } else {
-        console.log('Usuário administrador já existe!');
     }
 } 
