@@ -19,7 +19,7 @@ export default class ReceiverJsonUseCase {
     ) {}
 
     async execute(dataJson: any) {
-        const { uid, unixtime, ...measurements } = dataJson;
+        const { uid, unixtime, _id, ...measurements } = dataJson;
         if (!uid || !unixtime) {
             throw new SystemContextException("Dados inválidos");
         }
