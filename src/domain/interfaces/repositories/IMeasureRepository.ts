@@ -8,4 +8,10 @@ export interface IMeasureRepository {
   listMeasures(stationId: string): Promise<ListMeasureResponseDTO[]>;
   deleteMeasure(id: string): Promise<boolean>;
   updateMeasure(measure: Measure): Promise<Measure>;
+  listWithFilters(filters: {
+    startDate?: Date;
+    endDate?: Date;
+    stationId?: string;
+    parameterId?: string;
+  }): Promise<Measure[]>;
 }
