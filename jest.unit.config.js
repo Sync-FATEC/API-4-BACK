@@ -1,8 +1,8 @@
 module.exports = {
     testMatch: [
-        "**/tests/**/*.test.ts",
-        "**/tests/**/**/*.test.ts",
-        "**/tests/**/**/**/*.test.ts",
+        "**/tests/unit/*.test.ts",
+        "**/tests/unit/**/*.test.ts",
+        "**/tests/unit/**/**/*.test.ts",
       ],
     testPathIgnorePatterns: ["/node_modules/"],
     collectCoverage: true,
