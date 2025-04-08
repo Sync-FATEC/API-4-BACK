@@ -3,15 +3,15 @@ dotenv.config();
 
 import cron from 'node-cron';
 import { MongoClient } from 'mongodb';
-import { AlertRepository } from '../../../infrastructure/repositories/AlertRepository';
-import { MeasureRepository } from '../../../infrastructure/repositories/MeasureRepository';
-import { MongoDbRepository } from '../../../infrastructure/repositories/MongoDbRepository';
-import { ParameterRepository } from '../../../infrastructure/repositories/ParameterRepository';
-import StationRepository from '../../../infrastructure/repositories/StationRepository';
-import TypeAlertRepository from '../../../infrastructure/repositories/TypeAlertRepository';
-import { ReceiverMongoJsonUseCase } from '../../use-cases/receiverJson/receiverMongoUseCase';
+import { AlertRepository } from '../repositories/AlertRepository';
+import { MeasureRepository } from '../repositories/MeasureRepository';
+import { MongoDbRepository } from '../repositories/MongoDbRepository';
+import { ParameterRepository } from '../repositories/ParameterRepository';
+import StationRepository from '../repositories/StationRepository';
+import TypeAlertRepository from '../repositories/TypeAlertRepository';
+import { ReceiverMongoJsonUseCase } from '../../application/use-cases/receiverJson/receiverMongoUseCase';
 
-export class runReceiverMongo {
+export class RunTakeMeasuresCron  {
     private uri = process.env.MONGO_URL || '';
     private client = new MongoClient(this.uri);
 
@@ -38,14 +38,16 @@ export class runReceiverMongo {
                 this.parameterRepository
             );
 
-            cron.schedule('*/10 * * * *', () => {
-                receiverMongoJsonUseCase.execute();
+            // Cron job para executar a cada 10 minutos
+            cron.schedule('*/10 * * * *', async () => {
+                console.log('[CRON] Executando processamento de dados do MongoDB');
+                await receiverMongoJsonUseCase.execute();
             });
         } catch (error) {
-            console.error('Erro ao conectar ao MongoDB:', error);
+            console.error('Erro ao configurar cron job para MongoDB:', error);
         }
     }
 }
 
-const runner = new runReceiverMongo();
+const runner = new RunTakeMeasuresCron();
 runner.execute();

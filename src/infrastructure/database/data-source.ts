@@ -6,6 +6,7 @@ import { Station } from "../../domain/models/entities/Station";
 import { TypeParameter } from "../../domain/models/entities/TypeParameter";
 import { User } from "../../domain/models/entities/User";
 import { Measure } from "../../domain/models/entities/Measure";
+import { MeasureAverage } from "../../domain/models/entities/MeasureAverage";
 
 
 export const AppDataSource = new DataSource({
@@ -25,6 +26,7 @@ export const AppDataSource = new DataSource({
     TypeParameter,
     Measure,
     Station,
+    MeasureAverage
   ],
   migrations: [],
   subscribers: [],
