@@ -4,7 +4,8 @@ import express from 'express';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
-import './application/operations/receiverMongo/runMongo'
+import './infrastructure/nodeCron/RunTakeMeasuresCron'
+import './infrastructure/nodeCron/RunMeasureAverageCron'
 import { initializeDatabase } from './infrastructure/database/initialize';
 import { authRoutes } from './web/routes/auth.routes';
 import { responseHandler } from './infrastructure/middlewares/responseHandler';
@@ -18,6 +19,8 @@ import { alertRoutes } from './web/routes/Alert.routes';
 import { measureRoutes } from './web/routes/Measure.routes';
 import { receiverJsonRoutes } from './web/routes/receiverJson.routes';
 import { swaggerOptions } from './swaggetOptions';
+import measureAverageRoutes from './web/routes/MeasureAverage.routes';
+
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
@@ -42,6 +45,7 @@ app.use('/measure', measureRoutes);
 app.use('/alert', alertRoutes);
 app.use('/parameter', parameterRoutes);
 app.use('/receiverJson', receiverJsonRoutes);
+app.use('/measureAverage', measureAverageRoutes);
 
 // Middleware de erro (deve ser o último)
 app.use(errorMiddleware);
