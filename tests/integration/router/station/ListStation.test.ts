@@ -30,8 +30,6 @@ jest.mock('../../../../src/infrastructure/database/data-source', () => {
 
 let currentMockRepository: IStationRepository;
 
-let serverInstance: any;
-
 // Mock do repositório
 jest.mock('../../../../src/domain/interfaces/repositories/IStationRepository', () => ({
   IStationRepository: jest.fn()

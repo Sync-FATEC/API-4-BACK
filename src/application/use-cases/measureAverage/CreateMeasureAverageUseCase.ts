@@ -18,7 +18,7 @@ export class CreateMeasureAverageUseCase {
         const results = this.saveMeasureAverage(groupedMeasures, enumAverage.HOUR);
 
         return results;
-}
+    }
 
     async executeLastDay() {
         const measures = await this.measureRepository.listMeasuresLastDay();
@@ -30,7 +30,17 @@ export class CreateMeasureAverageUseCase {
         return results;
     }
 
-    private groupMeasuresByStationAndParameterType(measures: any[]): any {
+    private groupMeasuresByStationAndParameterType(measures: any[]): {
+        [stationId: string]: {
+            [parameterTypeId: string]: {
+                stationName: string,
+                parameterName: string,
+                values: number[],
+                count: number,
+                sum: number
+            }
+        }
+    } {
         // Estrutura para agrupar medidas por estação e tipo de parâmetro
         const groupedMeasures: {
             [stationId: string]: {
@@ -72,7 +82,6 @@ export class CreateMeasureAverageUseCase {
             groupedMeasures[stationId][parameterTypeId].count++;
         });
 
-        const results: MeasureAverage[] = [];
         return groupedMeasures;
     }
 

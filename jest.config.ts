@@ -9,7 +9,7 @@ module.exports = {
   testPathIgnorePatterns: ["/node_modules/"],
 
   // Cobertura de código
-  collectCoverage: false,
+  collectCoverage: true,
   coverageDirectory: "coverage", // Pasta onde o relatório de cobertura será gerado
   coverageReporters: ["text", "lcov"], // Formatos de relatório
 
