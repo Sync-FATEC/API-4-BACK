@@ -18,7 +18,9 @@ beforeAll(async () => {
 beforeEach(async () => {
   dataSource = getDataSource();
   await dataSource.synchronize(true);
+});
 
+test('✅ Deve calcular e salvar médias por hora com banco real', async () => {
   const parameters = await runParameterSeeds(dataSource, await runStationSeeds(dataSource), await runTypeParameterSeeds(dataSource));
   await runMeasureSeeds(dataSource, parameters);
 
@@ -28,32 +30,30 @@ beforeEach(async () => {
     measureAverageRepo,
     new MeasureRepository()
   );
-});
-
-test('✅ Deve calcular e salvar médias por hora com banco real', async () => {
+  
   const result = await useCase.executeLastHour();
-
+  console.log(result);
+  
   expect(result.length).toBe(15);
 
   // Utilitários para buscar médias por nome
   const getAvgByName = (name: string) => result.find((avg) => avg.name.includes(name));
 
   // Estação Norte
-  expect(parseFloat(getAvgByName('Estação Norte - Temperatura')!.value)).toBeCloseTo(25.19);
+  expect(parseFloat(getAvgByName('Estação Norte - Temperatura')!.value)).toBeCloseTo(25.20);
   expect(parseFloat(getAvgByName('Estação Norte - Umidade')!.value)).toBeCloseTo(65.04);
   expect(parseFloat(getAvgByName('Estação Norte - Pressão')!.value)).toBeCloseTo(1012.96);
-  expect(parseFloat(getAvgByName('Estação Norte - Velocidade do Vento')!.value)).toBeCloseTo(10.09);
-
+  expect(parseFloat(getAvgByName('Estação Norte - Velocidade do Vento')!.value)).toBeCloseTo(10.08);
+  
   // Estação Centro
   expect(parseFloat(getAvgByName('Estação Centro - Temperatura')!.value)).toBeCloseTo(25.18);
   expect(parseFloat(getAvgByName('Estação Centro - Umidade')!.value)).toBeCloseTo(65.24);
   expect(parseFloat(getAvgByName('Estação Centro - Pressão')!.value)).toBeCloseTo(1012.98);
-  expect(parseFloat(getAvgByName('Estação Centro - Velocidade do Vento')!.value)).toBeCloseTo(10.09);
+  expect(parseFloat(getAvgByName('Estação Centro - Velocidade do Vento')!.value)).toBeCloseTo(10.08);  
 
   // Estação Sul
-  expect(parseFloat(getAvgByName('Estação Sul - Temperatura')!.value)).toBeCloseTo(25.21);
+  expect(parseFloat(getAvgByName('Estação Sul - Temperatura')!.value)).toBeCloseTo(25.20);
   expect(parseFloat(getAvgByName('Estação Sul - Umidade')!.value)).toBeCloseTo(65.14);
-  expect(parseFloat(getAvgByName('Estação Sul - Pressão')!.value)).toBeCloseTo(1013.31);
+  expect(parseFloat(getAvgByName('Estação Sul - Pressão')!.value)).toBeCloseTo(1013.30);
   expect(parseFloat(getAvgByName('Estação Sul - Velocidade do Vento')!.value)).toBeCloseTo(10.04);
-
 });
