@@ -4,33 +4,39 @@ import { MeasureAverageRepository } from '../repositories/MeasureAverageReposito
 import { MeasureRepository } from '../repositories/MeasureRepository';
 
 export class RunMeasureAverageCron {
-    private measureRepository = new MeasureRepository();
-    private measureAverageRepository = new MeasureAverageRepository();
-    private useCase: CreateMeasureAverageUseCase;
+  private measureRepository = new MeasureRepository();
+  private measureAverageRepository = new MeasureAverageRepository();
+  private useCase: CreateMeasureAverageUseCase;
 
-    async execute() {
-        try {
-            this.useCase = new CreateMeasureAverageUseCase(
-                this.measureAverageRepository,
-                this.measureRepository
-            );
+  private hourlyTask: cron.ScheduledTask | null = null;
+  private dailyTask: cron.ScheduledTask | null = null;
 
-            // Cron job para executar a cada hora
-            cron.schedule('0 * * * *', async () => {
-                console.log('[CRON] Executando cálculo de médias da última hora');
-                await this.useCase.executeLastHour();
-            });
+  async execute() {
+    try {
+      this.useCase = new CreateMeasureAverageUseCase(
+        this.measureAverageRepository,
+        this.measureRepository
+      );
 
-            // Cron job para executar todo dia à meia-noite
-            cron.schedule('0 0 * * *', async () => {
-                console.log('[CRON] Executando cálculo de médias do último dia');
-                await this.useCase.executeLastDay();
-            });
-        } catch (error) {
-            console.error('Erro ao configurar cron jobs para médias:', error);
-        }
+      // Executa a cada hora
+      this.hourlyTask = cron.schedule('0 * * * *', async () => {
+        console.log('[CRON] Executando cálculo de médias da última hora');
+        await this.useCase.executeLastHour();
+      });
+
+      // Executa todo dia à meia-noite
+      this.dailyTask = cron.schedule('0 0 * * *', async () => {
+        console.log('[CRON] Executando cálculo de médias do último dia');
+        await this.useCase.executeLastDay();
+      });
+
+    } catch (error) {
+      console.error('Erro ao configurar cron jobs para médias:', error);
     }
-}
+  }
 
-const runner = new RunMeasureAverageCron();
-runner.execute();
+  stopTasks() {
+    this.hourlyTask?.stop();
+    this.dailyTask?.stop();
+  }
+}

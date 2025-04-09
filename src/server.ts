@@ -4,8 +4,6 @@ import express from 'express';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
-import './infrastructure/nodeCron/RunTakeMeasuresCron'
-import './infrastructure/nodeCron/RunMeasureAverageCron'
 import { initializeDatabase } from './infrastructure/database/initialize';
 import { authRoutes } from './web/routes/auth.routes';
 import { responseHandler } from './infrastructure/middlewares/responseHandler';
@@ -20,6 +18,7 @@ import { measureRoutes } from './web/routes/Measure.routes';
 import { receiverJsonRoutes } from './web/routes/receiverJson.routes';
 import { swaggerOptions } from './swaggetOptions';
 import measureAverageRoutes from './web/routes/MeasureAverage.routes';
+import { CronManager } from './infrastructure/nodeCron/CronManager';
 
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
@@ -51,6 +50,12 @@ app.use('/measureAverage', measureAverageRoutes);
 app.use(errorMiddleware);
 
 let server: any;
+
+
+// Iniciar o cron job
+const cronManager = new CronManager();
+cronManager.startAll();
+
 
 export async function startServer(port = process.env.PORT) {
     try {

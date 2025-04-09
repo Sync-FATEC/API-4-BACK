@@ -23,7 +23,7 @@ export class MeasureAverage {
     public createdAt: Date;
 
     @ManyToOne(() => Station, (station) => station.measureAverages)
-    stationId: Station;
+    station: Station;
 
     public CreateMeasureAverage(typeAverage: enumAverage, name: string, value: string) {
         this.typeAverage = typeAverage;

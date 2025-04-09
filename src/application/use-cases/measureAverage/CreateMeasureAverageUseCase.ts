@@ -102,7 +102,7 @@ export class CreateMeasureAverageUseCase {
 
                 const station = new Station();
                 station.id = stationId;
-                measureAverage.stationId = station;
+                measureAverage.station = station;
 
                 // Adiciona a promessa ao array
                 promises.push(this.measureAverageRepository.createMeasureAverage(measureAverage));

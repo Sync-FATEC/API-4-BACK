@@ -19,7 +19,7 @@ export class MeasureAverageRepository implements IMeasureAverageRepository {
 
     async listMeasuresAverages(stationId: string): Promise<MeasureAverage[]> {
         return await this.measuresAverage.find({
-            where: { stationId: { id: stationId } }
+            where: { station: { id: stationId } }
         });
     }
 

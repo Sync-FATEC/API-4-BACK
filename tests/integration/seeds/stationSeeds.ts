@@ -2,15 +2,9 @@ import { DataSource } from 'typeorm';
 import { Station } from '../../../src/domain/models/entities/Station';
 import { randomUUID } from 'crypto';
 
-/**
- * Insere estações de teste no banco de dados
- * @param dataSource Conexão com o banco de dados
- * @returns Array com as estações criadas
- */
 export async function runStationSeeds(dataSource: DataSource): Promise<Station[]> {
   const stationRepo = dataSource.getRepository(Station);
   
-  // Criar estações de teste
   const stations = [
     stationRepo.create({
       uuid: randomUUID(),
@@ -35,15 +29,15 @@ export async function runStationSeeds(dataSource: DataSource): Promise<Station[]
     }),
   ];
 
-  // Salvar estações no banco
   return await stationRepo.save(stations);
 }
 
-/**
- * Remove todas as estações do banco de dados
- * @param dataSource Conexão com o banco de dados
- */
-export async function clearStationSeeds(dataSource: DataSource): Promise<void> {
-  const stationRepo = dataSource.getRepository(Station);
-  await stationRepo.clear();
-}
+export const clearStationSeeds = async (dataSource: DataSource) => {
+  const stationRepository = dataSource.getRepository('Station');
+  
+  const stations = await stationRepository.find();
+  
+  if (stations.length > 0) {
+    await stationRepository.remove(stations);
+  }
+};

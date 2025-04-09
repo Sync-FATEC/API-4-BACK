@@ -1,15 +1,9 @@
 import { DataSource } from 'typeorm';
 import { TypeParameter } from '../../../src/domain/models/entities/TypeParameter';
 
-/**
- * Insere tipos de parâmetros de teste no banco de dados
- * @param dataSource Conexão com o banco de dados
- * @returns Array com os tipos de parâmetros criados
- */
 export async function runTypeParameterSeeds(dataSource: DataSource): Promise<TypeParameter[]> {
   const typeParamRepo = dataSource.getRepository(TypeParameter);
   
-  // Criar tipos de parâmetros de teste
   const typeParameters = [
     typeParamRepo.create({
       typeJson: "temp",
@@ -53,15 +47,15 @@ export async function runTypeParameterSeeds(dataSource: DataSource): Promise<Typ
     }),
   ];
 
-  // Salvar tipos de parâmetros no banco
   return await typeParamRepo.save(typeParameters);
 }
 
-/**
- * Remove todos os tipos de parâmetros do banco de dados
- * @param dataSource Conexão com o banco de dados
- */
 export async function clearTypeParameterSeeds(dataSource: DataSource): Promise<void> {
-  const typeParamRepo = dataSource.getRepository(TypeParameter);
-  await typeParamRepo.clear();
+  const typeParameterRepository = dataSource.getRepository(TypeParameter);
+  
+  const typeParameters = await typeParameterRepository.find();
+  
+  if (typeParameters.length > 0) {
+    await typeParameterRepository.remove(typeParameters);
+  }
 }

@@ -28,7 +28,7 @@ export class Station {
   @OneToMany(() => Parameter, (parameter) => parameter.idStation)
   parameters: Parameter[];
 
-  @OneToMany(() => MeasureAverage, (average) => average.stationId)
+  @OneToMany(() => MeasureAverage, (average) => average.station)
   measureAverages: MeasureAverage[];
 
 }

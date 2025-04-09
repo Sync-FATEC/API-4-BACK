@@ -8,25 +8,48 @@ import { MeasureAverage } from '../../../src/domain/models/entities/MeasureAvera
 import { Measure } from '../../../src/domain/models/entities/Measure';
 import { Alert } from '../../../src/domain/models/agregates/Alert/Alert';
 import { TypeAlert } from '../../../src/domain/models/agregates/Alert/TypeAlert';
+import { Client } from 'pg';
 
 let container: StartedTestContainer;
 let dataSource: DataSource;
 
-// Exportando o container e datasource para serem usados nos testes se necessário
 export const getContainer = () => container;
 export const getDataSource = () => dataSource;
 
-export default async () => {
-  // Cria um container PostgreSQL
+const waitForPostgres = async (host: string, port: number, retries = 10, delay = 1000) => {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const client = new Client({
+        host,
+        port,
+        user: 'test',
+        password: 'test',
+        database: 'test',
+      });
+      await client.connect();
+      await client.end();
+      return;
+    } catch (err) {
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+  }
+  throw new Error('PostgreSQL não ficou pronto a tempo.');
+};
+
+const SetupIntegration = async () => {
   container = await new GenericContainer('postgres')
     .withExposedPorts(5432)
-    .withEnvironment({ POSTGRES_DB: 'test' })
-    .withEnvironment({ POSTGRES_USER: 'test' })
-    .withEnvironment({ POSTGRES_PASSWORD: 'test' })
+    .withEnvironment({
+      POSTGRES_DB: 'test',
+      POSTGRES_USER: 'test',
+      POSTGRES_PASSWORD: 'test',
+    })
     .start();
 
   const port = container.getMappedPort(5432);
   const host = container.getHost();
+
+  await waitForPostgres(host, port);
 
   AppDataSource.setOptions({
     type: 'postgres',
@@ -43,9 +66,12 @@ export default async () => {
       MeasureAverage,
       Measure,
       Alert,
-      TypeAlert
+      TypeAlert,
     ],
   });
 
   dataSource = await AppDataSource.initialize();
+  await dataSource.synchronize(true);
 };
+
+export default SetupIntegration;

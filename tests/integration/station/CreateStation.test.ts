@@ -1,171 +1,114 @@
 import request from 'supertest';
-import { app, startServer } from '../../../../src/server';
-import { ListStationUseCase } from '../../../../src/application/use-cases/station/ListStationUseCase';
-import { Request, Response, NextFunction } from 'express';
-import { IStationRepository } from '../../../../src/domain/interfaces/repositories/IStationRepository';
+import { app } from '../../../src/server';
+import { DataSource } from 'typeorm';
+import SetupIntegration, { getDataSource } from '../setup/SetupIntegration';
+import { clearStationSeeds } from '../seeds/stationSeeds';
 import { sign } from 'jsonwebtoken';
 
-// Mockando a inicialização do banco de dados para evitar erros nos testes
-jest.mock('../../../../src/infrastructure/database/initialize', () => ({
-    initializeDatabase: jest.fn().mockResolvedValue(undefined),
-}));
+process.env.JWT_SECRET = 'minha_chave_secreta_para_testes';
 
-// Mockando o AppDataSource
-jest.mock('../../../../src/infrastructure/database/data-source', () => {
-    const mockRepository = {
-        find: jest.fn().mockResolvedValue([]),
-        findOne: jest.fn().mockResolvedValue(null),
-        save: jest.fn().mockImplementation((entity) => Promise.resolve(entity)),
-        create: jest.fn().mockImplementation((entity) => entity),
-        delete: jest.fn().mockResolvedValue({ affected: 1 }),
-        update: jest.fn().mockResolvedValue({ affected: 1 }),
-    };
+let dataSource: DataSource;
 
-    return {
-        AppDataSource: {
-            initialize: jest.fn().mockResolvedValue({}),
-            getRepository: jest.fn().mockReturnValue(mockRepository),
-        },
-    };
+beforeAll(async () => {
+  await SetupIntegration();
+  dataSource = getDataSource();
 });
 
-let currentMockRepository: IStationRepository;
-
-let serverInstance: any;
-
-// Mock do repositório
-jest.mock('../../../../src/domain/interfaces/repositories/IStationRepository', () => ({
-    IStationRepository: jest.fn()
-}));
-
-// Mock do ListStationController
-jest.mock('../../../../src/web/controllers/station/ListStationController', () => ({
-    ListStationController: jest.fn().mockImplementation(() => ({
-        handle: jest.fn().mockImplementation(async (req: Request, res: Response, next: NextFunction) => {
-            try {
-                const useCase = new ListStationUseCase(currentMockRepository);
-                const stations = await useCase.execute();
-                return res.sendSuccess(stations, 200);
-            } catch (error) {
-                next(error);
-            }
-        }),
-    })),
-}));
-
-beforeEach(() => {
-    // Mock do repositório
-    currentMockRepository = {
-        list: jest.fn(),
-        create: jest.fn(),
-        delete: jest.fn(),
-        update: jest.fn(),
-        listWithParameters: jest.fn(),
-        findById: jest.fn(),
-        findByUuid: jest.fn()
-    };
+beforeEach(async () => {
+  await clearStationSeeds(dataSource);
 });
 
-afterEach(() => {
-    jest.clearAllMocks();
+afterEach(async () => {
+  await clearStationSeeds(dataSource);
 });
 
+afterAll(async () => {
+  await dataSource.destroy();
+});
 
 describe('Testes de Integração para criar estação - /station/create', () => {
-    test('✅ Deve retornar status 200 e a estações criada', async () => {
-        const mockStations = {
-            uuid: '123e4567-e89b-12d3-a456-426614174000',
-            name: 'Estação Teste',
-            latitude: -23.55052,
-            longitude: -46.633308,
-            description: 'Descrição da estação de teste',
-        }
+  test('✅ Deve retornar status 200 e a estação criada', async () => {
+    const token = sign(
+      {
+        id: '1',
+        name: 'admin',
+        email: 'admin@admin.com',
+        role: 'ADMIN',
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
 
-        currentMockRepository.create = jest.fn().mockResolvedValue(mockStations);
+    const stationPayload = {
+      uuid: '123e4567-e89b-12d3-a456-426614174000',
+      name: 'Estação Teste',
+      latitude: -23.55052,
+      longitude: -46.633308,
+      description: 'Descrição da estação de teste',
+    };
 
-        const token = sign(
-            {
-                id: '1',
-                name: 'admin',
-                email: 'admin@admin.com',
-                role: 'ADMIN'
-            },
-            process.env.JWT_SECRET,
-            { expiresIn: '1h' }
-        );
-        
-        const response = await request(app)
-            .post('/station/create')
-            .set('Authorization', `Bearer ${token}`)
-            .send({
-                uuid: '123e4567-e89b-12d3-a456-426614174000',
-                name: 'Estação Teste',
-                latitude: -23.55052,
-                longitude: -46.633308,
-                description: 'Descrição da estação de teste',
-            });
-            
-        expect(response.status).toBe(200);
-        expect(response.body.status).toBe(200);
-        expect(response.body.model).toBeDefined();
-        expect(response.body.model.name).toBe('Estação Teste');
-        expect(response.body.model.uuid).toBe('123e4567-e89b-12d3-a456-426614174000');
-        expect(response.body.model.latitude).toBe(-23.55052);
-        expect(response.body.model.longitude).toBe(-46.633308);
-        expect(response.body.model).toHaveProperty('createdAt');
+    const response = await request(app)
+      .post('/station/create')
+      .set('Authorization', `Bearer ${token}`)
+      .send(stationPayload);
 
-    });
+    expect(response.status).toBe(200);
+    expect(response.body.status).toBe(200);
+    expect(response.body.model).toBeDefined();
+    expect(response.body.model.name).toBe('Estação Teste');
+    expect(response.body.model.uuid).toBe(stationPayload.uuid);
+    expect(response.body.model.latitude).toBe(stationPayload.latitude);
+    expect(response.body.model.longitude).toBe(stationPayload.longitude);
+    expect(response.body.model).toHaveProperty('createdAt');
+  });
 
-    test('❌ Deve retornar status 404 caso não pase o token', async () => {
-        const mockStations = {
-            uuid: '123e4567-e89b-12d3-a456-426614174000',
-            name: 'Estação Teste',
-            latitude: -23.55052,
-            longitude: -46.633308,
-            description: 'Descrição da estação de teste',
-        }
+  test('❌ Deve retornar status 401 caso não passe o token', async () => {
+    const stationPayload = {
+      uuid: '123e4567-e89b-12d3-a456-426614174000',
+      name: 'Estação Teste',
+      latitude: -23.55052,
+      longitude: -46.633308,
+      description: 'Descrição da estação de teste',
+    };
 
-        currentMockRepository.create = jest.fn().mockResolvedValue(mockStations);
+    const response = await request(app)
+      .post('/station/create')
+      .send(stationPayload);
 
-        const response = await request(app).get('/station/create');
+    expect(response.status).toBe(401);
+    expect(response.body.status).toBe(401);
+    expect(response.body.error).toBe('Token não fornecido');
+    expect(response.body.model).toBeDefined();
+  });
 
-        expect(response.status).toBe(404);
-    });
+  test('❌ Deve retornar status 401 caso o token seja inválido', async () => {
+    const stationPayload = {
+      uuid: '123e4567-e89b-12d3-a456-426614174000',
+      name: 'Estação Teste',
+      latitude: -23.55052,
+      longitude: -46.633308,
+      description: 'Descrição da estação de teste',
+    };
 
-    test('❌ Deve retornar status 401 caso o token seja inválido', async () => {
-        const mockStations = {
-            uuid: '123e4567-e89b-12d3-a456-426614174000',
-            name: 'Estação Teste',
-            latitude: -23.55052,
-            longitude: -46.633308,
-            description: 'Descrição da estação de teste',
-        }
+    const token = sign(
+      {
+        id: '1',
+        name: 'admin',
+        email: 'admin@admin.com',
+        role: 'ADMIN',
+      },
+      'chave_errada',
+      { expiresIn: '1h' }
+    );
 
-        const token = sign(
-            {
-                id: '1',
-                name: 'admin',
-                email: 'admin@admin.com',
-                role: 'ADMIN'
-            },
-            'test_jwt',
-            { expiresIn: '1h' }
-        );
-        
-        const response = await request(app)
-            .post('/station/create')
-            .set('Authorization', `Bearer ${token}`)
-            .send({
-                uuid: '123e4567-e89b-12d3-a456-426614174000',
-                name: 'Estação Teste',
-                latitude: -23.55052,
-                longitude: -46.633308,
-                description: 'Descrição da estação de teste',
-            });
+    const response = await request(app)
+      .post('/station/create')
+      .set('Authorization', `Bearer ${token}`)
+      .send(stationPayload);
 
-        expect(response.status).toBe(401);
-        expect(response.body.status).toBe(401);
-        expect(response.body.model).toBeDefined();
-        expect(response.body.error).toBe("Token inválido ou expirado");
-    });
+    expect(response.status).toBe(401);
+    expect(response.body.status).toBe(401);
+    expect(response.body.error).toBe('Token inválido ou expirado');
+    expect(response.body.model).toBeDefined();
+  });
 });

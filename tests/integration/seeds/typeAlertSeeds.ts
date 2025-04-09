@@ -3,12 +3,6 @@ import { TypeAlert } from '../../../src/domain/models/agregates/Alert/TypeAlert'
 import Parameter from '../../../src/domain/models/agregates/Parameter/Parameter';
 import { ComparisonOperator } from '../../../src/domain/enums/TypeAlert/ComparisonOperator';
 
-/**
- * Insere tipos de alertas de teste no banco de dados
- * @param dataSource Conexão com o banco de dados
- * @param parameters Parâmetros já criados no banco
- * @returns Array com os tipos de alertas criados
- */
 export async function runTypeAlertSeeds(
   dataSource: DataSource,
   parameters: Parameter[]
@@ -16,12 +10,10 @@ export async function runTypeAlertSeeds(
   const typeAlertRepo = dataSource.getRepository(TypeAlert);
   const typeAlerts: TypeAlert[] = [];
 
-  // Filtrar parâmetros por tipo para criar alertas específicos
   const tempParameters = parameters.filter(p => p.idTypeParameter.typeJson === 'temp');
   const humParameters = parameters.filter(p => p.idTypeParameter.typeJson === 'umit');
   const rainParameters = parameters.filter(p => p.idTypeParameter.typeJson === 'rain');
   
-  // Criar alertas de temperatura alta
   for (const tempParam of tempParameters) {
     const highTempAlert = typeAlertRepo.create({
       name: `Alerta de Temperatura Alta - ${tempParam.idStation.name}`,
@@ -40,7 +32,6 @@ export async function runTypeAlertSeeds(
     typeAlerts.push(lowTempAlert);
   }
   
-  // Criar alertas de umidade baixa
   for (const humParam of humParameters) {
     const lowHumAlert = typeAlertRepo.create({
       name: `Alerta de Umidade Baixa - ${humParam.idStation.name}`,
@@ -51,7 +42,6 @@ export async function runTypeAlertSeeds(
     typeAlerts.push(lowHumAlert);
   }
   
-  // Criar alertas de chuva
   for (const rainParam of rainParameters) {
     const rainAlert = typeAlertRepo.create({
       name: `Alerta de Chuva - ${rainParam.idStation.name}`,
@@ -62,15 +52,15 @@ export async function runTypeAlertSeeds(
     typeAlerts.push(rainAlert);
   }
 
-  // Salvar tipos de alertas no banco
   return await typeAlertRepo.save(typeAlerts);
 }
 
-/**
- * Remove todos os tipos de alertas do banco de dados
- * @param dataSource Conexão com o banco de dados
- */
 export async function clearTypeAlertSeeds(dataSource: DataSource): Promise<void> {
-  const typeAlertRepo = dataSource.getRepository(TypeAlert);
-  await typeAlertRepo.clear();
+  const typeAlertRepository = dataSource.getRepository(TypeAlert);
+  
+  const typeAlerts = await typeAlertRepository.find();
+  
+  if (typeAlerts.length > 0) {
+    await typeAlertRepository.remove(typeAlerts);
+  }
 }

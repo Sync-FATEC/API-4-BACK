@@ -1,15 +1,18 @@
-// tests/integration/setup/TeardownIntegration.ts
 import { getContainer, getDataSource } from './SetupIntegration';
 
-export default async () => {
+const TeardownIntegration = async () => {
   const dataSource = getDataSource();
   const container = getContainer();
 
-  if (dataSource && dataSource.isInitialized) {
+  // Encerrar conexão com banco relacional
+  if (dataSource?.isInitialized) {
     await dataSource.destroy();
   }
 
+  // Parar container Docker (caso esteja usando testcontainers)
   if (container) {
     await container.stop();
   }
 };
+
+export default TeardownIntegration;
