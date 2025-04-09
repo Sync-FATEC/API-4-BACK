@@ -1,16 +1,14 @@
-name: Test Before Merge
+name: Pipeline Funcionalidade
 
 on:
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
+    
     services:
       postgres:
         image: postgres:latest
@@ -51,9 +49,12 @@ jobs:
 
       - name: Verify testing dependencies
         run: npm install -D supertest @types/supertest @types/mongodb @types/node-cron
+      
+      - name: Run tests unit
+        run: npm run test:unit
 
-      - name: Run Jest tests
-        run: npm run test -- --ci --coverage --testTimeout=10000
+      - name: Run tests integration
+        run: npm run test:integration
         env:
           NODE_ENV: test
           JWT_SECRET: test
