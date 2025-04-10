@@ -2,11 +2,18 @@ name: Pipeline Funcionalidade
 
 on:
   workflow_call:
+    inputs:
+      setup_run:
+        required: false
+        type: string
 
 jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+
+    env:
+      SETUP_RUN: ${{ inputs.setup_run }}
 
     steps:
       - name: Checkout code
@@ -26,5 +33,3 @@ jobs:
 
       - name: Run tests integration
         run: npm run test:integration
-        env:
-          SETUP_RUN=test
