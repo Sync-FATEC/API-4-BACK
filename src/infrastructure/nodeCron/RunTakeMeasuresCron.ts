@@ -12,9 +12,6 @@ import TypeAlertRepository from '../repositories/TypeAlertRepository';
 import { ReceiverMongoJsonUseCase } from '../../application/use-cases/receiverJson/receiverMongoUseCase';
 
 export class RunTakeMeasuresCron {
-  private uri = process.env.MONGO_URL || '';
-  private client = new MongoClient(this.uri);
-
   private measureRepository = new MeasureRepository();
   private stationRepository = new StationRepository();
   private alertRepository = new AlertRepository();
@@ -25,9 +22,12 @@ export class RunTakeMeasuresCron {
 
   async execute() {
     try {
-      await this.client.connect();
+      if (process.env.SETUP_RUN=== 'test') return;
+      const uri = process.env.MONGO_URL || '';
+      const client = new MongoClient(uri);
+      await client.connect();
       const dbName = process.env.MONGO_DATABASE;
-      const db = this.client.db(dbName);
+      const db = client.db(dbName);
 
       const mongoDbRepository = new MongoDbRepository(db, 'measures');
 
@@ -49,12 +49,5 @@ export class RunTakeMeasuresCron {
     } catch (error) {
       console.error('Erro ao configurar cron job para MongoDB:', error);
     }
-  }
-
-  async stop() {
-    this.task?.stop();
-    await this.client.close(true);
-    console.log('Conexão com o MongoDB encerrada');
-    
   }
 }

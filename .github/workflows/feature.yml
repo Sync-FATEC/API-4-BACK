@@ -26,3 +26,5 @@ jobs:
 
       - name: Run tests integration
         run: npm run test:integration
+        env:
+          SETUP_RUN=test

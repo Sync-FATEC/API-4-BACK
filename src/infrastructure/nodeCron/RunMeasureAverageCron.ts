@@ -13,6 +13,7 @@ export class RunMeasureAverageCron {
 
   async execute() {
     try {
+      if (process.env.SETUP_RUN === 'test') return;
       this.useCase = new CreateMeasureAverageUseCase(
         this.measureAverageRepository,
         this.measureRepository
@@ -33,10 +34,5 @@ export class RunMeasureAverageCron {
     } catch (error) {
       console.error('Erro ao configurar cron jobs para médias:', error);
     }
-  }
-
-  stopTasks() {
-    this.hourlyTask?.stop();
-    this.dailyTask?.stop();
   }
 }
