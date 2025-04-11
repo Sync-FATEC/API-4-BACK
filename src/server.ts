@@ -2,6 +2,7 @@ import 'dotenv/config';
 import 'reflect-metadata';
 import express from 'express';
 import cors from 'cors';
+import http from 'http';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
 import { initializeDatabase } from './infrastructure/database/initialize';
@@ -16,6 +17,7 @@ import { errorMiddleware } from './web/middlewares/errorMiddleware';
 import { alertRoutes } from './web/routes/Alert.routes';
 import { measureRoutes } from './web/routes/Measure.routes';
 import { receiverJsonRoutes } from './web/routes/receiverJson.routes';
+import { createSocketServer } from './infrastructure/websocket/socket';
 
 const swaggerOptions = {
   definition: {
@@ -50,6 +52,9 @@ async function bootstrap() {
     try {
         const app = express();
 
+        const server = http.createServer(app);
+
+        createSocketServer(server); 
         // Middlewares básicos
         app.use(cors());
         app.use(express.json());

@@ -1,5 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import Parameter from "../agregates/Parameter/Parameter";
+import { EmailStation } from "./EmailsStation";
 
 @Entity()
 export class Station {
@@ -24,5 +25,6 @@ export class Station {
   @OneToMany(() => Parameter, (parameter) => parameter.idStation)
   parameters: Parameter[];
 
-  
+  @OneToMany(() => EmailStation, (emailStation) => emailStation.station)
+  emailsToAlert: EmailStation[]
 }
