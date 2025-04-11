@@ -4,7 +4,6 @@ import express from 'express';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
-import './application/operations/receiverMongo/runMongo'
 import { initializeDatabase } from './infrastructure/database/initialize';
 import { authRoutes } from './web/routes/auth.routes';
 import { responseHandler } from './infrastructure/middlewares/responseHandler';
@@ -19,6 +18,9 @@ import { measureRoutes } from './web/routes/Measure.routes';
 import { receiverJsonRoutes } from './web/routes/receiverJson.routes';
 import { dashboardRoutes } from './web/routes/dashboard.routes';
 import { swaggerOptions } from './swaggetOptions';
+import measureAverageRoutes from './web/routes/MeasureAverage.routes';
+import { CronManager } from './infrastructure/nodeCron/CronManager';
+
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
@@ -43,12 +45,19 @@ app.use('/measure', measureRoutes);
 app.use('/alert', alertRoutes);
 app.use('/parameter', parameterRoutes);
 app.use('/receiverJson', receiverJsonRoutes);
+app.use('/measureAverage', measureAverageRoutes);
 app.use('/dashboard', dashboardRoutes);
 
 // Middleware de erro (deve ser o último)
 app.use(errorMiddleware);
 
 let server: any;
+
+
+// Iniciar o cron job
+const cronManager = new CronManager();
+cronManager.startAll();
+
 
 export async function startServer(port = process.env.PORT) {
     try {

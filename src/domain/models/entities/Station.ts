@@ -1,5 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import Parameter from "../agregates/Parameter/Parameter";
+import { MeasureAverage } from "./MeasureAverage";
 
 @Entity()
 export class Station {
@@ -26,4 +27,8 @@ export class Station {
 
   @OneToMany(() => Parameter, (parameter) => parameter.idStation)
   parameters: Parameter[];
+
+  @OneToMany(() => MeasureAverage, (average) => average.station)
+  measureAverages: MeasureAverage[];
+
 }

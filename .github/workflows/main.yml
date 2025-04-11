@@ -3,13 +3,13 @@ name: CI Principal
 on:
   pull_request:
     branches:
-    - develop
-    - main
-    - 'feat/*'
-    - 'fix/*'
-    - 'improve/*'
-    - 'test/*'
-    - 'refactor/*'
+      - develop
+      - main
+      - 'feat/*'
+      - 'fix/*'
+      - 'improve/*'
+      - 'test/*'
+      - 'refactor/*'
 
 jobs:
   check-branch:
@@ -21,3 +21,5 @@ jobs:
   feature:
     if: startsWith(github.head_ref, 'feat/')
     uses: ./.github/workflows/feature.yml
+    with:
+      setup_run: "test"

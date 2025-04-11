@@ -5,14 +5,15 @@ module.exports = {
         "**/tests/integration/**/**/*.test.ts",
       ],
     testPathIgnorePatterns: ["/node_modules/"],
-    collectCoverage: true,
     coverageDirectory: "coverage/integration",
     coverageReporters: ["text", "lcov"],
+    collectCoverage: false,
     testEnvironment: "node",
     moduleNameMapper: {
       "^@/(.)$": "<rootDir>/src/$1",
     },
     preset: "ts-jest",
-    globalSetup: './tests/setup/globalSetup.ts',
-    globalTeardown: './tests/setup/globalTeardown.ts',
+    globalSetup: './tests/integration/setup/SetupIntegration.ts',
+    globalTeardown: './tests/integration/setup/TeardownIntegration.ts',
+    testTimeout: 60000,
   };
