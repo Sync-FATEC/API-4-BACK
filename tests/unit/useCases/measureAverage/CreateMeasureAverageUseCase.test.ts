@@ -26,7 +26,8 @@ describe('CreateMeasureAverageUseCase', () => {
             deleteMeasure: jest.fn(),
             updateMeasure: jest.fn(),
             listMeasuresLastHour: jest.fn(),
-            listMeasuresLastDay: jest.fn()
+            listMeasuresLastDay: jest.fn(),
+            listWithFilters: jest.fn(),
         } as jest.Mocked<IMeasureRepository>;
 
         // Instancia o CreateMeasureAverageUseCase com os repositórios mockados
