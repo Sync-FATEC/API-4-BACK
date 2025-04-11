@@ -1,17 +1,17 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { ListDashboardUseCase } from '../../../application/use-cases/dashboard/ListDashboardUseCase';
 
 export class ListDashboardController {
   constructor(private listDashboardUseCase: ListDashboardUseCase) {}
 
-  async handle(request: Request, response: Response): Promise<Response> {
+  async getAll(req: Request, res, next: NextFunction): Promise<Response> {
     try {
       const { 
         startDate, 
         endDate, 
         stationId, 
         parameterId 
-      } = request.query;
+      } = req.query;
 
       // Convert query string parameters to appropriate types
       const filters = {
@@ -23,15 +23,10 @@ export class ListDashboardController {
 
       const dashboardData = await this.listDashboardUseCase.execute(filters);
 
-      return response.status(200).json({
-        success: true,
-        data: dashboardData
-      });
+      return res.sendSuccess(dashboardData, 200);
+      
     } catch (error) {
-      return response.status(400).json({
-        success: false,
-        error: error instanceof Error ? error.message : 'Erro inesperado'
-      });
+      next(error);
     }
   }
 }

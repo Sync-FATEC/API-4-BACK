@@ -4,6 +4,8 @@ import { ListDashboardUseCase } from '../../application/use-cases/dashboard/List
 import { MeasureRepository } from '../../infrastructure/repositories/MeasureRepository';
 import StationRepository from '../../infrastructure/repositories/StationRepository';
 import { ParameterRepository } from '../../infrastructure/repositories/ParameterRepository';
+import { asyncHandler } from '../middlewares/asyncHandler';
+import { limiter } from "../../infrastructure/middlewares/limiter";
 
 const dashboardRoutes = Router();
 
@@ -18,9 +20,7 @@ const listDashboardUseCase = new ListDashboardUseCase(
 const listDashboardController = new ListDashboardController(listDashboardUseCase);
 
 // Define routes
-dashboardRoutes.get('/', (req, res) => {
-    return listDashboardController.handle(req, res);
-});
+dashboardRoutes.get('/list', limiter, asyncHandler((req, res, next) => listDashboardController.getAll(req, res, next)));
 
 // Additional dashboard routes can be added here
 
