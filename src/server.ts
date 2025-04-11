@@ -17,6 +17,7 @@ import { errorMiddleware } from './web/middlewares/errorMiddleware';
 import { alertRoutes } from './web/routes/Alert.routes';
 import { measureRoutes } from './web/routes/Measure.routes';
 import { receiverJsonRoutes } from './web/routes/receiverJson.routes';
+import { dashboardRoutes } from './web/routes/dashboard.routes';
 import { swaggerOptions } from './swaggetOptions';
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
@@ -42,6 +43,7 @@ app.use('/measure', measureRoutes);
 app.use('/alert', alertRoutes);
 app.use('/parameter', parameterRoutes);
 app.use('/receiverJson', receiverJsonRoutes);
+app.use('/dashboard', dashboardRoutes);
 
 // Middleware de erro (deve ser o último)
 app.use(errorMiddleware);
