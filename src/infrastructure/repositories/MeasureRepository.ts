@@ -10,6 +10,32 @@ import { TypeParameter } from "../../domain/models/entities/TypeParameter";
 export class MeasureRepository implements IMeasureRepository {
   private measures: Repository<Measure> = AppDataSource.getRepository(Measure);
 
+  async listWithFilters(filters: { startDate?: Date; endDate?: Date; stationId?: string; parameterId?: string; }): Promise<Measure[]> {
+    const queryBuilder = this.measures.createQueryBuilder('measure')
+      .leftJoinAndSelect('measure.parameter', 'parameter'); // Important: Load the parameter relationship
+    
+    if (filters.startDate) {
+      const startUnixTime = Math.floor(filters.startDate.getTime() / 1000);
+      queryBuilder.andWhere('measure.unixTime >= :startUnixTime', { startUnixTime });
+    }
+    
+    if (filters.endDate) {
+      const endUnixTime = Math.floor(filters.endDate.getTime() / 1000);
+      queryBuilder.andWhere('measure.unixTime <= :endUnixTime', { endUnixTime });
+    }
+    
+    if (filters.parameterId) {
+      queryBuilder.andWhere('parameter.id = :parameterId', { parameterId: filters.parameterId });
+    }
+    
+    if (filters.stationId) {
+      queryBuilder.leftJoin('parameter.idStation', 'station')
+        .andWhere('station.id = :stationId', { stationId: filters.stationId });
+    }
+    
+    return await queryBuilder.getMany();
+  }
+
   // Método para criar um Measure
   async createMeasure(measure: Partial<Measure>): Promise<Measure> {
     return await this.measures.save(measure);
