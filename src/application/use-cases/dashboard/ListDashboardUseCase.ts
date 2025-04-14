@@ -38,19 +38,19 @@ export class ListDashboardUseCase {
         };
       }
 
-      // Get stations based on filter or all stations
+      // Pega as estações com base no filtro
       const stations = filters.stationId 
         ? [await this.stationRepository.findById(filters.stationId)]
         : await this.stationRepository.list();
       
-      // Get parameters with their relationships
+      // Pega os parametro com seus relacionados
       const parameters = await Promise.all(
         (await this.parameterRepository.list()).map(async p => {
           return await this.parameterRepository.getWithParameterThenInclude(p.id);
         })
       ).then(params => params.filter(p => p !== null));
       
-      // Group measurements by parameter ID
+      // Agrupa as medições com o ID do parametro
       const measurementsByParameter = new Map();
       
       for (const measurement of measurements) {
@@ -71,19 +71,14 @@ export class ListDashboardUseCase {
         });
       }
       
-      // Organize data by station
       const stationsWithData = stations.map(station => {
-        // Get parameters for this station
         const stationParameters = parameters.filter(p => 
           p.idStation && p.idStation.id === station.id
         );
         
-        // For each parameter, add its type and measurements
         const parametersWithDetails = stationParameters.map(param => {
-          // Get type parameter information
           const typeParam = param.idTypeParameter;
           
-          // Get measurements for this parameter
           const measurementsForParameter = measurementsByParameter.get(param.id) || [];
           
           return {
@@ -101,7 +96,6 @@ export class ListDashboardUseCase {
           };
         });
         
-        // Only include stations that have parameters with measurements
         const hasAnyMeasurements = parametersWithDetails.some(p => p.measurements.length > 0);
         
         return {
@@ -116,12 +110,11 @@ export class ListDashboardUseCase {
         };
       });
       
-      // Filter out stations with no data unless specifically requested
       const filteredStations = filters.stationId 
         ? stationsWithData 
         : stationsWithData.filter(s => s.hasData);
         
-      // Remove temporary hasData property
+      // Remove temporariamente a data do hash
       filteredStations.forEach(s => delete s.hasData);
       
       return {
