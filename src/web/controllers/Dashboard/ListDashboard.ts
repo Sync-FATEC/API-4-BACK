@@ -9,14 +9,45 @@ export class ListDashboardController {
       const { 
         startDate, 
         endDate, 
+        date,
         stationId, 
-        parameterId 
+        parameterId,
+        lastDays
       } = req.query;
 
-      // Convert query string parameters to appropriate types
+      let startDateObj: Date | undefined = undefined;
+      let endDateObj: Date | undefined = undefined;
+      
+      // Se foi solicitado os últimos N dias
+      if (lastDays) {
+        const days = parseInt(lastDays as string, 10);
+        endDateObj = new Date(); // Hora atual
+        startDateObj = new Date();
+        startDateObj.setDate(startDateObj.getDate() - days);
+      }
+      // Se um único dia for especificado
+      else if (date) {
+        const dateStr = date as string;
+        
+        // Cria data no fuso UTC
+        startDateObj = new Date(`${dateStr}T00:00:00-03:00`); // Considerando fuso -03:00 do Brasil
+        endDateObj = new Date(`${dateStr}T23:59:59.999-03:00`);
+      } 
+      // Se um intervalo for especificado
+      else {
+        if (startDate) {
+          startDateObj = new Date(startDate as string);
+        }
+        
+        if (endDate) {
+          endDateObj = new Date(endDate as string);
+        }
+      }
+
+      // Converte os parâmetros de query string para os tipos apropriados
       const filters = {
-        startDate: startDate ? new Date(startDate as string) : undefined,
-        endDate: endDate ? new Date(endDate as string) : undefined,
+        startDate: startDateObj,
+        endDate: endDateObj,
         stationId: stationId ? String(stationId) : undefined,
         parameterId: parameterId ? String(parameterId) : undefined
       };

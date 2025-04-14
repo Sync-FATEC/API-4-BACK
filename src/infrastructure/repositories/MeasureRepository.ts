@@ -12,14 +12,18 @@ export class MeasureRepository implements IMeasureRepository {
 
   async listWithFilters(filters: { startDate?: Date; endDate?: Date; stationId?: string; parameterId?: string; }): Promise<Measure[]> {
     const queryBuilder = this.measures.createQueryBuilder('measure')
-      .leftJoinAndSelect('measure.parameter', 'parameter'); // Important: Load the parameter relationship
+      .leftJoinAndSelect('measure.parameter', 'parameter')
+      .leftJoinAndSelect('parameter.idStation', 'station')
+      .leftJoinAndSelect('parameter.idTypeParameter', 'typeParameter');
     
     if (filters.startDate) {
+      // Converter data para timestamp unix (segundos)
       const startUnixTime = Math.floor(filters.startDate.getTime() / 1000);
       queryBuilder.andWhere('measure.unixTime >= :startUnixTime', { startUnixTime });
     }
     
     if (filters.endDate) {
+      // Converter data para timestamp unix (segundos)
       const endUnixTime = Math.floor(filters.endDate.getTime() / 1000);
       queryBuilder.andWhere('measure.unixTime <= :endUnixTime', { endUnixTime });
     }
@@ -29,9 +33,11 @@ export class MeasureRepository implements IMeasureRepository {
     }
     
     if (filters.stationId) {
-      queryBuilder.leftJoin('parameter.idStation', 'station')
-        .andWhere('station.id = :stationId', { stationId: filters.stationId });
+      queryBuilder.andWhere('station.id = :stationId', { stationId: filters.stationId });
     }
+    
+    // Ordenar por timestamp para facilitar a visualização
+    queryBuilder.orderBy('measure.unixTime', 'ASC');
     
     return await queryBuilder.getMany();
   }

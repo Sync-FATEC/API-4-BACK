@@ -26,6 +26,17 @@ export class ListDashboardUseCase {
         stationId: filters.stationId,
         parameterId: filters.parameterId
       });
+      
+      // If no measurements found, return empty dashboard
+      if (measurements.length === 0) {
+        return {
+          stations: [],
+          timeRange: {
+            start: filters.startDate || null,
+            end: filters.endDate || null
+          }
+        };
+      }
 
       // Get stations based on filter or all stations
       const stations = filters.stationId 
@@ -90,6 +101,9 @@ export class ListDashboardUseCase {
           };
         });
         
+        // Only include stations that have parameters with measurements
+        const hasAnyMeasurements = parametersWithDetails.some(p => p.measurements.length > 0);
+        
         return {
           id: station.id,
           name: station.name,
@@ -97,15 +111,30 @@ export class ListDashboardUseCase {
             latitude: station.latitude,
             longitude: station.longitude
           },
-          parameters: parametersWithDetails
+          parameters: parametersWithDetails,
+          hasData: hasAnyMeasurements
         };
       });
       
+      // Filter out stations with no data unless specifically requested
+      const filteredStations = filters.stationId 
+        ? stationsWithData 
+        : stationsWithData.filter(s => s.hasData);
+        
+      // Remove temporary hasData property
+      filteredStations.forEach(s => delete s.hasData);
+      
       return {
-        stations: stationsWithData,
+        stations: filteredStations,
         timeRange: {
           start: this.getMinDate(measurements),
           end: this.getMaxDate(measurements)
+        },
+        filters: {
+          startDate: filters.startDate,
+          endDate: filters.endDate,
+          stationId: filters.stationId,
+          parameterId: filters.parameterId
         }
       };
     } catch (error) {
