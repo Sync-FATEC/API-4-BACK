@@ -17,13 +17,11 @@ export class MeasureRepository implements IMeasureRepository {
       .leftJoinAndSelect('parameter.idTypeParameter', 'typeParameter');
     
     if (filters.startDate) {
-      // Converter data para timestamp unix (segundos)
       const startUnixTime = Math.floor(filters.startDate.getTime() / 1000);
       queryBuilder.andWhere('measure.unixTime >= :startUnixTime', { startUnixTime });
     }
     
     if (filters.endDate) {
-      // Converter data para timestamp unix (segundos)
       const endUnixTime = Math.floor(filters.endDate.getTime() / 1000);
       queryBuilder.andWhere('measure.unixTime <= :endUnixTime', { endUnixTime });
     }
@@ -36,24 +34,20 @@ export class MeasureRepository implements IMeasureRepository {
       queryBuilder.andWhere('station.id = :stationId', { stationId: filters.stationId });
     }
     
-    // Ordenar por timestamp para facilitar a visualização
     queryBuilder.orderBy('measure.unixTime', 'ASC');
     
     return await queryBuilder.getMany();
   }
 
-  // Método para criar um Measure
   async createMeasure(measure: Partial<Measure>): Promise<Measure> {
     return await this.measures.save(measure);
   }
 
-  // Método para buscar um Measure por ID
   async getById(id: string): Promise<Measure | null> {
     const measure = await this.measures.findOne({ where: { id } });
     return measure || null;
   }
 
-  // Método para listar todos os Measures
   async listMeasures(
     stationId: string | null
   ): Promise<ListMeasureResponseDTO[]> {
@@ -87,13 +81,11 @@ export class MeasureRepository implements IMeasureRepository {
     );
   }
 
-  // Método para excluir um Measure
   async deleteMeasure(id: string): Promise<boolean> {
     const result = await this.measures.delete(id);
     return result.affected !== 0;
   }
 
-  // Método para atualizar um Measure
   async updateMeasure(measure: Measure): Promise<Measure> {
     return await this.measures.save(measure);
   }
