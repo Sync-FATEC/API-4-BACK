@@ -18,22 +18,18 @@ export class ListDashboardController {
       let startDateObj: Date | undefined = undefined;
       let endDateObj: Date | undefined = undefined;
       
-      // Se foi solicitado os últimos N dias
       if (lastDays) {
         const days = parseInt(lastDays as string, 10);
-        endDateObj = new Date(); // Hora atual
+        endDateObj = new Date();
         startDateObj = new Date();
         startDateObj.setDate(startDateObj.getDate() - days);
       }
-      // Se um único dia for especificado
       else if (date) {
         const dateStr = date as string;
         
-        // Cria data no fuso UTC
-        startDateObj = new Date(`${dateStr}T00:00:00-03:00`); // Considerando fuso -03:00 do Brasil
+        startDateObj = new Date(`${dateStr}T00:00:00-03:00`);
         endDateObj = new Date(`${dateStr}T23:59:59.999-03:00`);
       } 
-      // Se um intervalo for especificado
       else {
         if (startDate) {
           startDateObj = new Date(startDate as string);
@@ -44,7 +40,6 @@ export class ListDashboardController {
         }
       }
 
-      // Converte os parâmetros de query string para os tipos apropriados
       const filters = {
         startDate: startDateObj,
         endDate: endDateObj,
