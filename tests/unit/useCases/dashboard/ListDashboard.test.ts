@@ -90,7 +90,6 @@ describe("ListDashboardUseCase", () => {
                 }
         });
         
-        // Verifica se o repository foi chamado com os filtros corretos
         expect(mockMeasureRepository.listWithFilters).toHaveBeenCalledWith({
             startDate: new Date("2023-01-01"),
             endDate: new Date("2023-12-12"),
@@ -117,11 +116,9 @@ describe("ListDashboardUseCase", () => {
         const useCase = makeUseCase();
         const result = await useCase.execute(filters);
         
-        // Verifica se o repository de estação foi chamado com o ID correto
         expect(mockStationRepository.findById).toHaveBeenCalledWith("station-123");
         expect(mockStationRepository.list).not.toHaveBeenCalled();
         
-        // Verifica se os filtros foram passados corretamente para o repository
         expect(mockMeasureRepository.listWithFilters).toHaveBeenCalledWith({
             stationId: "station-123",
             startDate: undefined,
@@ -144,7 +141,6 @@ describe("ListDashboardUseCase", () => {
             }
         });
         
-        // Não deve chamar os outros repositories se não há medições
         expect(mockStationRepository.list).not.toHaveBeenCalled();
         expect(mockParameterRepository.list).not.toHaveBeenCalled();
     });
@@ -167,7 +163,6 @@ describe("ListDashboardUseCase", () => {
         const useCase = makeUseCase();
         const result = await useCase.execute(filters);
         
-        // Verifica se os filtros foram passados corretamente para o repository
         expect(mockMeasureRepository.listWithFilters).toHaveBeenCalledWith({
             parameterId: "param-123",
             startDate: undefined,
