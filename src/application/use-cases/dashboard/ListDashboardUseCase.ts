@@ -27,7 +27,6 @@ export class ListDashboardUseCase {
         parameterId: filters.parameterId
       });
       
-      // If no measurements found, return empty dashboard
       if (measurements.length === 0) {
         return {
           stations: [],
@@ -38,7 +37,6 @@ export class ListDashboardUseCase {
         };
       }
 
-      // Pega as estações com base no filtro
       const stations = filters.stationId 
         ? [await this.stationRepository.findById(filters.stationId)]
         : await this.stationRepository.list();
@@ -114,7 +112,6 @@ export class ListDashboardUseCase {
         ? stationsWithData 
         : stationsWithData.filter(s => s.hasData);
         
-      // Remove temporariamente a data do hash
       filteredStations.forEach(s => delete s.hasData);
       
       return {
