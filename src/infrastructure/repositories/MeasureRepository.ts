@@ -12,7 +12,9 @@ export class MeasureRepository implements IMeasureRepository {
 
   async listWithFilters(filters: { startDate?: Date; endDate?: Date; stationId?: string; parameterId?: string; }): Promise<Measure[]> {
     const queryBuilder = this.measures.createQueryBuilder('measure')
-      .leftJoinAndSelect('measure.parameter', 'parameter'); // Important: Load the parameter relationship
+      .leftJoinAndSelect('measure.parameter', 'parameter')
+      .leftJoinAndSelect('parameter.idStation', 'station')
+      .leftJoinAndSelect('parameter.idTypeParameter', 'typeParameter');
     
     if (filters.startDate) {
       const startUnixTime = Math.floor(filters.startDate.getTime() / 1000);
@@ -29,25 +31,23 @@ export class MeasureRepository implements IMeasureRepository {
     }
     
     if (filters.stationId) {
-      queryBuilder.leftJoin('parameter.idStation', 'station')
-        .andWhere('station.id = :stationId', { stationId: filters.stationId });
+      queryBuilder.andWhere('station.id = :stationId', { stationId: filters.stationId });
     }
+    
+    queryBuilder.orderBy('measure.unixTime', 'ASC');
     
     return await queryBuilder.getMany();
   }
 
-  // Método para criar um Measure
   async createMeasure(measure: Partial<Measure>): Promise<Measure> {
     return await this.measures.save(measure);
   }
 
-  // Método para buscar um Measure por ID
   async getById(id: string): Promise<Measure | null> {
     const measure = await this.measures.findOne({ where: { id } });
     return measure || null;
   }
 
-  // Método para listar todos os Measures
   async listMeasures(
     stationId: string | null
   ): Promise<ListMeasureResponseDTO[]> {
@@ -81,13 +81,11 @@ export class MeasureRepository implements IMeasureRepository {
     );
   }
 
-  // Método para excluir um Measure
   async deleteMeasure(id: string): Promise<boolean> {
     const result = await this.measures.delete(id);
     return result.affected !== 0;
   }
 
-  // Método para atualizar um Measure
   async updateMeasure(measure: Measure): Promise<Measure> {
     return await this.measures.save(measure);
   }

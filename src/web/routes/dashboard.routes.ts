@@ -6,22 +6,25 @@ import StationRepository from '../../infrastructure/repositories/StationReposito
 import { ParameterRepository } from '../../infrastructure/repositories/ParameterRepository';
 import { asyncHandler } from '../middlewares/asyncHandler';
 import { limiter } from "../../infrastructure/middlewares/limiter";
+import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
 
 const dashboardRoutes = Router();
 
-// Initialize use case
 const listDashboardUseCase = new ListDashboardUseCase(
     new MeasureRepository(),
     new StationRepository(),
     new ParameterRepository()
 );
 
-// Initialize controller
 const listDashboardController = new ListDashboardController(listDashboardUseCase);
 
-// Define routes
-dashboardRoutes.get('/list', limiter, asyncHandler((req, res, next) => listDashboardController.getAll(req, res, next)));
+dashboardRoutes.get('/public', limiter, asyncHandler((req, res, next) => {
+    req.query.lastDays = '7';
+    return listDashboardController.getAll(req, res, next);
+}));
 
-// Additional dashboard routes can be added here
+dashboardRoutes.get('/list', limiter, ensureAuthenticated, asyncHandler((req, res, next) => 
+    listDashboardController.getAll(req, res, next)
+));
 
 export { dashboardRoutes };

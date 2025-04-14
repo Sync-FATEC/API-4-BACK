@@ -26,20 +26,29 @@ export class ListDashboardUseCase {
         stationId: filters.stationId,
         parameterId: filters.parameterId
       });
+      
+      if (measurements.length === 0) {
+        return {
+          stations: [],
+          timeRange: {
+            start: filters.startDate || null,
+            end: filters.endDate || null
+          }
+        };
+      }
 
-      // Get stations based on filter or all stations
       const stations = filters.stationId 
         ? [await this.stationRepository.findById(filters.stationId)]
         : await this.stationRepository.list();
       
-      // Get parameters with their relationships
+      // Pega os parametro com seus relacionados
       const parameters = await Promise.all(
         (await this.parameterRepository.list()).map(async p => {
           return await this.parameterRepository.getWithParameterThenInclude(p.id);
         })
       ).then(params => params.filter(p => p !== null));
       
-      // Group measurements by parameter ID
+      // Agrupa as medições com o ID do parametro
       const measurementsByParameter = new Map();
       
       for (const measurement of measurements) {
@@ -60,19 +69,14 @@ export class ListDashboardUseCase {
         });
       }
       
-      // Organize data by station
       const stationsWithData = stations.map(station => {
-        // Get parameters for this station
         const stationParameters = parameters.filter(p => 
           p.idStation && p.idStation.id === station.id
         );
         
-        // For each parameter, add its type and measurements
         const parametersWithDetails = stationParameters.map(param => {
-          // Get type parameter information
           const typeParam = param.idTypeParameter;
           
-          // Get measurements for this parameter
           const measurementsForParameter = measurementsByParameter.get(param.id) || [];
           
           return {
@@ -90,6 +94,8 @@ export class ListDashboardUseCase {
           };
         });
         
+        const hasAnyMeasurements = parametersWithDetails.some(p => p.measurements.length > 0);
+        
         return {
           id: station.id,
           name: station.name,
@@ -97,15 +103,28 @@ export class ListDashboardUseCase {
             latitude: station.latitude,
             longitude: station.longitude
           },
-          parameters: parametersWithDetails
+          parameters: parametersWithDetails,
+          hasData: hasAnyMeasurements
         };
       });
       
+      const filteredStations = filters.stationId 
+        ? stationsWithData 
+        : stationsWithData.filter(s => s.hasData);
+        
+      filteredStations.forEach(s => delete s.hasData);
+      
       return {
-        stations: stationsWithData,
+        stations: filteredStations,
         timeRange: {
           start: this.getMinDate(measurements),
           end: this.getMaxDate(measurements)
+        },
+        filters: {
+          startDate: filters.startDate,
+          endDate: filters.endDate,
+          stationId: filters.stationId,
+          parameterId: filters.parameterId
         }
       };
     } catch (error) {
