@@ -21,7 +21,14 @@ jobs:
         id: extract
         run: echo "branch_name=${GITHUB_HEAD_REF}" >> $GITHUB_OUTPUT
 
-  feature:
+  unit-tests:
+    needs: integration-tests
+    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/')
+    uses: ./.github/workflows/unit-test.yml
+    with:
+      setup_run: "test"
+
+  integration-tests:
     needs: get-branch
     if: startsWith(needs.get-branch.outputs.branch_name, 'feat/')
     uses: ./.github/workflows/integration-test.yml
