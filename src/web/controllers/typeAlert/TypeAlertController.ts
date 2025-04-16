@@ -60,7 +60,6 @@ export class TypeAlertController {
         !id ||
         !name ||
         !comparisonOperator ||
-        criticality ||
         !value ||
         !parameterId
       ) {

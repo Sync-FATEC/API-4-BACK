@@ -1,10 +1,10 @@
 import 'dotenv/config';
 import 'reflect-metadata';
+import http from 'http';
 import express from 'express';
 import cors from 'cors';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
-import './application/operations/receiverMongo/runMongo'
 import { initializeDatabase } from './infrastructure/database/initialize';
 import { authRoutes } from './web/routes/auth.routes';
 import { responseHandler } from './infrastructure/middlewares/responseHandler';
@@ -20,6 +20,7 @@ import { receiverJsonRoutes } from './web/routes/receiverJson.routes';
 import { swaggerOptions } from './swaggetOptions';
 import { emailStationRoutes } from './web/routes/emailStation.router';
 import { CronManager } from './infrastructure/nodeCron/CronManager';
+import { createSocketServer } from './infrastructure/websocket/socket';
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
@@ -64,6 +65,10 @@ cronManager.startAll();
 export async function startServer(port = process.env.PORT) {
   try {
     await initializeDatabase();
+
+    const ws = http.createServer(app);
+
+    createSocketServer(ws)
 
     server = app.listen(port, () => {
       console.log(`🚀 Servidor rodando na porta ${port}`);

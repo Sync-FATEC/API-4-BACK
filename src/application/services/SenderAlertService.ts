@@ -7,6 +7,12 @@ import { Alert } from "../../domain/models/agregates/Alert/Alert";
 import { TypeAlert } from "../../domain/models/agregates/Alert/TypeAlert";
 import { Measure } from "../../domain/models/entities/Measure";
 
+export type AlertNotificationData = {
+  alertId: string;
+  alertName: string;
+  value: number;
+}
+
 export class SenderAlertService implements ISenderAlertService {
   private notificationService: INotificationService;
   private emailSender: IEmailSender;
@@ -44,13 +50,11 @@ export class SenderAlertService implements ISenderAlertService {
     // Enviar notificação
     this.notificationService.sendNotification(this.getMessage(typeAlert.criticality), messageData);
     
-    // Enviar email para cada destinatário
     const subject = this.getMessage(typeAlert.criticality);
-    const text = `Alerta para a estação ${typeAlert.parameter.idStation.name}`;
     
     // Enviar email para cada destinatário individualmente
     for (const email of emails) {
-      await this.emailSender.sendEmail(email, subject, text);
+      await this.emailSender.sendAlertEmail(email, messageData, subject);
     }
   }
 

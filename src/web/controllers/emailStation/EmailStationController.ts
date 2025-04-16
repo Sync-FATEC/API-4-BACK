@@ -6,22 +6,26 @@ export class EmailStationController {
   private emailStationUseCase: RegisterEmailStationUseCase;
 
   constructor(emailStationUseCase: RegisterEmailStationUseCase) {
-      this.emailStationUseCase = emailStationUseCase;
+    this.emailStationUseCase = emailStationUseCase;
   }
 
   async create(req: Request, res, next: NextFunction): Promise<Response> {
-      const { email, stationId } = req.body;
+    const { email, stationId } = req.body;
 
+    try {
       if (!email) {
-        throw new SystemContextException('E-mail obrigatório');
+        throw new SystemContextException("E-mail obrigatório");
       }
 
       if (!stationId) {
-        throw new SystemContextException('Estação obrigatória');
+        throw new SystemContextException("Estação obrigatória");
       }
 
       this.emailStationUseCase.execute(email, stationId);
 
       return res.sendSuccess({ legal: "legal" }, 200);
+    } catch (error) {
+      next(error);
+    }
   }
 }
