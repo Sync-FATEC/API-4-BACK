@@ -1,51 +1,25 @@
-import "dotenv/config";
-import "reflect-metadata";
-import express from "express";
-import cors from "cors";
-import http from "http";
-import swaggerUi from "swagger-ui-express";
-import swaggerJsdoc from "swagger-jsdoc";
-import "./application/operations/receiverMongo/runMongo";
-import { initializeDatabase } from "./infrastructure/database/initialize";
-import { authRoutes } from "./web/routes/auth.routes";
-import { responseHandler } from "./infrastructure/middlewares/responseHandler";
-import { userRoutes } from "./web/routes/user.routes";
-import { stationRoutes } from "./web/routes/station.routes";
-import { typeAlertRoutes } from "./web/routes/typeAlert.routes";
-import { typeParameterRoutes } from "./web/routes/typeParameter.routes";
-import { parameterRoutes } from "./web/routes/parameter.routes";
-import { errorMiddleware } from "./web/middlewares/errorMiddleware";
-import { alertRoutes } from "./web/routes/Alert.routes";
-import { measureRoutes } from "./web/routes/Measure.routes";
-import { receiverJsonRoutes } from "./web/routes/receiverJson.routes";
-import { emailStationRoutes } from "./web/routes/emailStation.router";
-
-const swaggerOptions = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "API de Monitoramento",
-      version: "1.0.0",
-      description: "API para gerenciamento de estações, parâmetros e alertas",
-    },
-    servers: [
-      {
-        url: `http://localhost:${process.env.PORT}`,
-        description: "Servidor de Desenvolvimento",
-      },
-    ],
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: "http",
-          scheme: "bearer",
-          bearerFormat: "JWT",
-        },
-      },
-    },
-  },
-  apis: ["./swagger.yaml"], // Caminho para o arquivo swagger.yaml
-};
+import 'dotenv/config';
+import 'reflect-metadata';
+import express from 'express';
+import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJsdoc from 'swagger-jsdoc';
+import './application/operations/receiverMongo/runMongo'
+import { initializeDatabase } from './infrastructure/database/initialize';
+import { authRoutes } from './web/routes/auth.routes';
+import { responseHandler } from './infrastructure/middlewares/responseHandler';
+import { userRoutes } from './web/routes/user.routes';
+import { stationRoutes } from './web/routes/station.routes';
+import { typeAlertRoutes } from './web/routes/typeAlert.routes';
+import { typeParameterRoutes } from './web/routes/typeParameter.routes';
+import { parameterRoutes } from './web/routes/parameter.routes';
+import { errorMiddleware } from './web/middlewares/errorMiddleware';
+import { alertRoutes } from './web/routes/Alert.routes';
+import { measureRoutes } from './web/routes/Measure.routes';
+import { receiverJsonRoutes } from './web/routes/receiverJson.routes';
+import { swaggerOptions } from './swaggetOptions';
+import { emailStationRoutes } from './web/routes/emailStation.router';
+import { CronManager } from './infrastructure/nodeCron/CronManager';
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
@@ -71,6 +45,7 @@ app.use("/station", stationRoutes);
 app.use("/typeParameter", typeParameterRoutes);
 app.use("/measure", measureRoutes);
 app.use("/alert", alertRoutes);
+
 app.use("/parameter", parameterRoutes);
 app.use("/receiverJson", receiverJsonRoutes);
 app.use("/emailStation", emailStationRoutes)
@@ -79,6 +54,12 @@ app.use("/emailStation", emailStationRoutes)
 app.use(errorMiddleware);
 
 let server: any;
+
+
+// Iniciar o cron job
+const cronManager = new CronManager();
+cronManager.startAll();
+
 
 export async function startServer(port = process.env.PORT) {
   try {

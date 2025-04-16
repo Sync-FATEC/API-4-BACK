@@ -1,6 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import Parameter from "../agregates/Parameter/Parameter";
 import { EmailStation } from "./EmailsStation";
+import { MeasureAverage } from "./MeasureAverage";
 
 @Entity()
 export class Station {
@@ -30,4 +31,8 @@ export class Station {
 
   @OneToMany(() => EmailStation, (emailStation) => emailStation.station)
   emailsToAlert: EmailStation[]
+
+  @OneToMany(() => MeasureAverage, (average) => average.station)
+  measureAverages: MeasureAverage[];
+
 }
