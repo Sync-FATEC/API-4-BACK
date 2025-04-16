@@ -4,10 +4,37 @@ on:
   pull_request:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: testdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "echo 'db.runCommand({serverStatus:1}).ok' | mongosh --quiet | grep 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout code
@@ -22,5 +49,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify testing dependencies
+        run: npm install -D supertest @types/supertest @types/mongodb @types/node-cron
+
       - name: Run Jest tests
-        run: npx test --ci --coverage
+        run: npm run test -- --ci --coverage --testTimeout=10000
+        env:
+          NODE_ENV: test
+          JWT_SECRET: test
+          MONGO_URL: mongodb://localhost:27017/testdb
+          MONGO_DATABASE: testdb
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_USERNAME: test
+          DB_PASSWORD: test
+          DB_DATABASE: testdb

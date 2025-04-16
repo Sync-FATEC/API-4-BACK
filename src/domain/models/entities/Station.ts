@@ -22,6 +22,9 @@ export class Station {
   @Column()
   public createdAt: Date;
 
+  @Column({ type: 'bigint', nullable: true })
+  public DateLastMeasure: number;  
+
   @OneToMany(() => Parameter, (parameter) => parameter.idStation)
   parameters: Parameter[];
 
