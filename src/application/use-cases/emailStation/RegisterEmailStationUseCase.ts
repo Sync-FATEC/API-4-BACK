@@ -4,15 +4,13 @@ import { IStationRepository } from "../../../domain/interfaces/repositories/ISta
 import { EmailStation } from "../../../domain/models/entities/EmailsStation";
 
 export class RegisterEmailStationUseCase {
-  private emailStationRepository: IEmailStationRepository;
-  private stationRepository: IStationRepository;
 
-  constructor(emailStationRepository: IEmailStationRepository, stationRepository: IStationRepository) {
-    emailStationRepository = emailStationRepository;
-    stationRepository = stationRepository;
+  constructor(private emailStationRepository: IEmailStationRepository, private stationRepository: IStationRepository) {
   }
 
   public async execute(email: string, stationId: string ) {
+    console.log(this.stationRepository);
+    
     let station = await this.stationRepository.findById(stationId);
 
     if(station == null)

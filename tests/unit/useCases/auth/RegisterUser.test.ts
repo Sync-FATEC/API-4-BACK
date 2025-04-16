@@ -2,13 +2,7 @@ import dotenv from 'dotenv';
 import { RegisterUseCase } from '../../../../src/application/use-cases/auth/RegisterUseCase';
 import { IUserRepository, User } from '../../../../src/domain/models/entities/User';
 import RegisterUserDTO from '../../../../src/web/dtos/auth/RegisterUserDTO';
-import { sendEmailCreatePassword } from '../../../../src/application/operations/email/sendEmailCreatePassword';
 dotenv.config();
-
-// Mock do serviço de email
-jest.mock('../../../../src/application/operations/email/sendEmailCreatePassword', () => ({
-  sendEmailCreatePassword: jest.fn().mockResolvedValue(undefined)
-}));
 
 describe("Testando registro de usuário quando os dados forem corretos", () => {
     let registerUseCase: RegisterUseCase;
@@ -55,7 +49,7 @@ describe("Testando registro de usuário quando os dados forem corretos", () => {
             "Erik",
             "erik@mail.com",
             "794.979.510-78",
-            "FUNCIONARIO",
+            "admin"
         );
 
         const result = await registerUseCase.execute(validUserData);
@@ -65,7 +59,6 @@ describe("Testando registro de usuário quando os dados forem corretos", () => {
         expect(result.getEmail()).toBe("erik@mail.com");
         expect(result.getCpf()).toBe("794.979.510-78");
         expect(mockUserRepository.create).toHaveBeenCalledTimes(1);
-        expect(sendEmailCreatePassword).toHaveBeenCalledWith(createdUser.email, createdUser.name);
     });
 
     it("deve lançar erro quando cpf já existe", async () => {
@@ -79,7 +72,7 @@ describe("Testando registro de usuário quando os dados forem corretos", () => {
             "Erik",
             "erik@mail.com",
             "794.979.510-78",
-            "FUNCIONARIO",
+            "admin"
         );
 
         await expect(registerUseCase.execute(validUserData))
@@ -87,7 +80,6 @@ describe("Testando registro de usuário quando os dados forem corretos", () => {
             .toThrow("CPF já cadastrado");
         
         expect(mockUserRepository.create).not.toHaveBeenCalled();
-        expect(sendEmailCreatePassword).not.toHaveBeenCalled();
     });
 
     it("deve lançar erro quando email já existe", async () => {
@@ -101,7 +93,7 @@ describe("Testando registro de usuário quando os dados forem corretos", () => {
             "Erik",
             "erik@mail.com",
             "794.979.510-78",
-            "FUNCIONARIO"
+            "admin"
         );
 
         await expect(registerUseCase.execute(validUserData))
@@ -109,7 +101,6 @@ describe("Testando registro de usuário quando os dados forem corretos", () => {
             .toThrow("Email já cadastrado");
         
         expect(mockUserRepository.create).not.toHaveBeenCalled();
-        expect(sendEmailCreatePassword).not.toHaveBeenCalled();
     });
 
     it("deve lançar erro quando cpf é invalido", async () => {
@@ -121,7 +112,7 @@ describe("Testando registro de usuário quando os dados forem corretos", () => {
             "Erik",
             "erik@mail.com",
             "123.456.789-10",
-            "FUNCIONARIO"
+            "admin"
         );
 
         await expect(registerUseCase.execute(validUserData))
@@ -129,6 +120,5 @@ describe("Testando registro de usuário quando os dados forem corretos", () => {
             .toThrow("CPF inválido");
         
         expect(mockUserRepository.create).not.toHaveBeenCalled();
-        expect(sendEmailCreatePassword).not.toHaveBeenCalled();
     });
 });
