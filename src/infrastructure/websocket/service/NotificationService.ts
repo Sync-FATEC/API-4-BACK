@@ -1,10 +1,6 @@
-import { Server } from "socket.io";
 import { INotificationService } from "../../../domain/interfaces/INotificationService";
 import WebSocket, { WebSocketServer } from "ws";
 import { log } from "console";
-
-
-
 
 export class NotificationService implements INotificationService {
   private server: WebSocketServer;

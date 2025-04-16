@@ -10,5 +10,12 @@ export class EmailStation {
   public email: string;
 
   @ManyToOne(() => Station, station => station.emailsToAlert)
-  public station: Station[];    
+  public station: Station;    
+
+  constructor(email: string, station?: Station) {
+    this.email = email;
+    if (station) {
+      this.station = station;
+    }
+  }
 }
