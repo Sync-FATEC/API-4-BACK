@@ -37,6 +37,7 @@ jobs:
 
   feature:
     if: startsWith(github.head_ref, 'feat/')
+    runs-on: ubuntu-latest
     steps:
       - name: Run Integration Tests
         uses: ./.github/workflows/integration-test.yml
