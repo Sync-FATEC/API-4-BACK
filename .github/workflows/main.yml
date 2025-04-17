@@ -21,31 +21,8 @@ jobs:
         id: extract
         run: echo "branch_name=${GITHUB_HEAD_REF}" >> $GITHUB_OUTPUT
 
-
-  install-dependencies:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-
-    - name: Cache Node.js modules
-      uses: actions/cache@v3
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-
   unit-tests:
-    needs: integration-tests
+    needs: get-branch
     if: startsWith(needs.get-branch.outputs.branch_name, 'feat/')
     uses: ./.github/workflows/unit-test.yml
     with:
