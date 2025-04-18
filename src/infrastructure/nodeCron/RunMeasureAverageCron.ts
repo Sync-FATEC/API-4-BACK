@@ -6,7 +6,7 @@ import { MeasureRepository } from '../repositories/MeasureRepository';
 export class RunMeasureAverageCron {
   private measureRepository = new MeasureRepository();
   private measureAverageRepository = new MeasureAverageRepository();
-  private useCase: CreateMeasureAverageUseCase;
+  private useCase!: CreateMeasureAverageUseCase;
 
   private hourlyTask: cron.ScheduledTask | null = null;
   private dailyTask: cron.ScheduledTask | null = null;
@@ -33,6 +33,15 @@ export class RunMeasureAverageCron {
 
     } catch (error) {
       console.error('Erro ao configurar cron jobs para médias:', error);
+    }
+  }
+
+  async stop() {
+    if (this.hourlyTask) {
+      this.hourlyTask.stop();
+    }
+    if (this.dailyTask) {
+      this.dailyTask.stop();
     }
   }
 }

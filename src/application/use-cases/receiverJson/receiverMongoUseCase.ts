@@ -1,3 +1,4 @@
+import { ISenderAlertService } from "../../../domain/interfaces/ISenderAlertService";
 import { IAlertRepository } from "../../../domain/interfaces/repositories/IAlertRepository";
 import { IMeasureRepository } from "../../../domain/interfaces/repositories/IMeasureRepository";
 import { IMongoDbRepository } from "../../../domain/interfaces/repositories/IMongoDbRepostory";
@@ -13,7 +14,8 @@ export class ReceiverMongoJsonUseCase {
         private alertRepository: IAlertRepository,
         private typeAlertRepository: ITypeAlertRepository,
         private measureRepository: IMeasureRepository,
-        private parameterRepository: IParameterRepository
+        private parameterRepository: IParameterRepository,
+        private senderAlertService: ISenderAlertService
     ) {}
 
     async execute() {
@@ -22,7 +24,8 @@ export class ReceiverMongoJsonUseCase {
             this.alertRepository,
             this.typeAlertRepository,
             this.measureRepository,
-            this.parameterRepository
+            this.parameterRepository,
+            this.senderAlertService
         );
 
         const allJson = await this.mongoDbRepository.findAll();
