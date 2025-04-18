@@ -2,16 +2,35 @@ import dotenv from 'dotenv';
 import { RegisterUseCase } from '../../../../src/application/use-cases/auth/RegisterUseCase';
 import { IUserRepository, User } from '../../../../src/domain/models/entities/User';
 import RegisterUserDTO from '../../../../src/web/dtos/auth/RegisterUserDTO';
+import { NodemailerEmailSender } from '../../../../src/infrastructure/email/nodeMailerEmailSender';
+
+// Mock do módulo sendEmailCreatePassword
+jest.mock('../../../../src/application/operations/email/sendEmailCreatePassword', () => ({
+    sendEmailCreatePassword: jest.fn().mockImplementation(() => {
+        return Promise.resolve();
+    }),
+    emailSender: {
+        getInstance: jest.fn().mockReturnValue({
+            sendEmail: jest.fn().mockResolvedValue(undefined),
+            createPassword: jest.fn().mockResolvedValue(undefined),
+            sendAlertEmail: jest.fn().mockResolvedValue(undefined),
+        })
+    },
+    __esModule: true,
+    default: {}
+}));
+
 dotenv.config();
 
 describe("Testando registro de usuário quando os dados forem corretos", () => {
     let registerUseCase: RegisterUseCase;
     let mockUserRepository: jest.Mocked<IUserRepository>;
+    let mockEmailSender: jest.Mocked<NodemailerEmailSender>;
 
     beforeEach(() => {
         // Mock do JWT_SECRET
         process.env.JWT_SECRET = "test-secret-key";
-  
+
         // Cria um mock do UserRepository
         mockUserRepository = {
             create: jest.fn(),
