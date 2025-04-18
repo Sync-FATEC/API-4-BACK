@@ -23,6 +23,7 @@ export class UpdateTypeAlertUseCase extends TypeAlertUseCase {
     let typeAlert = TypeAlert.create(
       data.name,
       data.comparisonOperator,
+      data.criticality,
       data.value,
       parameter
     );

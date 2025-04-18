@@ -1,13 +1,40 @@
-import { Repository } from "typeorm";
+import { Between, Repository } from "typeorm";
 import { AppDataSource } from "../database/data-source";
 import { IMeasureRepository } from "../../../src/domain/interfaces/repositories/IMeasureRepository";
-
 import { ListMeasureResponseDTO } from "../../web/dtos/measure/ListMeasureDTO";
 import { Measure } from "../../domain/models/entities/Measure";
-import { param } from "express-validator";
+import Parameter from "../../domain/models/agregates/Parameter/Parameter";
+import { Station } from "../../domain/models/entities/Station";
+import { TypeParameter } from "../../domain/models/entities/TypeParameter";
 
 export class MeasureRepository implements IMeasureRepository {
   private measures: Repository<Measure> = AppDataSource.getRepository(Measure);
+
+  async listWithFilters(filters: { startDate?: Date; endDate?: Date; stationId?: string; parameterId?: string; }): Promise<Measure[]> {
+    const queryBuilder = this.measures.createQueryBuilder('measure')
+      .leftJoinAndSelect('measure.parameter', 'parameter'); // Important: Load the parameter relationship
+    
+    if (filters.startDate) {
+      const startUnixTime = Math.floor(filters.startDate.getTime() / 1000);
+      queryBuilder.andWhere('measure.unixTime >= :startUnixTime', { startUnixTime });
+    }
+    
+    if (filters.endDate) {
+      const endUnixTime = Math.floor(filters.endDate.getTime() / 1000);
+      queryBuilder.andWhere('measure.unixTime <= :endUnixTime', { endUnixTime });
+    }
+    
+    if (filters.parameterId) {
+      queryBuilder.andWhere('parameter.id = :parameterId', { parameterId: filters.parameterId });
+    }
+    
+    if (filters.stationId) {
+      queryBuilder.leftJoin('parameter.idStation', 'station')
+        .andWhere('station.id = :stationId', { stationId: filters.stationId });
+    }
+    
+    return await queryBuilder.getMany();
+  }
 
   // Método para criar um Measure
   async createMeasure(measure: Partial<Measure>): Promise<Measure> {
@@ -64,4 +91,54 @@ export class MeasureRepository implements IMeasureRepository {
   async updateMeasure(measure: Measure): Promise<Measure> {
     return await this.measures.save(measure);
   }
+
+  async listMeasuresLastHour(): Promise<Measure[]> {
+    const now = Math.floor(Date.now() / 1000);
+    const oneHourAgo = now - 3600;
+  
+    const measures = await this.measures.find({
+      where: {
+        unixTime: Between(oneHourAgo, now),
+      },
+      order: {
+        unixTime: 'DESC',
+      },
+      relations: [
+        "parameter",
+        "parameter.idStation",
+        "parameter.idTypeParameter",
+      ],
+    });
+  
+    return measures as MeasureWithRelations[];
+  }
+  
+  async listMeasuresLastDay(): Promise<Measure[]> {
+    const now = Math.floor(Date.now() / 1000);
+    const oneDayAgo = now - 86400;
+  
+    const measures = await this.measures.find({
+      where: {
+        unixTime: Between(oneDayAgo, now),
+      },
+      order: {
+        unixTime: 'DESC',
+      },
+      relations: [
+        "parameter",
+        "parameter.idStation",
+        "parameter.idTypeParameter",
+      ],
+    });
+  
+    return measures as MeasureWithRelations[];
+  }
+
 }
+
+type MeasureWithRelations = Measure & {
+  parameter: Parameter & {
+    idStation: Station;
+    idTypeParameter: TypeParameter;
+  };
+};

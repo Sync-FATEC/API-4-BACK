@@ -1,0 +1,43 @@
+name: CI Principal
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+      - 'feat/*'
+      - 'fix/*'
+      - 'improve/*'
+      - 'test/*'
+      - 'refactor/*'
+
+jobs:
+  get-branch:
+    runs-on: ubuntu-latest
+    outputs:
+      branch_name: ${{ steps.extract.outputs.branch_name }}
+    steps:
+      - name: Extract Branch Name
+        id: extract
+        run: echo "branch_name=${GITHUB_HEAD_REF}" >> $GITHUB_OUTPUT
+
+  unit-tests:
+    needs: get-branch
+    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/')
+    uses: ./.github/workflows/unit-test.yml
+    with:
+      setup_run: "test"
+
+  integration-tests:
+    needs: unit-tests
+    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/')
+    uses: ./.github/workflows/integration-test.yml
+    with:
+      setup_run: "test"
+
+  build:
+    needs: integration-tests
+    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/')
+    uses: ./.github/workflows/build.yml
+    with:
+      setup_run: "build"

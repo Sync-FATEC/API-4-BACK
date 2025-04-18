@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 import { emailTemplates } from './templates/emailTemplates';
 import { IEmailSender } from '../../domain/interfaces/IEmailSender';
 import { SystemContextException } from '../../domain/exceptions/SystemContextException';
+import { AlertNotificationData } from '../../application/services/SenderAlertService';
 
 export class NodemailerEmailSender implements IEmailSender {
     private static instance: NodemailerEmailSender;
@@ -15,6 +16,12 @@ export class NodemailerEmailSender implements IEmailSender {
                 pass: process.env.EMAIL_PASSWORD,
             },
         });
+    }
+
+
+    async sendAlertEmail(to: string, data: AlertNotificationData, message: string): Promise<void> {
+        const template = emailTemplates.alertEmailTemplate(message, data);
+        await this.sendEmail(to, template.subject, template.text, template.html);
     }
 
     public static getInstance(): NodemailerEmailSender {

@@ -1,4 +1,8 @@
+import { log } from "console";
 import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
+import { IEmailSender } from "../../../domain/interfaces/IEmailSender";
+import { INotificationService } from "../../../domain/interfaces/INotificationService";
+import { ISenderAlertService } from "../../../domain/interfaces/ISenderAlertService";
 import { IAlertRepository } from "../../../domain/interfaces/repositories/IAlertRepository";
 import { IMeasureRepository } from "../../../domain/interfaces/repositories/IMeasureRepository";
 import { ITypeAlertRepository } from "../../../domain/interfaces/repositories/ITypeAlertRepository";
@@ -7,12 +11,16 @@ import { RegisterAlertDTO } from "../../../web/dtos/alert/RegisterAlertDTO";
 import { AlertUseCase } from "./AlertUseCase";
 
 export default class RegisterAlertUseCase extends AlertUseCase {
+  private senderAlert : ISenderAlertService;
+
   constructor(
     alertRepository: IAlertRepository,
     typeAlertRepository: ITypeAlertRepository,
-    measureRepository: IMeasureRepository
+    measureRepository: IMeasureRepository,
+    senderAlert: ISenderAlertService
   ) {
     super(alertRepository, typeAlertRepository, measureRepository);
+    this.senderAlert = senderAlert;
   }
 
   public async execute(data: RegisterAlertDTO): Promise<Alert> {
@@ -27,6 +35,8 @@ export default class RegisterAlertUseCase extends AlertUseCase {
     let alert = Alert.create(data.date, typeAlert, measure);
 
     alert = await this.alertRepository.createAlert(alert);
+
+    this.senderAlert.execute(alert, typeAlert, measure);
 
     return alert;
   }
