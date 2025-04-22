@@ -9,14 +9,40 @@ export class ListDashboardController {
       const { 
         startDate, 
         endDate, 
+        date,
         stationId, 
-        parameterId 
+        parameterId,
+        lastDays
       } = req.query;
 
-      // Convert query string parameters to appropriate types
+      let startDateObj: Date | undefined = undefined;
+      let endDateObj: Date | undefined = undefined;
+      
+      if (lastDays) {
+        const days = parseInt(lastDays as string, 10);
+        endDateObj = new Date();
+        startDateObj = new Date();
+        startDateObj.setDate(startDateObj.getDate() - days);
+      }
+      else if (date) {
+        const dateStr = date as string;
+        
+        startDateObj = new Date(`${dateStr}T00:00:00-03:00`);
+        endDateObj = new Date(`${dateStr}T23:59:59.999-03:00`);
+      } 
+      else {
+        if (startDate) {
+          startDateObj = new Date(startDate as string);
+        }
+        
+        if (endDate) {
+          endDateObj = new Date(endDate as string);
+        }
+      }
+
       const filters = {
-        startDate: startDate ? new Date(startDate as string) : undefined,
-        endDate: endDate ? new Date(endDate as string) : undefined,
+        startDate: startDateObj,
+        endDate: endDateObj,
         stationId: stationId ? String(stationId) : undefined,
         parameterId: parameterId ? String(parameterId) : undefined
       };
