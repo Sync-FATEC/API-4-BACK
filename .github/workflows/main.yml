@@ -44,7 +44,7 @@ jobs:
       setup_run: "test"
 
   build:
-    needs: build
+    needs: integration-tests
     if: startsWith(needs.get-branch.outputs.branch_name, 'feat/') ||
         startsWith(needs.get-branch.outputs.branch_name, 'fix/') || 
         startsWith(needs.get-branch.outputs.branch_name, 'improve/') ||
