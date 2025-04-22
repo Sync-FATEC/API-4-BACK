@@ -23,21 +23,32 @@ jobs:
 
   unit-tests:
     needs: get-branch
-    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/')
+    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/') ||
+        startsWith(needs.get-branch.outputs.branch_name, 'fix/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'improve/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'test/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'refactor/')
     uses: ./.github/workflows/unit-test.yml
     with:
       setup_run: "test"
 
   integration-tests:
     needs: unit-tests
-    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/')
+    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/') ||
+        startsWith(needs.get-branch.outputs.branch_name, 'fix/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'improve/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'test/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'refactor/')
     uses: ./.github/workflows/integration-test.yml
     with:
       setup_run: "test"
 
   build:
-    needs: integration-tests
-    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/')
+    needs: build
+    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/') ||
+        startsWith(needs.get-branch.outputs.branch_name, 'fix/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'improve/') ||
+        startsWith(needs.get-branch.outputs.branch_name, 'refactor/')
     uses: ./.github/workflows/build.yml
     with:
       setup_run: "build"
