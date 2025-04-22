@@ -9,6 +9,8 @@ import { Measure } from '../../../src/domain/models/entities/Measure';
 import { Alert } from '../../../src/domain/models/agregates/Alert/Alert';
 import { TypeAlert } from '../../../src/domain/models/agregates/Alert/TypeAlert';
 import { Client } from 'pg';
+import { EmailStation } from '../../../src/domain/models/entities/EmailsStation';
+import { User } from '../../../src/domain/models/entities/User';
 
 let container: StartedTestContainer;
 let dataSource: DataSource;
@@ -60,13 +62,15 @@ const SetupIntegration = async () => {
     database: 'test',
     synchronize: true,
     entities: [
-      Station,
-      TypeParameter,
-      Parameter,
-      MeasureAverage,
-      Measure,
-      Alert,
+      User,
       TypeAlert,
+      Alert,
+      Parameter,
+      TypeParameter,
+      Measure,
+      Station,
+      EmailStation,
+      MeasureAverage
     ],
   });
 

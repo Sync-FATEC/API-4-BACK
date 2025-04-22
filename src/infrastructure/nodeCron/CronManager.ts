@@ -9,4 +9,9 @@ export class CronManager {
     await this.takeMeasuresCron.execute();
     await this.measureAverageCron.execute();
   }
+
+  async stopAll() {
+    await this.takeMeasuresCron.stop();
+    await this.measureAverageCron.stop();
+  }
 }

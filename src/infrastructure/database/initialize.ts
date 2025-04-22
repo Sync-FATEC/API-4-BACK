@@ -12,4 +12,8 @@ export async function initializeDatabase() {
         console.error('Erro ao conectar com o banco de dados:', error);
         process.exit(1);
     }
-} 
+}
+
+export async function closeDatabase() {
+    await AppDataSource.destroy();
+}

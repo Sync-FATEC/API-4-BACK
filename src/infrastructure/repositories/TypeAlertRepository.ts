@@ -13,7 +13,14 @@ export default class TypeAlertRepository implements ITypeAlertRepository {
   }
 
   async findById(id: string): Promise<TypeAlert | null> {
-    return await this.repository.findOne({ where: { id }, relations: ["parameter"] });
+    return await this.repository.findOne({
+      where: { id },
+      relations: [
+        "parameter",
+        "parameter.idStation",
+        "parameter.idTypeParameter",
+      ],
+    });
   }
 
   async findAll(): Promise<TypeAlertDTO[]> {

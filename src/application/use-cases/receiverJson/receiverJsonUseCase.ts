@@ -1,4 +1,5 @@
 import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
+import { ISenderAlertService } from "../../../domain/interfaces/ISenderAlertService";
 import { IAlertRepository } from "../../../domain/interfaces/repositories/IAlertRepository";
 import { IMeasureRepository } from "../../../domain/interfaces/repositories/IMeasureRepository";
 import { IParameterRepository } from "../../../domain/interfaces/repositories/IParameterRepository";
@@ -15,7 +16,8 @@ export default class ReceiverJsonUseCase {
         private alertRepository: IAlertRepository,
         private typeAlertRepository: ITypeAlertRepository,
         private measureRepository: IMeasureRepository,
-        private parameterRepository: IParameterRepository
+        private parameterRepository: IParameterRepository,
+        private senderAlert: ISenderAlertService
     ) {}
 
     async execute(dataJson: any) {
@@ -30,7 +32,7 @@ export default class ReceiverJsonUseCase {
         }
 
         const registerMeasureUseCase = new RegisterMeasureUseCase(this.measureRepository, this.parameterRepository, this.stationRepository);
-        const registerAlertUseCase = new RegisterAlertUseCase(this.alertRepository, this.typeAlertRepository, this.measureRepository);
+        const registerAlertUseCase = new RegisterAlertUseCase(this.alertRepository, this.typeAlertRepository, this.measureRepository, this.senderAlert);
 
         for (const [key, value] of Object.entries(measurements)) {
             const parameter = station.parameters.find(p => p.idTypeParameter.typeJson === key);
