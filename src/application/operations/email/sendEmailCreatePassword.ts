@@ -4,7 +4,6 @@ import { EmailUseCase } from "../../use-cases/email/EmailUseCase";
 
 export function sendEmailCreatePassword(email: string, name: string) {
     try {
-        const emailSender = NodemailerEmailSender.getInstance();
         const emailUseCase = new EmailUseCase(emailSender);
 
         emailUseCase.sendEmailToCreatePassword(email, name, email);
@@ -12,3 +11,6 @@ export function sendEmailCreatePassword(email: string, name: string) {
         throw new SystemContextException('Erro ao enviar email');
     }
 }
+
+export const emailSender = NodemailerEmailSender.getInstance();
+export default emailSender;

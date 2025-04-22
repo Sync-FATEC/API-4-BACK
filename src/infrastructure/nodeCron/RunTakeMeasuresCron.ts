@@ -10,13 +10,20 @@ import { ParameterRepository } from '../repositories/ParameterRepository';
 import StationRepository from '../repositories/StationRepository';
 import TypeAlertRepository from '../repositories/TypeAlertRepository';
 import { ReceiverMongoJsonUseCase } from '../../application/use-cases/receiverJson/receiverMongoUseCase';
-
+import { SenderAlertService } from '../../application/services/SenderAlertService';
+import { NotificationService } from '../websocket/service/NotificationService';
+import { EmailStationRepository } from '../repositories/EmailStationRepository';
+import { NodemailerEmailSender } from '../email/nodeMailerEmailSender';
 export class RunTakeMeasuresCron {
   private measureRepository = new MeasureRepository();
   private stationRepository = new StationRepository();
   private alertRepository = new AlertRepository();
   private typeAlertRepository = new TypeAlertRepository();
   private parameterRepository = new ParameterRepository();
+  private notificationService = new NotificationService();
+  private emailSender = NodemailerEmailSender.getInstance();
+  private emailStationRepository = new EmailStationRepository();
+  private senderAlertService = new SenderAlertService(this.notificationService, this.emailSender, this.emailStationRepository);
 
   private task: cron.ScheduledTask | null = null;
 
@@ -37,7 +44,8 @@ export class RunTakeMeasuresCron {
         this.alertRepository,
         this.typeAlertRepository,
         this.measureRepository,
-        this.parameterRepository
+        this.parameterRepository,
+        this.senderAlertService
       );
 
       // Cron job para executar a cada 10 minutos
@@ -50,4 +58,11 @@ export class RunTakeMeasuresCron {
       console.error('Erro ao configurar cron job para MongoDB:', error);
     }
   }
+
+  async stop() {
+    if (this.task) {
+      this.task.stop();
+    }
+  }
 }
+
