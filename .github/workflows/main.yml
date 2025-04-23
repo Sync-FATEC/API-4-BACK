@@ -12,14 +12,43 @@ on:
       - 'refactor/*'
 
 jobs:
-  check-branch:
+  get-branch:
     runs-on: ubuntu-latest
+    outputs:
+      branch_name: ${{ steps.extract.outputs.branch_name }}
     steps:
-      - name: Get Branch Name
-        run: echo "Branch name is ${{ github.head_ref }}"
+      - name: Extract Branch Name
+        id: extract
+        run: echo "branch_name=${GITHUB_HEAD_REF}" >> $GITHUB_OUTPUT
 
-  feature:
-    if: startsWith(github.head_ref, 'feat/')
-    uses: ./.github/workflows/feature.yml
+  unit-tests:
+    needs: get-branch
+    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/') ||
+        startsWith(needs.get-branch.outputs.branch_name, 'fix/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'improve/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'test/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'refactor/')
+    uses: ./.github/workflows/unit-test.yml
     with:
       setup_run: "test"
+
+  integration-tests:
+    needs: unit-tests
+    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/') ||
+        startsWith(needs.get-branch.outputs.branch_name, 'fix/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'improve/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'test/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'refactor/')
+    uses: ./.github/workflows/integration-test.yml
+    with:
+      setup_run: "test"
+
+  build:
+    needs: integration-tests
+    if: startsWith(needs.get-branch.outputs.branch_name, 'feat/') ||
+        startsWith(needs.get-branch.outputs.branch_name, 'fix/') || 
+        startsWith(needs.get-branch.outputs.branch_name, 'improve/') ||
+        startsWith(needs.get-branch.outputs.branch_name, 'refactor/')
+    uses: ./.github/workflows/build.yml
+    with:
+      setup_run: "build"
