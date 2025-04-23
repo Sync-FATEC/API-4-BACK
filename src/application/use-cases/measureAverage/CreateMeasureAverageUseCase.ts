@@ -96,7 +96,7 @@ export class CreateMeasureAverageUseCase {
                 const measureAverage = new MeasureAverage();
                 measureAverage.CreateMeasureAverage(
                     enumTypeAverage,
-                    `${group.stationName} - ${group.parameterName}`,
+                    `${group.parameterName}`,
                     average.toFixed(2)
                 );
 
