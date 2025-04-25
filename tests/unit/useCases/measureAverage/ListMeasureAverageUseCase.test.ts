@@ -15,7 +15,10 @@ describe('ListMeasureAverageUseCase', () => {
             createMeasureAverage: jest.fn(),
             getById: jest.fn(),
             listMeasuresAverages: jest.fn(),
-            deleteMeasureAverage: jest.fn()
+            deleteMeasureAverage: jest.fn(),
+            listMeasuresAveragesWithStartAndEnd: jest.fn(),
+            listMeasuresAveragesLast7Days: jest.fn(),
+            listMeasuresAveragesWithDate: jest.fn()
         } as jest.Mocked<IMeasureAverageRepository>;
 
         mockStationRepository = {
@@ -53,7 +56,7 @@ describe('ListMeasureAverageUseCase', () => {
             createMockMeasureAverage('2', enumAverage.HOUR, 'Estação teste - Umidade', '65.3')
         ];
 
-        mockMeasureAverageRepository.listMeasuresAverages.mockResolvedValue(mockMeasureAverages);
+        mockMeasureAverageRepository.listMeasuresAveragesLast7Days.mockResolvedValue(mockMeasureAverages);
 
         const result = await listMeasureAverageUseCase.execute(stationId);
 
@@ -64,8 +67,8 @@ describe('ListMeasureAverageUseCase', () => {
         expect(result[0].GetName()).toBe('Estação teste - Temperatura');
         expect(result[0].GetValue()).toBe('25.5');
         expect(mockStationRepository.findById).toHaveBeenCalledWith(stationId);
-        expect(mockMeasureAverageRepository.listMeasuresAverages).toHaveBeenCalledWith(stationId);
-        expect(mockMeasureAverageRepository.listMeasuresAverages).toHaveBeenCalledTimes(1);
+        expect(mockMeasureAverageRepository.listMeasuresAveragesLast7Days).toHaveBeenCalledWith(stationId);
+        expect(mockMeasureAverageRepository.listMeasuresAveragesLast7Days).toHaveBeenCalledTimes(1);
     });
 
     it('❌ Deve lançar exceção quando não houver dados para retornar', async () => {
@@ -79,15 +82,15 @@ describe('ListMeasureAverageUseCase', () => {
         } as any);
 
         // Simula retorno vazio de medidas
-        mockMeasureAverageRepository.listMeasuresAverages.mockResolvedValue([]);
+        mockMeasureAverageRepository.listMeasuresAveragesLast7Days.mockResolvedValue([]);
 
         await expect(listMeasureAverageUseCase.execute(stationId))
             .rejects
             .toThrow(new SystemContextException('Nenhuma media de medida para listar'));
 
         expect(mockStationRepository.findById).toHaveBeenCalledWith(stationId);
-        expect(mockMeasureAverageRepository.listMeasuresAverages).toHaveBeenCalledWith(stationId);
-        expect(mockMeasureAverageRepository.listMeasuresAverages).toHaveBeenCalledTimes(1);
+        expect(mockMeasureAverageRepository.listMeasuresAveragesLast7Days).toHaveBeenCalledWith(stationId);
+        expect(mockMeasureAverageRepository.listMeasuresAveragesLast7Days).toHaveBeenCalledTimes(1);
     });
 
     it('❌ Deve lançar exceção quando a estação não for encontrada', async () => {
@@ -103,7 +106,7 @@ describe('ListMeasureAverageUseCase', () => {
         expect(mockStationRepository.findById).toHaveBeenCalledWith(stationId);
         expect(mockStationRepository.findById).toHaveBeenCalledTimes(1);
         // Não deve chegar a chamar o repository de medidas se a estação não for encontrada
-        expect(mockMeasureAverageRepository.listMeasuresAverages).not.toHaveBeenCalled();
+        expect(mockMeasureAverageRepository.listMeasuresAveragesLast7Days).not.toHaveBeenCalled();
     });
 });
 

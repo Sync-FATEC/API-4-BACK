@@ -22,6 +22,6 @@ export default class Parameter {
     measures: Measure[];
 
     public getParameterName(): string {
-        return this.idStation.name + " - " + this.idTypeParameter.name;
+        return this.idTypeParameter.name;
     }
 }
