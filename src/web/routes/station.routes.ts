@@ -38,14 +38,150 @@ const listController = new ListStationController(listStationUseCase);
 const readStationUseCase = new ReadStationUseCase(stationRepository);
 const readController = new ReadStationController(readStationUseCase);
 
+/**
+ * @swagger
+ * /station/create:
+ *   post:
+ *     summary: Cria uma nova estação
+ *     tags: [Estações]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - location
+ *               - description
+ *             properties:
+ *               name:
+ *                 type: string
+ *               location:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Estação criada com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *       401:
+ *         description: Não autorizado
+ */
 stationRoutes.post('/create', limiter, ensureAuthenticated, asyncHandler((req, res, next) => createController.handle(req, res, next)));
 
+/**
+ * @swagger
+ * /station/update:
+ *   put:
+ *     summary: Atualiza uma estação existente
+ *     tags: [Estações]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - id
+ *               - name
+ *               - location
+ *               - description
+ *             properties:
+ *               id:
+ *                 type: string
+ *               name:
+ *                 type: string
+ *               location:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Estação atualizada com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *       401:
+ *         description: Não autorizado
+ */
 stationRoutes.put('/update', limiter, ensureAuthenticated, asyncHandler((req, res, next) => updateController.handle(req, res, next)));
 
+/**
+ * @swagger
+ * /station/delete/{id}:
+ *   delete:
+ *     summary: Remove uma estação
+ *     tags: [Estações]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID da estação
+ *     responses:
+ *       200:
+ *         description: Estação removida com sucesso
+ *       401:
+ *         description: Não autorizado
+ *       404:
+ *         description: Estação não encontrada
+ */
 stationRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => deleteController.handle(req, res, next)));
 
+/**
+ * @swagger
+ * /station/list:
+ *   get:
+ *     summary: Lista todas as estações
+ *     tags: [Estações]
+ *     responses:
+ *       200:
+ *         description: Lista de estações retornada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                   name:
+ *                     type: string
+ *                   location:
+ *                     type: string
+ *                   description:
+ *                     type: string
+ */
 stationRoutes.get('/list', limiter, asyncHandler((req, res, next) => listController.handle(req, res, next)));
 
+/**
+ * @swagger
+ * /station/read/{id}:
+ *   get:
+ *     summary: Obtém uma estação específica
+ *     tags: [Estações]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID da estação
+ *     responses:
+ *       200:
+ *         description: Estação retornada com sucesso
+ *       404:
+ *         description: Estação não encontrada
+ */
 stationRoutes.get('/read/:id', limiter, asyncHandler((req, res, next) => readController.handle(req, res, next)));
 
 export { stationRoutes }

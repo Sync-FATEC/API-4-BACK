@@ -31,7 +31,41 @@ const typeAlertController = new TypeAlertController(
     deleteTypeAlertUseCase
 );
 
-// Routes
+/**
+ * @swagger
+ * /typeAlert:
+ *   post:
+ *     summary: Cria um novo tipo de alerta
+ *     tags: [Tipos de Alerta]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - name
+ *               - description
+ *               - parameters
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               parameters:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       201:
+ *         description: Tipo de alerta criado com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *       401:
+ *         description: Não autorizado
+ */
 typeAlertRoutes.post(
     "/",
     limiter,
@@ -39,6 +73,44 @@ typeAlertRoutes.post(
     asyncHandler((req, res, next) => typeAlertController.create(req, res, next))
 );
 
+/**
+ * @swagger
+ * /typeAlert:
+ *   put:
+ *     summary: Atualiza um tipo de alerta existente
+ *     tags: [Tipos de Alerta]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - id
+ *               - name
+ *               - description
+ *               - parameters
+ *             properties:
+ *               id:
+ *                 type: string
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               parameters:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *     responses:
+ *       200:
+ *         description: Tipo de alerta atualizado com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *       401:
+ *         description: Não autorizado
+ */
 typeAlertRoutes.put(
     "/",
     limiter,
@@ -46,18 +118,87 @@ typeAlertRoutes.put(
     asyncHandler((req, res, next) => typeAlertController.update(req, res, next))
 );
 
+/**
+ * @swagger
+ * /typeAlert:
+ *   get:
+ *     summary: Lista todos os tipos de alerta
+ *     tags: [Tipos de Alerta]
+ *     responses:
+ *       200:
+ *         description: Lista de tipos de alerta retornada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                   name:
+ *                     type: string
+ *                   description:
+ *                     type: string
+ *                   parameters:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ */
 typeAlertRoutes.get(
     "/",
     limiter,
     asyncHandler((req, res, next) => typeAlertController.getAll(req, res, next))
 );
 
+/**
+ * @swagger
+ * /typeAlert/{id}:
+ *   get:
+ *     summary: Obtém um tipo de alerta específico
+ *     tags: [Tipos de Alerta]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID do tipo de alerta
+ *     responses:
+ *       200:
+ *         description: Tipo de alerta retornado com sucesso
+ *       404:
+ *         description: Tipo de alerta não encontrado
+ */
 typeAlertRoutes.get(
     "/:id",
     limiter,
     asyncHandler((req, res, next) => typeAlertController.getById(req, res, next))
 );
 
+/**
+ * @swagger
+ * /typeAlert/{id}:
+ *   delete:
+ *     summary: Remove um tipo de alerta
+ *     tags: [Tipos de Alerta]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID do tipo de alerta
+ *     responses:
+ *       200:
+ *         description: Tipo de alerta removido com sucesso
+ *       401:
+ *         description: Não autorizado
+ *       404:
+ *         description: Tipo de alerta não encontrado
+ */
 typeAlertRoutes.delete(
     "/:id",
     limiter,
