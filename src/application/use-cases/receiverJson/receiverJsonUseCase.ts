@@ -37,7 +37,7 @@ export default class ReceiverJsonUseCase {
         for (const [key, value] of Object.entries(measurements)) {
             const parameter = station.parameters.find(p => p.idTypeParameter.typeJson === key);
             if (!parameter) {
-                throw new SystemContextException(`Tipo de dado não encontrado: ${key}`);
+                continue;
             }
 
             const measureData: RegisterMeasureDTO = {
