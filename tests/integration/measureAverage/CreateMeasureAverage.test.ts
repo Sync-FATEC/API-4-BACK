@@ -11,14 +11,23 @@ import { clearDatabase } from '../setup/DatabaseCleaner';
 
 let dataSource: DataSource;
 let useCase: CreateMeasureAverageUseCase;
+let measureAverageRepo: MeasureAverageRepository;
+let measureRepo: MeasureRepository;
 
 beforeAll(async () => {
   await SetupIntegration();
+  dataSource = getDataSource();
 });
 
 beforeEach(async () => {
-  dataSource = getDataSource();
   await clearDatabase(dataSource);
+  measureAverageRepo = new MeasureAverageRepository();
+  measureRepo = new MeasureRepository();
+  useCase = new CreateMeasureAverageUseCase(measureAverageRepo, measureRepo);
+});
+
+afterAll(async () => {
+  await dataSource.destroy();
 });
 
 test('✅ Deve calcular e salvar médias por hora com banco real', async () => {
@@ -27,35 +36,28 @@ test('✅ Deve calcular e salvar médias por hora com banco real', async () => {
   const parameters = await runParameterSeeds(dataSource, stations, typeParameters);
   await runMeasureSeeds(dataSource, parameters);
 
-  const measureAverageRepo = new MeasureAverageRepository();
-
-  useCase = new CreateMeasureAverageUseCase(
-    measureAverageRepo,
-    new MeasureRepository()
-  );
-
   const result = await useCase.executeLastHour();
 
   expect(result.length).toBe(15);
 
-  // Utilitários para buscar médias por nome
-  const getAvgByName = (name: string) => result.find((avg) => avg.name.includes(name));
+  // Agrupar os resultados por nome do parâmetro para testar os valores
+  const temperatureResults = result.filter(avg => avg.name === 'Temperatura').map(r => parseFloat(r.value));
+  const umidadeResults = result.filter(avg => avg.name === 'Umidade').map(r => parseFloat(r.value));
+  const pressaoResults = result.filter(avg => avg.name === 'Pressão').map(r => parseFloat(r.value));
+  const ventoResults = result.filter(avg => avg.name === 'Velocidade do Vento').map(r => parseFloat(r.value));
 
-  // Estação Norte
-  expect(parseFloat(getAvgByName('Estação Norte - Temperatura')!.value)).toBeCloseTo(25.20);
-  expect(parseFloat(getAvgByName('Estação Norte - Umidade')!.value)).toBeCloseTo(65.04);
-  expect(parseFloat(getAvgByName('Estação Norte - Pressão')!.value)).toBeCloseTo(1012.96);
-  expect(parseFloat(getAvgByName('Estação Norte - Velocidade do Vento')!.value)).toBeCloseTo(10.08);
+  // Verificar se os valores esperados estão presentes nos resultados
+  expect(temperatureResults).toContain(25.20);
+  expect(temperatureResults).toContain(25.18);
 
-  // Estação Centro
-  expect(parseFloat(getAvgByName('Estação Centro - Temperatura')!.value)).toBeCloseTo(25.18);
-  expect(parseFloat(getAvgByName('Estação Centro - Umidade')!.value)).toBeCloseTo(65.24);
-  expect(parseFloat(getAvgByName('Estação Centro - Pressão')!.value)).toBeCloseTo(1012.98);
-  expect(parseFloat(getAvgByName('Estação Centro - Velocidade do Vento')!.value)).toBeCloseTo(10.08);
+  expect(umidadeResults).toContain(65.04);
+  expect(umidadeResults).toContain(65.24);
+  expect(umidadeResults).toContain(65.14);
 
-  // Estação Sul
-  expect(parseFloat(getAvgByName('Estação Sul - Temperatura')!.value)).toBeCloseTo(25.20);
-  expect(parseFloat(getAvgByName('Estação Sul - Umidade')!.value)).toBeCloseTo(65.14);
-  expect(parseFloat(getAvgByName('Estação Sul - Pressão')!.value)).toBeCloseTo(1013.30);
-  expect(parseFloat(getAvgByName('Estação Sul - Velocidade do Vento')!.value)).toBeCloseTo(10.04);
+  expect(pressaoResults).toContain(1012.96);
+  expect(pressaoResults).toContain(1012.98);
+  expect(pressaoResults).toContain(1013.30);
+
+  expect(ventoResults).toContain(10.08);
+  expect(ventoResults).toContain(10.04);
 });

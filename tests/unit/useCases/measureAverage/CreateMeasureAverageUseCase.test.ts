@@ -16,7 +16,10 @@ describe('CreateMeasureAverageUseCase', () => {
             createMeasureAverage: jest.fn(),
             getById: jest.fn(),
             listMeasuresAverages: jest.fn(),
-            deleteMeasureAverage: jest.fn()
+            deleteMeasureAverage: jest.fn(),
+            listMeasuresAveragesWithStartAndEnd: jest.fn(),
+            listMeasuresAveragesLast7Days: jest.fn(),
+            listMeasuresAveragesWithDate: jest.fn(),
         } as jest.Mocked<IMeasureAverageRepository>;
 
         mockMeasureRepository = {
