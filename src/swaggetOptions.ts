@@ -22,5 +22,5 @@ export const swaggerOptions = {
         },
       },
     },
-    apis: ['./swagger.yaml'], // Caminho para o arquivo swagger.yaml
+    apis: ['./src/web/routes/*.ts'], // Caminho para os arquivos de rotas
   };

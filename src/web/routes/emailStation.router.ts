@@ -23,7 +23,35 @@ const emailStationController = new EmailStationController(
 
 const emailStationRoutes = Router();
 
-// Routes
+/**
+ * @swagger
+ * /emailStation/create:
+ *   post:
+ *     summary: Registra um email para uma estação
+ *     tags: [Emails de Estação]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - stationId
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               stationId:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Email registrado com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *       404:
+ *         description: Estação não encontrada
+ */
 emailStationRoutes.post(
   "/create",
   limiter,

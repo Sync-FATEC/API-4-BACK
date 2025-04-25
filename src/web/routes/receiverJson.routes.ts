@@ -41,6 +41,54 @@ const receiverJsonController = new ReceiverJsonController(receiverJsonUseCase);
 
 const receiverJsonRoutes = Router();
 
+/**
+ * @swagger
+ * /receiverJson:
+ *   post:
+ *     summary: Recebe e processa dados JSON de medições
+ *     tags: [ReceiverJson]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               stationId:
+ *                 type: string
+ *                 description: ID da estação
+ *               measures:
+ *                 type: array
+ *                 items:
+ *                   type: object
+ *                   properties:
+ *                     parameterId:
+ *                       type: string
+ *                     value:
+ *                       type: number
+ *                     timestamp:
+ *                       type: string
+ *                       format: date-time
+ *     responses:
+ *       200:
+ *         description: Dados processados com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Dados recebidos e processados com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *       401:
+ *         description: Não autorizado
+ *       404:
+ *         description: Estação não encontrada
+ */
 receiverJsonRoutes.post(
   "/",
   limiter,
