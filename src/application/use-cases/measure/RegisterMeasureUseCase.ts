@@ -29,6 +29,8 @@ export class RegisterMeasureUseCase extends MeasureUseCase {
     const typeParameter = parameter.idTypeParameter;
 
     const value = data.value * typeParameter.factor + typeParameter.offset;
+    
+    value.toFixed(typeParameter.numberOfDecimalsCases);
 
     const measure = Measure.create(data.unixTime, value);
     measure.parameter = parameter;
