@@ -23,12 +23,12 @@ export default class ReceiverJsonUseCase {
     async execute(dataJson: any) {
         const { uid, unixtime, _id, ...measurements } = dataJson;
         if (!uid || !unixtime) {
-            throw new SystemContextException("Dados inválidos");
+            return
         }
 
         const station = await this.stationRepository.findByUuid(uid);
         if (!station) {
-            throw new SystemContextException("Estação não encontrada");
+            return
         }
 
         const registerMeasureUseCase = new RegisterMeasureUseCase(this.measureRepository, this.parameterRepository, this.stationRepository);

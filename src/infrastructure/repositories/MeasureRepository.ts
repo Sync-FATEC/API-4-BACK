@@ -44,7 +44,13 @@ export class MeasureRepository implements IMeasureRepository {
   }
 
   async getById(id: string): Promise<Measure | null> {
-    const measure = await this.measures.findOne({ where: { id } });
+    const measure = await this.measures.findOne({ where: { id },
+      relations: [
+        "parameter",
+        "parameter.idStation",
+        "parameter.idTypeParameter",
+      ],
+    });
     return measure || null;
   }
 
