@@ -14,6 +14,10 @@ import { NotificationService } from "../../infrastructure/websocket/service/Noti
 import emailSender from "../../application/operations/email/sendEmailCreatePassword";
 import { EmailStationRepository } from "../../infrastructure/repositories/EmailStationRepository";
 import { getNotificationService } from "../../infrastructure/websocket/socket";
+import { UserRepository } from "../../infrastructure/repositories/UserRepository";
+import { ReceiverMongoJsonUseCase } from "../../application/use-cases/receiverJson/receiverMongoUseCase";
+import { MongoDbRepository } from "../../infrastructure/repositories/MongoDbRepository";
+import { MongoClient } from "mongodb";
 
 const measureRepository = new MeasureRepository();
 const stationRepository = new StationRepository();
@@ -22,10 +26,13 @@ const typeAlertRepository = new TypeAlertRepository();
 const parameterRepository = new ParameterRepository();
 const notificationService = getNotificationService();
 const emailStationRepository = new EmailStationRepository();
+const userRepository = new UserRepository();
+
 const senderAlert = new SenderAlertService(
   notificationService,
   emailSender,
-  emailStationRepository
+  emailStationRepository,
+  userRepository
 );
 
 const receiverJsonUseCase = new ReceiverJsonUseCase(
@@ -37,7 +44,46 @@ const receiverJsonUseCase = new ReceiverJsonUseCase(
   senderAlert
 );
 
-const receiverJsonController = new ReceiverJsonController(receiverJsonUseCase);
+// Inicialização da conexão com MongoDB e setup do controller
+let receiverJsonController: ReceiverJsonController;
+let mongoDbRepository: MongoDbRepository<any>;
+let receiverMongoJsonUseCase: ReceiverMongoJsonUseCase;
+
+// Inicializa a conexão com MongoDB e cria as instâncias necessárias
+const initializeMongo = async () => {
+  if (process.env.SETUP_RUN === 'test') return;
+
+  try {
+    const uri = process.env.MONGO_URL || '';
+    const client = new MongoClient(uri);
+    await client.connect();
+    const dbName = process.env.MONGO_DATABASE;
+    const db = client.db(dbName);
+    
+    mongoDbRepository = new MongoDbRepository<any>(db, 'measures');
+    receiverMongoJsonUseCase = new ReceiverMongoJsonUseCase(
+      mongoDbRepository,
+      stationRepository,
+      alertRepository,
+      typeAlertRepository,
+      measureRepository, 
+      parameterRepository, 
+      senderAlert
+    );
+    
+    console.log('Conexão com MongoDB estabelecida com sucesso');
+  } catch (error) {
+    console.error('Erro ao conectar com MongoDB:', error);
+  }
+};
+
+// Iniciar a conexão com MongoDB
+initializeMongo().then(() => {
+  receiverJsonController = new ReceiverJsonController(
+    receiverJsonUseCase, 
+    receiverMongoJsonUseCase
+  );
+});
 
 const receiverJsonRoutes = Router();
 
@@ -93,9 +139,58 @@ receiverJsonRoutes.post(
   "/",
   limiter,
   ensureAuthenticated,
-  asyncHandler((req, res, next) =>
-    receiverJsonController.handle(req, res, next)
-  )
+  asyncHandler(async (req, res, next) => {
+    // Garantir que a conexão com MongoDB esteja estabelecida
+    if (!receiverJsonController) {
+      receiverJsonController = new ReceiverJsonController(
+        receiverJsonUseCase, 
+        receiverMongoJsonUseCase
+      );
+    }
+    return receiverJsonController.handle(req, res, next);
+  })
+);
+
+/**
+ * @swagger
+ * /receiverJson/sync:
+ *   post:
+ *     summary: Sincroniza dados com MongoDB
+ *     tags: [ReceiverJson]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Dados sincronizados com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Dados sincronizados com sucesso
+ *       400:
+ *         description: Erro ao sincronizar dados
+ *       401:
+ *         description: Não autorizado
+ *       404:
+ *         description: Estação não encontrada
+ */
+receiverJsonRoutes.post(
+  "/sync",
+  limiter,
+  ensureAuthenticated,
+  asyncHandler(async (req, res, next) => {
+    // Garantir que a conexão com MongoDB esteja estabelecida
+    if (!receiverJsonController) {
+      receiverJsonController = new ReceiverJsonController(
+        receiverJsonUseCase, 
+        receiverMongoJsonUseCase
+      );
+    }
+    return receiverJsonController.sync(req, res, next);
+  })
 );
 
 export { receiverJsonRoutes };

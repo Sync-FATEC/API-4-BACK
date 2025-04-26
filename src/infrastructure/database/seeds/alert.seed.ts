@@ -12,7 +12,6 @@ export async function seedAlerts() {
     const measures = await measureRepository.find();
 
     if (typeAlerts.length === 0 || measures.length === 0) {
-        console.log("Necessário ter typeAlerts e measures cadastrados primeiro");
         return;
     }
 

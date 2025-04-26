@@ -17,11 +17,12 @@ import { NotificationService } from "../../infrastructure/websocket/service/Noti
 import { NodemailerEmailSender } from "../../infrastructure/email/nodeMailerEmailSender";
 import { EmailStationRepository } from "../../infrastructure/repositories/EmailStationRepository";
 import { getNotificationService } from "../../infrastructure/websocket/socket";
-
+import { UserRepository } from "../../infrastructure/repositories/UserRepository";
 // Repositories
 const alertRepository = new AlertRepository();
 const typeAlertRepository = new TypeAlertRepository();
 const measureRepository = new MeasureRepository();
+const userRepository = new UserRepository();
 
 // Notification Service
 const notificationService = getNotificationService();
@@ -32,7 +33,8 @@ const emailStationRepository = new EmailStationRepository();
 const senderAlert = new SenderAlertService(
   notificationService,
   emailSender,
-  emailStationRepository
+  emailStationRepository,
+  userRepository
 );
 
 // Use Cases

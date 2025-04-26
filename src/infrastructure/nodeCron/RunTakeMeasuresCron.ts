@@ -14,6 +14,7 @@ import { SenderAlertService } from '../../application/services/SenderAlertServic
 import { NotificationService } from '../websocket/service/NotificationService';
 import { EmailStationRepository } from '../repositories/EmailStationRepository';
 import { NodemailerEmailSender } from '../email/nodeMailerEmailSender';
+import { UserRepository } from '../repositories/UserRepository';
 export class RunTakeMeasuresCron {
   private measureRepository = new MeasureRepository();
   private stationRepository = new StationRepository();
@@ -23,7 +24,8 @@ export class RunTakeMeasuresCron {
   private notificationService = new NotificationService();
   private emailSender = NodemailerEmailSender.getInstance();
   private emailStationRepository = new EmailStationRepository();
-  private senderAlertService = new SenderAlertService(this.notificationService, this.emailSender, this.emailStationRepository);
+  private userRepository = new UserRepository();
+  private senderAlertService = new SenderAlertService(this.notificationService, this.emailSender, this.emailStationRepository, this.userRepository);
 
   private task: cron.ScheduledTask | null = null;
 
