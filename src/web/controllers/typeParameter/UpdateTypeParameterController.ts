@@ -10,7 +10,7 @@ export class UpdateTypeParameterController {
     async handle(request: Request, response, next: NextFunction): Promise<Response> {
         const { id, name, unit, numberOfDecimalsCases, factor, offset, typeJson } = request.body;
 
-        if (!id || !name || !unit || !numberOfDecimalsCases || !factor || !offset || !typeJson) {
+        if (!id || !name || !unit || !numberOfDecimalsCases || !factor  || !typeJson) {
             return response.sendError('Dados incompletos', 400);
         }
 

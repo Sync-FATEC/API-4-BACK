@@ -48,6 +48,7 @@ export class AlertRepository implements IAlertRepository {
             unixTime: alert.measure.unixTime,
             value: alert.measure.value,
             parameterText: alert.measure.parameter.getParameterName(),
+            criticality: alert.type.criticality,
           } as ListMeasureResponseDTO,
         } as ListAlertDTO)
     );

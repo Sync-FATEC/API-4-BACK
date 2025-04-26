@@ -10,8 +10,6 @@ export class NotificationService implements INotificationService {
   }
 
   sendNotification(message: string, data?: any) {
-    console.log("sendNotification", message, data);
-
     let messageToSend = JSON.stringify({
       type: "notification",
       message: message,

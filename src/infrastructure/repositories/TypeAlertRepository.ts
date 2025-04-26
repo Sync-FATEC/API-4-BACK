@@ -42,6 +42,7 @@ export default class TypeAlertRepository implements ITypeAlertRepository {
           typeAlert.comparisonOperator
         ),
         value: typeAlert.value,
+        criticality: typeAlert.criticality,
       };
       return dto;
     });
