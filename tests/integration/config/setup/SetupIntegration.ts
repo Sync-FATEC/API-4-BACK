@@ -1,16 +1,16 @@
 import { GenericContainer, StartedTestContainer } from 'testcontainers';
 import { DataSource } from 'typeorm';
-import { AppDataSource } from '../../../src/infrastructure/database/data-source';
-import { Station } from '../../../src/domain/models/entities/Station';
-import { TypeParameter } from '../../../src/domain/models/entities/TypeParameter';
-import Parameter from '../../../src/domain/models/agregates/Parameter/Parameter';
-import { MeasureAverage } from '../../../src/domain/models/entities/MeasureAverage';
-import { Measure } from '../../../src/domain/models/entities/Measure';
-import { Alert } from '../../../src/domain/models/agregates/Alert/Alert';
-import { TypeAlert } from '../../../src/domain/models/agregates/Alert/TypeAlert';
+import { AppDataSource } from '../../../../src/infrastructure/database/data-source';
+import { Station } from '../../../../src/domain/models/entities/Station';
+import { TypeParameter } from '../../../../src/domain/models/entities/TypeParameter';
+import Parameter from '../../../../src/domain/models/agregates/Parameter/Parameter';
+import { MeasureAverage } from '../../../../src/domain/models/entities/MeasureAverage';
+import { Measure } from '../../../../src/domain/models/entities/Measure';
+import { Alert } from '../../../../src/domain/models/agregates/Alert/Alert';
+import { TypeAlert } from '../../../../src/domain/models/agregates/Alert/TypeAlert';
 import { Client } from 'pg';
-import { EmailStation } from '../../../src/domain/models/entities/EmailsStation';
-import { User } from '../../../src/domain/models/entities/User';
+import { EmailStation } from '../../../../src/domain/models/entities/EmailsStation';
+import { User } from '../../../../src/domain/models/entities/User';
 
 let container: StartedTestContainer;
 let dataSource: DataSource;

@@ -1,4 +1,4 @@
-import { stopServer } from '../../../src/server';
+import { stopServer } from '../../../../src/server';
 import { getContainer, getDataSource } from './SetupIntegration';
 
 const TeardownIntegration = async () => {

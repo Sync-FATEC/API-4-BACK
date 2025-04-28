@@ -23,7 +23,7 @@ export class RegisterMeasureUseCase extends MeasureUseCase {
     const parameter = await this.parameterRepository.getWithParameterThenInclude(data.parameterId);
 
     if (!parameter) {
-      throw new SystemContextException("Paramemetro não encontrado");
+      throw new SystemContextException("Parametro não encontrado");
     }
 
     const typeParameter = parameter.idTypeParameter;
