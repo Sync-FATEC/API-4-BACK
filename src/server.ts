@@ -21,7 +21,7 @@ import { receiverJsonRoutes } from './web/routes/receiverJson.routes';
 import { swaggerOptions } from './swaggetOptions';
 import { emailStationRoutes } from './web/routes/emailStation.router';
 import { CronManager } from './infrastructure/nodeCron/CronManager';
-import { createSocketServer } from './infrastructure/websocket/socket';
+import { createSocketServer, getNotificationService } from './infrastructure/websocket/socket';
 import measureAverageRoutes from './web/routes/MeasureAverage.routes';
 import { dashboardRoutes } from './web/routes/dashboard.routes';
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
@@ -54,9 +54,10 @@ export async function startServer(port = process.env.PORT) {
     await initializeDatabase();
 
     const httpServer = http.createServer(app);
-    createSocketServer(httpServer); // WebSocket no mesmo server
+    createSocketServer(httpServer);
+    const notificationService = getNotificationService();
 
-    cronManager = new CronManager();
+    cronManager = new CronManager(notificationService);
     cronManager.startAll();
 
     server = httpServer.listen(port, () => {

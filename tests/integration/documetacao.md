@@ -1,10 +1,4 @@
-# 📘 Documentação de Testes de Integração com Jest
-
-## ✨ Objetivo
-
-Esta documentação tem como objetivo guiar os desenvolvedores na criação de testes de integração utilizando Jest, baseando-se na estrutura de *use cases* do sistema. O foco está em garantir que as regras de negócio sejam validadas de forma completa, simulando interações reais com o sistema e respeitando a estrutura em camadas.
-
----
+# 📘 Documentação de Testes de Integração
 
 ## 🔍 O que são Testes de Integração?
 
@@ -47,7 +41,7 @@ Primeiro, identifique claramente qual *use case* você precisa testar. Verifique
 
 ### 2. Criar o Arquivo de Teste na Pasta Correta
 
-O nome do arquivo deve seguir o padrão:  
+O nome do arquivo de teste deve seguir o padrão:  
 `<NomeDoUseCase>.test.ts`  
 
 Exemplo: Para testar a criação de medições, crie o arquivo:
@@ -276,6 +270,23 @@ test('❌ Deve retornar um erro ao criar uma medição com um parâmetro não ex
 ```bash
 # Executa todos os testes de integração
 npm run test:integration
+```
+
+### 📚 Versões das Bibliotecas
+
+Para garantir a compatibilidade e funcionamento correto dos testes, utilize as seguintes versões das bibliotecas principais:
+
+```json
+{
+  "dependencies": {
+    "typeorm": "^0.3.20",
+    "pg": "^8.11.3",
+    "testcontainers": "^10.0.0",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.12",
+    "ts-jest": "^29.1.2"
+  }
+}
 ```
 
 ---
