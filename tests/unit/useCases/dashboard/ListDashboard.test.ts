@@ -4,7 +4,8 @@ import { IStationRepository } from "../../../../src/domain/interfaces/repositori
 import { IParameterRepository } from "../../../../src/domain/interfaces/repositories/IParameterRepository";
 
 const mockMeasureRepository = {
-    listWithFilters: jest.fn()
+    listWithFilters: jest.fn(),
+    listMeasures: jest.fn()
 };
 
 const mockParameterRepository = {
@@ -28,146 +29,83 @@ describe("ListDashboardUseCase", () => {
         jest.clearAllMocks();
     });
 
-    it("Should return structured dashboard data", async () => {
-        const filters = {
-            startDate: new Date("2023-01-01"),
-            endDate: new Date("2023-12-12")
-        };
+    it("Should return measures when both dates are provided", async () => {
+        // Arrange
+        const startDate = new Date("2023-01-01");
+        const endDate = new Date("2023-12-12");
+        const stationId = "station-1";
+        
+        const expectedMeasures = [
+            { id: 1, value: 25, unixTime: 1700000000, parameter: { id: 1 } }
+        ];
 
-        const station = { id: 1, name: "Station 1", latitude: 10, longitude: 20 };
-        const typeParameter = { id: 1, name: "Temperature", unit: "°C", factor: 1, offset: 0, numberOfDecimalsCases: 2 };
-        const parameter = { id: 1, idStation: station, idTypeParameter: typeParameter };
-        const measurement = { id: 1, value: 25, unixTime: 1700000000, parameter: { id: 1 } };
-
-        mockMeasureRepository.listWithFilters.mockResolvedValue([measurement]);
-        mockStationRepository.list.mockResolvedValue([station]);
-        mockParameterRepository.list.mockResolvedValue([parameter]);
-        mockParameterRepository.getWithParameterThenInclude.mockResolvedValue(parameter);
+        mockMeasureRepository.listWithFilters.mockResolvedValue(expectedMeasures);
         
         const useCase = makeUseCase();
 
-        const result = await useCase.execute(filters);
+        // Act
+        const result = await useCase.execute(stationId, startDate, endDate);
 
-        expect(result).toEqual({
-            stations: [
-                {
-                    id: 1,
-                    name: "Station 1",
-                    location: {
-                        latitude: 10,
-                        longitude: 20
-                    },
-                    parameters: [
-                    {
-                        id: 1,
-                        name: "Temperature",
-                        type: {
-                            id: 1,
-                            name: "Temperature",
-                            unit: "°C",
-                            factor: 1,
-                            offset: 0,
-                            decimalCases: 2
-                        },
-                        measurements: [
-                        {
-                            id: 1,
-                            value: 25,
-                            timestamp: new Date(1700000000 * 1000).toISOString()
-                        }
-                        ]
-                    }
-                    ]
-                }
-                ],
-                timeRange: {
-                    start: new Date(1700000000 * 1000),
-                    end: new Date(1700000000 * 1000)
-                },
-                filters: {
-                    startDate: new Date("2023-01-01"),
-                    endDate: new Date("2023-12-12")
-                }
-        });
-        
-        expect(mockMeasureRepository.listWithFilters).toHaveBeenCalledWith({
-            startDate: new Date("2023-01-01"),
-            endDate: new Date("2023-12-12"),
-            stationId: undefined,
-            parameterId: undefined
-        });
+        // Assert
+        expect(result).toBe(expectedMeasures);
+        expect(mockMeasureRepository.listWithFilters).toHaveBeenCalledWith(startDate, endDate, stationId);
+        expect(mockMeasureRepository.listMeasures).not.toHaveBeenCalled();
     });
     
-    it("Should filter by specific station ID", async () => {
-        const filters = {
-            stationId: "station-123"
-        };
+    it("Should return measures from listMeasures when dates are not provided", async () => {
+        // Arrange
+        const stationId = "station-123";
         
-        const station = { id: "station-123", name: "Specific Station", latitude: 10, longitude: 20 };
-        const typeParameter = { id: 1, name: "Temperature", unit: "°C", factor: 1, offset: 0, numberOfDecimalsCases: 2 };
-        const parameter = { id: 1, idStation: station, idTypeParameter: typeParameter };
-        const measurement = { id: 1, value: 25, unixTime: 1700000000, parameter: { id: 1 } };
+        const expectedMeasures = [
+            { id: 1, value: 25, unixTime: 1700000000, parameter: { id: "param-1" } }
+        ];
 
-        mockMeasureRepository.listWithFilters.mockResolvedValue([measurement]);
-        mockStationRepository.findById.mockResolvedValue(station);
-        mockParameterRepository.list.mockResolvedValue([parameter]);
-        mockParameterRepository.getWithParameterThenInclude.mockResolvedValue(parameter);
+        mockMeasureRepository.listMeasures.mockResolvedValue(expectedMeasures);
         
         const useCase = makeUseCase();
-        const result = await useCase.execute(filters);
         
-        expect(mockStationRepository.findById).toHaveBeenCalledWith("station-123");
-        expect(mockStationRepository.list).not.toHaveBeenCalled();
+        // Act
+        const result = await useCase.execute(stationId, null, null);
         
-        expect(mockMeasureRepository.listWithFilters).toHaveBeenCalledWith({
-            stationId: "station-123",
-            startDate: undefined,
-            endDate: undefined,
-            parameterId: undefined
-        });
+        // Assert
+        expect(result).toBe(expectedMeasures);
+        expect(mockMeasureRepository.listMeasures).toHaveBeenCalledWith(stationId);
+        expect(mockMeasureRepository.listWithFilters).not.toHaveBeenCalled();
     });
     
-    it("Should handle empty measurements", async () => {
-        mockMeasureRepository.listWithFilters.mockResolvedValue([]);
+    it("Should handle missing stationId for listMeasures", async () => {
+        // Arrange
+        mockMeasureRepository.listMeasures.mockResolvedValue([]);
         
         const useCase = makeUseCase();
-        const result = await useCase.execute();
         
-        expect(result).toEqual({
-            stations: [],
-            timeRange: {
-                start: null,
-                end: null
-            }
-        });
+        // Act
+        const result = await useCase.execute(null, null, null);
         
-        expect(mockStationRepository.list).not.toHaveBeenCalled();
-        expect(mockParameterRepository.list).not.toHaveBeenCalled();
+        // Assert
+        expect(result).toEqual([]);
+        expect(mockMeasureRepository.listMeasures).toHaveBeenCalledWith(null);
     });
     
-    it("Should filter by specific parameter ID", async () => {
-        const filters = {
-            parameterId: "param-123"
-        };
+    it("Should handle starting date without ending date", async () => {
+        // Arrange
+        const stationId = "station-1";
+        const startDate = new Date("2023-01-01");
         
-        const station = { id: 1, name: "Station 1", latitude: 10, longitude: 20 };
-        const typeParameter = { id: 1, name: "Specific Parameter", unit: "°C", factor: 1, offset: 0, numberOfDecimalsCases: 2 };
-        const parameter = { id: "param-123", idStation: station, idTypeParameter: typeParameter };
-        const measurement = { id: 1, value: 25, unixTime: 1700000000, parameter: { id: "param-123" } };
+        const expectedMeasures = [
+            { id: 1, value: 25, unixTime: 1700000000, parameter: { id: "param-1" } }
+        ];
 
-        mockMeasureRepository.listWithFilters.mockResolvedValue([measurement]);
-        mockStationRepository.list.mockResolvedValue([station]);
-        mockParameterRepository.list.mockResolvedValue([parameter]);
-        mockParameterRepository.getWithParameterThenInclude.mockResolvedValue(parameter);
+        mockMeasureRepository.listMeasures.mockResolvedValue(expectedMeasures);
         
         const useCase = makeUseCase();
-        const result = await useCase.execute(filters);
         
-        expect(mockMeasureRepository.listWithFilters).toHaveBeenCalledWith({
-            parameterId: "param-123",
-            startDate: undefined,
-            endDate: undefined,
-            stationId: undefined
-        });
+        // Act
+        const result = await useCase.execute(stationId, startDate, null);
+        
+        // Assert
+        expect(result).toBe(expectedMeasures);
+        expect(mockMeasureRepository.listMeasures).toHaveBeenCalledWith(stationId);
+        expect(mockMeasureRepository.listWithFilters).not.toHaveBeenCalled();
     });
 });
