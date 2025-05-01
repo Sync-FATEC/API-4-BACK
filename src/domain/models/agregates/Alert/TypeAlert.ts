@@ -18,7 +18,7 @@ export class TypeAlert {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ type: "float" })
   value: number;
 
   @Column({
