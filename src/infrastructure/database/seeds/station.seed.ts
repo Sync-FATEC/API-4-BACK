@@ -1,30 +1,29 @@
 import { AppDataSource } from "../data-source";
 import { Station } from "../../../domain/models/entities/Station";
-import { v4 as uuidv4 } from 'uuid';
 
 export async function seedStations() {
     const stationRepository = AppDataSource.getRepository(Station);
 
     const stations = [
         {
-            uuid: "e643b48d-8dcd-4c4e-b5b5-611a5bb66fc8",
-            name: "Estação Central",
-            latitude: "-23.550520",
-            longitude: "-46.633308",
+            uuid: "sao-luiz-do-paraitinga-uid-003",
+            name: "Estação de São luiz do paraitinga (A740)",
+            latitude: "-23.22833332",
+            longitude: "-45.41694443",
             createdAt: new Date()
         },
         {
-            uuid: "f296aa48-dedb-4354-ac7d-a91f71de2f84",
-            name: "Estação Norte",
-            latitude: "-23.450520",
-            longitude: "-46.533308",
+            uuid: "taubate-uid-002",
+            name: "Estação de Taubaté (A728)",
+            latitude: "-23.04166666",
+            longitude: "-45.52083332",
             createdAt: new Date()
         },
         {
-            uuid: "67fa2d5d-6ef2-4cc1-b466-999166ec15d2",
-            name: "Estação Sul",
-            latitude: "-23.650520",
-            longitude: "-46.733308",
+            uuid: "campos-do-jordao-uid-001",
+            name: "Estação de Campos do Jordão (A706)",
+            latitude: "-22.75027777",
+            longitude: "-45.60388888",
             createdAt: new Date()
         }
     ];
