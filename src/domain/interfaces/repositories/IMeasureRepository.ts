@@ -12,10 +12,5 @@ export interface IMeasureRepository {
   updateMeasure(measure: Measure): Promise<Measure>;
   listMeasuresLastHour(): Promise<Measure[]>;
   listMeasuresLastDay(): Promise<Measure[]>;
-  listWithFilters(filters: {
-    startDate?: Date;
-    endDate?: Date;
-    stationId?: string;
-    parameterId?: string;
-  }): Promise<Measure[]>;
+  listWithFilters(startDate: Date, endDate: Date, stationId: string): Promise<ListMeasureResponseDTO[]>;
 }
