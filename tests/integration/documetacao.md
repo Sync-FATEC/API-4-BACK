@@ -397,6 +397,23 @@ export class RegisterMeasureUseCase {
 npm run test:integration
 ```
 
+### 📚 Versões das Bibliotecas
+
+Para garantir a compatibilidade e funcionamento correto dos testes, utilize as seguintes versões das bibliotecas principais:
+
+```json
+{
+  "dependencies": {
+    "typeorm": "^0.3.20",
+    "pg": "^8.11.3",
+    "testcontainers": "^10.0.0",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.12",
+    "ts-jest": "^29.1.2"
+  }
+}
+```
+
 ---
 
 ## 🎯 Práticas Recomendadas
