@@ -1,10 +1,10 @@
 import { DataSource } from "typeorm";
-import { CreateStationUseCase } from "../../../src/application/use-cases/station/CreateStationUseCase";
-import StationRepository from "../../../src/infrastructure/repositories/StationRepository";
-import SetupIntegration, { getDataSource } from "../config/setup/SetupIntegration";
-import { clearDatabase } from "../config/setup/DatabaseCleaner";
-import { createStationSeed } from "../config/seeds/createStationSeed";
-import CreateStationDTO from "../../../src/web/dtos/station/CreateStationDTO";
+import { CreateStationUseCase } from "../../../../src/application/use-cases/station/CreateStationUseCase";
+import StationRepository from "../../../../src/infrastructure/repositories/StationRepository";
+import SetupIntegration, { getDataSource } from "../../config/setup/SetupIntegration";
+import { clearDatabase } from "../../config/setup/DatabaseCleaner";
+import { createStationSeed } from "../../config/seeds/createStationSeed";
+import CreateStationDTO from "../../../../src/web/dtos/station/CreateStationDTO";
 
 let dataSource: DataSource;
 let useCase: CreateStationUseCase;

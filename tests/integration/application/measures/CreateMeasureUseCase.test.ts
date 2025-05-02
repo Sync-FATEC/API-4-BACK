@@ -1,14 +1,14 @@
 import { DataSource } from "typeorm";
-import { RegisterMeasureUseCase } from "../../../src/application/use-cases/measure/RegisterMeasureUseCase";
-import { MeasureRepository } from "../../../src/infrastructure/repositories/MeasureRepository";
-import { ParameterRepository } from "../../../src/infrastructure/repositories/ParameterRepository";
-import StationRepository from "../../../src/infrastructure/repositories/StationRepository";
-import SetupIntegration, { getDataSource } from "../config/setup/SetupIntegration";
-import { clearDatabase } from "../config/setup/DatabaseCleaner";
-import { createParameterSeed } from "../config/seeds/createParameterSeed";
-import { createStationSeed } from "../config/seeds/createStationSeed";
-import { createTypeParameterSeed } from "../config/seeds/createTypeParameterSeed";
-import { createMeasuresSeed } from "../config/seeds/createMeasuresSeed";
+import { RegisterMeasureUseCase } from "../../../../src/application/use-cases/measure/RegisterMeasureUseCase";
+import { MeasureRepository } from "../../../../src/infrastructure/repositories/MeasureRepository";
+import { ParameterRepository } from "../../../../src/infrastructure/repositories/ParameterRepository";
+import StationRepository from "../../../../src/infrastructure/repositories/StationRepository";
+import SetupIntegration, { getDataSource } from "../../config/setup/SetupIntegration";
+import { clearDatabase } from "../../config/setup/DatabaseCleaner";
+import { createParameterSeed } from "../../config/seeds/createParameterSeed";
+import { createStationSeed } from "../../config/seeds/createStationSeed";
+import { createTypeParameterSeed } from "../../config/seeds/createTypeParameterSeed";
+import { createMeasuresSeed } from "../../config/seeds/createMeasuresSeed";
 
 let dataSource: DataSource;
 let useCase: RegisterMeasureUseCase;

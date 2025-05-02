@@ -1,10 +1,10 @@
 import { DataSource } from "typeorm";
-import { MeasureRepository } from "../../../src/infrastructure/repositories/MeasureRepository";
-import { MeasureAverageRepository } from "../../../src/infrastructure/repositories/MeasureAverageRepository";
-import { CreateMeasureAverageUseCase } from "../../../src/application/use-cases/measureAverage/CreateMeasureAverageUseCase";
-import SetupIntegration, { getDataSource } from "../config/setup/SetupIntegration";
-import { clearDatabase } from "../config/setup/DatabaseCleaner";    
-import { createMeasuresAverageSeed } from "../config/seeds/createMeasuresAverageSeed";
+import { MeasureRepository } from "../../../../src/infrastructure/repositories/MeasureRepository";
+import { MeasureAverageRepository } from "../../../../src/infrastructure/repositories/MeasureAverageRepository";
+import { CreateMeasureAverageUseCase } from "../../../../src/application/use-cases/measureAverage/CreateMeasureAverageUseCase";
+import SetupIntegration, { getDataSource } from "../../config/setup/SetupIntegration";
+import { clearDatabase } from "../../config/setup/DatabaseCleaner";    
+import { createMeasuresAverageSeed } from "../../config/seeds/createMeasuresAverageSeed";
 
 let dataSource: DataSource;
 let useCase: CreateMeasureAverageUseCase;
