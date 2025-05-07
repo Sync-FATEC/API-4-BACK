@@ -1,28 +1,79 @@
-# 📘 Documentação de Testes de Integração com Jest e TDD
+# 📘 Documentação de Testes de Integração - Equipe Sync
 
-## ✨ Objetivo
-
-Esta documentação tem como objetivo guiar os desenvolvedores na criação de testes de integração utilizando Jest e seguindo a metodologia TDD (Test-Driven Development), baseando-se na estrutura de *use cases* do sistema. O foco está em garantir que as regras de negócio sejam validadas de forma completa, simulando interações reais com o sistema e respeitando a estrutura em camadas.
-
----
-
-## 🔍 O que são Testes de Integração com TDD?
+## 🔍 O que são Testes de Integração?
 
 Os testes de integração validam a interação entre múltiplos componentes ou camadas do sistema. Diferente dos testes unitários, que testam funções isoladas, os testes de integração verificam como diferentes partes do sistema trabalham juntas. No nosso contexto, validamos principalmente:
 
-- A interação entre operações de *use cases* e repositórios
+- A interação entre use cases, repositórios e banco de dados
 - O fluxo completo de dados entre a aplicação e o banco de dados
 - A execução das regras de negócio de ponta a ponta
 
-Em nosso projeto, seguimos o TDD (Test-Driven Development) com uma abordagem específica:
+## ⚙️ Processo de Definição dos Testes de Integração
 
-1. **Red**: Os casos de teste já estão escritos e falham por design, pois especificam comportamentos ainda não implementados
-2. **Green**: O desenvolvedor implementa o código mínimo necessário para fazer os casos de teste passarem
-3. **Refactor**: O desenvolvedor melhora o código mantendo os casos de teste passando
+### 📌 Como os Testes São Definidos?
 
-Este documento orienta principalmente as fases GREEN e REFACTOR, já que a fase RED (especificação dos casos de teste) já foi preparada previamente.
+Os testes de integração são definidos com base nos **critérios de aceitação** estabelecidos pelo **Product Owner (PO)** durante o **planejamento da sprint**. Esses critérios descrevem os comportamentos esperados da funcionalidade e servem como referência direta para a criação dos testes automatizados.
+
+Além disso, **o time valida coletivamente, durante a sprint review**, o que realmente precisa ser coberto por testes de integração — priorizando fluxos críticos e pontos de maior risco.
+
+Durante o desenvolvimento, os desenvolvedores são responsáveis por implementar os testes com foco em:
+
+- Validar o comportamento da aplicação de ponta a ponta (atravessando todas as camadas);
+- Garantir a integração correta entre *use cases*, repositórios e banco de dados;
+- Verificar se os dados fluem corretamente entre entrada (DTOs), lógica de negócio e persistência;
+- Confirmar que erros e exceções previstos são tratados e retornados de forma adequada.
+
+### 👥 Papéis e Responsabilidades
+
+- **Product Owner (PO)**
+  - Define os critérios de aceitação com base nas regras de negócio.
+  - Esses critérios norteiam os testes automatizados.
+
+- **Desenvolvedores**
+  - Implementam os testes de integração com base nos critérios definidos.
+  - Garantem que o comportamento do sistema está correto em cenários reais.
+  - Utilizam seeds e utilitários padronizados para preparar os dados de teste.
+
+- **DevOps (Teste de integração)**
+  - Apoia na padronização de boas práticas.
+  - Mantém exemplos reutilizáveis (seeds, setup, etc).
+
+## 🧑‍💻 Fluxo Completo para o Desenvolvedor
+
+### 1. Analise os Requisitos
+- Consulte o Jira para entender a funcionalidade.
+- Identifique os critérios de aceitação e regras de negócio.
+- Mapeie os *use cases* envolvidos na implementação e nos testes.
+
+### 2. Planeje os Testes
+- Liste os cenários de sucesso e falha.
+- Identifique os dados e dependências necessários.
+- Verifique se já existem seeds reutilizáveis ou se será necessário criar novas.
+
+### 3. Implemente as Seeds
+- Crie arquivos em `tests/integration/config/seeds/`.
+- Use *use cases reais* para popular os dados — nunca insira direto no banco.
+- Parametrize as seeds para facilitar a reutilização entre testes.
+
+### 4. Desenvolva os Testes de Integração
+- Crie o arquivo no padrão: `<NomeDoUseCase>.test.ts`.
+- Configure o ambiente de teste (uso de `beforeAll`, `beforeEach`, `afterAll`).
+- Implemente testes para cobrir os cenários planejados (sucesso e erro).
+- Use `expect(...)` para validar resultados e regras de negócio.
+
+### 5. Execute e Valide
+- Rode os testes com `npm run test:integration`.
+- Verifique se todos os cenários foram cobertos.
+- Garanta que o comportamento da aplicação está conforme as regras definidas.
 
 ---
+
+### 🎯 Foco dos Testes de Integração
+
+O objetivo é validar a aplicação **como um sistema em funcionamento**, garantindo:
+- Que todas as camadas estão corretamente conectadas.
+- Que os dados fluem de forma consistente entre entradas (DTOs), lógicas de negócio e persistência.
+- Que erros esperados são tratados e retornados corretamente.
 
 ## 📦 Estrutura dos Testes
 
@@ -31,122 +82,86 @@ Todos os testes de integração seguem a seguinte estrutura:
 ```
 tests/
  └── integration/
-     ├── application/
-     |    └── <nome-da-entidade>/ # Pasta para entidade (ex: measures, station)
-     |         └── <nome-do-usecase>.test.ts
      ├── config/
      |    └── seeds/         # Funções para gerar dados de teste
      |    └── setup/         # Configuração do ambiente de teste
-     └── documentacao.md
+     ├── application/<nome-da-entidade>/ # Pasta para entidade (ex: measures, station)
+          └── <nome-do-usecase>.test.ts
 ```
 
 ### Detalhamento dos Diretórios:
 
-- `application/<nome-da-entidade>/`: Diretórios organizados por domínio (ex: measures, station, parameters) dentro da camada de aplicação.
 - `config/seeds/`: Contém funções que preparam os dados necessários para os testes. Cada seed deve utilizar os *use cases* reais do sistema para criar os dados.
 - `config/setup/`: Possui arquivos para inicialização do banco de dados de teste, limpeza entre os testes e configuração do ambiente.
-- `*.test.ts`: Arquivos com os casos de teste de integração, nomeados conforme o use case testado.
+- `application/<nome-da-entidade>/`: Diretórios organizados por domínio (ex: measures, station, parameters).
+- `*.test.ts`: Arquivos com os testes de integração, nomeados conforme o use case testado.
 
----
 
-## 🧪 Fluxo de Trabalho com TDD - Casos de Teste Já Escritos
+## 🧪 Passo a Passo para Criar um Novo Teste de Integração
 
-### 1. Compreender os Casos de Teste Existentes (Fase RED já preparada)
+### 1. Identificar o Use Case a ser Testado
 
-Primeiramente, analise os casos de teste já escritos para entender o comportamento esperado do *use case*. Os casos de teste foram criados com base nos critérios de aceitação definidos no Jira e descrevem tanto os cenários de sucesso quanto de falha.
+Primeiro, identifique claramente qual *use case* você precisa testar. Verifique no Jira os critérios de aceitação e regras de negócio relacionadas.
 
-Exemplo de um caso de teste já existente:
+### 2. Criar o Arquivo de Teste na Pasta Correta
+
+O nome do arquivo de teste deve seguir o padrão:  
+`<NomeDoUseCase>.test.ts`  
+
+Exemplo: Para testar a criação de medições, crie o arquivo:
+`tests/integration/application/measures/CreateMeasureUseCase.test.ts`
+
+### 3. Estrutura Base do Arquivo de Teste
 
 ```ts
-test('✅ Deve criar uma medição', async () => {
-  // Precondições - Preparação do cenário de teste
-  const station = await createStationSeed();
-  const typeParameter = await createTypeParameterSeed();
-  const parameter = await createParameterSeed(typeParameter, station);
-  
-  const dto = new RegisterMeasureDTO(parameter.id, 25.5, Date.now());
-  
-  // Ação sob teste - Execução da operação a ser implementada
-  const measure = await useCase.execute(dto);
-  
-  // Asserções - Verificação do comportamento esperado
-  expect(measure).toBeDefined();
-  expect(measure.parameter.id).toBe(parameter.id);
-  expect(measure.parameter.idTypeParameter).toEqual(typeParameter);
-  expect(measure.parameter.idStation).toEqual(station);
-  expect(measure.value).toBe(25.5);
+import { DataSource } from "typeorm";
+import SetupIntegration, { getDataSource } from "../config/setup/SetupIntegration";
+import { clearDatabase } from "../config/setup/DatabaseCleaner";
+
+// Importar os repositórios e use cases necessários
+import { NomeDoUseCase } from "../../../src/application/use-cases/pasta/NomeDoUseCase";
+import { NomeDoRepositorio } from "../../../src/infrastructure/repositories/NomeDoRepositorio";
+
+// Declarar variáveis que serão utilizadas nos testes
+let dataSource: DataSource;
+let useCase: NomeDoUseCase;
+let repositorio: NomeDoRepositorio;
+
+// Configurar o ambiente antes de todos os testes
+beforeAll(async () => {
+  await SetupIntegration();
+  dataSource = getDataSource();
+});
+
+// Limpar o banco e configurar as instâncias antes de cada teste
+beforeEach(async () => {
+  await clearDatabase(dataSource);
+  repositorio = new NomeDoRepositorio();
+  useCase = new NomeDoUseCase(repositorio);
+  // Inicialize outros repositórios ou dependências necessárias
+});
+
+// Limpar recursos após todos os testes
+afterAll(async () => {
+  await dataSource.destroy();
+});
+
+// Exemplo de teste bem-sucedido
+test('✅ Deve executar com sucesso o caso de uso', async () => {
+  // Preparar os dados utilizando seeds
+  // Executar o caso de uso
+  // Verificar os resultados com expects
+});
+
+// Exemplo de teste de erro
+test('❌ Deve retornar erro quando [condição de erro]', async () => {
+  // Preparar o cenário de erro
+  // Verificar se o erro é lançado corretamente
+  await expect(
+    // Chamada do use case com parâmetros que devem gerar erro
+  ).rejects.toThrow("Mensagem de erro esperada");
 });
 ```
-
-### 2. Implementar o Código Mínimo (Fase GREEN)
-
-Como desenvolvedor, sua tarefa é criar a implementação mais simples possível que faça os casos de teste passarem:
-
-```ts
-// RegisterMeasureUseCase.ts - Sua implementação para fazer o caso de teste passar
-export class RegisterMeasureUseCase {
-  constructor(
-    private measureRepository: MeasureRepository,
-    private parameterRepository: ParameterRepository
-  ) {}
-  
-  async execute(dto: RegisterMeasureDTO): Promise<Measure> {
-    // 1. Validar precondições - Obter o parâmetro pelo ID
-    const parameter = await this.parameterRepository.findById(dto.parameterId);
-    if (!parameter) {
-      throw new Error("Parametro não encontrado");
-    }
-    
-    // 2. Executar a lógica de negócio - Criar a medição
-    const measure = new Measure();
-    measure.parameter = parameter;
-    measure.value = dto.value;
-    measure.unixTime = dto.unixTime;
-    
-    // 3. Persistir e retornar o resultado
-    return await this.measureRepository.save(measure);
-  }
-}
-```
-
-### 3. Refatorar o Código (Fase REFACTOR)
-
-Após fazer os casos de teste passarem, melhore a implementação mantendo os testes em verde:
-
-```ts
-// Versão refatorada do RegisterMeasureUseCase.ts
-export class RegisterMeasureUseCase {
-    constructor(
-        private measureRepository: IMeasureRepository,
-        private parameterRepository: IParameterRepository
-    ) {}
-    
-    async execute(dto: RegisterMeasureDTO): Promise<Measure> {
-        const parameter = await this.validateAndGetParameter(dto.parameterId);
-        return await this.createAndSaveMeasure(parameter, dto);
-    }
-    
-    private async validateAndGetParameter(parameterId: string): Promise<Parameter> {
-        const parameter = await this.parameterRepository.findById(parameterId);
-        if (!parameter) {
-            throw new ApplicationError("PARAMETER_NOT_FOUND", "Parametro não encontrado");
-        }
-        return parameter;
-    }
-    
-    private async createAndSaveMeasure(parameter: Parameter, dto: RegisterMeasureDTO): Promise<Measure> {
-        const measure = Measure.create({
-            parameter,
-            value: dto.value,
-            unixTime: dto.unixTime
-        });
-        
-        return await this.measureRepository.save(measure);
-    }
-}
-```
-
----
 
 ## 🌱 Como Criar e Utilizar Seeds
 
@@ -187,200 +202,25 @@ export async function createStationSeed() {
 }
 ```
 
-### Utilizando Seeds nas Precondições dos Casos de Teste:
+### Utilizando Seeds nos Testes:
 
 ```ts
 test('✅ Deve criar uma medição', async () => {
-  // Precondições - Criação dos dados necessários usando seeds
+  // Criação dos dados necessários usando seeds
   const station = await createStationSeed();
   const typeParameter = await createTypeParameterSeed();
   const parameter = await createParameterSeed(typeParameter, station);
   
-  // Ação sob teste - Execução da operação 
+  // Executar o caso de uso a ser testado
   const measure = await createMeasuresSeed(parameter.id);
 
-  // Asserções - Verificação do comportamento esperado
+  // Validação dos resultados
   expect(measure).toBeDefined();
   expect(measure.parameter.id).toBe(parameter.id);
   expect(measure.parameter.idTypeParameter).toEqual(typeParameter);
   expect(measure.parameter.idStation).toEqual(station);
 });
 ```
-
----
-
-## 🧑‍💻 Fluxo de Trabalho para o Desenvolvedor
-
-1. **Compreender os requisitos e os casos de teste existentes:**
-   - Analise os casos de teste já escritos (fase RED)
-   - Verifique no Jira os critérios de aceitação e regras de negócio
-   - Entenda os cenários de sucesso e falha especificados
-
-2. **Executar os casos de teste para confirmar que eles falham:**
-   - Execute `npm run test:integration`
-   - Analise os motivos específicos das falhas
-   - Compreenda as asserções e comportamentos esperados definidos nos casos de teste
-
-3. **Implementar o código mínimo para passar nos casos de teste (Fase GREEN):**
-   - Desenvolva o *use case* com a implementação mais simples possível
-   - Foque em satisfazer todos os critérios de aceitação especificados nos casos de teste
-   - Implemente apenas o necessário para atender às asserções dos casos de teste
-
-4. **Refatorar o código mantendo os casos de teste passando (Fase REFACTOR):**
-   - Melhore a organização, legibilidade e manutenibilidade do código
-   - Elimine duplicações e aplique padrões de projeto adequados
-   - Execute os casos de teste após cada refatoração para garantir que continuam passando
-
-5. **Validar a completude da implementação:**
-   - Confirme que todos os casos de teste estão passando
-   - Verifique se todas as regras de negócio foram implementadas
-   - Certifique-se de que os casos de erro são tratados conforme as especificações
-
----
-
-## 🧾 Exemplo Completo do Fluxo de Trabalho
-
-### Casos de Teste Existentes (Fase RED)
-
-```ts
-// CreateMeasureUseCase.test.ts - Casos de teste já escritos
-import { DataSource } from "typeorm";
-import { RegisterMeasureUseCase } from "../../../src/application/use-cases/measure/RegisterMeasureUseCase";
-import { MeasureRepository } from "../../../src/infrastructure/repositories/MeasureRepository";
-import { ParameterRepository } from "../../../src/infrastructure/repositories/ParameterRepository";
-import StationRepository from "../../../src/infrastructure/repositories/StationRepository";
-import SetupIntegration, { getDataSource } from "../config/setup/SetupIntegration";
-import { clearDatabase } from "../config/setup/DatabaseCleaner";
-import { createParameterSeed } from "../config/seeds/createParameterSeed";
-import { createStationSeed } from "../config/seeds/createStationSeed";
-import { createTypeParameterSeed } from "../config/seeds/createTypeParameterSeed";
-import RegisterMeasureDTO from "../../../src/web/dtos/measure/RegisterMeasureDTO";
-
-let dataSource: DataSource;
-let useCase: RegisterMeasureUseCase;
-let measureRepo: MeasureRepository;
-let parameterRepo: ParameterRepository;
-let stationRepo: StationRepository;
-
-beforeAll(async () => {
-    await SetupIntegration();
-    dataSource = getDataSource();
-});
-
-beforeEach(async () => {
-    await clearDatabase(dataSource);
-    measureRepo = new MeasureRepository();
-    parameterRepo = new ParameterRepository();
-    stationRepo = new StationRepository();
-    useCase = new RegisterMeasureUseCase(measureRepo, parameterRepo, stationRepo);
-});
-
-afterAll(async () => {
-    await dataSource.destroy();
-});
-
-// Caso de teste de cenário positivo - Já escrito, aguardando implementação
-test('✅ Deve registrar uma medição com valores válidos', async () => {
-    // Precondições
-    const station = await createStationSeed();
-    const typeParameter = await createTypeParameterSeed();
-    const parameter = await createParameterSeed(typeParameter, station);
-    
-    const dto = new RegisterMeasureDTO(parameter.id, 25.5, Date.now());
-    
-    // Ação sob teste
-    const measure = await useCase.execute(dto);
-    
-    // Asserções
-    expect(measure).toBeDefined();
-    expect(measure.parameter.id).toBe(parameter.id);
-    expect(measure.parameter.idTypeParameter).toEqual(typeParameter);
-    expect(measure.parameter.idStation).toEqual(station);
-    expect(measure.value).toBe(25.5);
-    expect(measure.unixTime).toBe(dto.unixTime);
-});
-
-// Caso de teste de cenário negativo - Também já escrito, aguardando implementação
-test('❌ Deve rejeitar medição com parâmetro inexistente', async () => {
-    // Precondições para cenário de falha
-    const invalidParameterId = '2bc8680a-8ecf-46db-bc63-90a0925eb66b';
-    const dto = new RegisterMeasureDTO(invalidParameterId, 30.0, Date.now());
-    
-    // Asserção de comportamento de erro esperado
-    await expect(
-        useCase.execute(dto)
-    ).rejects.toThrow("Parametro não encontrado");
-});
-```
-
-### Sua Implementação (Fase GREEN)
-
-```ts
-// RegisterMeasureUseCase.ts - Implementação que você deve criar
-export class RegisterMeasureUseCase {
-    constructor(
-        private measureRepository: MeasureRepository,
-        private parameterRepository: ParameterRepository,
-        private stationRepository: StationRepository
-    ) {}
-    
-    async execute(dto: RegisterMeasureDTO): Promise<Measure> {
-        // Verificar se o parâmetro existe
-        const parameter = await this.parameterRepository.findById(dto.parameterId);
-        if (!parameter) {
-            throw new Error("Parametro não encontrado");
-        }
-        
-        // Criar a entidade de medição
-        const measure = new Measure();
-        measure.parameter = parameter;
-        measure.value = dto.value;
-        measure.unixTime = dto.unixTime;
-        
-        // Salvar e retornar a medição
-        return await this.measureRepository.save(measure);
-    }
-}
-```
-
-### Refatoração (Fase REFACTOR)
-
-```ts
-// RegisterMeasureUseCase.ts - Sua implementação refatorada
-export class RegisterMeasureUseCase {
-    constructor(
-        private measureRepository: IMeasureRepository,
-        private parameterRepository: IParameterRepository
-    ) {}
-    
-    async execute(dto: RegisterMeasureDTO): Promise<Measure> {
-        await this.validateParameter(dto.parameterId);
-        return await this.createAndSaveMeasure(dto);
-    }
-    
-    private async validateParameter(parameterId: string): Promise<Parameter> {
-        const parameter = await this.parameterRepository.findById(parameterId);
-        if (!parameter) {
-            throw new ApplicationError("PARAMETER_NOT_FOUND", "Parametro não encontrado");
-        }
-        return parameter;
-    }
-    
-    private async createAndSaveMeasure(dto: RegisterMeasureDTO): Promise<Measure> {
-        const parameter = await this.parameterRepository.findById(dto.parameterId);
-        
-        const measure = Measure.create({
-            parameter,
-            value: dto.value,
-            unixTime: dto.unixTime
-        });
-        
-        return await this.measureRepository.save(measure);
-    }
-}
-```
-
----
 
 ## ⚙️ Configuração do Ambiente de Testes
 
@@ -390,10 +230,10 @@ export class RegisterMeasureUseCase {
 - **DatabaseCleaner.ts**: Limpa todas as tabelas do banco entre os testes.
 - **TeardownIntegration.ts**: Encerra as conexões após os testes.
 
-### Executando os Casos de Teste:
+### Executando os Testes:
 
 ```bash
-# Executa todos os casos de teste de integração
+# Executa todos os testes de integração
 npm run test:integration
 ```
 
@@ -414,50 +254,64 @@ Para garantir a compatibilidade e funcionamento correto dos testes, utilize as s
 }
 ```
 
----
+### ⚙️ Configuração do jest
+
+```ts
+module.exports = {
+    testMatch: [
+        "**/tests/integration/*.test.ts",
+        "**/tests/integration/**/*.test.ts",
+        "**/tests/integration/**/**/*.test.ts",
+      ],
+    testPathIgnorePatterns: ["/node_modules/"],
+    coverageDirectory: "coverage/integration",
+    coverageReporters: ["text", "lcov"],
+    collectCoverage: true,
+    testEnvironment: "node",
+    moduleNameMapper: {
+      "^@/(.)$": "<rootDir>/src/$1",
+    },
+    preset: "ts-jest",
+    globalSetup: './tests/integration/config/setup/SetupIntegration.ts',
+    globalTeardown: './tests/integration/config/setup/TeardownIntegration.ts',
+    testTimeout: 60000,
+  };
+```
 
 ## 🎯 Práticas Recomendadas
 
-1. **Compreenda integralmente os casos de teste:**
-   - Analise cuidadosamente os casos de teste existentes antes de implementar
-   - Identifique os critérios de aceitação especificados em cada caso de teste
-   - Observe as asserções (expects) para entender o comportamento esperado
+1. **Dados consistentes**:
+   - Sempre use seeds para criar dados de teste
+   - Nunca faça manipulação direta do banco
+   - Mantenha os dados realistas
 
-2. **Implemente apenas o necessário para atender às especificações:**
-   - Escreva o código mínimo para fazer os casos de teste passarem
-   - Evite adicionar funcionalidades não cobertas por casos de teste
-   - Foque nos critérios de aceitação definidos nos casos de teste
+2. **Nomeação clara**:
+   - Testes com nomes descritivos indicando o cenário
+   - Prefixo "✅" para testes de sucesso
+   - Prefixo "❌" para testes de falha
 
-3. **Refatore com segurança:**
-   - Execute os casos de teste após cada refatoração
-   - Mantenha a mesma interface pública do use case
-   - Melhore a estrutura interna preservando o comportamento verificado pelos casos de teste
+3. **Validações completas**:
+   - Teste todas as propriedades relevantes
+   - Valide casos de borda e exceções
+   - Verifique mensagens de erro específicas
 
-4. **Respeite o contrato definido nos casos de teste:**
-   - Implemente as assinaturas de métodos e classes conforme esperado nos casos de teste
-   - Trate os erros exatamente como especificado nos casos de teste
-   - Garanta que todas as asserções sejam satisfeitas
-
-5. **Utilize as seeds para preparar precondições:**
-   - Entenda como as seeds são utilizadas para preparar os cenários de teste
-   - Mantenha a consistência com o padrão de seeds existente
-   - Trate as seeds como ferramentas para garantir as precondições dos casos de teste
-
----
+4. **Isolamento**:
+   - Cada teste deve ser independente
+   - O banco deve ser limpo entre cada teste
+   - Evite dependências entre testes
 
 ## ✅ Checklist de Qualidade
 
-Antes de finalizar sua implementação, verifique:
+Antes de finalizar sua implementação de testes, verifique:
 
-- [ ] Todos os casos de teste estão passando (fase GREEN concluída)
-- [ ] O código foi refatorado para melhor qualidade (fase REFACTOR concluída)
-- [ ] A implementação atende a todos os critérios de aceitação especificados nos casos de teste
-- [ ] Os cenários de erro são tratados conforme esperado nos casos de teste
-- [ ] Não foram adicionadas funcionalidades não cobertas por casos de teste
-- [ ] O código segue os padrões e convenções do projeto
-- [ ] A implementação é a mais simples possível que satisfaz os casos de teste
+- [ ] Os testes cobrem todos os cenários definidos nos critérios de aceitação
+- [ ] Os dados são preparados via seeds usando use cases reais
+- [ ] Existem testes para todos os casos de erro relevantes
+- [ ] O banco de dados é limpo corretamente entre os testes
+- [ ] As mensagens de erro esperadas estão sendo validadas
+- [ ] A cobertura de código está adequada (>80%)
+- [ ] Os testes são legíveis e bem documentados
 
 ---
 
-**Com este fluxo de trabalho, garantimos que o código implementado atenda exatamente às especificações definidas nos casos de teste, resultando em um sistema mais confiável e alinhado com as regras de negócio.**
-
+**Com testes de integração bem estruturados, garantimos que o sistema funciona corretamente como um todo, reduzindo riscos em produção e aumentando a confiança no código.**
