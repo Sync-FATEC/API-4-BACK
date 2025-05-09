@@ -4,9 +4,16 @@
 
 Os testes de integração validam a interação entre múltiplos componentes ou camadas do sistema. Diferente dos testes unitários, que testam funções isoladas, os testes de integração verificam como diferentes partes do sistema trabalham juntas. No nosso contexto, validamos principalmente:
 
+### Back-end
 - A interação entre use cases, repositórios e banco de dados
 - O fluxo completo de dados entre a aplicação e o banco de dados
 - A execução das regras de negócio de ponta a ponta
+
+### Front-end
+- A interação entre componentes React, contextos e serviços
+- O fluxo de dados entre a interface e as APIs (mockadas)
+- A navegação entre páginas e o comportamento dos componentes em diferentes estados
+- A validação de ciclos completos de interação do usuário
 
 ## ⚙️ Processo de Definição dos Testes de Integração
 
@@ -187,40 +194,140 @@ export async function createNomeEntidadeSeed(parametro1: string, parametro2: num
 }
 ```
 
-### Exemplo Real de Seed para Estação:
 
-```ts
-// createStationSeed.ts
-import { CreateStationUseCase } from "../../../src/application/use-cases/station/CreateStationUseCase";
-import StationRepository from "../../../src/infrastructure/repositories/StationRepository";
-import CreateStationDTO from "../../../src/web/dtos/station/CreateStationDTO";
+## 🖥️ Testes de Integração no Front-end
 
-export async function createStationSeed() {
-  const useCase = new CreateStationUseCase(new StationRepository());
-  const dto = new CreateStationDTO("Estação Centro", "uuid-centro", "-23.5505", "-46.6333");
-  return await useCase.execute(dto);
-}
+### 📌 Definição e Propósito
+
+No contexto do front-end, os testes de integração validam como os diferentes componentes da interface trabalham juntos, incluindo a integração com serviços de API (que são normalmente simulados). Estes testes visam garantir que:
+
+- Múltiplos componentes React funcionem corretamente juntos
+- A navegação entre rotas funcione conforme esperado
+- Os contextos (como autenticação) sejam corretamente compartilhados
+- As interações do usuário resultem no comportamento esperado
+- Os dados sejam exibidos corretamente após operações de API
+
+### 📦 Estrutura dos Testes Front-end
+
+Os testes de integração no front-end seguem uma estrutura organizada por funcionalidade:
+
+```
+src/
+ └── pages/
+     └── NomeDaFuncionalidade/
+         └── NomeDoComponente/
+             └── NomeDoComponente.int.test.tsx
 ```
 
-### Utilizando Seeds nos Testes:
+### 📋 Convenções de Nomenclatura
 
-```ts
-test('✅ Deve criar uma medição', async () => {
-  // Criação dos dados necessários usando seeds
-  const station = await createStationSeed();
-  const typeParameter = await createTypeParameterSeed();
-  const parameter = await createParameterSeed(typeParameter, station);
-  
-  // Executar o caso de uso a ser testado
-  const measure = await createMeasuresSeed(parameter.id);
+Para facilitar a identificação dos diferentes tipos de teste, utilizamos o sufixo `.int.test.tsx` para testes de integração, distinguindo-os dos testes unitários (`.unit.test.tsx`).
 
-  // Validação dos resultados
-  expect(measure).toBeDefined();
-  expect(measure.parameter.id).toBe(parameter.id);
-  expect(measure.parameter.idTypeParameter).toEqual(typeParameter);
-  expect(measure.parameter.idStation).toEqual(station);
+### 🛠️ Passo a Passo para Criar um Teste de Integração no Front-end
+
+#### 1. Criar o Arquivo de Teste
+
+Crie um arquivo seguindo o padrão de nomenclatura na pasta do componente:
+```
+src/pages/NomeDaFuncionalidade/NomeDoComponente/NomeDoComponente.int.test.tsx
+```
+
+#### 2. Estrutura Básica do Teste
+
+```tsx
+import React from 'react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import nomeDoServico from '../../../api/nomeDoServico';
+import NomeDoComponente from './NomeDoComponente';
+import { AlgumContexto } from '../../../contexts/contexto/AlgumContexto';
+
+// Mock de navegação
+const mockNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
+}));
+
+// Mock da API
+jest.mock('../../../api/nomeDoServico');
+
+// Dados mock para testes
+const dadosMock = [
+  // Dados de exemplo para uso nos testes
+];
+
+// Função auxiliar para renderizar com contextos necessários
+const renderComContexto = (component) => {
+  return render(
+    <AlgumContexto.Provider value={/* valores do contexto */}>
+      <MemoryRouter>
+        {component}
+      </MemoryRouter>
+    </AlgumContexto.Provider>
+  );
+};
+
+describe('NomeDoComponente - Integração', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    // Configuração dos mocks para simular respostas da API
+    (nomeDoServico.metodoApi as jest.Mock).mockResolvedValue({
+      data: { model: dadosMock },
+    });
+  });
+
+  test('📋 Deve renderizar os dados após carregamento', async () => {
+    renderComContexto(<NomeDoComponente />);
+    
+    // Aguardar carregamento e verificar elementos na tela
+    await waitFor(() => {
+      expect(screen.getByText("Texto esperado")).toBeInTheDocument();
+    });
+  });
+
+  test('🖱️ Deve executar ação correta ao clicar no botão', async () => {
+    renderComContexto(<NomeDoComponente />);
+    
+    // Encontrar e interagir com elementos
+    const botao = screen.getByText('Ação');
+    fireEvent.click(botao);
+    
+    // Verificar resultados da interação
+    await waitFor(() => {
+      expect(nomeDoServico.metodoApi).toHaveBeenCalledWith(expect.any(Object));
+      expect(screen.getByText("Resultado esperado")).toBeInTheDocument();
+    });
+  });
 });
 ```
+
+## 🎯 Práticas Recomendadas para Testes Front-end
+
+1. **Simular o ambiente completo**:
+   - Renderizar componentes com todos os contextos e providers necessários
+   - Configurar corretamente o Router para simular navegação
+   - Criar mocks realistas de APIs e serviços
+
+2. **Focar em interações do usuário**:
+   - Testar cliques, preenchimento de formulários e submissões
+   - Verificar feedbacks visuais (mensagens de sucesso, erro)
+   - Simular o caminho completo que o usuário percorreria
+
+3. **Validar o comportamento, não a implementação**:
+   - Verificar o que o usuário veria na tela
+   - Confirmar que as ações levam aos resultados corretos
+   - Evitar testar detalhes internos de implementação
+
+4. **Usar data-testid para elementos dinâmicos**:
+   - Adicionar atributos `data-testid` em elementos importantes
+   - Evitar seletores frágeis como índices de arrays
+   - Facilitar testes estáveis mesmo com mudanças no layout
+
+5. **Limpar mocks entre testes**:
+   - Usar `jest.clearAllMocks()` no `beforeEach`
+   - Garantir isolamento dos testes
+   - Evitar comportamentos inesperados por estado residual
 
 ## ⚙️ Configuração do Ambiente de Testes
 
@@ -233,14 +340,18 @@ test('✅ Deve criar uma medição', async () => {
 ### Executando os Testes:
 
 ```bash
-# Executa todos os testes de integração
+# Executa todos os testes de integração back-end
 npm run test:integration
+
+# Executa todos os testes de integração front-end
+npm run test:integration  # No diretório do projeto front-end
 ```
 
 ### 📚 Versões das Bibliotecas
 
 Para garantir a compatibilidade e funcionamento correto dos testes, utilize as seguintes versões das bibliotecas principais:
 
+#### Back-end
 ```json
 {
   "dependencies": {
@@ -254,8 +365,26 @@ Para garantir a compatibilidade e funcionamento correto dos testes, utilize as s
 }
 ```
 
+#### Front-end
+```json
+{
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.3.2",
+    "@types/jest": "^29.5.14"
+  }
+}
+```
+
+
+
 ### ⚙️ Configuração do jest
 
+#### Back-end
 ```ts
 module.exports = {
     testMatch: [
@@ -278,40 +407,42 @@ module.exports = {
   };
 ```
 
-## 🎯 Práticas Recomendadas
-
-1. **Dados consistentes**:
-   - Sempre use seeds para criar dados de teste
-   - Nunca faça manipulação direta do banco
-   - Mantenha os dados realistas
-
-2. **Nomeação clara**:
-   - Testes com nomes descritivos indicando o cenário
-   - Prefixo "✅" para testes de sucesso
-   - Prefixo "❌" para testes de falha
-
-3. **Validações completas**:
-   - Teste todas as propriedades relevantes
-   - Valide casos de borda e exceções
-   - Verifique mensagens de erro específicas
-
-4. **Isolamento**:
-   - Cada teste deve ser independente
-   - O banco deve ser limpo entre cada teste
-   - Evite dependências entre testes
+#### Front-end
+```js
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+  moduleNameMapper: {
+    '\\.(css|scss|sass)$': 'identity-obj-proxy',
+    '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/src/__mocks__/fileMock.js'
+  },
+  transform: {
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+  },
+};
+```
 
 ## ✅ Checklist de Qualidade
 
 Antes de finalizar sua implementação de testes, verifique:
 
+### Back-end
 - [ ] Os testes cobrem todos os cenários definidos nos critérios de aceitação
 - [ ] Os dados são preparados via seeds usando use cases reais
 - [ ] Existem testes para todos os casos de erro relevantes
 - [ ] O banco de dados é limpo corretamente entre os testes
 - [ ] As mensagens de erro esperadas estão sendo validadas
 - [ ] A cobertura de código está adequada (>80%)
-- [ ] Os testes são legíveis e bem documentados
+
+### Front-end
+- [ ] Os componentes são renderizados com todos os contextos necessários
+- [ ] As interações do usuário (cliques, formulários) são testados
+- [ ] Os serviços de API são adequadamente mockados
+- [ ] A navegação entre páginas é verificada quando relevante
+- [ ] Estados de carregamento, sucesso e erro são testados
+- [ ] Elementos visuais importantes são verificados
 
 ---
 
-**Com testes de integração bem estruturados, garantimos que o sistema funciona corretamente como um todo, reduzindo riscos em produção e aumentando a confiança no código.**
+**Com testes de integração bem estruturados tanto no back-end quanto no front-end, garantimos que o sistema funciona corretamente como um todo, reduzindo riscos em produção e aumentando a confiança no código.**
