@@ -8,7 +8,7 @@ import { User } from "../../domain/models/entities/User";
 import { Measure } from "../../domain/models/entities/Measure";
 import { EmailStation } from "../../domain/models/entities/EmailsStation";
 import { MeasureAverage } from "../../domain/models/entities/MeasureAverage";
-
+import { Logs } from "../../domain/models/entities/Logs";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -28,7 +28,8 @@ export const AppDataSource = new DataSource({
     Measure,
     Station,
     EmailStation,
-    MeasureAverage
+    MeasureAverage,
+    Logs
   ],
   migrations: [],
   subscribers: [],
