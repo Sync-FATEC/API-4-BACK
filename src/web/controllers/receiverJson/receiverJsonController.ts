@@ -6,7 +6,7 @@ export class ReceiverJsonController {
         private receiverMongoJsonUseCase: ReceiverMongoJsonUseCase
     ) {}
 
-    async handle(request: Request, response, next: NextFunction) {
+    async handle(request: Request, response, next: NextFunction): Promise<any> {
         try {
             const dataJson = request.body;
             await this.receiverJsonUseCase.execute(dataJson);
@@ -17,7 +17,7 @@ export class ReceiverJsonController {
         }
     }
 
-    async sync(request: Request, response, next: NextFunction) {
+    async sync(request: Request, response, next: NextFunction): Promise<any> {
         try {
             await this.receiverMongoJsonUseCase.execute();
             return response.sendSuccess("Sincronizado com sucesso", 200);

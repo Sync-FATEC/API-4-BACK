@@ -41,7 +41,7 @@ export class AuthUseCase {
         };
     }
 
-    private async verifyUserHavePassword(userEmail: string, userName: string) {
+    private async verifyUserHavePassword(userEmail: string, userName: string): Promise<void> {
         const user = await this.userRepository.findByEmail(userEmail);
 
         if (!user.password) {

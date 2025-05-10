@@ -10,7 +10,6 @@ export async function runMeasureSeeds(
   const measures: Measure[] = [];
   
   const now = Math.floor(Date.now() / 1000);
-  const oneHourAgo = now - 3600;
   const twoHoursAgo = now - 7200;
   const threeDaysAgo = now - 259200;
   

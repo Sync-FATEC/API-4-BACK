@@ -6,7 +6,7 @@ import UpdateStationDTO from "../../../web/dtos/station/UpdateStationDTO";
 export default class UpdateStationUseCase {
     constructor(private stationRepository: IStationRepository) {}
 
-    async execute(stationData: UpdateStationDTO) {
+    async execute(stationData: UpdateStationDTO): Promise<void> {
         const station = await this.stationRepository.findById(stationData.getId());
         if (!station) {
             throw new SystemContextException('Estação não encontrada');
@@ -17,7 +17,7 @@ export default class UpdateStationUseCase {
             latitude: stationData.getLatitude(),
             longitude: stationData.getLongitude(),
         }
-        if (stationData.getUuid() != station.uuid) {
+        if (stationData.getUuid() !== station.uuid) {
             updateData.uuid = stationData.getUuid();
         }
         

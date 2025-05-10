@@ -124,7 +124,7 @@ function createMockMeasureAverage(id: string, typeAverage: enumAverage, name: st
     return measureAverage;
 }
 
-function createMockMeasures() {
+function createMockMeasures(): any[] {
     // Cria estações mock
     const stationA = new Station();
     stationA.id = 'station-a-id';
@@ -170,7 +170,7 @@ function createMockMeasures() {
                 idTypeParameter: tempTypeParam,
                 typeAlerts: [],
                 measures: [],
-                getParameterName: function () {
+                getParameterName: function (): string {
                     return this.idStation.name + ' - ' + this.idTypeParameter.name;
                 }
             }
@@ -186,7 +186,7 @@ function createMockMeasures() {
                 idTypeParameter: tempTypeParam,
                 typeAlerts: [],
                 measures: [],
-                getParameterName: function () {
+                getParameterName: function (): string {
                     return this.idStation.name + ' - ' + this.idTypeParameter.name;
                 }
             }
@@ -202,7 +202,7 @@ function createMockMeasures() {
                 idTypeParameter: humidTypeParam,
                 typeAlerts: [],
                 measures: [],
-                getParameterName: function () {
+                getParameterName: function (): string {
                     return this.idStation.name + ' - ' + this.idTypeParameter.name;
                 }
             }
@@ -218,7 +218,7 @@ function createMockMeasures() {
                 idTypeParameter: humidTypeParam,
                 typeAlerts: [],
                 measures: [],
-                getParameterName: function () {
+                getParameterName: function (): string {
                     return this.idStation.name + ' - ' + this.idTypeParameter.name;
                 }
             }

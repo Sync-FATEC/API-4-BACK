@@ -94,7 +94,7 @@ export class SenderAlertService implements ISenderAlertService {
     }
   }
 
-  private getMessage(criticality: Criticality) {
+  private getMessage(criticality: Criticality): string {
     switch (criticality) {
       case Criticality.LOW:
         return "Alerta de baixa criticalidade";

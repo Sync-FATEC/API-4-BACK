@@ -3,10 +3,9 @@ import { TypeAlert } from "../../../domain/models/agregates/Alert/TypeAlert";
 import Parameter from "../../../domain/models/agregates/Parameter/Parameter";
 import { ComparisonOperator } from "../../../domain/enums/TypeAlert/ComparisonOperator";
 import { Criticality } from "../../../domain/enums/TypeAlert/Criticality";
-import { In } from "typeorm";
 import { Station } from "../../../domain/models/entities/Station";
 
-export async function seedTypeAlerts() {
+export async function seedTypeAlerts(): Promise<void> {
     const typeAlertRepository = AppDataSource.getRepository(TypeAlert);
     const parameterRepository = AppDataSource.getRepository(Parameter);
     const stationRepository = AppDataSource.getRepository(Station);

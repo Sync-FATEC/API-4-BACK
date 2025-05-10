@@ -20,7 +20,7 @@ export class AuthService {
     public verifyToken(token: string): TokenPayload {
         try {
             return verify(token, this.jwtSecret) as TokenPayload;
-        } catch (error) {
+        } catch {
             throw new SystemContextException('Token inválido ou expirado');
         }
     }

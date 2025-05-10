@@ -9,7 +9,7 @@ export class NotificationService implements INotificationService {
     this.server = server;
   }
 
-  sendNotification(message: string, data?: any) {
+  sendNotification(message: string, data?: any): void {
     let messageToSend = JSON.stringify({
       type: "notification",
       message: message,

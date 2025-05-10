@@ -1,8 +1,7 @@
 import { AppDataSource } from './data-source';
-import { runSeeds } from './seeds';
 import { seedAdminUser } from './seeds/AdminUserSeed';
 
-export async function initializeDatabase() {
+export async function initializeDatabase(): Promise<void> {
     try {
         await AppDataSource.initialize();
         
@@ -14,6 +13,6 @@ export async function initializeDatabase() {
     }
 }
 
-export async function closeDatabase() {
+export async function closeDatabase(): Promise<void> {
     await AppDataSource.destroy();
 }

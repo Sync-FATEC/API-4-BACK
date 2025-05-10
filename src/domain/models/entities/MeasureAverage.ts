@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn, OneToMany, ManyToOne } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import { Station } from "./Station";
 import { enumAverage } from "../../enums/MeasureAverage/enumAverage";
 
@@ -25,26 +25,26 @@ export class MeasureAverage {
     @ManyToOne(() => Station, (station) => station.measureAverages)
     station: Station;
 
-    public CreateMeasureAverage(typeAverage: enumAverage, name: string, value: string) {
+    public CreateMeasureAverage(typeAverage: enumAverage, name: string, value: string): void {
         this.typeAverage = typeAverage;
         this.name = name;
         this.value = value;
     }
 
 
-    public GetId() {
+    public GetId(): string {
         return this.id;
     }
 
-    public GetTypeAverage() {
+    public GetTypeAverage(): enumAverage {
         return this.typeAverage;
     }
 
-    public GetName() {
+    public GetName(): string {
         return this.name;
     }
 
-    public GetValue() {
+    public GetValue(): string {
         return this.value;
     }
 }

@@ -2,9 +2,8 @@ import { AppDataSource } from "../data-source";
 import Parameter from "../../../domain/models/agregates/Parameter/Parameter";
 import { Station } from "../../../domain/models/entities/Station";
 import { TypeParameter } from "../../../domain/models/entities/TypeParameter";
-import { In } from "typeorm";
 
-export async function seedParameters() {
+export async function seedParameters(): Promise<void> {
     const parameterRepository = AppDataSource.getRepository(Parameter);
     const stationRepository = AppDataSource.getRepository(Station);
     const typeParameterRepository = AppDataSource.getRepository(TypeParameter);

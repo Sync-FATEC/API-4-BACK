@@ -15,10 +15,10 @@ import { User } from '../../../src/domain/models/entities/User';
 let container: StartedTestContainer;
 let dataSource: DataSource;
 
-export const getContainer = () => container;
-export const getDataSource = () => dataSource;
+export const getContainer = (): StartedTestContainer | undefined => container;
+export const getDataSource = (): DataSource | undefined => dataSource;
 
-const waitForPostgres = async (host: string, port: number, retries = 10, delay = 1000) => {
+const waitForPostgres = async (host: string, port: number, retries = 10, delay = 1000): Promise<void> => {
   for (let i = 0; i < retries; i++) {
     try {
       const client = new Client({
@@ -31,14 +31,14 @@ const waitForPostgres = async (host: string, port: number, retries = 10, delay =
       await client.connect();
       await client.end();
       return;
-    } catch (err) {
+    } catch {
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
   }
   throw new Error('PostgreSQL não ficou pronto a tempo.');
 };
 
-const SetupIntegration = async () => {
+const SetupIntegration = async (): Promise<void> => {
   container = await new GenericContainer('postgres')
     .withExposedPorts(5432)
     .withEnvironment({

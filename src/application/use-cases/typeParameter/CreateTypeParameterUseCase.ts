@@ -5,7 +5,7 @@ import CreateTypeParameterDTO from "../../../web/dtos/typeParameter/CreateTypePa
 export class CreateTypeParameterUseCase {
     constructor(private typeParametersRepository: ITypeParameterRepository) {}
 
-    async execute(typeParameterData: CreateTypeParameterDTO) {
+    async execute(typeParameterData: CreateTypeParameterDTO): Promise<any> {
         const name = await this.typeParametersRepository.findByName(typeParameterData.getName());
         if (name) {
             throw new SystemContextException("Nome do parâmetro de tipo já cadastrado");

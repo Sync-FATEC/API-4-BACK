@@ -1,7 +1,7 @@
 import { AppDataSource } from "../data-source";
 import { Station } from "../../../domain/models/entities/Station";
 
-export async function seedStations() {
+export async function seedStations(): Promise<void> {
     const stationRepository = AppDataSource.getRepository(Station);
 
     const stations = [

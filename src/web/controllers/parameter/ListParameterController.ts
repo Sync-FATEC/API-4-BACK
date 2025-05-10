@@ -4,7 +4,7 @@ import { ListParameterUseCase } from "../../../application/use-cases/parameter/L
 export class ListParameterController {
     constructor(private listParameterUseCase: ListParameterUseCase) {}
 
-    async handle(request: Request, response, next: NextFunction) {
+    async handle(request: Request, response, next: NextFunction): Promise<any> {
         try {
             const parameters = await this.listParameterUseCase.execute();
 

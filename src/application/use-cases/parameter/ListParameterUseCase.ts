@@ -4,7 +4,7 @@ import { IParameterRepository } from "../../../domain/interfaces/repositories/IP
 export class ListParameterUseCase {
     constructor(private parameterRepository: IParameterRepository) {}
 
-    async execute() {
+    async execute(): Promise<any> {
         const parameters = await this.parameterRepository.listDTO();
         if (parameters.length === 0) {
             throw new SystemContextException('Nenhum parâmetro para listar');

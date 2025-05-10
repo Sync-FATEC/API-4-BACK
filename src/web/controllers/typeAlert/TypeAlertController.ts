@@ -1,11 +1,16 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response as ExpressResponse } from "express";
 import { DeleteTypeAlertUseCase } from "../../../application/use-cases/typeAlert/DeleteTypeAlertUseCase";
 import { ListTypeAlertUseCase } from "../../../application/use-cases/typeAlert/ListTypeAlertUseCase";
 import { ReadTypeAlertUseCase } from "../../../application/use-cases/typeAlert/ReadTypeAlertUseCase";
 import { RegisterTypeAlertUseCase } from "../../../application/use-cases/typeAlert/RegisterTypeAlertUseCase";
 import { UpdateTypeAlertUseCase } from "../../../application/use-cases/typeAlert/UpdateTypeAlertUseCase";
 import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
-import { Criticality } from "../../../domain/enums/TypeAlert/Criticality";
+
+interface CustomResponse extends ExpressResponse {
+  sendSuccess: (data: any, statusCode: number) => this;
+}
+
+type Response = CustomResponse;
 
 export class TypeAlertController {
   private registerUseCase: RegisterTypeAlertUseCase;
@@ -28,7 +33,7 @@ export class TypeAlertController {
     this.deleteUseCase = deleteUseCase;
   }
 
-  async create(req: Request, response, next: NextFunction) {
+  async create(req: Request, response: Response, next: NextFunction): Promise<Response> {
     try {
       const { name, comparisonOperator, value, criticality, parameterId } =
         req.body;
@@ -51,7 +56,7 @@ export class TypeAlertController {
     }
   }
 
-  async update(req: Request, response, next: NextFunction) {
+  async update(req: Request, response: Response, next: NextFunction): Promise<Response> {
     try {
       const { id, name, comparisonOperator, value, criticality, parameterId } =
         req.body;
@@ -81,7 +86,7 @@ export class TypeAlertController {
     }
   }
 
-  async getById(req: Request, response, next: NextFunction) {
+  async getById(req: Request, response: Response, next: NextFunction): Promise<Response> {
     try {
       const { id } = req.params;
       const typeAlert = await this.readUseCase.execute(id);
@@ -92,7 +97,7 @@ export class TypeAlertController {
     }
   }
 
-  async getAll(req: Request, response, next: NextFunction) {
+  async getAll(req: Request, response: Response, next: NextFunction): Promise<Response> {
     try {
       const list = await this.listUseCase.execute();
       return response.sendSuccess(list, 200);
@@ -101,7 +106,7 @@ export class TypeAlertController {
     }
   }
 
-  async delete(req: Request, response, next: NextFunction) {
+  async delete(req: Request, response: Response, next: NextFunction): Promise<Response> {
     try {
       const { id } = req.params;
       await this.deleteUseCase.execute(id);

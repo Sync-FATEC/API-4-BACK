@@ -4,7 +4,7 @@ import ListMeasureAverageUseCase from "../../../application/use-cases/measureAve
 export class ListMeasureAverageController {
     constructor(private listMeasureAverageUseCase: ListMeasureAverageUseCase) {}
 
-    async handle(request: Request, response: Response, next: NextFunction) {
+    async handle(request: Request, response: Response, next: NextFunction): Promise<any> {
         try {
             const stationId = request.params.stationId;
 
@@ -16,7 +16,7 @@ export class ListMeasureAverageController {
         }
     }
 
-    async handleWithStartAndEnd(request: Request, response: Response, next: NextFunction) {
+    async handleWithStartAndEnd(request: Request, response: Response, next: NextFunction): Promise<any> {
         try {
             const stationId = request.params.stationId;
             const start = request.params.start;
@@ -30,7 +30,7 @@ export class ListMeasureAverageController {
         }
     }
 
-    async handleWithDate(request: Request, response: Response, next: NextFunction) {
+    async handleWithDate(request: Request, response: Response, next: NextFunction): Promise<any> {
         try {
             const stationId = request.params.stationId;
             const date = request.params.date;

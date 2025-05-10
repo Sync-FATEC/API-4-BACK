@@ -6,7 +6,7 @@ import UpdateTypeParameterDTO from "../../../web/dtos/typeParameter/UpdateTypePa
 export default class UpdateTypeParameterUseCase {
     constructor(private typeParameterRepository: ITypeParameterRepository) {}
 
-    async execute(typeParameterData: UpdateTypeParameterDTO) {
+    async execute(typeParameterData: UpdateTypeParameterDTO): Promise<void> {
         const typeParameter = await this.typeParameterRepository.findById(typeParameterData.getId());
         if (!typeParameter) {
             throw new SystemContextException('Tipo de parâmetro não encontrado');
@@ -20,7 +20,7 @@ export default class UpdateTypeParameterUseCase {
             offset: typeParameterData.getOffset(),
             typeJson: typeParameterData.getTypeJson(),
         }
-        if (typeParameterData.getId() != typeParameter.id) {
+        if (typeParameterData.getId() !== typeParameter.id) {
             updateData.id = typeParameterData.getId();
         }
 

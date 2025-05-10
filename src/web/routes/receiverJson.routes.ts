@@ -10,7 +10,6 @@ import { ReceiverJsonController } from "../controllers/receiverJson/receiverJson
 import { limiter } from "../../infrastructure/middlewares/limiter";
 import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
 import { SenderAlertService } from "../../application/services/SenderAlertService";
-import { NotificationService } from "../../infrastructure/websocket/service/NotificationService";
 import emailSender from "../../application/operations/email/sendEmailCreatePassword";
 import { EmailStationRepository } from "../../infrastructure/repositories/EmailStationRepository";
 import { getNotificationService } from "../../infrastructure/websocket/socket";
@@ -50,7 +49,7 @@ let mongoDbRepository: MongoDbRepository<any>;
 let receiverMongoJsonUseCase: ReceiverMongoJsonUseCase;
 
 // Inicializa a conexão com MongoDB e cria as instâncias necessárias
-const initializeMongo = async () => {
+const initializeMongo = async (): Promise<void> => {
   if (process.env.SETUP_RUN === 'test') return;
 
   try {

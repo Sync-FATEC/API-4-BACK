@@ -120,10 +120,10 @@ function createMockMeasureAverage(id: string, typeAverage: enumAverage, name: st
     measureAverage.createdAt = new Date();
     
     // Adiciona os getters que são usados nos testes
-    measureAverage.GetId = () => id;
-    measureAverage.GetTypeAverage = () => typeAverage;
-    measureAverage.GetName = () => name;
-    measureAverage.GetValue = () => value;
+    measureAverage.GetId = (): string => id;
+    measureAverage.GetTypeAverage = (): enumAverage => typeAverage;
+    measureAverage.GetName = (): string => name;
+    measureAverage.GetValue = (): string => value;
     
     return measureAverage;
 }

@@ -7,7 +7,7 @@ export class ListTypeAlertUseCase extends TypeAlertUseCase {
         super(null, typeAlertRepository);
     }
 
-    async execute() {
+    async execute(): Promise<any> {
         const typeAlerts = await this.typeAlertRepository.findAll();
         return typeAlerts;
     }

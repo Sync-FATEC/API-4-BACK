@@ -7,7 +7,6 @@ import { ReadMeasureUseCase } from "../../application/use-cases/measure/ReadMeas
 import { DeleteMeasureUseCase } from "../../application/use-cases/measure/DeleteMeasureUseCase";
 import { MeasureController } from "../controllers/Measure/MeasureController";
 import { limiter } from "../../infrastructure/middlewares/limiter";
-import { ensureAuthenticated } from "../../infrastructure/middlewares/ensureAuthenticated";
 import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensureAuthenticatedAdmin";
 import { ParameterRepository } from "../../infrastructure/repositories/ParameterRepository";
 import { asyncHandler } from "../middlewares/asyncHandler";

@@ -32,7 +32,7 @@ export async function runStationSeeds(dataSource: DataSource): Promise<Station[]
   return await stationRepo.save(stations);
 }
 
-export const clearStationSeeds = async (dataSource: DataSource) => {
+export const clearStationSeeds = async (dataSource: DataSource): Promise<void> => {
   const stationRepository = dataSource.getRepository('Station');
   
   const stations = await stationRepository.find();

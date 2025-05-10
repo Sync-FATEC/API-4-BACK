@@ -1,7 +1,7 @@
 import { stopServer } from '../../../src/server';
-import { getContainer, getDataSource } from './SetupIntegration';
+import { getContainer } from './SetupIntegration';
 
-const TeardownIntegration = async () => {
+const TeardownIntegration = async (): Promise<void> => {
   const container = getContainer();
 
   if (container) {

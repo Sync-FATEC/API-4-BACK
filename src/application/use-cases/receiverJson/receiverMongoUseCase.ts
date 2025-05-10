@@ -18,7 +18,7 @@ export class ReceiverMongoJsonUseCase {
         private senderAlertService: ISenderAlertService
     ) {}
 
-    async execute() {
+    async execute(): Promise<void> {
         const receiverJsonUseCase = new ReceiverJsonUseCase(
             this.stationRepository,
             this.alertRepository,

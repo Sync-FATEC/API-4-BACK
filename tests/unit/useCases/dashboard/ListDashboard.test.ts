@@ -18,7 +18,7 @@ const mockStationRepository = {
     list: jest.fn()
 };
 
-const makeUseCase = () => new ListDashboardUseCase(
+const makeUseCase = (): ListDashboardUseCase => new ListDashboardUseCase(
     mockMeasureRepository as unknown as IMeasureRepository,
     mockStationRepository as unknown as IStationRepository,
     mockParameterRepository as unknown as IParameterRepository

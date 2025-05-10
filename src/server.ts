@@ -49,19 +49,17 @@ app.use(errorMiddleware);
 let server: http.Server | null = null;
 let cronManager: CronManager | null = null;
 
-export async function startServer(port = process.env.PORT) {
+export async function startServer(port = process.env.PORT): Promise<any> {
   try {
     await initializeDatabase();
 
     const httpServer = http.createServer(app);
-    createSocketServer(httpServer); // WebSocket no mesmo server
+    createSocketServer();
 
     cronManager = new CronManager();
     cronManager.startAll();
 
     server = httpServer.listen(port, () => {
-      console.log(`🚀 Servidor rodando na porta ${port}`);
-      console.log(`📚 Swagger disponível em http://localhost:${port}/api-docs`);
     });
 
     return server;
@@ -71,8 +69,7 @@ export async function startServer(port = process.env.PORT) {
   }
 }
 
-export async function stopServer() {
-  console.log("\nEncerrando servidor...");
+export async function stopServer(): Promise<void> {
 
   if (server) {
     await new Promise<void>((resolve) => {
@@ -85,11 +82,9 @@ export async function stopServer() {
 
   if (cronManager) {
     cronManager.stopAll();
-    console.log("Cron jobs finalizados.");
   }
 
   await closeDatabase();
-  console.log("Conexões de banco encerradas.");
 
   process.exit(0);
 }

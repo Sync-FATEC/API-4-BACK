@@ -13,7 +13,6 @@ import { MeasureRepository } from "../../infrastructure/repositories/MeasureRepo
 import TypeAlertRepository from "../../infrastructure/repositories/TypeAlertRepository";
 import { asyncHandler } from "../middlewares/asyncHandler";
 import { SenderAlertService } from "../../application/services/SenderAlertService";
-import { NotificationService } from "../../infrastructure/websocket/service/NotificationService";
 import { NodemailerEmailSender } from "../../infrastructure/email/nodeMailerEmailSender";
 import { EmailStationRepository } from "../../infrastructure/repositories/EmailStationRepository";
 import { getNotificationService } from "../../infrastructure/websocket/socket";

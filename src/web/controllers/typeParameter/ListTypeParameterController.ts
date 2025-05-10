@@ -4,7 +4,7 @@ import { ListTypeParameterUseCase } from "../../../application/use-cases/typePar
 export class ListTypeParameterController {
     constructor(private listTypeParameterUseCase: ListTypeParameterUseCase) {}
 
-    async handle(request: Request, response, next: NextFunction) {
+    async handle(request: Request, response, next: NextFunction): Promise<void> {
         try {
             const typeParameters = await this.listTypeParameterUseCase.execute();
 

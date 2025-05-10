@@ -5,7 +5,7 @@ import { CreateStationUseCase } from "../../../application/use-cases/station/Cre
 export default class CreateStationController {
   constructor(private createStationUseCase: CreateStationUseCase) {}
 
-  async handle(request: Request, response, next: NextFunction) {
+  async handle(request: Request, response, next: NextFunction): Promise<any> {
     const { uuid, name, latitude, longitude } = request.body;
 
     if (!uuid || !name || !latitude || !longitude) {

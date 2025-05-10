@@ -4,7 +4,7 @@ import { IStationRepository } from "../../../domain/interfaces/repositories/ISta
 export class ListStationUseCase {
     constructor(private stationRepository: IStationRepository) {}
 
-    async execute() {
+    async execute(): Promise<any> {
         const stations = await this.stationRepository.list();
         if (stations.length === 0) {
             throw new SystemContextException('Nenhuma estação para listar');

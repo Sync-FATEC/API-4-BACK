@@ -10,7 +10,7 @@ export class CreateMeasureAverageUseCase {
         private measureRepository: IMeasureRepository
     ) { }
 
-    async executeLastHour() {
+    async executeLastHour(): Promise<any> {
         const measures = await this.measureRepository.listMeasuresLastHour();
 
         const groupedMeasures = this.groupMeasuresByStationAndParameterType(measures);
@@ -20,7 +20,7 @@ export class CreateMeasureAverageUseCase {
         return results;
     }
 
-    async executeLastDay() {
+    async executeLastDay(): Promise<any> {
         const measures = await this.measureRepository.listMeasuresLastDay();
 
         const groupedMeasures = this.groupMeasuresByStationAndParameterType(measures);

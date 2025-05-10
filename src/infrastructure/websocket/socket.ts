@@ -4,7 +4,7 @@ import { WebSocketServer } from "ws";
 let wss: WebSocketServer;
 const notificationService = new NotificationService();
 
-export const createSocketServer = (server) => {
+export const createSocketServer = (): void => {
   // Inicialize o WebSocketServer com o servidor HTTP
   wss = new WebSocketServer({ port: 5555 });
 
@@ -24,4 +24,4 @@ export const createSocketServer = (server) => {
 };
 
 // Export the notification service instance
-export const getNotificationService = () => notificationService;
+export const getNotificationService = (): NotificationService => notificationService;

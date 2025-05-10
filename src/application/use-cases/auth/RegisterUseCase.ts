@@ -1,5 +1,5 @@
 
-import { User, IUserRepository } from '../../../domain/models/entities/User';
+import { IUserRepository } from '../../../domain/models/entities/User';
 import { isValidCPF } from '../../operations/isValidCPF';
 import RegisterUserDTO from '../../../web/dtos/auth/RegisterUserDTO';
 import { ReadUserDTO } from '../../../web/dtos/user/ReadUserDTO';

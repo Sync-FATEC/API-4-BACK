@@ -4,7 +4,7 @@ import { ListStationUseCase } from "../../../application/use-cases/station/ListS
 export class ListStationController {
     constructor(private listStationUseCase: ListStationUseCase) { }
 
-    async handle(request, response, next: NextFunction) {
+    async handle(request, response, next: NextFunction): Promise<any> {
         try {
             const stations = await this.listStationUseCase.execute();
 

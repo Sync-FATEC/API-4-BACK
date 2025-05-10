@@ -2,8 +2,6 @@ import { Between, MoreThan, Repository } from "typeorm";
 import { MeasureAverage } from "../../domain/models/entities/MeasureAverage";
 import { AppDataSource } from "../database/data-source";
 import { IMeasureAverageRepository } from "../../domain/interfaces/repositories/IMeasureAverageRepository";
-import { startOfDay } from "date-fns";
-import { endOfDay } from "date-fns";
 
 export class MeasureAverageRepository implements IMeasureAverageRepository {
     private measuresAverage: Repository<MeasureAverage> = AppDataSource.getRepository(MeasureAverage);

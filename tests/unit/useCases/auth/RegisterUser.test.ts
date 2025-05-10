@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 import { RegisterUseCase } from '../../../../src/application/use-cases/auth/RegisterUseCase';
 import { IUserRepository, User } from '../../../../src/domain/models/entities/User';
 import RegisterUserDTO from '../../../../src/web/dtos/auth/RegisterUserDTO';
-import { NodemailerEmailSender } from '../../../../src/infrastructure/email/nodeMailerEmailSender';
 
 // Mock do módulo sendEmailCreatePassword
 jest.mock('../../../../src/application/operations/email/sendEmailCreatePassword', () => ({
@@ -25,7 +24,6 @@ dotenv.config();
 describe("Testando registro de usuário quando os dados forem corretos", () => {
     let registerUseCase: RegisterUseCase;
     let mockUserRepository: jest.Mocked<IUserRepository>;
-    let mockEmailSender: jest.Mocked<NodemailerEmailSender>;
 
     beforeEach(() => {
         // Mock do JWT_SECRET

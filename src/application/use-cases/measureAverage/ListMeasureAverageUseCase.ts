@@ -16,7 +16,7 @@ export default class ListMeasureAverageUseCase {
 
         const response = await this.measureAverageRepository.listMeasuresAveragesLast7Days(stationId);
 
-        if (response.length == 0) throw new SystemContextException("Nenhuma media de medida para listar") 
+        if (response.length === 0) throw new SystemContextException("Nenhuma media de medida para listar") 
 
         return response;
     }
@@ -31,7 +31,7 @@ export default class ListMeasureAverageUseCase {
 
         const response = await this.measureAverageRepository.listMeasuresAveragesWithStartAndEnd(stationId, startDate, endDate);
 
-        if (response.length == 0) throw new SystemContextException("Nenhuma media de medida para listar") 
+        if (response.length === 0) throw new SystemContextException("Nenhuma media de medida para listar") 
 
         return response;
     }
@@ -45,7 +45,7 @@ export default class ListMeasureAverageUseCase {
         
         const response = await this.measureAverageRepository.listMeasuresAveragesWithDate(stationId, dateObj);
 
-        if (response.length == 0) throw new SystemContextException("Nenhuma media de medida para esta data")
+        if (response.length === 0) throw new SystemContextException("Nenhuma media de medida para esta data")
 
         return response;
     }

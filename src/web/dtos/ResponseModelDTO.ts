@@ -41,7 +41,7 @@ export class ResponseModelDTO {
         return new ResponseModelDTO(status, null, error);
     }
 
-    public toJSON() {
+    public toJSON(): object {
         return {
             status: this.status,
             model: this.model,

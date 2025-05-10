@@ -1,4 +1,3 @@
-import { SystemContextException } from "../../../domain/exceptions/SystemContextException";
 import { ISenderAlertService } from "../../../domain/interfaces/ISenderAlertService";
 import { IAlertRepository } from "../../../domain/interfaces/repositories/IAlertRepository";
 import { IMeasureRepository } from "../../../domain/interfaces/repositories/IMeasureRepository";
@@ -20,8 +19,8 @@ export default class ReceiverJsonUseCase {
         private senderAlert: ISenderAlertService
     ) {}
 
-    async execute(dataJson: any) {
-        const { uid, unixtime, _id, ...measurements } = dataJson;
+    async execute(dataJson: any): Promise<void> {
+        const { uid, unixtime, ...measurements } = dataJson;
         if (!uid || !unixtime) {
             return
         }
@@ -47,7 +46,7 @@ export default class ReceiverJsonUseCase {
             };
 
             const measure = await registerMeasureUseCase.execute(measureData);
-            if (measure?.value == null) continue;
+            if (measure?.value === null) continue;
 
             for (const typeAlert of parameter.typeAlerts) {
                 if (this.shouldTriggerAlert(measure.value, typeAlert.comparisonOperator, typeAlert.value)) {

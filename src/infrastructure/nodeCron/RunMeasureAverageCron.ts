@@ -11,7 +11,7 @@ export class RunMeasureAverageCron {
   private hourlyTask: cron.ScheduledTask | null = null;
   private dailyTask: cron.ScheduledTask | null = null;
 
-  async execute() {
+  async execute(): Promise<void> {
     try {
       if (process.env.SETUP_RUN === 'test') return;
       this.useCase = new CreateMeasureAverageUseCase(
@@ -36,7 +36,7 @@ export class RunMeasureAverageCron {
     }
   }
 
-  async stop() {
+  async stop(): Promise<void> {
     if (this.hourlyTask) {
       this.hourlyTask.stop();
     }

@@ -29,7 +29,7 @@ export class RunTakeMeasuresCron {
 
   private task: cron.ScheduledTask | null = null;
 
-  async execute() {
+  async execute(): Promise<void> {
     try {
       if (process.env.SETUP_RUN=== 'test') return;
       const uri = process.env.MONGO_URL || '';
@@ -61,7 +61,7 @@ export class RunTakeMeasuresCron {
     }
   }
 
-  async stop() {
+  async stop(): Promise<void> {
     if (this.task) {
       this.task.stop();
     }

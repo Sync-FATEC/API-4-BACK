@@ -4,7 +4,7 @@ import { IStationRepository } from "../../../domain/interfaces/repositories/ISta
 export default class DeleteStationUseCase {
     constructor(private stationRepository: IStationRepository) {}
 
-    async execute(id: string) {
+    async execute(id: string): Promise<any> {
         const station = await this.stationRepository.findById(id);
         if (!station) {
             throw new SystemContextException('Estação não encontrada');

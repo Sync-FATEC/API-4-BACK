@@ -1,7 +1,7 @@
 import { AppDataSource } from "../data-source";
 import { TypeParameter } from "../../../domain/models/entities/TypeParameter";
 
-export async function seedTypeParameters() {
+export async function seedTypeParameters(): Promise<void> {
     const typeParameterRepository = AppDataSource.getRepository(TypeParameter);
 
     const typeParameters = [

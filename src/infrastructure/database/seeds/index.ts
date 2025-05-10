@@ -7,7 +7,7 @@ import { seedAlerts } from "./alert.seed";
 import { seedAdminUser } from "./AdminUserSeed";
 import { AppDataSource } from "../data-source";
 
-export async function runSeeds() {
+export async function runSeeds(): Promise<void> {
     try {
         // Primeiro, executar seeds de entidades base em paralelo (não dependem de outras)
         await Promise.all([

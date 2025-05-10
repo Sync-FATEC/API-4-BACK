@@ -1,10 +1,9 @@
 import { DataSource } from 'typeorm';
 import { User } from '../../../domain/models/entities/User';
-import bcrypt from 'bcryptjs';
 import hashPassword from '../../../application/operations/auth/hashPassword';
 import { runSeeds } from '.';
 
-export async function seedAdminUser(dataSource: DataSource) {
+export async function seedAdminUser(dataSource: DataSource): Promise<void> {
     const userRepository = dataSource.getRepository(User);
 
     const adminExists = await userRepository.findOne({

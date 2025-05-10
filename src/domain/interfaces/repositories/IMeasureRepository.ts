@@ -1,7 +1,5 @@
 import { ListMeasureResponseDTO } from "../../../web/dtos/measure/ListMeasureDTO";
 import { Measure } from "../../models/entities/Measure";
-import Parameter from "../../models/agregates/Parameter/Parameter";
-import { Station } from "../../models/entities/Station";
 
 
 export interface IMeasureRepository {

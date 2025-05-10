@@ -4,7 +4,7 @@ import { ITypeParameterRepository } from "../../../domain/interfaces/repositorie
 export class ListTypeParameterUseCase {
     constructor(private typeParameterRepository: ITypeParameterRepository) {}
 
-    async execute() {
+    async execute(): Promise<any[]> {
         const typeParameters = await this.typeParameterRepository.list();
         if (typeParameters.length === 0) {
             throw new SystemContextException('Nenhum tipo de parâmetro para listar');

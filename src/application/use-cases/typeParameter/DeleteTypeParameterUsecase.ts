@@ -4,7 +4,7 @@ import { ITypeParameterRepository } from "../../../domain/interfaces/repositorie
 export default class DeleteTypeParameterUseCase {
     constructor(private typeParameterRepository: ITypeParameterRepository) {}
 
-    async execute(id: string) {
+    async execute(id: string): Promise<any> {
         const typeParameter = await this.typeParameterRepository.findById(id);
         if (!typeParameter) {
             throw new SystemContextException('Tipo de parâmetro não encontrado');

@@ -1,11 +1,11 @@
-import { NextFunction, Request } from "express";
+import { Request } from "express";
 import CreateTypeParamatersDTO from "../../dtos/typeParameter/CreateTypeParameterDTO";
 import { CreateTypeParameterUseCase } from "../../../application/use-cases/typeParameter/CreateTypeParameterUseCase";
 
 export default class CreateTypeParameterController {
   constructor(private createTypeParametersUseCase: CreateTypeParameterUseCase) {}
 
-  async handle(request: Request, response, next: NextFunction) {
+  async handle(request: Request, response): Promise<void> {
     const { name, unit, numberOfDecimalsCases, factor, offset, typeJson } = request.body;
     if (!name || !unit || !numberOfDecimalsCases || factor === undefined  || !typeJson) {
       return response.sendError("Dados incompletos", 400);

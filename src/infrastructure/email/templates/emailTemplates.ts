@@ -1,10 +1,9 @@
-import { sub } from "date-fns";
 import { AlertNotificationData } from "../../../application/services/SenderAlertService";
 
 const link = process.env.FRONTEND_URL;
 
 export const emailTemplates = {
-  createPassword: (name: string, email: string) => ({
+  createPassword: (name: string, email: string): { subject: string; text: string; html: string } => ({
     subject: "Bem-vindo ao nosso sistema!",
     text: `Olá ${name},\n\nBem-vindo ao nosso sistema! Estamos muito felizes em ter você conosco.\n\nAtenciosamente,\nEquipe Sync`,
     html: `
@@ -46,7 +45,7 @@ export const emailTemplates = {
     `,
   }),
 
-  alertEmailTemplate: (subject: string, data: AlertNotificationData) => {
+  alertEmailTemplate: (subject: string, data: AlertNotificationData): { subject: string; text: string; html: string } => {
     // Formatar data para exibição
     const dateTime = data.measureTime ? 
       new Intl.DateTimeFormat('pt-BR', {

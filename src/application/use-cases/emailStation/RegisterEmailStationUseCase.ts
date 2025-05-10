@@ -8,11 +8,11 @@ export class RegisterEmailStationUseCase {
   constructor(private emailStationRepository: IEmailStationRepository, private stationRepository: IStationRepository) {
   }
 
-  public async execute(email: string, stationId: string ) {
+  public async execute(email: string, stationId: string ): Promise<void> {
     
     let station = await this.stationRepository.findById(stationId);
 
-    if(station == null)
+    if(station === null)
         throw new SystemContextException("Estação não encontrada")
    
     let emailStation = new EmailStation(email, station)

@@ -5,7 +5,7 @@ import { CreateParameterUseCase } from "../../../application/use-cases/parameter
 export default class CreateParameterController {
     constructor(private createParameterUseCase: CreateParameterUseCase) {}
 
-    async handle(request: Request, response, next: NextFunction) {
+    async handle(request: Request, response, next: NextFunction): Promise<any> {
         const { idTypeParameter, idStation } = request.body;
 
         if (!idTypeParameter || !idStation) {

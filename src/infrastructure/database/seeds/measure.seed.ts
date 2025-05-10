@@ -8,7 +8,7 @@ import { Station } from "../../../domain/models/entities/Station";
 import { TypeParameter } from "../../../domain/models/entities/TypeParameter";
 import { In } from "typeorm";
 
-export async function seedMeasures() {
+export async function seedMeasures(): Promise<void> {
     const measureRepository = AppDataSource.getRepository(Measure);
     const parameterRepository = AppDataSource.getRepository(Parameter);
     const stationRepository = AppDataSource.getRepository(Station);
@@ -27,10 +27,6 @@ export async function seedMeasures() {
         return;
     }
 
-    // Verificar estações carregadas
-    stations.forEach(station => {
-    });
-
     // Mapeando estações por uuid para acesso rápido
     const stationMap = new Map();
     stations.forEach(station => {
@@ -40,6 +36,9 @@ export async function seedMeasures() {
     // Verificar se as estações principais estão no mapa
     const principaisUIDs = ["sjc-uid-123", "cacapava-uid-456", "taubate-uid-123"];
     principaisUIDs.forEach(uid => {
+        if (!stationMap.has(uid)) {
+            console.warn(`Aviso: UID principal ${uid} não encontrado no mapa de estações`);
+        }
     });
     
     // Adicionar variações de UIDs manualmente
@@ -230,16 +229,6 @@ export async function seedMeasures() {
         }
     }
     
-    // Exibir estatísticas
-    console.log("\n=== ESTATÍSTICAS DE PROCESSAMENTO ===");
-    console.log(`Total de registros processados: ${stats.totalProcessados}`);
-    console.log("Por estação:");
-    console.log(`- São Luiz do Paraitinga: ${stats.porEstacao['sao-luiz-do-paraitinga-uid-003']}`);
-    console.log(`- Campos do Jordão: ${stats.porEstacao['campos-do-jordao-uid-001']}`);
-    console.log(`- Taubaté: ${stats.porEstacao['taubate-uid-002']}`);
-    console.log(`UIDs encontrados (distintos): ${stats.uidsEncontrados.size}`);
-    console.log(`UIDs não encontrados (distintos): ${stats.uidsNaoEncontrados.size}`);
-    console.log("===================================");
 }
 
 // Função auxiliar para mapear diferentes IDs para o ID canônico da estação

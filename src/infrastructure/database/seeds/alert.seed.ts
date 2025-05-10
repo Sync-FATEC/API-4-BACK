@@ -5,7 +5,7 @@ import { Measure } from "../../../domain/models/entities/Measure";
 import { ComparisonOperator } from "../../../domain/enums/TypeAlert/ComparisonOperator";
 import { In } from "typeorm";
 
-export async function seedAlerts() {
+export async function seedAlerts(): Promise<void> {
     const alertRepository = AppDataSource.getRepository(Alert);
     const typeAlertRepository = AppDataSource.getRepository(TypeAlert);
     const measureRepository = AppDataSource.getRepository(Measure);

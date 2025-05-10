@@ -8,7 +8,7 @@ export class ListDashboardUseCase {
     private parameterRepository: IParameterRepository
   ) {}
 
-  async execute(stationId: string, startDate: Date, endDate: Date) {
+  async execute(stationId: string, startDate: Date, endDate: Date): Promise<any> {
     if (startDate && endDate) {
       const measures = await this.measurementRepository.listWithFilters(startDate, endDate, stationId);
       return measures;

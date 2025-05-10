@@ -8,6 +8,6 @@ export class DeleteTypeAlertUseCase extends TypeAlertUseCase {
     }
 
     async execute(id: string): Promise<void> {
-        const typeAlert = await this.typeAlertRepository.delete(id);
+        await this.typeAlertRepository.delete(id);
     }
 }
