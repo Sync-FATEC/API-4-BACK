@@ -14,6 +14,7 @@ import { ensureAuthenticatedAdmin } from "../../infrastructure/middlewares/ensur
 import { limiter } from "../../infrastructure/middlewares/limiter";
 import StationRepository from "../../infrastructure/repositories/StationRepository";
 import { asyncHandler } from "../middlewares/asyncHandler";
+import { GenerateReportStationController } from "../controllers/station/GenerateReportStationController";
 
 const stationRoutes = Router();
 const stationRepository = new StationRepository();
@@ -37,6 +38,17 @@ const listController = new ListStationController(listStationUseCase);
 // Read
 const readStationUseCase = new ReadStationUseCase(stationRepository);
 const readController = new ReadStationController(readStationUseCase);
+
+// Generate Pdf
+const generateReportController = new GenerateReportStationController();
+
+stationRoutes.post(
+  "/generate-report",
+  limiter,
+  asyncHandler((req, res, next) =>
+    generateReportController.handle(req, res, next)
+  )
+);
 
 /**
  * @swagger
@@ -71,7 +83,12 @@ const readController = new ReadStationController(readStationUseCase);
  *       401:
  *         description: Não autorizado
  */
-stationRoutes.post('/create', limiter, ensureAuthenticated, asyncHandler((req, res, next) => createController.handle(req, res, next)));
+stationRoutes.post(
+  "/create",
+  limiter,
+  ensureAuthenticated,
+  asyncHandler((req, res, next) => createController.handle(req, res, next))
+);
 
 /**
  * @swagger
@@ -109,7 +126,12 @@ stationRoutes.post('/create', limiter, ensureAuthenticated, asyncHandler((req, r
  *       401:
  *         description: Não autorizado
  */
-stationRoutes.put('/update', limiter, ensureAuthenticated, asyncHandler((req, res, next) => updateController.handle(req, res, next)));
+stationRoutes.put(
+  "/update",
+  limiter,
+  ensureAuthenticated,
+  asyncHandler((req, res, next) => updateController.handle(req, res, next))
+);
 
 /**
  * @swagger
@@ -134,7 +156,12 @@ stationRoutes.put('/update', limiter, ensureAuthenticated, asyncHandler((req, re
  *       404:
  *         description: Estação não encontrada
  */
-stationRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, asyncHandler((req, res, next) => deleteController.handle(req, res, next)));
+stationRoutes.delete(
+  "/delete/:id",
+  limiter,
+  ensureAuthenticatedAdmin,
+  asyncHandler((req, res, next) => deleteController.handle(req, res, next))
+);
 
 /**
  * @swagger
@@ -161,7 +188,11 @@ stationRoutes.delete('/delete/:id', limiter, ensureAuthenticatedAdmin, asyncHand
  *                   description:
  *                     type: string
  */
-stationRoutes.get('/list', limiter, asyncHandler((req, res, next) => listController.handle(req, res, next)));
+stationRoutes.get(
+  "/list",
+  limiter,
+  asyncHandler((req, res, next) => listController.handle(req, res, next))
+);
 
 /**
  * @swagger
@@ -182,6 +213,10 @@ stationRoutes.get('/list', limiter, asyncHandler((req, res, next) => listControl
  *       404:
  *         description: Estação não encontrada
  */
-stationRoutes.get('/read/:id', limiter, asyncHandler((req, res, next) => readController.handle(req, res, next)));
+stationRoutes.get(
+  "/read/:id",
+  limiter,
+  asyncHandler((req, res, next) => readController.handle(req, res, next))
+);
 
-export { stationRoutes }
+export { stationRoutes };
