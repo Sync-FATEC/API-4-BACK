@@ -17,18 +17,32 @@ Os testes de integração validam a interação entre múltiplos componentes ou 
 
 ## ⚙️ Processo de Definição dos Testes de Integração
 
-### 📌 Como os Testes São Definidos?
+### 📌 Como os Testes de Integração São Definidos?
 
-Os testes de integração são definidos com base nos **critérios de aceitação** estabelecidos pelo **Product Owner (PO)** durante o **planejamento da sprint**. Esses critérios descrevem os comportamentos esperados da funcionalidade e servem como referência direta para a criação dos testes automatizados.
+Os **testes de integração** são definidos com base nos **critérios de aceitação** estabelecidos pelo **Product Owner (PO)**, geralmente discutidos durante o  **planejamento da sprint**. Esses critérios descrevem o comportamento esperado da funcionalidade e servem como referência direta para a criação dos casos de teste automatizados.
 
-Além disso, **o time valida coletivamente, durante a sprint review**, o que realmente precisa ser coberto por testes de integração — priorizando fluxos críticos e pontos de maior risco.
+Durante o **planejamento da sprint**, **desenvolvedores e o PO colaboram** para identificar quais comportamentos devem ser validados por testes de integração, considerando os seguintes aspectos:
 
-Durante o desenvolvimento, os desenvolvedores são responsáveis por implementar os testes com foco em:
+- Fluxos críticos da funcionalidade;
+- Integrações com sistemas externos ou entre módulos internos;
+- Pontos de maior risco ou impacto na aplicação.
 
-- Validar o comportamento da aplicação de ponta a ponta (atravessando todas as camadas);
-- Garantir a integração correta entre *use cases*, repositórios e banco de dados;
-- Verificar se os dados fluem corretamente entre entrada (DTOs), lógica de negócio e persistência;
-- Confirmar que erros e exceções previstos são tratados e retornados de forma adequada.
+Além disso, a equipe **valida coletivamente, durante a Sprint Review**, se os testes implementados cobrem corretamente os critérios definidos, garantindo que a entrega atenda às expectativas do negócio.
+
+---
+
+### 🧪 Responsabilidade dos Desenvolvedores
+
+Durante o desenvolvimento, os **desenvolvedores são responsáveis** por implementar os testes de integração com foco em:
+
+- ✅ Validar o comportamento da aplicação de ponta a ponta, atravessando todas as camadas envolvidas (ex: controllers, serviços, repositórios);
+- ✅ Garantir a integração correta entre *use cases*, repositórios e mecanismos de persistência (banco de dados, APIs externas, etc.);
+- ✅ Verificar se os dados fluem corretamente entre as entradas (DTOs), a lógica de negócio e os componentes de persistência;
+- ✅ Confirmar que erros e exceções previstas são tratadas e retornadas de forma adequada, respeitando os contratos e mensagens esperadas.
+
+---
+
+Esse processo garante que os testes de integração estejam alinhados com os objetivos da sprint e os critérios de qualidade definidos pelo time.
 
 ### 👥 Papéis e Responsabilidades
 
@@ -75,6 +89,8 @@ Durante o desenvolvimento, os desenvolvedores são responsáveis por implementar
 
 ---
 
+## 🖥️ Testes de Integração no Back-End
+
 ### 🎯 Foco dos Testes de Integração
 
 O objetivo é validar a aplicação **como um sistema em funcionamento**, garantindo:
@@ -82,7 +98,7 @@ O objetivo é validar a aplicação **como um sistema em funcionamento**, garant
 - Que os dados fluem de forma consistente entre entradas (DTOs), lógicas de negócio e persistência.
 - Que erros esperados são tratados e retornados corretamente.
 
-## 📦 Estrutura dos Testes
+### 📦 Estrutura dos Testes
 
 Todos os testes de integração seguem a seguinte estrutura:
 
@@ -104,7 +120,7 @@ tests/
 - `*.test.ts`: Arquivos com os testes de integração, nomeados conforme o use case testado.
 
 
-## 🧪 Passo a Passo para Criar um Novo Teste de Integração
+### 🧪 Passo a Passo para Criar um Novo Teste de Integração
 
 ### 1. Identificar o Use Case a ser Testado
 
@@ -170,7 +186,7 @@ test('❌ Deve retornar erro quando [condição de erro]', async () => {
 });
 ```
 
-## 🌱 Como Criar e Utilizar Seeds
+### 🌱 Como Criar e Utilizar Seeds
 
 As seeds são fundamentais para preparar o ambiente de teste com dados consistentes. Sempre crie os dados utilizando os *use cases* reais, nunca inserindo diretamente no banco.
 
