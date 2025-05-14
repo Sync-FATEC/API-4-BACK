@@ -37,6 +37,7 @@ function groupAndAverage(
 
 export async function gerarPdfEstacoes(id: string) {
   const stationRepo = AppDataSource.getRepository(Station);
+  let paginaAtual = 1; // Contador global de páginas
 
   const stations = await stationRepo.find({
     relations: {
@@ -59,7 +60,7 @@ export async function gerarPdfEstacoes(id: string) {
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
   const margin = 10;
-  const dataAtual = format(new Date(), "dd 'de' MMMM 'de' yyyy, HH:mm", { locale: ptBR });
+  const dataAtual = format(new Date(), "dd/MM/yyyy 'às' HH:mm", { locale: ptBR });
   
   // Carregar o logo da TecSus
   const logoPath = path.join(__dirname, "../../../../src/static/img/tecsus-logo.png");
@@ -74,12 +75,12 @@ export async function gerarPdfEstacoes(id: string) {
       const base64 = logoBuffer.toString("base64");
       logoBase64 = "data:image/png;base64," + base64;
 
-      // calcula altura escalonada para header (max width 16)
-      const maxW = 16;
+      // calcula altura escalonada para header (max width 25)
+      const maxW = 25;
       logoHeaderH = dims.height * (maxW / dims.width);
 
-      // calcula altura escalonada para capa (max width 60)
-      const maxWBig = 60;
+      // calcula altura escalonada para capa (max width 80)
+      const maxWBig = 80;
       logoCoverH = dims.height * (maxWBig / dims.width);
     } else {
       console.warn("Logo não encontrado em: " + logoPath);
@@ -117,20 +118,30 @@ export async function gerarPdfEstacoes(id: string) {
   };
   
   // Função para adicionar rodapé em cada página
-  const adicionarRodape = (numeroPagina: number) => {
-    const totalPaginas = doc.getNumberOfPages();
+  const adicionarRodape = () => {
     doc.setFillColor(240, 240, 240);
     doc.rect(0, pageHeight - 15, pageWidth, 15, 'F');
     
-    // Adicionar logo pequeno no rodapé se disponível
+    // Parâmetros do logo
+    const logoFooterW = 15;
+    const logoFooterH = 8;
+    const logoFooterY = pageHeight - 15 + (15 - logoFooterH) / 2; // Centralizar verticalmente
+    const logoFooterX = pageWidth - margin - logoFooterW;
+    const textoPagina = `Página ${paginaAtual}`;
+    const textoPaginaW = doc.getTextWidth(textoPagina);
+    const textoPaginaX = logoFooterX - 8 - textoPaginaW; // 8px de espaço entre texto e logo
+    
+    // Adicionar logo no rodapé
     if (logoBase64) {
-      doc.addImage(logoBase64, 'PNG', pageWidth - margin - 10, pageHeight - 13, 8, 8);
+      doc.addImage(logoBase64, 'PNG', logoFooterX, logoFooterY, logoFooterW, logoFooterH);
     }
     
+    // Adicionar texto do rodapé
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.text(`Gerado em: ${dataAtual}`, margin, pageHeight - 5);
-    doc.text(`Página ${numeroPagina - 1} de ${totalPaginas}`, pageWidth - margin - 15, pageHeight - 5, { align: 'right' });
+    doc.text(textoPagina, textoPaginaX, pageHeight - 5);
+    paginaAtual++;
   };
   
   // Adicionar capa
@@ -161,7 +172,7 @@ export async function gerarPdfEstacoes(id: string) {
     doc.text(`Data do relatório: ${dataAtual}`, pageWidth / 2, logoBase64 ? 140 : 90, { align: 'center' });
     
     // Adicionar rodapé na capa
-    adicionarRodape(1);
+    adicionarRodape();
   }
   
   // Para cada estação, criar páginas de conteúdo
@@ -192,7 +203,7 @@ export async function gerarPdfEstacoes(id: string) {
     for (const param of station.parameters) {
       // Verificar se precisa adicionar nova página
       if (y > pageHeight - 40) {
-        adicionarRodape(doc.internal.pages.length);
+        adicionarRodape();
         doc.addPage();
         adicionarCabecalho();
         y = 30;
@@ -222,8 +233,11 @@ export async function gerarPdfEstacoes(id: string) {
       // Função de desenhar gráfico removida conforme solicitado
       
       const writeAveragesTable = (label: string, data: { period: string; average: number }[]) => {
-        if (y > pageHeight - 60) {
-          adicionarRodape(doc.internal.pages.length);
+        // Verificar se há espaço suficiente para a tabela (altura estimada)
+        const alturaTabela = 7 + (Math.min(data.length, 5) * 7) + 10; // altura do cabeçalho + linhas + espaço extra
+        
+        if (y + alturaTabela > pageHeight - 40) {
+          adicionarRodape();
           doc.addPage();
           adicionarCabecalho();
           y = 30;
@@ -245,10 +259,35 @@ export async function gerarPdfEstacoes(id: string) {
         
         doc.setFont('helvetica', 'normal');
         for (const item of data.slice(0, 5)) {
+          // Verificar se precisa de nova página durante a iteração
+          if (y + 7 > pageHeight - 40) {
+            adicionarRodape();
+            doc.addPage();
+            adicionarCabecalho();
+            y = 30;
+            
+            // Redesenhar cabeçalho da tabela na nova página
+            doc.setFillColor(240, 240, 240);
+            doc.rect(margin, y, 80, 7, 'F');
+            doc.rect(margin + 80, y, 40, 7, 'F');
+            
+            doc.setFontSize(9);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Período', margin + 2, y + 5);
+            doc.text('Valor Médio', margin + 82, y + 5);
+            y += 7;
+            doc.setFont('helvetica', 'normal');
+          }
+          
           doc.rect(margin, y, 80, 7);
           doc.rect(margin + 80, y, 40, 7);
           
-          doc.text(item.period, margin + 2, y + 5);
+          // Formatar a data no padrão brasileiro
+          const [datePart, timePart] = item.period.split(' ');
+          const formattedDate = datePart.split('-').reverse().join('/');
+          const formattedPeriod = timePart ? `${formattedDate} ${timePart}` : formattedDate;
+          
+          doc.text(formattedPeriod, margin + 2, y + 5);
           doc.text(`${item.average.toFixed(2)} ${param.idTypeParameter.unit}`, margin + 82, y + 5);
           y += 7;
         }
@@ -265,8 +304,10 @@ export async function gerarPdfEstacoes(id: string) {
       writeAveragesTable("Mensal", monthly);
       
       if (param.typeAlerts.length > 0) {
-        if (y > pageHeight - 40) {
-          adicionarRodape(doc.internal.pages.length);
+        // Verificar se há espaço suficiente para a seção de alertas
+        const alturaMinimaNecessaria = 40; // Altura mínima para começar uma nova seção
+        if (y + alturaMinimaNecessaria > pageHeight - 40) {
+          adicionarRodape();
           doc.addPage();
           adicionarCabecalho();
           y = 30;
@@ -278,6 +319,14 @@ export async function gerarPdfEstacoes(id: string) {
         y += 5;
         
         for (const typeAlert of param.typeAlerts) {
+          // Verificar espaço para o tipo de alerta
+          if (y + 20 > pageHeight - 40) {
+            adicionarRodape();
+            doc.addPage();
+            adicionarCabecalho();
+            y = 30;
+          }
+          
           doc.setFillColor(240, 240, 240);
           doc.rect(margin, y, pageWidth - (margin * 2), 7, 'F');
           doc.text(
@@ -288,6 +337,14 @@ export async function gerarPdfEstacoes(id: string) {
           y += 10;
           
           if (typeAlert.alerts.length > 0) {
+            // Verificar espaço para o cabeçalho da tabela de alertas
+            if (y + 20 > pageHeight - 40) {
+              adicionarRodape();
+              doc.addPage();
+              adicionarCabecalho();
+              y = 30;
+            }
+            
             doc.setFillColor(240, 240, 240);
             doc.rect(margin, y, 60, 7, 'F');
             doc.rect(margin + 60, y, 70, 7, 'F');
@@ -303,7 +360,29 @@ export async function gerarPdfEstacoes(id: string) {
             doc.setTextColor(corAlerta[0], corAlerta[1], corAlerta[2]);
             
             for (const alert of typeAlert.alerts) {
-              const date = parseUnixTimeToDate(alert.measure.unixTime).toLocaleString();
+              // Verificar espaço para cada linha de alerta
+              if (y + 7 > pageHeight - 40) {
+                adicionarRodape();
+                doc.addPage();
+                adicionarCabecalho();
+                y = 30;
+                
+                // Redesenhar cabeçalho da tabela na nova página
+                doc.setFillColor(240, 240, 240);
+                doc.rect(margin, y, 60, 7, 'F');
+                doc.rect(margin + 60, y, 70, 7, 'F');
+                doc.rect(margin + 130, y, 40, 7, 'F');
+                
+                doc.setFontSize(9);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Tipo', margin + 2, y + 5);
+                doc.text('Data/Hora', margin + 62, y + 5);
+                doc.text('Valor', margin + 132, y + 5);
+                y += 7;
+                doc.setFont('helvetica', 'normal');
+              }
+              
+              const date = parseUnixTimeToDate(alert.measure.unixTime).toLocaleString('pt-BR');
               const value = alert.measure.value;
               
               doc.rect(margin, y, 60, 7);
@@ -314,13 +393,6 @@ export async function gerarPdfEstacoes(id: string) {
               doc.text(date, margin + 62, y + 5);
               doc.text(`${value} ${param.idTypeParameter.unit}`, margin + 132, y + 5);
               y += 7;
-              
-              if (y > pageHeight - 20) {
-                adicionarRodape(doc.internal.pages.length);
-                doc.addPage();
-                adicionarCabecalho();
-                y = 30;
-              }
             }
             
             // Resetar cor do texto
@@ -336,10 +408,12 @@ export async function gerarPdfEstacoes(id: string) {
       y += 10;
     }
     
-    adicionarRodape(doc.internal.pages.length);
+    adicionarRodape();
   }
   
+  // Adicionar rodapé na última página
+  adicionarRodape();
+  
   const pdfBuffer = Buffer.from(doc.output("arraybuffer"));
-  doc.save("joao.pdf");
   return pdfBuffer;
 }
