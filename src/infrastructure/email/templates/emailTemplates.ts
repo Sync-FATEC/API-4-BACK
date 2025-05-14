@@ -4,6 +4,41 @@ import { AlertNotificationData } from "../../../application/services/SenderAlert
 const link = process.env.FRONTEND_URL;
 
 export const emailTemplates = {
+  resetPassword: (name: string, email: string, resetLink: string) => ({
+    subject: "Redefinição de Senha",
+    text: `Olá ${name},\n\nVocê solicitou a redefinição da sua senha.\n\nClique no link para redefinir sua senha: ${resetLink}\n\nSe você não solicitou esta alteração, ignore este email.\n\nAtenciosamente,\nEquipe Sync`,
+    html: `
+      <div style="font-family: Arial, sans-serif; color: #333; padding: 20px; border: 1px solid #ccc; border-radius: 5px; max-width: 600px;">
+        <div style="background-color: #3f51b5; color: white; padding: 10px 15px; border-radius: 5px 5px 0 0;">
+          <h1 style="margin: 0; font-size: 24px;">Redefinição de Senha</h1>
+        </div>
+        
+        <div style="padding: 20px; background-color: #f9f9f9; border-radius: 0 0 5px 5px;">
+          <h2 style="color: #3f51b5; margin-top: 0;">Olá <strong>${name}</strong>,</h2>
+          
+          <p>Recebemos uma solicitação para redefinir a senha da sua conta.</p>
+          
+          <div style="background-color: #f5f5f5; border-left: 4px solid #3f51b5; padding: 15px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+            <p style="margin: 0;">Clique no botão abaixo para redefinir sua senha. Este link é válido por 1 hora.</p>
+          </div>
+          
+          <div style="text-align: center; margin: 30px 0;">
+            <a href="${resetLink}" 
+               style="background-color: #3f51b5; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-size: 16px; display: inline-block; font-weight: bold;">
+              Redefinir Minha Senha
+            </a>
+          </div>
+          
+          <div style="background-color: #fff8e1; border-left: 4px solid #FFB300; padding: 15px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+            <p style="margin: 0; color: #856404;">Se você não solicitou esta alteração, por favor ignore este e-mail.</p>
+          </div>
+          
+          <p style="margin-top: 40px; font-size: 14px; color: #777; border-top: 1px solid #ddd; padding-top: 20px;">Atenciosamente,<br><strong>Equipe Sync</strong></p>
+        </div>
+      </div>
+    `,
+  }),
+  
   createPassword: (name: string, email: string) => ({
     subject: "Bem-vindo ao nosso sistema!",
     text: `Olá ${name},\n\nBem-vindo ao nosso sistema! Estamos muito felizes em ter você conosco.\n\nAtenciosamente,\nEquipe Sync`,
