@@ -45,4 +45,26 @@ export class PasswordResetController {
             next(error);
         }
     }
+
+    async validateToken(request: Request, response, next: NextFunction): Promise<Response> {
+        try {
+            const { token } = request.params;
+
+            if (!token) {
+                return response.sendError('Token é obrigatório', 400);
+            }
+
+            const isValid = await this.service.validateToken(token);
+
+            if (!isValid) {
+                return response.sendError('Token inválido ou expirado', 400);
+            }
+
+            return response.sendSuccess({
+                valid: isValid
+            }, 200);
+        } catch (error) {
+            next(error);
+        }
+    }
 }

@@ -84,4 +84,32 @@ passwordResetRoutes.post(
   asyncHandler((req, res, next) => passwordResetController.resetPassword(req, res, next))
 );
 
+/**
+ * @swagger
+ * /password-reset/validate/{token}:
+ *   get:
+ *     summary: Valida o token de redefinição de senha
+ *     tags: [Autenticação]
+ *     parameters:
+ *       - in: path
+ *         name: token
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Token válido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 valid:
+ *                   type: boolean
+ */
+passwordResetRoutes.get(
+  '/validate/:token', 
+  asyncHandler((req, res, next) => passwordResetController.validateToken(req, res, next))
+);
+
 export { passwordResetRoutes };

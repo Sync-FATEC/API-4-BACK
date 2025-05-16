@@ -51,6 +51,13 @@ export class PasswordResetService {
 
         // Verificar se o token existe e é válido
         const resetToken = await this.passwordResetRepository.findValidToken(token);
+
+        console.log()
+        console.log("ResetToken: ", resetToken);
+        console.log()
+        console.log("Token: ", token)
+        console.log()
+
         if (!resetToken) {
             throw new SystemContextException('Token inválido ou expirado');
         }
@@ -88,6 +95,38 @@ export class PasswordResetService {
                 throw error;
             }
             throw new SystemContextException('Erro ao redefinir senha');
+        }
+    }
+
+    async validateToken(token: string): Promise<boolean> {
+        // Limpar tokens expirados
+        await this.passwordResetRepository.cleanupExpiredTokens();
+
+        // Verificar se o token existe e é válido
+        const resetToken = await this.passwordResetRepository.findValidToken(token);
+        
+        console.log()
+        console.log("ResetToken: ", resetToken);
+        console.log()
+        console.log("Token: ", token)
+        console.log()
+
+        if (!resetToken) {
+            return false;
+        }
+
+        try {
+            // Verificar se o token JWT é válido
+            const decoded = verify(token, process.env.JWT_SECRET) as { email: string; purpose: string };
+            
+            if (decoded.purpose !== 'password-reset') {
+                
+                return false;
+            }
+            return true;
+
+        } catch (error) {
+            return false;
         }
     }
 }
