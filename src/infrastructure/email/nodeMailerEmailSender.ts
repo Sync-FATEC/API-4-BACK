@@ -44,7 +44,6 @@ export class NodemailerEmailSender implements IEmailSender {
             await this.transporter.sendMail(mailOptions);
         } catch (error) {
             console.error('Erro ao enviar email:', error);
-            throw new SystemContextException('Falha ao enviar email');
         }
     }
 
