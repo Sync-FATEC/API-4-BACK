@@ -23,7 +23,8 @@ import { CronManager } from './infrastructure/nodeCron/CronManager';
 import { createSocketServer, getNotificationService } from './infrastructure/websocket/socket';
 import measureAverageRoutes from './web/routes/MeasureAverage.routes';
 import { dashboardRoutes } from './web/routes/dashboard.routes';
-import { alertRoutes } from './web/routes/alert.routes';
+import { passwordResetRoutes } from './web/routes/password-reset.routes';
+import { alertRoutes } from './web/routes/Alert.routes';
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 export const app = express();
 app.use(cors());
@@ -43,6 +44,7 @@ app.use("/receiverJson", receiverJsonRoutes);
 app.use("/emailStation", emailStationRoutes);
 app.use("/measureAverage", measureAverageRoutes);
 app.use("/dashboard", dashboardRoutes);
+app.use("/password-reset", passwordResetRoutes);
 app.use(errorMiddleware);
 
 // --- Controle de recursos ---
