@@ -1,8 +1,12 @@
-import { RunMeasureAverageCron } from './RunMeasureAverageCron';
-import { RunTakeMeasuresCron } from './RunTakeMeasuresCron';
+import { RunTakeMeasuresCron } from "./RunTakeMeasuresCron";
+import { NotificationService } from "../websocket/service/NotificationService";
 
 export class CronManager {
-  private takeMeasuresCron = new RunTakeMeasuresCron();
+  private takeMeasuresCron: RunTakeMeasuresCron;
+
+  constructor(notificationService: NotificationService) {
+    this.takeMeasuresCron = new RunTakeMeasuresCron(notificationService);
+  }
 
   async startAll() {
     await this.takeMeasuresCron.execute();
