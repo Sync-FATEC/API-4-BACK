@@ -30,7 +30,7 @@ export const AppDataSource = new DataSource({
     Station,
     EmailStation,
     MeasureAverage,
-    PasswordReset
+    PasswordReset,
     Logs
   ],
   migrations: [],
