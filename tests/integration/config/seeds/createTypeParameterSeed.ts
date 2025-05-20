@@ -4,17 +4,17 @@ import CreateTypeParameterDTO from "../../../../src/web/dtos/typeParameter/Creat
 
 import TypeParameterRepository from "../../../../src/infrastructure/repositories/TypeParameterRepository";
 
-export async function createTypeParameterSeed() {
+export async function createTypeParameterSeed(name: string, unit: string, numberOfDecimals: number, factor: number, offset: number, typeJson: string) {
     const typeParameterRepository = new TypeParameterRepository();
     const createTypeParameterUseCase = new CreateTypeParameterUseCase(typeParameterRepository);
 
     const typeParameterDTO = new CreateTypeParameterDTO(
-        'Temperatura',
-        '°C',
-        1,
-        1,
-        0,
-        'temp',
+        name,
+        unit,
+        numberOfDecimals,
+        factor,
+        offset,
+        typeJson,
     );  
 
     const typeParameter = await createTypeParameterUseCase.execute(typeParameterDTO);
