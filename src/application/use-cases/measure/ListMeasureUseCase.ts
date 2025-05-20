@@ -12,4 +12,10 @@ export class ListMeasureUseCase extends MeasureUseCase {
   ): Promise<ListMeasureResponseDTO[]> {
     return await this.measureRepository.listMeasures(stationId);
   }
+
+  public async executePublic(
+    stationId: string | null
+  ): Promise<ListMeasureResponseDTO[]> {
+    return await this.measureRepository.listWithFilters(new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), new Date(), stationId);
+  }
 }

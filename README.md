@@ -208,9 +208,10 @@ npm run dev
 |------|--------|
 | João Gabriel Solis | Scrum Master |
 | Ana Laura Moratelli | Product Owner |
-| Ana Clara Marques | Desenvolvedora |
+| Arthur Karnas	 | Desenvolvedora |
 | Erik Yokota | Desenvolvedor |
 | Filipe Colla | Desenvolvedor |
+| José Eduardo Fernandes | Desenvolvedor |
 | Kauê Francisco | Desenvolvedor |
 
 ## 📄 Licença

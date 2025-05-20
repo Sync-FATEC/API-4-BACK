@@ -4,17 +4,32 @@ import { seedParameters } from "./parameter.seed";
 import { seedTypeAlerts } from "./typeAlert.seed";
 import { seedMeasures } from "./measure.seed";
 import { seedAlerts } from "./alert.seed";
-import { seedMeasureAverages } from "./measureAverage.seed";
+import { seedAdminUser } from "./AdminUserSeed";
+import { AppDataSource } from "../data-source";
 
 export async function runSeeds() {
     try {
-        await seedTypeParameters();
-        await seedStations();
+        // Primeiro, executar seeds de entidades base em paralelo (não dependem de outras)
+        await Promise.all([
+            seedTypeParameters(),
+            seedStations()
+        ]);
+        
+        // Admin seed precisa do DataSource como parâmetro
+        await seedAdminUser(AppDataSource);
+        
+        // Depois, executar seeds que dependem das entidades base
         await seedParameters();
-        await seedTypeAlerts();
-        await seedMeasures();
+        
+        // Executar seeds de alerta e medições em paralelo
+        await Promise.all([
+            seedTypeAlerts(),
+            seedMeasures()
+        ]);
+        
+        // Por fim, executar seeds que dependem das medições
         await seedAlerts();
-        await seedMeasureAverages();
+        
         console.log("Todos os seeds foram executados com sucesso!");
     } catch (error) {
         console.error("Erro ao executar seeds:", error);
