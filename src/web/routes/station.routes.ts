@@ -42,6 +42,33 @@ const readController = new ReadStationController(readStationUseCase);
 // Generate Pdf
 const generateReportController = new GenerateReportStationController();
 
+/**
+ * @swagger
+ * /generate-report:
+ *   post:
+ *     summary: Gera um relatório em PDF para uma estação
+ *     tags: [Estações]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - station_id
+ *             properties:
+ *               station_id:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: PDF gerado com sucesso
+ *       400:
+ *         description: Dados inválidos
+ *       401:
+ *         description: Não autorizado
+ */
 stationRoutes.post(
   "/generate-report",
   limiter,
