@@ -4,8 +4,8 @@ on:
   workflow_call:
 
 jobs:
-  # Job para executar os testes unitários
-  unit-test:
+  # Job para executar os testes integrados
+  integration-test:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
