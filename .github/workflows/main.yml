@@ -9,11 +9,11 @@ on:
 
 jobs:
   build:
-    uses: ./.github/workflows/build.yaml 
+    uses: ./.github/workflows/build.yml 
   unit-test:
     needs: build
-    uses: ./.github/workflows/unit.yaml
+    uses: ./.github/workflows/unit.yml
   integration-test:
     needs: unit-test
     if: github.base_ref == 'prod' || github.base_ref == 'preprod'
-    uses: ./.github/workflows/integration.yaml
+    uses: ./.github/workflows/integration.yml
