@@ -15,15 +15,16 @@ import { typeAlertRoutes } from './web/routes/typeAlert.routes';
 import { typeParameterRoutes } from './web/routes/typeParameter.routes';
 import { parameterRoutes } from './web/routes/parameter.routes';
 import { errorMiddleware } from './web/middlewares/errorMiddleware';
-import { alertRoutes } from './web/routes/Alert.routes';
 import { measureRoutes } from './web/routes/Measure.routes';
 import { receiverJsonRoutes } from './web/routes/receiverJson.routes';
 import { swaggerOptions } from './swaggetOptions';
 import { emailStationRoutes } from './web/routes/emailStation.router';
 import { CronManager } from './infrastructure/nodeCron/CronManager';
-import { createSocketServer } from './infrastructure/websocket/socket';
+import { createSocketServer, getNotificationService } from './infrastructure/websocket/socket';
 import measureAverageRoutes from './web/routes/MeasureAverage.routes';
 import { dashboardRoutes } from './web/routes/dashboard.routes';
+import { passwordResetRoutes } from './web/routes/password-reset.routes';
+import { alertRoutes } from './web/routes/Alert.routes';
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 export const app = express();
 app.use(cors());
@@ -43,6 +44,7 @@ app.use("/receiverJson", receiverJsonRoutes);
 app.use("/emailStation", emailStationRoutes);
 app.use("/measureAverage", measureAverageRoutes);
 app.use("/dashboard", dashboardRoutes);
+app.use("/password-reset", passwordResetRoutes);
 app.use(errorMiddleware);
 
 // --- Controle de recursos ---
@@ -54,9 +56,10 @@ export async function startServer(port = process.env.PORT) {
     await initializeDatabase();
 
     const httpServer = http.createServer(app);
-    createSocketServer(httpServer); // WebSocket no mesmo server
+    createSocketServer(httpServer);
+    const notificationService = getNotificationService();
 
-    cronManager = new CronManager();
+    cronManager = new CronManager(notificationService);
     cronManager.startAll();
 
     server = httpServer.listen(port, () => {

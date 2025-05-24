@@ -15,19 +15,27 @@ import { NotificationService } from '../websocket/service/NotificationService';
 import { EmailStationRepository } from '../repositories/EmailStationRepository';
 import { NodemailerEmailSender } from '../email/nodeMailerEmailSender';
 import { UserRepository } from '../repositories/UserRepository';
+
 export class RunTakeMeasuresCron {
   private measureRepository = new MeasureRepository();
   private stationRepository = new StationRepository();
   private alertRepository = new AlertRepository();
   private typeAlertRepository = new TypeAlertRepository();
   private parameterRepository = new ParameterRepository();
-  private notificationService = new NotificationService();
   private emailSender = NodemailerEmailSender.getInstance();
   private emailStationRepository = new EmailStationRepository();
   private userRepository = new UserRepository();
-  private senderAlertService = new SenderAlertService(this.notificationService, this.emailSender, this.emailStationRepository, this.userRepository);
-
+  private senderAlertService: SenderAlertService;
   private task: cron.ScheduledTask | null = null;
+
+  constructor(private notificationService: NotificationService) {
+    this.senderAlertService = new SenderAlertService(
+      this.notificationService,
+      this.emailSender,
+      this.emailStationRepository,
+      this.userRepository
+    );
+  }
 
   async execute() {
     try {
@@ -51,7 +59,7 @@ export class RunTakeMeasuresCron {
       );
 
       // Cron job para executar a cada 10 minutos
-      this.task = cron.schedule('*/10 * * * *', async () => {
+      this.task = cron.schedule('*/10 * * * * *', async () => {
         console.log('[CRON] Executando processamento de dados do MongoDB');
         await receiverMongoJsonUseCase.execute();
       });
@@ -68,3 +76,4 @@ export class RunTakeMeasuresCron {
   }
 }
 
+  
