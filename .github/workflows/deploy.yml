@@ -21,7 +21,6 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         script: |
-          sudo su
           cd /home/***/API-4-BACK
           git fetch
           git pull
