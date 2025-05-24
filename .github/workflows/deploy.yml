@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - prod
-      - v0/fix-deploy-connection
 
 jobs:
   deploy:
