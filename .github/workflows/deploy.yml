@@ -22,10 +22,8 @@ jobs:
         key: ${{ secrets.KEY }}
         script: |
           sudo su
-          git config --global --add safe.directory /home/***/API-4-BACK
-          chown -R $USER:$USER /home/***/API-4-BACK
-
           cd /home/***/API-4-BACK
+          git fetch
+          git pull
           npm install
-
           npm run dev
