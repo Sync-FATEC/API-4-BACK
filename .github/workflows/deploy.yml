@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - prod
+      - v0/fix-deploy-connection
 
 jobs:
   deploy:
@@ -20,8 +21,10 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         script: |
-          sudo docker restart meu-postgres
-          cd /home/ec2-user/API-4-BACK
-          sudo git fetch
-          sudo git pull origin prod
-          sudo docker compose up -d --build
+          sudo git config --global --add safe.directory /home/***/API-4-BACK
+          sudo chown -R $USER:$USER /home/***/API-4-BACK
+
+          cd /home/***/API-4-BACK
+          npm install
+
+          npm run dev
