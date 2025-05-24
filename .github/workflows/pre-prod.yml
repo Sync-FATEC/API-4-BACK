@@ -1,0 +1,27 @@
+name: CI Deploy
+
+on:
+  push:
+    branches:
+      - preprod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Deploy via SSH to EC2
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        script: |
+          cd /home/***/API-4-BACK
+          git fetch
+          git pull
+          npm install
+          npm run dev > serve.log 2>&1 &
