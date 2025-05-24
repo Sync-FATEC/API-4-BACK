@@ -25,4 +25,4 @@ jobs:
           git fetch
           git pull
           npm install
-          npm run dev
+          npm run dev > serve.log 2>&1 &
