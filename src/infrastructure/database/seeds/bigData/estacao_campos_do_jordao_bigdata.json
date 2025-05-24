@@ -26090,22 +26090,4965 @@
   },
   {
     "uid": "campos-do-jordao-uid-001",
-    "unixtime": 1746126000
+    "unixtime": 1746126000,
+    "humidity": 78.0,
+    "temperature": 16.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.7,
+    "pressure": 837.2
   },
   {
     "uid": "campos-do-jordao-uid-001",
-    "unixtime": 1746129600
+    "unixtime": 1746129600,
+    "humidity": 81.0,
+    "temperature": 16.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 837.5
   },
   {
     "uid": "campos-do-jordao-uid-001",
-    "unixtime": 1746133200
+    "unixtime": 1746133200,
+    "humidity": 85.0,
+    "temperature": 12.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 837.6
   },
   {
     "uid": "campos-do-jordao-uid-001",
-    "unixtime": 1746136800
+    "unixtime": 1746136800,
+    "humidity": 88.0,
+    "temperature": 12.7,
+    "rainfall": 0.0,
+    "windSpeed": 2.3,
+    "pressure": 837.9
   },
   {
     "uid": "campos-do-jordao-uid-001",
-    "unixtime": 1746140400
+    "unixtime": 1746140400,
+    "humidity": 90.0,
+    "temperature": 12.1,
+    "rainfall": 0.0,
+    "windSpeed": 2.1,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746144000,
+    "humidity": 94.0,
+    "temperature": 11.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746147600,
+    "humidity": 95.0,
+    "temperature": 10.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746151200,
+    "humidity": 96.0,
+    "temperature": 10.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746154800,
+    "humidity": 96.0,
+    "temperature": 9.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 837.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746158400,
+    "humidity": 97.0,
+    "temperature": 9.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 837.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746162000,
+    "humidity": 98.0,
+    "temperature": 8.5,
+    "rainfall": 0.2,
+    "windSpeed": 0.8,
+    "pressure": 837.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746165600,
+    "humidity": 98.0,
+    "temperature": 8.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 837.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746169200,
+    "humidity": 98.0,
+    "temperature": 7.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 836.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746172800,
+    "humidity": 99.0,
+    "temperature": 7.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 836.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746176400,
+    "humidity": 99.0,
+    "temperature": 7.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 837.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746180000,
+    "humidity": 98.0,
+    "temperature": 8.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 837.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746183600,
+    "humidity": 84.0,
+    "temperature": 12.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746187200,
+    "humidity": 76.0,
+    "temperature": 15.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 839.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746190800,
+    "humidity": 62.0,
+    "temperature": 16.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746194400,
+    "humidity": 75.0,
+    "temperature": 16.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746198000,
+    "humidity": 76.0,
+    "temperature": 16.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746201600,
+    "humidity": 72.0,
+    "temperature": 16.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746205200,
+    "humidity": 64.0,
+    "temperature": 18.3,
+    "rainfall": 0.0,
+    "windSpeed": 2.1,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746208800,
+    "humidity": 65.0,
+    "temperature": 18.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746212400,
+    "humidity": 79.0,
+    "temperature": 16.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746216000,
+    "humidity": 82.0,
+    "temperature": 15.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746219600,
+    "humidity": 92.0,
+    "temperature": 13.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746223200,
+    "humidity": 91.0,
+    "temperature": 12.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746226800,
+    "humidity": 92.0,
+    "temperature": 12.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746230400,
+    "humidity": 93.0,
+    "temperature": 11.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746234000,
+    "humidity": 96.0,
+    "temperature": 10.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746237600,
+    "humidity": 97.0,
+    "temperature": 9.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746241200,
+    "humidity": 97.0,
+    "temperature": 9.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746244800,
+    "humidity": 98.0,
+    "temperature": 8.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746248400,
+    "humidity": 98.0,
+    "temperature": 8.3,
+    "rainfall": 0.2,
+    "windSpeed": 0.9,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746252000,
+    "humidity": 98.0,
+    "temperature": 7.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 837.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746255600,
+    "humidity": 98.0,
+    "temperature": 7.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 837.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746259200,
+    "humidity": 99.0,
+    "temperature": 7.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 837.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746262800,
+    "humidity": 99.0,
+    "temperature": 7.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746266400,
+    "humidity": 99.0,
+    "temperature": 8.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746270000,
+    "humidity": 87.0,
+    "temperature": 12.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746273600,
+    "humidity": 74.0,
+    "temperature": 14.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746277200,
+    "humidity": 56.0,
+    "temperature": 16.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746280800,
+    "humidity": 62.0,
+    "temperature": 17.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746284400,
+    "humidity": 58.0,
+    "temperature": 18.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746288000,
+    "humidity": 61.0,
+    "temperature": 17.9,
+    "rainfall": 0.0,
+    "windSpeed": 2.0,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746291600,
+    "humidity": 67.0,
+    "temperature": 18.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 837.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746295200,
+    "humidity": 69.0,
+    "temperature": 17.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.5,
+    "pressure": 837.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746298800,
+    "humidity": 66.0,
+    "temperature": 16.9,
+    "rainfall": 0.0,
+    "windSpeed": 2.2,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746302400,
+    "humidity": 71.0,
+    "temperature": 15.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746306000,
+    "humidity": 84.0,
+    "temperature": 13.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746309600,
+    "humidity": 87.0,
+    "temperature": 12.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 838.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746313200,
+    "humidity": 90.0,
+    "temperature": 12.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746316800,
+    "humidity": 93.0,
+    "temperature": 12.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746320400,
+    "humidity": 95.0,
+    "temperature": 12.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.4,
+    "pressure": 838.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746324000,
+    "humidity": 97.0,
+    "temperature": 11.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746327600,
+    "humidity": 95.0,
+    "temperature": 11.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746331200,
+    "humidity": 96.0,
+    "temperature": 11.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746334800,
+    "humidity": 96.0,
+    "temperature": 10.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 837.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746338400,
+    "humidity": 96.0,
+    "temperature": 10.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 837.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746342000,
+    "humidity": 97.0,
+    "temperature": 10.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 837.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746345600,
+    "humidity": 97.0,
+    "temperature": 10.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 837.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746349200,
+    "humidity": 96.0,
+    "temperature": 10.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.4,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746352800,
+    "humidity": 97.0,
+    "temperature": 10.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 838.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746356400,
+    "humidity": 93.0,
+    "temperature": 12.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746360000,
+    "humidity": 80.0,
+    "temperature": 14.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746363600,
+    "humidity": 62.0,
+    "temperature": 17.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746367200,
+    "humidity": 77.0,
+    "temperature": 16.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746370800,
+    "humidity": 71.0,
+    "temperature": 17.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.5,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746374400,
+    "humidity": 72.0,
+    "temperature": 18.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.5,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746378000,
+    "humidity": 76.0,
+    "temperature": 16.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746381600,
+    "humidity": 75.0,
+    "temperature": 16.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 837.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746385200,
+    "humidity": 76.0,
+    "temperature": 15.1,
+    "rainfall": 0.0,
+    "windSpeed": 2.0,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746388800,
+    "humidity": 72.0,
+    "temperature": 14.3,
+    "rainfall": 0.0,
+    "windSpeed": 2.3,
+    "pressure": 838.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746392400,
+    "humidity": 73.0,
+    "temperature": 13.5,
+    "rainfall": 0.0,
+    "windSpeed": 2.2,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746396000,
+    "humidity": 80.0,
+    "temperature": 12.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.5,
+    "pressure": 838.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746399600,
+    "humidity": 88.0,
+    "temperature": 11.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746403200,
+    "humidity": 92.0,
+    "temperature": 10.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746406800,
+    "humidity": 94.0,
+    "temperature": 10.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.4,
+    "pressure": 839.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746410400,
+    "humidity": 96.0,
+    "temperature": 10.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746414000,
+    "humidity": 96.0,
+    "temperature": 9.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.4,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746417600,
+    "humidity": 97.0,
+    "temperature": 9.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.4,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746421200,
+    "humidity": 97.0,
+    "temperature": 9.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746424800,
+    "humidity": 97.0,
+    "temperature": 9.1,
+    "rainfall": 0.2,
+    "windSpeed": 1.0,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746428400,
+    "humidity": 97.0,
+    "temperature": 8.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746432000,
+    "humidity": 97.0,
+    "temperature": 8.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746435600,
+    "humidity": 97.0,
+    "temperature": 7.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746439200,
+    "humidity": 94.0,
+    "temperature": 9.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746442800,
+    "humidity": 86.0,
+    "temperature": 10.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746446400,
+    "humidity": 67.0,
+    "temperature": 15.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746450000,
+    "humidity": 60.0,
+    "temperature": 16.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 840.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746453600,
+    "humidity": 68.0,
+    "temperature": 16.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 840.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746457200,
+    "humidity": 75.0,
+    "temperature": 15.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746460800,
+    "humidity": 71.0,
+    "temperature": 16.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746464400,
+    "humidity": 69.0,
+    "temperature": 17.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746468000,
+    "humidity": 70.0,
+    "temperature": 16.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 837.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746471600,
+    "humidity": 71.0,
+    "temperature": 17.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 837.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746475200,
+    "humidity": 78.0,
+    "temperature": 15.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746478800,
+    "humidity": 84.0,
+    "temperature": 13.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746482400,
+    "humidity": 88.0,
+    "temperature": 12.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 838.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746486000,
+    "humidity": 89.0,
+    "temperature": 11.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746489600,
+    "humidity": 91.0,
+    "temperature": 11.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746493200,
+    "humidity": 92.0,
+    "temperature": 11.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746496800,
+    "humidity": 94.0,
+    "temperature": 10.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746500400,
+    "humidity": 96.0,
+    "temperature": 10.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746504000,
+    "humidity": 96.0,
+    "temperature": 9.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746507600,
+    "humidity": 97.0,
+    "temperature": 9.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 837.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746511200,
+    "humidity": 97.0,
+    "temperature": 9.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 837.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746514800,
+    "humidity": 97.0,
+    "temperature": 9.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 837.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746518400,
+    "humidity": 97.0,
+    "temperature": 9.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 837.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746522000,
+    "humidity": 97.0,
+    "temperature": 10.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 837.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746525600,
+    "humidity": 96.0,
+    "temperature": 10.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746529200,
+    "humidity": 86.0,
+    "temperature": 12.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.4,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746532800,
+    "humidity": 66.0,
+    "temperature": 15.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746536400,
+    "humidity": 67.0,
+    "temperature": 15.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746540000,
+    "humidity": 62.0,
+    "temperature": 15.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746543600,
+    "humidity": 62.0,
+    "temperature": 17.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 837.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746547200,
+    "humidity": 60.0,
+    "temperature": 16.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 837.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746550800,
+    "humidity": 59.0,
+    "temperature": 17.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 836.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746554400,
+    "humidity": 65.0,
+    "temperature": 16.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 836.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746558000,
+    "humidity": 72.0,
+    "temperature": 15.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 836.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746561600,
+    "humidity": 76.0,
+    "temperature": 14.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 837.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746565200,
+    "humidity": 79.0,
+    "temperature": 13.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 837.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746568800,
+    "humidity": 83.0,
+    "temperature": 12.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 837.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746572400,
+    "humidity": 83.0,
+    "temperature": 12.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746576000,
+    "humidity": 89.0,
+    "temperature": 11.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746579600,
+    "humidity": 92.0,
+    "temperature": 10.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746583200,
+    "humidity": 94.0,
+    "temperature": 10.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746586800,
+    "humidity": 94.0,
+    "temperature": 9.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746590400,
+    "humidity": 95.0,
+    "temperature": 9.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 837.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746594000,
+    "humidity": 96.0,
+    "temperature": 9.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 837.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746597600,
+    "humidity": 97.0,
+    "temperature": 8.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 836.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746601200,
+    "humidity": 97.0,
+    "temperature": 8.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 836.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746604800,
+    "humidity": 97.0,
+    "temperature": 8.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 836.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746608400,
+    "humidity": 98.0,
+    "temperature": 8.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 837.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746612000,
+    "humidity": 97.0,
+    "temperature": 9.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 837.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746615600,
+    "humidity": 87.0,
+    "temperature": 13.5,
+    "rainfall": 0.2,
+    "windSpeed": 1.8,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746619200,
+    "humidity": 87.0,
+    "temperature": 14.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746622800,
+    "humidity": 82.0,
+    "temperature": 15.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746626400,
+    "humidity": 77.0,
+    "temperature": 16.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746630000,
+    "humidity": 72.0,
+    "temperature": 17.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746633600,
+    "humidity": 72.0,
+    "temperature": 17.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 837.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746637200,
+    "humidity": 67.0,
+    "temperature": 19.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 837.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746640800,
+    "humidity": 69.0,
+    "temperature": 18.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 837.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746644400,
+    "humidity": 70.0,
+    "temperature": 17.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 837.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746648000,
+    "humidity": 78.0,
+    "temperature": 16.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 837.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746651600,
+    "humidity": 85.0,
+    "temperature": 14.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746655200,
+    "humidity": 92.0,
+    "temperature": 13.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746658800,
+    "humidity": 94.0,
+    "temperature": 12.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746662400,
+    "humidity": 95.0,
+    "temperature": 11.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746666000,
+    "humidity": 96.0,
+    "temperature": 11.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746669600,
+    "humidity": 97.0,
+    "temperature": 10.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746673200,
+    "humidity": 97.0,
+    "temperature": 10.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746676800,
+    "humidity": 97.0,
+    "temperature": 10.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746680400,
+    "humidity": 98.0,
+    "temperature": 10.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746684000,
+    "humidity": 98.0,
+    "temperature": 10.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 837.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746687600,
+    "humidity": 98.0,
+    "temperature": 9.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 837.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746691200,
+    "humidity": 98.0,
+    "temperature": 9.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 837.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746694800,
+    "humidity": 98.0,
+    "temperature": 9.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746698400,
+    "humidity": 98.0,
+    "temperature": 10.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746702000,
+    "humidity": 93.0,
+    "temperature": 12.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746705600,
+    "humidity": 81.0,
+    "temperature": 16.3,
+    "rainfall": 0.0,
+    "windSpeed": 2.8,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746709200,
+    "humidity": 72.0,
+    "temperature": 18.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746712800,
+    "humidity": 68.0,
+    "temperature": 19.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746716400,
+    "humidity": 71.0,
+    "temperature": 18.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746720000,
+    "humidity": 70.0,
+    "temperature": 18.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 837.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746723600,
+    "humidity": 64.0,
+    "temperature": 20.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 837.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746727200,
+    "humidity": 66.0,
+    "temperature": 19.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 837.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746730800,
+    "humidity": 68.0,
+    "temperature": 18.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 837.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746734400,
+    "humidity": 76.0,
+    "temperature": 17.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.4,
+    "pressure": 837.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746738000,
+    "humidity": 86.0,
+    "temperature": 15.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 837.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746741600,
+    "humidity": 88.0,
+    "temperature": 14.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 837.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746745200,
+    "humidity": 92.0,
+    "temperature": 13.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746748800
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746752400,
+    "humidity": 95.0,
+    "temperature": 12.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746756000,
+    "humidity": 96.0,
+    "temperature": 12.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746759600,
+    "humidity": 96.0,
+    "temperature": 11.9,
+    "rainfall": 0.2,
+    "windSpeed": 1.4,
+    "pressure": 837.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746763200,
+    "humidity": 97.0,
+    "temperature": 12.2,
+    "rainfall": 0.0,
+    "windSpeed": 2.1,
+    "pressure": 837.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746766800,
+    "humidity": 96.0,
+    "temperature": 11.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 836.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746770400,
+    "humidity": 97.0,
+    "temperature": 11.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 836.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746774000,
+    "humidity": 97.0,
+    "temperature": 11.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 836.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746777600,
+    "humidity": 97.0,
+    "temperature": 11.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 836.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746781200,
+    "humidity": 98.0,
+    "temperature": 11.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 836.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746784800,
+    "humidity": 96.0,
+    "temperature": 12.4,
+    "rainfall": 0.0,
+    "windSpeed": 2.3,
+    "pressure": 837.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746788400,
+    "humidity": 89.0,
+    "temperature": 14.8,
+    "rainfall": 0.0,
+    "windSpeed": 2.8,
+    "pressure": 837.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746792000,
+    "humidity": 84.0,
+    "temperature": 16.6,
+    "rainfall": 0.0,
+    "windSpeed": 2.0,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746795600,
+    "humidity": 83.0,
+    "temperature": 16.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746799200,
+    "humidity": 70.0,
+    "temperature": 19.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746802800,
+    "humidity": 73.0,
+    "temperature": 18.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746806400,
+    "humidity": 70.0,
+    "temperature": 18.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 837.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746810000,
+    "humidity": 62.0,
+    "temperature": 20.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 837.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746813600,
+    "humidity": 69.0,
+    "temperature": 19.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 836.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746817200,
+    "humidity": 72.0,
+    "temperature": 18.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 836.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746820800,
+    "humidity": 75.0,
+    "temperature": 17.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 836.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746824400,
+    "humidity": 80.0,
+    "temperature": 16.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 836.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746828000,
+    "humidity": 82.0,
+    "temperature": 15.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 837.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746831600,
+    "humidity": 82.0,
+    "temperature": 15.6,
+    "rainfall": 0.0,
+    "windSpeed": 2.1,
+    "pressure": 837.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746835200,
+    "humidity": 84.0,
+    "temperature": 15.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 837.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746838800,
+    "humidity": 83.0,
+    "temperature": 15.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746842400,
+    "humidity": 85.0,
+    "temperature": 15.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746846000,
+    "humidity": 82.0,
+    "temperature": 15.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746849600,
+    "humidity": 79.0,
+    "temperature": 15.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 837.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746853200,
+    "humidity": 83.0,
+    "temperature": 14.8,
+    "rainfall": 0.0,
+    "windSpeed": 2.7,
+    "pressure": 837.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746856800,
+    "humidity": 86.0,
+    "temperature": 14.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 837.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746860400,
+    "humidity": 87.0,
+    "temperature": 14.6,
+    "rainfall": 0.0,
+    "windSpeed": 2.5,
+    "pressure": 837.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746864000,
+    "humidity": 88.0,
+    "temperature": 14.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.7,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746867600,
+    "humidity": 90.0,
+    "temperature": 13.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746871200,
+    "humidity": 88.0,
+    "temperature": 14.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 839.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746874800,
+    "humidity": 82.0,
+    "temperature": 16.4,
+    "rainfall": 0.0,
+    "windSpeed": 2.5,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746878400,
+    "humidity": 75.0,
+    "temperature": 19.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746882000,
+    "humidity": 67.0,
+    "temperature": 20.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 840.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746885600,
+    "humidity": 63.0,
+    "temperature": 20.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746889200,
+    "humidity": 66.0,
+    "temperature": 20.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746892800,
+    "humidity": 63.0,
+    "temperature": 20.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746896400,
+    "humidity": 56.0,
+    "temperature": 21.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746900000,
+    "humidity": 63.0,
+    "temperature": 20.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 837.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746903600,
+    "humidity": 63.0,
+    "temperature": 21.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746907200,
+    "humidity": 73.0,
+    "temperature": 19.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746910800,
+    "humidity": 88.0,
+    "temperature": 17.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746914400,
+    "humidity": 91.0,
+    "temperature": 16.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746918000,
+    "humidity": 94.0,
+    "temperature": 16.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746921600,
+    "humidity": 96.0,
+    "temperature": 15.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 840.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746925200,
+    "humidity": 98.0,
+    "temperature": 13.9,
+    "rainfall": 4.2,
+    "windSpeed": 0.9,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746928800,
+    "humidity": 98.0,
+    "temperature": 14.0,
+    "rainfall": 0.4,
+    "windSpeed": 0.6,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746932400,
+    "humidity": 98.0,
+    "temperature": 14.1,
+    "rainfall": 2.0,
+    "windSpeed": 0.4,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746936000,
+    "humidity": 98.0,
+    "temperature": 14.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.1,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746939600,
+    "humidity": 98.0,
+    "temperature": 13.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 839.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746943200,
+    "humidity": 98.0,
+    "temperature": 13.6,
+    "rainfall": 0.2,
+    "windSpeed": 0.4,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746946800,
+    "humidity": 98.0,
+    "temperature": 13.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.4,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746950400,
+    "humidity": 98.0,
+    "temperature": 13.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746954000,
+    "humidity": 98.0,
+    "temperature": 13.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746957600,
+    "humidity": 98.0,
+    "temperature": 13.2,
+    "rainfall": 0.2,
+    "windSpeed": 1.0,
+    "pressure": 840.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746961200,
+    "humidity": 98.0,
+    "temperature": 13.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 840.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746964800,
+    "humidity": 98.0,
+    "temperature": 13.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 841.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746968400,
+    "humidity": 98.0,
+    "temperature": 13.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 841.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746972000,
+    "humidity": 97.0,
+    "temperature": 12.3,
+    "rainfall": 1.2,
+    "windSpeed": 1.2,
+    "pressure": 841.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746975600,
+    "humidity": 97.0,
+    "temperature": 13.5,
+    "rainfall": 4.4,
+    "windSpeed": 0.8,
+    "pressure": 841.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746979200,
+    "humidity": 96.0,
+    "temperature": 12.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 840.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746982800,
+    "humidity": 95.0,
+    "temperature": 12.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746986400,
+    "humidity": 96.0,
+    "temperature": 12.1,
+    "rainfall": 1.4,
+    "windSpeed": 0.6,
+    "pressure": 840.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746990000,
+    "humidity": 97.0,
+    "temperature": 11.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746993600,
+    "humidity": 96.0,
+    "temperature": 11.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1746997200,
+    "humidity": 96.0,
+    "temperature": 11.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 840.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747000800,
+    "humidity": 97.0,
+    "temperature": 10.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 841.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747004400,
+    "humidity": 97.0,
+    "temperature": 10.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 841.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747008000,
+    "humidity": 96.0,
+    "temperature": 10.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 841.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747011600,
+    "humidity": 97.0,
+    "temperature": 10.6,
+    "rainfall": 0.2,
+    "windSpeed": 2.0,
+    "pressure": 841.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747015200,
+    "humidity": 97.0,
+    "temperature": 10.5,
+    "rainfall": 0.0,
+    "windSpeed": 2.6,
+    "pressure": 841.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747018800,
+    "humidity": 97.0,
+    "temperature": 10.1,
+    "rainfall": 0.0,
+    "windSpeed": 4.4,
+    "pressure": 841.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747022400,
+    "humidity": 97.0,
+    "temperature": 9.8,
+    "rainfall": 0.0,
+    "windSpeed": 2.8,
+    "pressure": 841.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747026000,
+    "humidity": 97.0,
+    "temperature": 9.7,
+    "rainfall": 0.0,
+    "windSpeed": 2.9,
+    "pressure": 841.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747029600,
+    "humidity": 95.0,
+    "temperature": 9.6,
+    "rainfall": 0.0,
+    "windSpeed": 2.9,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747033200,
+    "humidity": 93.0,
+    "temperature": 9.8,
+    "rainfall": 0.0,
+    "windSpeed": 2.7,
+    "pressure": 840.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747036800,
+    "humidity": 95.0,
+    "temperature": 10.3,
+    "rainfall": 0.0,
+    "windSpeed": 2.0,
+    "pressure": 840.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747040400,
+    "humidity": 95.0,
+    "temperature": 10.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.7,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747044000,
+    "humidity": 96.0,
+    "temperature": 11.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 841.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747047600,
+    "humidity": 91.0,
+    "temperature": 12.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 841.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747051200,
+    "humidity": 83.0,
+    "temperature": 14.3,
+    "rainfall": 0.0,
+    "windSpeed": 2.3,
+    "pressure": 841.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747054800,
+    "humidity": 81.0,
+    "temperature": 15.1,
+    "rainfall": 0.0,
+    "windSpeed": 2.1,
+    "pressure": 842.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747058400,
+    "humidity": 80.0,
+    "temperature": 16.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 842.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747062000,
+    "humidity": 84.0,
+    "temperature": 16.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 841.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747065600,
+    "humidity": 86.0,
+    "temperature": 15.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 841.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747069200,
+    "humidity": 84.0,
+    "temperature": 16.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 840.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747072800,
+    "humidity": 92.0,
+    "temperature": 15.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 840.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747076400,
+    "humidity": 92.0,
+    "temperature": 14.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 840.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747080000,
+    "humidity": 94.0,
+    "temperature": 13.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 840.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747083600,
+    "humidity": 96.0,
+    "temperature": 12.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 840.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747087200,
+    "humidity": 95.0,
+    "temperature": 12.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 841.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747090800,
+    "humidity": 95.0,
+    "temperature": 12.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 841.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747094400,
+    "humidity": 95.0,
+    "temperature": 11.9,
+    "rainfall": 0.0,
+    "windSpeed": 2.3,
+    "pressure": 841.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747098000,
+    "humidity": 95.0,
+    "temperature": 11.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 841.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747101600,
+    "humidity": 95.0,
+    "temperature": 11.6,
+    "rainfall": 0.0,
+    "windSpeed": 2.3,
+    "pressure": 841.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747105200,
+    "humidity": 96.0,
+    "temperature": 11.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.9,
+    "pressure": 841.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747108800,
+    "humidity": 93.0,
+    "temperature": 11.9,
+    "rainfall": 0.0,
+    "windSpeed": 3.2,
+    "pressure": 840.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747112400,
+    "humidity": 93.0,
+    "temperature": 11.7,
+    "rainfall": 0.0,
+    "windSpeed": 2.2,
+    "pressure": 840.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747116000,
+    "humidity": 96.0,
+    "temperature": 11.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747119600,
+    "humidity": 95.0,
+    "temperature": 11.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.9,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747123200,
+    "humidity": 97.0,
+    "temperature": 10.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747126800,
+    "humidity": 98.0,
+    "temperature": 9.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747130400,
+    "humidity": 98.0,
+    "temperature": 9.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 840.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747134000,
+    "humidity": 86.0,
+    "temperature": 13.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 840.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747137600,
+    "humidity": 86.0,
+    "temperature": 13.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 841.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747141200,
+    "humidity": 82.0,
+    "temperature": 14.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 841.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747144800,
+    "humidity": 70.0,
+    "temperature": 17.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 841.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747148400,
+    "humidity": 80.0,
+    "temperature": 15.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 840.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747152000,
+    "humidity": 74.0,
+    "temperature": 16.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747155600,
+    "humidity": 67.0,
+    "temperature": 16.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.7,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747159200,
+    "humidity": 64.0,
+    "temperature": 16.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747162800,
+    "humidity": 77.0,
+    "temperature": 15.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747166400,
+    "humidity": 82.0,
+    "temperature": 13.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747170000,
+    "humidity": 91.0,
+    "temperature": 12.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747173600,
+    "humidity": 92.0,
+    "temperature": 11.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 840.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747177200,
+    "humidity": 91.0,
+    "temperature": 11.9,
+    "rainfall": 0.0,
+    "windSpeed": 2.1,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747180800,
+    "humidity": 94.0,
+    "temperature": 10.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 840.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747184400,
+    "humidity": 92.0,
+    "temperature": 11.2,
+    "rainfall": 0.0,
+    "windSpeed": 2.1,
+    "pressure": 840.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747188000,
+    "humidity": 93.0,
+    "temperature": 10.8,
+    "rainfall": 0.0,
+    "windSpeed": 2.6,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747191600,
+    "humidity": 94.0,
+    "temperature": 10.6,
+    "rainfall": 0.0,
+    "windSpeed": 2.0,
+    "pressure": 840.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747195200,
+    "humidity": 94.0,
+    "temperature": 10.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.5,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747198800,
+    "humidity": 94.0,
+    "temperature": 9.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747202400,
+    "humidity": 96.0,
+    "temperature": 8.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747206000,
+    "humidity": 95.0,
+    "temperature": 7.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747209600,
+    "humidity": 96.0,
+    "temperature": 7.3,
+    "rainfall": 0.2,
+    "windSpeed": 0.8,
+    "pressure": 838.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747213200,
+    "humidity": 95.0,
+    "temperature": 7.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747216800,
+    "humidity": 92.0,
+    "temperature": 7.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747220400,
+    "humidity": 73.0,
+    "temperature": 12.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 840.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747224000,
+    "humidity": 66.0,
+    "temperature": 13.9,
+    "rainfall": 0.0,
+    "windSpeed": 2.2,
+    "pressure": 841.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747227600,
+    "humidity": 65.0,
+    "temperature": 14.2,
+    "rainfall": 0.0,
+    "windSpeed": 3.1,
+    "pressure": 841.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747231200,
+    "humidity": 65.0,
+    "temperature": 14.4,
+    "rainfall": 0.0,
+    "windSpeed": 3.3,
+    "pressure": 840.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747234800,
+    "humidity": 66.0,
+    "temperature": 13.9,
+    "rainfall": 0.0,
+    "windSpeed": 2.4,
+    "pressure": 840.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747238400,
+    "humidity": 66.0,
+    "temperature": 14.5,
+    "rainfall": 0.0,
+    "windSpeed": 2.0,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747242000,
+    "humidity": 64.0,
+    "temperature": 14.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747245600,
+    "humidity": 59.0,
+    "temperature": 13.5,
+    "rainfall": 0.0,
+    "windSpeed": 2.9,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747249200,
+    "humidity": 66.0,
+    "temperature": 13.2,
+    "rainfall": 0.0,
+    "windSpeed": 3.6,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747252800,
+    "humidity": 74.0,
+    "temperature": 12.1,
+    "rainfall": 0.0,
+    "windSpeed": 2.7,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747256400,
+    "humidity": 83.0,
+    "temperature": 10.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 840.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747260000,
+    "humidity": 82.0,
+    "temperature": 10.1,
+    "rainfall": 0.0,
+    "windSpeed": 2.0,
+    "pressure": 840.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747263600,
+    "humidity": 82.0,
+    "temperature": 9.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 840.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747267200,
+    "humidity": 88.0,
+    "temperature": 8.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 840.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747270800,
+    "humidity": 93.0,
+    "temperature": 7.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 841.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747274400,
+    "humidity": 93.0,
+    "temperature": 6.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 840.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747278000,
+    "humidity": 94.0,
+    "temperature": 6.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 840.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747281600,
+    "humidity": 94.0,
+    "temperature": 6.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747285200,
+    "humidity": 96.0,
+    "temperature": 6.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 840.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747288800,
+    "humidity": 97.0,
+    "temperature": 6.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747292400,
+    "humidity": 98.0,
+    "temperature": 6.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747296000,
+    "humidity": 98.0,
+    "temperature": 6.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747299600,
+    "humidity": 99.0,
+    "temperature": 6.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747303200,
+    "humidity": 99.0,
+    "temperature": 6.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 840.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747306800,
+    "humidity": 84.0,
+    "temperature": 11.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 840.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747310400,
+    "humidity": 74.0,
+    "temperature": 13.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 841.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747314000,
+    "humidity": 66.0,
+    "temperature": 15.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 841.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747317600,
+    "humidity": 63.0,
+    "temperature": 16.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 841.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747321200,
+    "humidity": 73.0,
+    "temperature": 15.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747324800,
+    "humidity": 78.0,
+    "temperature": 15.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.7,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747328400,
+    "humidity": 81.0,
+    "temperature": 15.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747332000,
+    "humidity": 80.0,
+    "temperature": 15.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747335600,
+    "humidity": 82.0,
+    "temperature": 15.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747339200,
+    "humidity": 80.0,
+    "temperature": 14.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747342800,
+    "humidity": 88.0,
+    "temperature": 13.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.2,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747346400,
+    "humidity": 89.0,
+    "temperature": 12.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747350000,
+    "humidity": 92.0,
+    "temperature": 11.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 840.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747353600,
+    "humidity": 93.0,
+    "temperature": 11.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 840.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747357200,
+    "humidity": 95.0,
+    "temperature": 10.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 840.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747360800,
+    "humidity": 97.0,
+    "temperature": 9.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 840.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747364400,
+    "humidity": 97.0,
+    "temperature": 9.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 840.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747368000,
+    "humidity": 98.0,
+    "temperature": 10.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 840.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747371600,
+    "humidity": 97.0,
+    "temperature": 10.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747375200,
+    "humidity": 98.0,
+    "temperature": 9.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 840.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747378800,
+    "humidity": 98.0,
+    "temperature": 9.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747382400,
+    "humidity": 98.0,
+    "temperature": 8.9,
+    "rainfall": 0.2,
+    "windSpeed": 1.3,
+    "pressure": 840.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747386000,
+    "humidity": 99.0,
+    "temperature": 8.2,
+    "rainfall": 0.0,
+    "windSpeed": 2.1,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747389600,
+    "humidity": 99.0,
+    "temperature": 7.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 841.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747393200,
+    "humidity": 99.0,
+    "temperature": 11.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 841.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747396800,
+    "humidity": 80.0,
+    "temperature": 14.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.5,
+    "pressure": 842.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747400400,
+    "humidity": 74.0,
+    "temperature": 15.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 841.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747404000,
+    "humidity": 66.0,
+    "temperature": 16.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 841.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747407600,
+    "humidity": 67.0,
+    "temperature": 17.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 841.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747411200,
+    "humidity": 66.0,
+    "temperature": 17.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747414800,
+    "humidity": 57.0,
+    "temperature": 19.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747418400,
+    "humidity": 74.0,
+    "temperature": 17.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747422000,
+    "humidity": 76.0,
+    "temperature": 17.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.5,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747425600,
+    "humidity": 80.0,
+    "temperature": 15.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747429200,
+    "humidity": 89.0,
+    "temperature": 13.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747432800,
+    "humidity": 94.0,
+    "temperature": 12.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.4,
+    "pressure": 840.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747436400,
+    "humidity": 96.0,
+    "temperature": 11.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 840.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747440000,
+    "humidity": 96.0,
+    "temperature": 10.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 840.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747443600,
+    "humidity": 96.0,
+    "temperature": 10.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 840.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747447200,
+    "humidity": 97.0,
+    "temperature": 9.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 840.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747450800,
+    "humidity": 97.0,
+    "temperature": 9.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 840.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747454400,
+    "humidity": 97.0,
+    "temperature": 9.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747458000,
+    "humidity": 97.0,
+    "temperature": 9.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 840.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747461600,
+    "humidity": 98.0,
+    "temperature": 10.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747465200,
+    "humidity": 98.0,
+    "temperature": 9.0,
+    "rainfall": 0.2,
+    "windSpeed": 0.9,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747468800,
+    "humidity": 98.0,
+    "temperature": 8.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747472400,
+    "humidity": 99.0,
+    "temperature": 7.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747476000,
+    "humidity": 99.0,
+    "temperature": 8.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747479600,
+    "humidity": 98.0,
+    "temperature": 12.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.9,
+    "pressure": 840.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747483200,
+    "humidity": 80.0,
+    "temperature": 15.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.9,
+    "pressure": 841.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747486800,
+    "humidity": 69.0,
+    "temperature": 17.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 841.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747490400,
+    "humidity": 64.0,
+    "temperature": 18.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.9,
+    "pressure": 841.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747494000,
+    "humidity": 66.0,
+    "temperature": 18.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 840.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747497600,
+    "humidity": 71.0,
+    "temperature": 17.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747501200,
+    "humidity": 70.0,
+    "temperature": 17.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747504800,
+    "humidity": 75.0,
+    "temperature": 17.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747508400,
+    "humidity": 70.0,
+    "temperature": 17.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747512000,
+    "humidity": 77.0,
+    "temperature": 15.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.2,
+    "pressure": 839.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747515600,
+    "humidity": 85.0,
+    "temperature": 13.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747519200,
+    "humidity": 89.0,
+    "temperature": 12.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747522800,
+    "humidity": 94.0,
+    "temperature": 11.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747526400,
+    "humidity": 95.0,
+    "temperature": 10.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747530000,
+    "humidity": 96.0,
+    "temperature": 9.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747533600,
+    "humidity": 97.0,
+    "temperature": 9.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747537200,
+    "humidity": 97.0,
+    "temperature": 8.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747540800,
+    "humidity": 97.0,
+    "temperature": 8.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747544400,
+    "humidity": 98.0,
+    "temperature": 9.4,
+    "rainfall": 0.2,
+    "windSpeed": 1.5,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747548000,
+    "humidity": 98.0,
+    "temperature": 8.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747551600,
+    "humidity": 98.0,
+    "temperature": 8.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747555200,
+    "humidity": 98.0,
+    "temperature": 8.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747558800,
+    "humidity": 98.0,
+    "temperature": 9.7,
+    "rainfall": 0.0,
+    "windSpeed": 2.1,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747562400,
+    "humidity": 98.0,
+    "temperature": 10.7,
+    "rainfall": 0.0,
+    "windSpeed": 2.8,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747566000,
+    "humidity": 94.0,
+    "temperature": 12.3,
+    "rainfall": 0.0,
+    "windSpeed": 2.2,
+    "pressure": 840.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747569600,
+    "humidity": 85.0,
+    "temperature": 13.8,
+    "rainfall": 0.0,
+    "windSpeed": 2.4,
+    "pressure": 840.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747573200,
+    "humidity": 80.0,
+    "temperature": 14.8,
+    "rainfall": 0.0,
+    "windSpeed": 2.6,
+    "pressure": 841.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747576800,
+    "humidity": 74.0,
+    "temperature": 16.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 840.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747580400,
+    "humidity": 71.0,
+    "temperature": 16.6,
+    "rainfall": 0.0,
+    "windSpeed": 2.3,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747584000,
+    "humidity": 66.0,
+    "temperature": 17.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747587600,
+    "humidity": 61.0,
+    "temperature": 19.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747591200,
+    "humidity": 58.0,
+    "temperature": 18.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747594800,
+    "humidity": 60.0,
+    "temperature": 17.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747598400,
+    "humidity": 77.0,
+    "temperature": 15.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747602000,
+    "humidity": 85.0,
+    "temperature": 13.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.5,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747605600,
+    "humidity": 91.0,
+    "temperature": 12.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.5,
+    "pressure": 840.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747609200,
+    "humidity": 94.0,
+    "temperature": 11.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747612800,
+    "humidity": 96.0,
+    "temperature": 10.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747616400,
+    "humidity": 96.0,
+    "temperature": 10.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747620000,
+    "humidity": 96.0,
+    "temperature": 9.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747623600,
+    "humidity": 96.0,
+    "temperature": 8.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 840.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747627200,
+    "humidity": 97.0,
+    "temperature": 8.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 840.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747630800,
+    "humidity": 97.0,
+    "temperature": 8.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747634400,
+    "humidity": 98.0,
+    "temperature": 7.9,
+    "rainfall": 0.2,
+    "windSpeed": 0.9,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747638000,
+    "humidity": 98.0,
+    "temperature": 8.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747641600,
+    "humidity": 98.0,
+    "temperature": 7.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747645200,
+    "humidity": 98.0,
+    "temperature": 7.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747648800,
+    "humidity": 98.0,
+    "temperature": 8.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747652400,
+    "humidity": 90.0,
+    "temperature": 11.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 840.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747656000,
+    "humidity": 81.0,
+    "temperature": 15.0,
+    "rainfall": 0.0,
+    "windSpeed": 2.2,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747659600,
+    "humidity": 74.0,
+    "temperature": 17.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747663200,
+    "humidity": 62.0,
+    "temperature": 18.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 840.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747666800,
+    "humidity": 75.0,
+    "temperature": 17.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747670400,
+    "humidity": 66.0,
+    "temperature": 18.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747674000,
+    "humidity": 64.0,
+    "temperature": 19.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.5,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747677600,
+    "humidity": 53.0,
+    "temperature": 18.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747681200,
+    "humidity": 48.0,
+    "temperature": 16.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 838.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747684800,
+    "humidity": 49.0,
+    "temperature": 16.1,
+    "rainfall": 0.0,
+    "windSpeed": 2.4,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747688400,
+    "humidity": 67.0,
+    "temperature": 13.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747692000,
+    "humidity": 76.0,
+    "temperature": 12.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747695600,
+    "humidity": 84.0,
+    "temperature": 10.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747699200,
+    "humidity": 86.0,
+    "temperature": 10.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747702800,
+    "humidity": 90.0,
+    "temperature": 9.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747706400,
+    "humidity": 93.0,
+    "temperature": 9.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747710000,
+    "humidity": 94.0,
+    "temperature": 8.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747713600,
+    "humidity": 94.0,
+    "temperature": 8.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747717200,
+    "humidity": 95.0,
+    "temperature": 8.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747720800,
+    "humidity": 95.0,
+    "temperature": 7.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747724400,
+    "humidity": 97.0,
+    "temperature": 7.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747728000,
+    "humidity": 97.0,
+    "temperature": 7.0,
+    "rainfall": 0.2,
+    "windSpeed": 1.0,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747731600,
+    "humidity": 97.0,
+    "temperature": 7.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747735200,
+    "humidity": 98.0,
+    "temperature": 7.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747738800,
+    "humidity": 86.0,
+    "temperature": 11.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 840.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747742400,
+    "humidity": 75.0,
+    "temperature": 15.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 840.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747746000,
+    "humidity": 66.0,
+    "temperature": 17.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.5,
+    "pressure": 840.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747749600,
+    "humidity": 53.0,
+    "temperature": 18.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747753200,
+    "humidity": 75.0,
+    "temperature": 17.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747756800,
+    "humidity": 69.0,
+    "temperature": 18.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747760400,
+    "humidity": 59.0,
+    "temperature": 19.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 838.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747764000,
+    "humidity": 54.0,
+    "temperature": 18.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747767600,
+    "humidity": 63.0,
+    "temperature": 17.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747771200,
+    "humidity": 71.0,
+    "temperature": 16.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747774800,
+    "humidity": 83.0,
+    "temperature": 14.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747778400,
+    "humidity": 88.0,
+    "temperature": 12.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747782000,
+    "humidity": 92.0,
+    "temperature": 12.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747785600,
+    "humidity": 95.0,
+    "temperature": 11.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747789200,
+    "humidity": 96.0,
+    "temperature": 10.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747792800,
+    "humidity": 97.0,
+    "temperature": 10.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.2,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747796400,
+    "humidity": 97.0,
+    "temperature": 10.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747800000,
+    "humidity": 97.0,
+    "temperature": 9.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747803600,
+    "humidity": 98.0,
+    "temperature": 10.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.2,
+    "pressure": 838.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747807200,
+    "humidity": 98.0,
+    "temperature": 10.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.2,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747810800,
+    "humidity": 98.0,
+    "temperature": 10.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747814400,
+    "humidity": 98.0,
+    "temperature": 10.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747818000,
+    "humidity": 98.0,
+    "temperature": 12.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747821600,
+    "humidity": 89.0,
+    "temperature": 13.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747825200,
+    "humidity": 81.0,
+    "temperature": 15.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747828800,
+    "humidity": 71.0,
+    "temperature": 17.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747832400,
+    "humidity": 68.0,
+    "temperature": 18.0,
+    "rainfall": 0.0,
+    "windSpeed": 2.6,
+    "pressure": 840.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747836000,
+    "humidity": 60.0,
+    "temperature": 18.6,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747839600,
+    "humidity": 75.0,
+    "temperature": 17.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.7,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747843200,
+    "humidity": 76.0,
+    "temperature": 17.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747846800,
+    "humidity": 68.0,
+    "temperature": 19.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.5,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747850400,
+    "humidity": 73.0,
+    "temperature": 17.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747854000,
+    "humidity": 78.0,
+    "temperature": 16.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747857600,
+    "humidity": 77.0,
+    "temperature": 16.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747861200,
+    "humidity": 86.0,
+    "temperature": 14.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747864800,
+    "humidity": 91.0,
+    "temperature": 13.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747868400,
+    "humidity": 92.0,
+    "temperature": 13.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747872000,
+    "humidity": 93.0,
+    "temperature": 12.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747875600,
+    "humidity": 95.0,
+    "temperature": 11.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747879200,
+    "humidity": 96.0,
+    "temperature": 10.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 839.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747882800,
+    "humidity": 97.0,
+    "temperature": 10.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747886400,
+    "humidity": 97.0,
+    "temperature": 9.5,
+    "rainfall": 0.2,
+    "windSpeed": 1.0,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747890000,
+    "humidity": 96.0,
+    "temperature": 9.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747893600,
+    "humidity": 97.0,
+    "temperature": 8.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 838.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747897200,
+    "humidity": 97.0,
+    "temperature": 8.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 837.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747900800,
+    "humidity": 97.0,
+    "temperature": 8.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 837.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747904400,
+    "humidity": 97.0,
+    "temperature": 8.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747908000,
+    "humidity": 98.0,
+    "temperature": 8.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747911600,
+    "humidity": 87.0,
+    "temperature": 12.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747915200,
+    "humidity": 73.0,
+    "temperature": 16.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747918800,
+    "humidity": 71.0,
+    "temperature": 16.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.7,
+    "pressure": 840.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747922400,
+    "humidity": 76.0,
+    "temperature": 16.2,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747926000,
+    "humidity": 73.0,
+    "temperature": 17.4,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747929600,
+    "humidity": 71.0,
+    "temperature": 17.7,
+    "rainfall": 0.0,
+    "windSpeed": 1.4,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747933200,
+    "humidity": 67.0,
+    "temperature": 18.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 837.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747936800,
+    "humidity": 67.0,
+    "temperature": 18.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 837.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747940400,
+    "humidity": 66.0,
+    "temperature": 17.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 837.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747944000,
+    "humidity": 71.0,
+    "temperature": 15.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747947600,
+    "humidity": 79.0,
+    "temperature": 14.3,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 838.7
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747951200,
+    "humidity": 84.0,
+    "temperature": 12.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747954800,
+    "humidity": 88.0,
+    "temperature": 11.9,
+    "rainfall": 0.0,
+    "windSpeed": 0.6,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747958400,
+    "humidity": 91.0,
+    "temperature": 11.5,
+    "rainfall": 0.0,
+    "windSpeed": 1.3,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747962000,
+    "humidity": 90.0,
+    "temperature": 11.7,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747965600,
+    "humidity": 92.0,
+    "temperature": 11.1,
+    "rainfall": 0.0,
+    "windSpeed": 0.4,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747969200,
+    "humidity": 94.0,
+    "temperature": 10.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.5,
+    "pressure": 839.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747972800,
+    "humidity": 95.0,
+    "temperature": 9.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747976400,
+    "humidity": 97.0,
+    "temperature": 9.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.2,
+    "pressure": 838.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747980000,
+    "humidity": 96.0,
+    "temperature": 9.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.3,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747983600,
+    "humidity": 97.0,
+    "temperature": 10.0,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 838.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747987200,
+    "humidity": 98.0,
+    "temperature": 11.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 838.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747990800,
+    "humidity": 98.0,
+    "temperature": 12.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 838.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747994400,
+    "humidity": 98.0,
+    "temperature": 12.5,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1747998000,
+    "humidity": 98.0,
+    "temperature": 12.8,
+    "rainfall": 0.8,
+    "windSpeed": 1.5,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748001600,
+    "humidity": 97.0,
+    "temperature": 13.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.7,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748005200,
+    "humidity": 91.0,
+    "temperature": 14.6,
+    "rainfall": 0.2,
+    "windSpeed": 1.0,
+    "pressure": 840.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748008800,
+    "humidity": 94.0,
+    "temperature": 13.9,
+    "rainfall": 2.0,
+    "windSpeed": 1.1,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748012400,
+    "humidity": 94.0,
+    "temperature": 14.4,
+    "rainfall": 0.8,
+    "windSpeed": 1.5,
+    "pressure": 840.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748016000,
+    "humidity": 85.0,
+    "temperature": 15.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.8,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748019600,
+    "humidity": 83.0,
+    "temperature": 15.8,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748023200,
+    "humidity": 81.0,
+    "temperature": 15.8,
+    "rainfall": 0.0,
+    "windSpeed": 1.7,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748026800,
+    "humidity": 80.0,
+    "temperature": 14.9,
+    "rainfall": 0.0,
+    "windSpeed": 1.6,
+    "pressure": 838.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748030400,
+    "humidity": 88.0,
+    "temperature": 14.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.7,
+    "pressure": 839.0
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748034000,
+    "humidity": 93.0,
+    "temperature": 13.1,
+    "rainfall": 0.0,
+    "windSpeed": 2.6,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748037600,
+    "humidity": 95.0,
+    "temperature": 12.9,
+    "rainfall": 0.0,
+    "windSpeed": 2.0,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748041200,
+    "humidity": 96.0,
+    "temperature": 12.7,
+    "rainfall": 0.2,
+    "windSpeed": 2.9,
+    "pressure": 840.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748044800,
+    "humidity": 95.0,
+    "temperature": 12.7,
+    "rainfall": 0.0,
+    "windSpeed": 2.8,
+    "pressure": 840.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748048400,
+    "humidity": 98.0,
+    "temperature": 12.2,
+    "rainfall": 0.0,
+    "windSpeed": 3.5,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748052000,
+    "humidity": 98.0,
+    "temperature": 12.2,
+    "rainfall": 0.0,
+    "windSpeed": 2.7,
+    "pressure": 840.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748055600,
+    "humidity": 98.0,
+    "temperature": 11.8,
+    "rainfall": 0.0,
+    "windSpeed": 2.5,
+    "pressure": 840.2
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748059200,
+    "humidity": 97.0,
+    "temperature": 11.8,
+    "rainfall": 0.0,
+    "windSpeed": 3.3,
+    "pressure": 839.8
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748062800,
+    "humidity": 96.0,
+    "temperature": 11.8,
+    "rainfall": 0.0,
+    "windSpeed": 3.9,
+    "pressure": 839.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748066400,
+    "humidity": 95.0,
+    "temperature": 11.2,
+    "rainfall": 0.0,
+    "windSpeed": 2.4,
+    "pressure": 839.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748070000,
+    "humidity": 96.0,
+    "temperature": 11.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.1,
+    "pressure": 839.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748073600,
+    "humidity": 97.0,
+    "temperature": 10.6,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748077200,
+    "humidity": 97.0,
+    "temperature": 10.2,
+    "rainfall": 0.0,
+    "windSpeed": 0.8,
+    "pressure": 839.9
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748080800,
+    "humidity": 98.0,
+    "temperature": 10.1,
+    "rainfall": 0.0,
+    "windSpeed": 1.2,
+    "pressure": 840.5
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748084400,
+    "humidity": 88.0,
+    "temperature": 13.3,
+    "rainfall": 0.0,
+    "windSpeed": 1.0,
+    "pressure": 841.1
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748088000,
+    "humidity": 74.0,
+    "temperature": 17.0,
+    "rainfall": 0.0,
+    "windSpeed": 0.9,
+    "pressure": 841.4
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748091600,
+    "humidity": 84.0,
+    "temperature": 15.4,
+    "rainfall": 0.0,
+    "windSpeed": 0.4,
+    "pressure": 841.6
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748095200,
+    "humidity": 87.0,
+    "temperature": 15.2,
+    "rainfall": 0.2,
+    "windSpeed": 1.8,
+    "pressure": 841.3
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748098800
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748102400
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748106000
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748109600
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748113200
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748116800
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748120400
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748124000
+  },
+  {
+    "uid": "campos-do-jordao-uid-001",
+    "unixtime": 1748127600
   }
 ]
