@@ -1,29 +1,29 @@
 export class ChangePasswordDTO {
     private email: string;
-    private oldPassword: string;
-    private password: string;
-    private passwordConfirmation: string;
+    private currentPassword: string;
+    private newPassword: string;
+    private confirmPassword: string;
 
-    constructor(email: string, oldPassword: string, password: string, passwordConfirmation: string) {
+    constructor(email: string, currentPassword: string, newPassword: string, confirmPassword: string) {
         this.email = email;
-        this.oldPassword = oldPassword;
-        this.password = password;
-        this.passwordConfirmation = passwordConfirmation;
+        this.currentPassword = currentPassword;
+        this.newPassword = newPassword;
+        this.confirmPassword = confirmPassword;
     }
 
     public getEmail(): string {
         return this.email;
     }
 
-    public getOldPassword(): string {
-        return this.oldPassword;
+    public getCurrentPassword(): string {
+        return this.currentPassword;
     }
 
-    public getPassword(): string {
-        return this.password;
+    public getNewPassword(): string {
+        return this.newPassword;
     }
 
-    public getPasswordConfirmation(): string {
-        return this.passwordConfirmation;
+    public getConfirmPassword(): string {
+        return this.confirmPassword;
     }
 }

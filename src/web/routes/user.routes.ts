@@ -160,7 +160,7 @@ userRoutes.get('/read/:id', limiter, ensureAuthenticated, asyncHandler((req, res
 
 /**
  * @swagger
- * /user/change-password:
+ * /user/alterar-senha:
  *   put:
  *     summary: Altera a senha do usuário
  *     tags: [Usuários]
@@ -173,12 +173,19 @@ userRoutes.get('/read/:id', limiter, ensureAuthenticated, asyncHandler((req, res
  *           schema:
  *             type: object
  *             required:
+ *               - email
  *               - currentPassword
  *               - newPassword
+ *               - confirmPassword
  *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
  *               currentPassword:
  *                 type: string
  *               newPassword:
+ *                 type: string
+ *               confirmPassword:
  *                 type: string
  *     responses:
  *       200:
@@ -188,6 +195,6 @@ userRoutes.get('/read/:id', limiter, ensureAuthenticated, asyncHandler((req, res
  *       401:
  *         description: Não autorizado
  */
-userRoutes.put('/change-password', limiter, ensureAuthenticated, asyncHandler((req, res, next) => changePasswordController.handle(req, res, next)));
+userRoutes.put('/alterar-senha', limiter, ensureAuthenticated, asyncHandler((req, res, next) => changePasswordController.handle(req, res, next)));
 
 export { userRoutes }
