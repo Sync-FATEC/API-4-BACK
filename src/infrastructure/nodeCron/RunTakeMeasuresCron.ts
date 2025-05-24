@@ -59,7 +59,7 @@ export class RunTakeMeasuresCron {
       );
 
       // Cron job para executar a cada 10 minutos
-      this.task = cron.schedule('*/10 * * * * *', async () => {
+      this.task = cron.schedule('*/10 * * * *', async () => {
         console.log('[CRON] Executando processamento de dados do MongoDB');
         await receiverMongoJsonUseCase.execute();
       });
