@@ -46,7 +46,7 @@ export class AlertRepository implements IAlertRepository {
           measure: {
             id: alert.measure.id,
             unixTime: alert.measure.unixTime,
-            value: alert.measure.value,
+            value: alert.measure.value + " " + alert.measure.parameter.idTypeParameter.unit,
             parameterText: alert.measure.parameter.getParameterName(),
             criticality: alert.type.criticality,
           } as ListMeasureResponseDTO,

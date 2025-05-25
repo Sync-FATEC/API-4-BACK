@@ -9,7 +9,6 @@ export class RegisterEmailStationUseCase {
   }
 
   public async execute(email: string, stationId: string ) {
-    console.log(this.stationRepository);
     
     let station = await this.stationRepository.findById(stationId);
 

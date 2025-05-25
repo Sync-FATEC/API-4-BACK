@@ -7,17 +7,17 @@ export class ChangePasswordController {
 
     async handle(request: Request, response, next: NextFunction): Promise<Response> {
         try {
-            const { email, oldPassword, password, passwordConfirmation } = request.body;
+            const { email, currentPassword, newPassword, confirmPassword } = request.body;
 
-            if ( !email || !oldPassword || !password || !passwordConfirmation ) {
+            if (!email || !currentPassword || !newPassword || !confirmPassword) {
                 return response.sendError('Dados inválidos', 400);
             }
 
-            const userData: ChangePasswordDTO = new ChangePasswordDTO(email, oldPassword, password, passwordConfirmation);
+            const userData: ChangePasswordDTO = new ChangePasswordDTO(email, currentPassword, newPassword, confirmPassword);
 
             await this.changePasswordUseCase.execute(userData);
 
-            return response.sendSuccess("Senha atualizada", 200);
+            return response.sendSuccess("Senha atualizada com sucesso", 200);
         } catch (error) {
             next(error);
         }

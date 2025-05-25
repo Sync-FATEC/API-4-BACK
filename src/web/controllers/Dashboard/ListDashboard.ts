@@ -4,53 +4,21 @@ import { ListDashboardUseCase } from '../../../application/use-cases/dashboard/L
 export class ListDashboardController {
   constructor(private listDashboardUseCase: ListDashboardUseCase) {}
 
-  async getAll(req: Request, res, next: NextFunction): Promise<Response> {
+  async handle(req: Request, res, next: NextFunction): Promise<Response> {
     try {
-      const { 
-        startDate, 
-        endDate, 
-        date,
-        stationId, 
-        parameterId,
-        lastDays
-      } = req.query;
+      const { stationId, startDate, endDate } = req.body;
+      const measures = await this.listDashboardUseCase.execute(stationId, startDate, endDate);
+      return res.sendSuccess(measures);
+    } catch (error) {
+      next(error);
+    }
+  }
 
-      let startDateObj: Date | undefined = undefined;
-      let endDateObj: Date | undefined = undefined;
-      
-      if (lastDays) {
-        const days = parseInt(lastDays as string, 10);
-        endDateObj = new Date();
-        startDateObj = new Date();
-        startDateObj.setDate(startDateObj.getDate() - days);
-      }
-      else if (date) {
-        const dateStr = date as string;
-        
-        startDateObj = new Date(`${dateStr}T00:00:00-03:00`);
-        endDateObj = new Date(`${dateStr}T23:59:59.999-03:00`);
-      } 
-      else {
-        if (startDate) {
-          startDateObj = new Date(startDate as string);
-        }
-        
-        if (endDate) {
-          endDateObj = new Date(endDate as string);
-        }
-      }
-
-      const filters = {
-        startDate: startDateObj,
-        endDate: endDateObj,
-        stationId: stationId ? String(stationId) : undefined,
-        parameterId: parameterId ? String(parameterId) : undefined
-      };
-
-      const dashboardData = await this.listDashboardUseCase.execute(filters);
-
-      return res.sendSuccess(dashboardData, 200);
-      
+  async handlePublic(req: Request, res, next: NextFunction): Promise<Response> {
+    try {
+      const { stationId } = req.params;
+      const measures = await this.listDashboardUseCase.execute(stationId, new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), new Date());
+      return res.sendSuccess(measures);
     } catch (error) {
       next(error);
     }

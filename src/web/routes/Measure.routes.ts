@@ -141,6 +141,46 @@ measureRoutes.get('/list', limiter, asyncHandler((req, res, next) => measureCont
 
 /**
  * @swagger
+ * /measure/public/{stationId}:
+ *   get:
+ *     summary: Lista todas as medidas de uma estação
+ *     tags: [Medidas]
+ *     parameters:
+ *       - in: path
+ *         name: stationId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID da estação
+ *     responses:
+ *       200:
+ *         description: Lista de medidas retornada com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: string
+ *                   value:
+ *                     type: number 
+ *                   parameterId:
+ *                     type: string
+ *                   stationId:
+ *                     type: string
+ *                   createdAt:
+ *                     type: string 
+ *                   parameterText:
+ *                     type: string
+ *                   unixTime:
+ *                     type: number
+ */
+measureRoutes.get('/public/', limiter, asyncHandler((req, res, next) => measureController.handlePublic(req, res, next)));
+
+/**
+ * @swagger
  * /measure/read/{id}:
  *   get:
  *     summary: Obtém uma medida específica

@@ -13,17 +13,17 @@ export default class ChangePasswordUseCase {
             throw new SystemContextException('Usuário não encontrado');
         }
 
-        const passwordMatch = await compare(userData.getOldPassword(), user.password);
+        const passwordMatch = await compare(userData.getCurrentPassword(), user.password);
         
         if (!passwordMatch) {
-            throw new SystemContextException('Senha antiga incorreta');
+            throw new SystemContextException('Senha atual incorreta');
         }
 
-        if (userData.getPassword() !== userData.getPasswordConfirmation()) {
+        if (userData.getNewPassword() !== userData.getConfirmPassword()) {
             throw new SystemContextException('As senhas não coincidem');
         }
 
-        const newPassword = await hashPassword(userData.getPassword());
+        const newPassword = await hashPassword(userData.getNewPassword());
 
         await this.userRepository.update(user.getId(), {
             password: newPassword
