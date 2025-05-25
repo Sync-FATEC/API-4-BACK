@@ -77,6 +77,19 @@ export class MeasureController {
     }
   }
 
+  async handlePublic(req: Request, res, next: NextFunction): Promise<Response> {
+    try {
+      const stationId: string | null = req.query.stationId
+      ? String(req.query.stationId)
+      : null;
+
+      const measures = await this.listUseCase.executePublic(stationId);
+      return res.sendSuccess(measures, 200);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async delete(req: Request, res, next: NextFunction): Promise<Response> {
     try {
       const { id } = req.params;

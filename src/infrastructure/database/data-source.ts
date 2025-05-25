@@ -8,7 +8,8 @@ import { User } from "../../domain/models/entities/User";
 import { Measure } from "../../domain/models/entities/Measure";
 import { EmailStation } from "../../domain/models/entities/EmailsStation";
 import { MeasureAverage } from "../../domain/models/entities/MeasureAverage";
-
+import { PasswordReset } from "../../domain/models/entities/PasswordReset";
+import { Logs } from "../../domain/models/entities/Logs";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -18,7 +19,7 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   synchronize: true,
-  logging: false,
+  logging: false,  
   entities: [
     User,
     TypeAlert,
@@ -28,7 +29,9 @@ export const AppDataSource = new DataSource({
     Measure,
     Station,
     EmailStation,
-    MeasureAverage
+    MeasureAverage,
+    PasswordReset,
+    Logs
   ],
   migrations: [],
   subscribers: [],

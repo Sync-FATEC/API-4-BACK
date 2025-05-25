@@ -21,13 +21,20 @@ export class RunTakeMeasuresCron {
   private alertRepository = new AlertRepository();
   private typeAlertRepository = new TypeAlertRepository();
   private parameterRepository = new ParameterRepository();
-  private notificationService = new NotificationService();
   private emailSender = NodemailerEmailSender.getInstance();
   private emailStationRepository = new EmailStationRepository();
   private userRepository = new UserRepository();
-  private senderAlertService = new SenderAlertService(this.notificationService, this.emailSender, this.emailStationRepository, this.userRepository);
-
+  private senderAlertService: SenderAlertService;
   private task: cron.ScheduledTask | null = null;
+
+  constructor(private notificationService: NotificationService) {
+    this.senderAlertService = new SenderAlertService(
+      this.notificationService,
+      this.emailSender,
+      this.emailStationRepository,
+      this.userRepository
+    );
+  }
 
   async execute() {
     try {
@@ -68,3 +75,4 @@ export class RunTakeMeasuresCron {
   }
 }
 
+  

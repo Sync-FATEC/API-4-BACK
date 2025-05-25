@@ -1,7 +1,7 @@
 export interface ListMeasureResponseDTO {
     id: string;
     unixTime: number;
-    value: number;
+    value: string;
     parameterText: string
   }
   

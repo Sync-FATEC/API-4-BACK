@@ -1,12 +1,13 @@
 import { NotificationService } from "./service/NotificationService";
 import { WebSocketServer } from "ws";
+import { Server } from "http";
 
 let wss: WebSocketServer;
 const notificationService = new NotificationService();
 
-export const createSocketServer = (server) => {
+export const createSocketServer = (server: Server) => {
   // Inicialize o WebSocketServer com o servidor HTTP
-  wss = new WebSocketServer({ port: 5555 });
+  wss = new WebSocketServer({ server });
 
   wss.on("connection", (ws) => {
     console.log("🔥 Cliente conectado");

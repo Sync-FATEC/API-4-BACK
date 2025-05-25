@@ -1,11 +1,7 @@
-name: Pipeline para Build Backend
+name: Build Backend
 
 on:
   workflow_call:
-    inputs:
-      setup_run:
-        required: false
-        type: string
 
 jobs:
   build:

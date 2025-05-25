@@ -1,0 +1,40 @@
+name: CI Unit test
+
+on:
+  workflow_call:
+
+jobs:
+  # Job para executar os testes unitários
+  unit-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+        # Usado para baixar o código do repositório
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+        # Usado para definir a versão do Node.js
+        # e habilitar o cache do npm
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+        # Para armazenar o cache do npm
+        # para acelerar o processo de instalação pois verifica se
+        # o package-lock.json foi alterado
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+        
+        # Instala as dependências do projeto
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run tests unit
+        run: npm run test:unit
