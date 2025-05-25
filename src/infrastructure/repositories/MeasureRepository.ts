@@ -102,7 +102,6 @@ export class MeasureRepository implements IMeasureRepository {
   async listMeasuresLastHour(): Promise<Measure[]> {
     const now = Math.floor(Date.now() / 1000);
     const oneHourAgo = now - 3600;
-
     const measures = await this.measures.find({
       where: {
         unixTime: Between(oneHourAgo, now),
@@ -137,7 +136,6 @@ export class MeasureRepository implements IMeasureRepository {
         "parameter.idTypeParameter",
       ],
     });
-
     return measures as MeasureWithRelations[];
   }
 
