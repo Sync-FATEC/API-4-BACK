@@ -52,12 +52,6 @@ export class PasswordResetService {
         // Verificar se o token existe e é válido
         const resetToken = await this.passwordResetRepository.findValidToken(token);
 
-        console.log()
-        console.log("ResetToken: ", resetToken);
-        console.log()
-        console.log("Token: ", token)
-        console.log()
-
         if (!resetToken) {
             throw new SystemContextException('Token inválido ou expirado');
         }
@@ -105,12 +99,6 @@ export class PasswordResetService {
         // Verificar se o token existe e é válido
         const resetToken = await this.passwordResetRepository.findValidToken(token);
         
-        console.log()
-        console.log("ResetToken: ", resetToken);
-        console.log()
-        console.log("Token: ", token)
-        console.log()
-
         if (!resetToken) {
             return false;
         }
