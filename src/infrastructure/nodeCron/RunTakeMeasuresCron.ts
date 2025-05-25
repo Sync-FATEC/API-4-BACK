@@ -15,7 +15,6 @@ import { NotificationService } from '../websocket/service/NotificationService';
 import { EmailStationRepository } from '../repositories/EmailStationRepository';
 import { NodemailerEmailSender } from '../email/nodeMailerEmailSender';
 import { UserRepository } from '../repositories/UserRepository';
-
 export class RunTakeMeasuresCron {
   private measureRepository = new MeasureRepository();
   private stationRepository = new StationRepository();
