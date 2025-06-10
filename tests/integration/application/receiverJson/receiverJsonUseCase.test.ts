@@ -61,7 +61,7 @@ defineFeature(feature, (test) => {
         })
     })
 
-    test('Estação ou parametros não cadastrados', ({ given, when, then }) => {
+    test('Ignorar dados recebidos quando parâmetros da estação estão ausentes', ({ given, when, then }) => {
         let initialMeasureCount: number;
         let estacao: any;
         
@@ -81,13 +81,13 @@ defineFeature(feature, (test) => {
                 "temperature": "10"
             }
             await createReceiverJsonSeed(dados);
-        });
+        })
 
         then('o sistema deve ignorar os dados recebidos', async () => {
             const measureRepository = new MeasureRepository();
             const listMeasureUseCase = new ListMeasureUseCase(measureRepository);
             const allMeasures = await listMeasureUseCase.execute(estacao.id);
             expect(allMeasures.length).toBe(initialMeasureCount);
-        });
+        })
     })
 })
