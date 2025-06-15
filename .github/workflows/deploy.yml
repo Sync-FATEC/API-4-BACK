@@ -3,7 +3,7 @@ name: CI Deploy
 on:
   push:
     branches:
-      - prod
+      - test-deploy
 
 jobs:
   deploy:
