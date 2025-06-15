@@ -26,4 +26,4 @@ jobs:
           git fetch
           git pull
           npm install
-          npm run dev > /home/***/API-4-BACK/serve.log 2>&1 &
+          npm run dev > /home/ec2-user/API-4-BACK/serve.log 2>&1 &
