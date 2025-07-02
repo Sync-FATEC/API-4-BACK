@@ -103,3 +103,4 @@ process.on('SIGTERM', stopServer); // kill
 if (require.main === module) {
   startServer().catch(() => process.exit(1));
 }
+
